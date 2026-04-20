@@ -236,11 +236,16 @@ h1, h2, h3, h4 {
 .carousel-caption {
   position: absolute;
   left: clamp(20px, 4vw, 40px);
-  right: clamp(20px, 4vw, 40px);
   bottom: clamp(24px, 4vw, 40px);
   z-index: 2;
   color: #fff;
-  max-width: 640px;
+  max-width: min(640px, calc(100% - clamp(40px, 8vw, 80px)));
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(12, 12, 14, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 .carousel-caption .eyebrow {
   color: rgba(255, 255, 255, 0.7);
