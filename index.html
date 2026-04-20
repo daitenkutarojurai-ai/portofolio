@@ -3,521 +3,193 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Thomas Fendrich — Maker · Hardware · 3D printing · Games</title>
-<meta name="description" content="Thomas Fendrich — independent maker. Connected hardware, 3D-printed figures, pixel-art games, and a handful of podcasts. 100K+ cumulative views on Hackster &amp; Instructables." />
-<meta name="theme-color" content="#050608" />
-
-<meta property="og:title" content="Thomas Fendrich — Maker · Hardware · 3D printing · Games" />
-<meta property="og:description" content="Independent maker. Hardware hacks, 3D-printed figures, pixel-art games." />
-<meta property="og:type" content="website" />
+<title>Thomas Fendrich — Maker</title>
+<meta name="description" content="Thomas Fendrich — independent maker. Connected hardware, 3D-printed figures, pixel-art games, podcasts." />
+<meta name="theme-color" content="#0c0c0e" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23050608'/%3E%3Ctext x='16' y='22' font-family='serif' font-size='20' font-style='italic' fill='%23d9ff4c' text-anchor='middle'%3Et%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0c0e'/%3E%3Ctext x='16' y='22' font-family='Inter,sans-serif' font-weight='600' font-size='16' fill='%23ff6a2b' text-anchor='middle'%3Etf%3C/text%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="no-js">
 
-<div class="cursor-dot"></div>
-<div class="cursor-ring"></div>
-
 <!-- Nav ============================================================== -->
 <nav class="nav" id="nav">
-  <a href="#top" class="nav-brand">
-    <span class="dot"></span>
-    thomas <em style="font-style:normal;color:var(--muted);">/</em> fendrich
-  </a>
+  <a href="#top" class="nav-brand">thomas <span>/ fendrich</span></a>
   <div class="nav-links">
-    <a href="#work">Hardware</a>
-    <a href="#apps">Software</a>
-    <a href="#prints">3D prints</a>
+    <a href="works.html">Works</a>
     <a href="#about">About</a>
-    <a href="#listen">Listen</a>
     <a href="#contact">Contact</a>
-  </div>
-  <div class="nav-status">
-    <span class="status-dot"></span>
-    Making things · 2026
   </div>
 </nav>
 
 <!-- Hero ============================================================= -->
 <header class="hero" id="top">
-  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="hero-grid">
-      <div class="reveal" data-delay="0">
-        <div class="hero-meta">
-          <span class="chip accent">● Maker · Hardware · 3D printing · Games</span>
-          <span class="chip">Luxembourg &amp; France</span>
-          <span class="chip">Est. 2016</span>
-        </div>
-
-        <h1>
-          I make<br>
-          <em>small machines,</em><br>
-          <span class="amp">&amp;</span> painted figures.
-        </h1>
-
-        <p class="hero-lede">
-          Thomas Fendrich — independent maker, 3D-print painter,
-          and embedded tinkerer. I turn <b>Arduinos, resin, and
-          late-night ideas</b> into things that shouldn't really
-          exist: cocktail robots, automated jungles,
-          hand-painted Groots, pixel-art chess fighters.
-          Ten years of open write-ups on <b>Hackster</b> and
-          <b>Instructables</b>, a shelf full of printed models,
-          and a shipping habit I can't seem to break.
-        </p>
-
-        <div class="hero-cta">
-          <a href="#prints" class="btn btn-primary">
-            See the work <span class="arrow">→</span>
-          </a>
-          <a href="#contact" class="btn">
-            Get in touch <span class="arrow">↗</span>
-          </a>
-        </div>
+    <div class="reveal">
+      <span class="hero-tag"><span class="dot"></span> Maker · Hardware · 3D · Games</span>
+      <h1>I build <span class="accent">small machines</span>, paint 3D prints, and ship apps.</h1>
+      <p class="hero-lede">
+        Independent maker based between Luxembourg and France. I turn <b>Arduinos, resin, and
+        late-night ideas</b> into things that shouldn't exist — cocktail robots, automated jungles,
+        pixel-art chess fighters. Ten years of open write-ups on <b>Hackster</b> and <b>Instructables</b>.
+      </p>
+      <div class="hero-cta">
+        <a href="works.html" class="btn btn-primary">Browse all works <span class="arrow">→</span></a>
+        <a href="#contact" class="btn">Get in touch</a>
       </div>
-
-      <div class="hero-visual reveal" data-delay="1">
-        <div class="filmstrip">
-          <div class="filmstrip-item">
-            <img src="images/groot.jpg" alt="Hand-painted Groot 3D print" loading="eager">
-            <div class="filmstrip-caption"><span class="bar"></span>Groot · Hand-painted 3D print</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/garrosh.jpg" alt="Garrosh Hellscream figure">
-            <div class="filmstrip-caption"><span class="bar"></span>Garrosh Hellscream · Painted figure</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/garden.jpg" alt="Automated Garden">
-            <div class="filmstrip-caption"><span class="bar"></span>Automated Garden · 38K views</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/treeoflife.jpg" alt="Tree of Life 3D print">
-            <div class="filmstrip-caption"><span class="bar"></span>Tree of Life · Printed sculpture</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/harrypotter.png" alt="Harry Potter figure">
-            <div class="filmstrip-caption"><span class="bar"></span>Harry Potter · Painted figure</div>
-          </div>
-          <!-- loop -->
-          <div class="filmstrip-item">
-            <img src="images/groot.jpg" alt="">
-            <div class="filmstrip-caption"><span class="bar"></span>Groot · Hand-painted 3D print</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/garrosh.jpg" alt="">
-            <div class="filmstrip-caption"><span class="bar"></span>Garrosh Hellscream · Painted figure</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/garden.jpg" alt="">
-            <div class="filmstrip-caption"><span class="bar"></span>Automated Garden · 38K views</div>
-          </div>
-          <div class="filmstrip-item">
-            <img src="images/treeoflife.jpg" alt="">
-            <div class="filmstrip-caption"><span class="bar"></span>Tree of Life · Printed sculpture</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- KPI strip — what I've made, not what I can sell -->
-    <div class="kpi reveal" data-delay="2">
-      <div class="kpi-item">
-        <div class="num"><span data-count="100" data-suffix="K+">0</span></div>
-        <div class="label">Cumulative views</div>
-      </div>
-      <div class="kpi-item">
-        <div class="num"><span data-count="14">0</span></div>
-        <div class="label">Hardware builds</div>
-      </div>
-      <div class="kpi-item">
-        <div class="num"><span data-count="30" data-suffix="+">0</span></div>
-        <div class="label">Painted figures</div>
-      </div>
-      <div class="kpi-item">
-        <div class="num"><span data-count="6">0</span></div>
-        <div class="label">Podcasts</div>
-      </div>
-      <div class="kpi-item">
-        <div class="num"><em>2016→</em></div>
-        <div class="label">Publishing publicly</div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">100K+</div><div class="l">Views</div></div>
+        <div class="hero-stat"><div class="n">25</div><div class="l">Projects shipped</div></div>
+        <div class="hero-stat"><div class="n">6</div><div class="l">Podcasts</div></div>
+        <div class="hero-stat"><div class="n">2016→</div><div class="l">Publishing</div></div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- Marquee ========================================================== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-item">Hardware hacks <span class="sep"></span></span>
-    <span class="marquee-item warm">3D-printed figures <span class="sep"></span></span>
-    <span class="marquee-item">Automated gardens <span class="sep"></span></span>
-    <span class="marquee-item">Cocktail robots <span class="sep"></span></span>
-    <span class="marquee-item warm">Pixel-art games <span class="sep"></span></span>
-    <span class="marquee-item">Podcasts <span class="sep"></span></span>
-    <span class="marquee-item">Hardware hacks <span class="sep"></span></span>
-    <span class="marquee-item warm">3D-printed figures <span class="sep"></span></span>
-    <span class="marquee-item">Automated gardens <span class="sep"></span></span>
-    <span class="marquee-item">Cocktail robots <span class="sep"></span></span>
-    <span class="marquee-item warm">Pixel-art games <span class="sep"></span></span>
-    <span class="marquee-item">Podcasts <span class="sep"></span></span>
-  </div>
-</div>
-
-<!-- Work — Hardware ================================================== -->
-<section id="work">
+<!-- Featured ========================================================= -->
+<section>
   <div class="wrap">
     <div class="section-head reveal">
-      <div class="section-head-meta">
-        <span class="num">01 — Hardware</span>
-        <span class="label">Physical &amp; connected</span>
-      </div>
       <div>
-        <h2>Machines that <em>shouldn't</em> exist, but do.</h2>
-        <p>Eight years of soldering, 3D printing, and wiring weekends into weird little objects. Each one starts as a sketch and ends up on Hackster or Instructables. Click any piece for the full build.</p>
+        <div class="eyebrow">Featured</div>
+        <h2>A few things I've made.</h2>
       </div>
+      <a href="works.html" class="section-head-link">See all 25 works <span class="arrow">→</span></a>
     </div>
 
-    <div class="bento">
-      <!-- 1. Garden -->
-      <a class="project featured reveal span-4" data-delay="1"
-         data-slug="garden"
-         data-title="Automated <em>Garden</em>"
-         data-tagline="A little jungle that doesn't need me."
-         data-year="2016"
-         data-type="Hardware · IoT"
-         data-views="38,747"
-         data-duration="4 hours build"
-         data-difficulty="Beginner"
-         data-img="images/garden.jpg"
-         data-desc="<p>A self-contained growing chamber wired into the cloud. A Raspberry Pi handles the timelapse camera; an Arduino Ethernet Shield pushes sensor data to Cayenne. Together they read temperature, humidity, and soil moisture — then trigger the water pump, grow light, and fan without me lifting a finger.</p><p>Cheap parts, lots of cardboard, one very patient plant. It was my second automated-garden build and the one that went big on Hackster.</p>"
-         data-tech="Arduino Uno,Raspberry Pi 2,Arduino Ethernet Shield 2,Pi Camera,DHT22,Photo resistor,4-ch relay,Cayenne"
-         data-link="https://www.hackster.io/thomassxt/automated-garden-77bee8"
-         data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/garden.jpg" alt="Automated Garden" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">01 / Featured</span>
-            <span class="dot">·</span>
-            <span>Hardware · IoT</span>
-            <span class="dot">·</span>
-            <span>2016</span>
-          </div>
-          <h3>Automated Garden</h3>
-          <p>A fully self-watering, self-lighting, self-ventilating chamber with a Pi Cam running timelapse and Cayenne pushing readings to the cloud. 38K views. One happy plant.</p>
-          <div class="project-foot">
-            <span>Raspberry Pi · Arduino · Cayenne</span>
-            <span class="view">Read story →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 2. IKEA Smart Plant -->
-      <a class="project featured reveal span-2" data-delay="2"
-         data-slug="plant"
-         data-title="IKEA <em>Smart Plant</em>"
-         data-tagline="Furniture, but photosynthetic."
-         data-year="2021"
-         data-type="Hardware · IoT"
-         data-views="748"
-         data-duration="2 hours build"
-         data-difficulty="Beginner"
-         data-img="images/plant.jpg"
-         data-desc="<p>An IKEA planter upgraded into a tiny indoor ecosystem: grow light, 12V fan, water pump, and a soil-moisture probe. Everything runs off a 4-channel I²C relay board driven by an Arduino Uno.</p><p>Built for a dark corner of the apartment. The magenta glow is not a filter — that's the bulb.</p>"
-         data-tech="Arduino Uno,4-ch I²C relay,12VDC axial fan,LED grow bulb,Moisture sensor,Water pump"
-         data-link="https://www.hackster.io/thomassxt/ikea-smart-plant-22133b"
-         data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/plant.jpg" alt="IKEA Smart Plant" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">02</span>
-            <span class="dot">·</span>
-            <span>IoT · 2021</span>
-          </div>
-          <h3>IKEA Smart Plant</h3>
-          <p>Grow light, fan, pump &amp; moisture probe. Ordinary planter, hydroponic soul.</p>
-          <div class="project-foot">
-            <span>Arduino · Relays</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 3. Photobooth -->
-      <a class="project reveal span-3" data-delay="3"
-         data-slug="photobooth"
-         data-title="Photobooth <em>Pro</em>"
-         data-tagline="A wedding-grade photobooth in a plywood box."
-         data-year="2023"
-         data-type="Hardware · Raspberry Pi"
-         data-views="8,726"
-         data-duration="10 steps"
-         data-difficulty="Intermediate"
-         data-img="images/photobooth.jpg"
-         data-desc="<p>Raspberry Pi + Canon DSLR + Canon Selphy printer, wrapped in a custom wooden enclosure. Runs pibooth with a borderless fullscreen UI, CUPS for printing, and custom plugins I wrote to push every shot to Telegram and Google Photos in real time.</p><p>Used at an actual wedding. Survived both.</p>"
-         data-tech="Raspberry Pi,Canon EOS 100D,Canon Selphy CP1300,pibooth,CUPS,Telegram Bot API,Google Photos API,Touchscreen"
-         data-link="https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/"
-         data-link-label="View on Instructables">
-        <div class="project-media">
-          <img src="images/photobooth.jpg" alt="Photobooth Pro" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">03</span>
-            <span class="dot">·</span>
-            <span>Raspberry Pi · 2023</span>
-          </div>
-          <h3>Photobooth Pro</h3>
-          <p>Full-fat photobooth: DSLR, thermal printer, Telegram bot, Google Photos sync. Wedding-tested &amp; approved.</p>
-          <div class="project-foot">
-            <span>Pi · pibooth · CUPS</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 4. Cocktail GUI -->
-      <a class="project reveal span-3" data-delay="4"
-         data-slug="cocktail-gui"
-         data-title="Cocktail Machine <em>GUI</em>"
-         data-tagline="Tap a drink. Pour a drink. Done."
-         data-year="2016"
-         data-type="Hardware · Raspberry Pi"
-         data-views="4,159"
-         data-duration="10 hours build"
-         data-difficulty="Intermediate"
-         data-img="images/cocktail-gui.jpg"
-         data-desc="<p>A Raspberry Pi driving an Adafruit touchscreen and an 8-channel relay that controls a bank of peristaltic pumps. Custom GUI for selecting drinks; underlying bash orchestrates pour timing.</p><p>Built on a shoestring budget in a college kitchen. Parties were never the same.</p>"
-         data-tech="Raspberry Pi 2,Adafruit Touchscreen,8-ch relay,Peristaltic pumps,Raspbian (modified)"
-         data-link="https://www.hackster.io/thomassxt/cocktail-machine-with-gui-raspberry-0c968f"
-         data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/cocktail-gui.jpg" alt="Cocktail Machine GUI" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">04</span>
-            <span class="dot">·</span>
-            <span>Hardware · 2016</span>
-          </div>
-          <h3>Cocktail Machine · GUI</h3>
-          <p>Touchscreen drink dispenser. Tap, pour, sip. Built in a college kitchen.</p>
-          <div class="project-foot">
-            <span>RPi · Touchscreen · Relays</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 5. Cocktail Phone -->
-      <a class="project reveal span-2" data-delay="1"
-         data-slug="cocktail-phone"
-         data-title="Cocktail Machine <em>Phone</em>"
-         data-tagline="Bartending-as-a-service, via Bluetooth."
-         data-year="2018"
-         data-type="Hardware · Android"
-         data-views="1,765"
-         data-duration="15 hours build"
-         data-difficulty="Beginner"
-         data-img="images/cocktail-phone.jpg"
-         data-desc="<p>Same idea as the GUI build, but the controller moved to your pocket. An HC-06 Bluetooth module listens for commands; a custom Android app sends drink orders over serial. Arduino Uno triggers the right pumps for the right duration.</p><p>Two iterations of the same silly problem. No regrets.</p>"
-         data-tech="Arduino Uno,HC-06 Bluetooth,Android app,Relay bank,Peristaltic pumps"
-         data-link="https://www.hackster.io/thomassxt/cocktail-machine-smartphone-controlled-49a9dd"
-         data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/cocktail-phone.jpg" alt="Cocktail Machine Phone" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">05</span>
-            <span class="dot">·</span>
-            <span>2018</span>
-          </div>
-          <h3>Cocktail Machine · Phone</h3>
-          <p>Android-controlled bartender. HC-06 Bluetooth + Arduino.</p>
-          <div class="project-foot">
-            <span>Arduino · Bluetooth</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- 6. Coffee -->
-      <a class="project reveal span-2" data-delay="2"
+    <div class="works-grid">
+      <!-- Coffee Machine — most-viewed -->
+      <a class="card reveal" data-delay="0"
          data-slug="coffee"
-         data-title="Automatic <em>Coffee</em> Machine"
+         data-title="Automatic Coffee Machine"
          data-tagline="The morning's most overengineered minute."
          data-year="2016"
          data-type="Hardware · Android"
-         data-views="41,550"
+         data-views="41,550 views"
          data-duration="2 hours build"
          data-difficulty="Beginner"
          data-img="images/coffee.jpg"
-         data-desc="<p>A regular espresso machine retrofitted with a relay, an HC-06 Bluetooth module, and an Arduino Uno. A companion Android app turns the machine on remotely and times the brew — including a voice-recognition mode for the ambitious.</p><p>My most-viewed project ever. Turns out people are very motivated to not walk to the kitchen.</p>"
+         data-desc="<p>A regular espresso machine retrofitted with a relay, an HC-06 Bluetooth module, and an Arduino Uno. A companion Android app turns the machine on remotely and times the brew — including a voice-recognition mode for the ambitious.</p><p>My most-viewed project ever.</p>"
          data-tech="Arduino Uno,HC-06 Bluetooth,Relay,Android app,Voice recognition"
          data-link="https://www.hackster.io/thomassxt/automatic-coffee-machine-950544"
          data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/coffee.jpg" alt="Automatic Coffee Machine" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">06 / 41K views</span>
-            <span class="dot">·</span>
-            <span>2016</span>
-          </div>
-          <h3>Coffee Machine</h3>
-          <p>Bluetooth + Arduino + voice control = coffee without walking.</p>
-          <div class="project-foot">
-            <span>Arduino · Android · HC-06</span>
-            <span class="view">Read →</span>
-          </div>
+        <div class="card-media"><img src="images/coffee.jpg" alt="Automatic Coffee Machine" loading="eager"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2016</span></div>
+          <h3>Automatic Coffee Machine</h3>
+          <p class="card-desc">Bluetooth + Arduino + voice control. Coffee without walking.</p>
+          <div class="card-foot"><span class="views">41K views</span><span class="go">Read →</span></div>
         </div>
       </a>
 
-      <!-- 7. Farm -->
-      <a class="project reveal span-2" data-delay="3"
-         data-slug="farm"
-         data-title="Automated <em>Farm</em>"
-         data-tagline="Fan, light, water. Three relays, zero effort."
-         data-year="2021"
+      <!-- Garden -->
+      <a class="card reveal" data-delay="1"
+         data-slug="garden"
+         data-title="Automated Garden"
+         data-tagline="A little jungle that doesn't need me."
+         data-year="2016"
          data-type="Hardware · IoT"
-         data-views="1,593"
-         data-duration="2 hours build"
+         data-views="38,747 views"
+         data-duration="4 hours build"
          data-difficulty="Beginner"
-         data-img="images/farm.jpg"
-         data-desc="<p>A compact greenhouse rig driven by an Arduino Uno. A soil moisture sensor decides when to water; a photoresistor decides when to light; a timer handles ventilation. All three actuators live behind a 4-channel I²C relay.</p><p>No cloud, no app — just a box that grows things while I'm not looking.</p>"
-         data-tech="Arduino Uno,4-ch I²C relay,Soil moisture sensor,12VDC fan,Grow bulb,Water pump"
-         data-link="https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102"
+         data-img="images/garden.jpg"
+         data-desc="<p>A self-contained growing chamber wired into the cloud. A Raspberry Pi handles the timelapse camera; an Arduino Ethernet Shield pushes sensor data to Cayenne. Together they read temperature, humidity, and soil moisture — then trigger the water pump, grow light, and fan without me lifting a finger.</p>"
+         data-tech="Arduino Uno,Raspberry Pi 2,Ethernet Shield,Pi Camera,DHT22,Cayenne"
+         data-link="https://www.hackster.io/thomassxt/automated-garden-77bee8"
          data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/farm.jpg" alt="Automated Farm" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">07</span>
-            <span class="dot">·</span>
-            <span>2021</span>
-          </div>
-          <h3>Automated Farm</h3>
-          <p>Compact greenhouse: light, fan, pump, sensors. Fully offline.</p>
-          <div class="project-foot">
-            <span>Arduino · Relays · Sensors</span>
-            <span class="view">Read →</span>
-          </div>
+        <div class="card-media"><img src="images/garden.jpg" alt="Automated Garden" loading="eager"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2016</span></div>
+          <h3>Automated Garden</h3>
+          <p class="card-desc">Self-watering, self-lighting chamber pushing readings to the cloud.</p>
+          <div class="card-foot"><span class="views">38K views</span><span class="go">Read →</span></div>
         </div>
       </a>
 
-      <!-- 8. Baby chair -->
-      <a class="project reveal span-2" data-delay="4"
-         data-slug="babychair"
-         data-title="Musical <em>High Chair</em>"
-         data-tagline="Four buttons, four LEDs, one busy baby."
-         data-year="2021"
-         data-type="Hardware · Arduino"
-         data-views="2,043"
-         data-duration="2 hours build"
-         data-difficulty="Beginner"
-         data-img="images/babychair.jpg"
-         data-desc="<p>Built for a very specific audience of one. Four colored arcade buttons live on the highchair tray; pressing each lights its LED and plays a note through a small speaker. The melody changes periodically so the toy never quite gets boring.</p><p>Bought me an impressive number of uninterrupted coffees.</p>"
-         data-tech="Arduino Uno,SparkFun arcade buttons,LEDs (4),3W speaker,piezo tones"
-         data-link="https://www.hackster.io/thomassxt/baby-high-chair-musical-a85090"
-         data-link-label="View on Hackster">
-        <div class="project-media">
-          <img src="images/babychair.jpg" alt="Musical High Chair" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">08</span>
-            <span class="dot">·</span>
-            <span>2021</span>
-          </div>
-          <h3>Musical High Chair</h3>
-          <p>Four buttons + four LEDs + tiny speaker. Baby entertainment device.</p>
-          <div class="project-foot">
-            <span>Arduino · LEDs · Piezo</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Software ========================================================= -->
-<section id="apps">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-head-meta">
-        <span class="num">02 — Software</span>
-        <span class="label">Apps, games &amp; the web</span>
-      </div>
-      <div>
-        <h2>Apps I actually <em>shipped</em>.</h2>
-        <p>A retro-arcade chess game, a certification trainer, a booking app for a small salon, and a few experiments in between. All shipped, all on GitHub.</p>
-      </div>
-    </div>
-
-    <div class="bento">
       <!-- Chess Kombat -->
-      <a class="project featured reveal span-3" data-delay="1"
+      <a class="card reveal" data-delay="2"
          data-slug="chess"
-         data-title="Chess <em>Kombat</em>"
+         data-title="Chess Kombat"
          data-tagline="Chess, but as a 16-bit beat-'em-up."
          data-year="2024"
          data-type="Android game"
          data-views="Android · Open source"
          data-duration="Solo project"
          data-difficulty="Personal favourite"
-         data-desc="<p>A chess engine wearing an arcade jacket. 21 pixel-art enemies across three worlds (Forest, Castle, Volcano), HP bars tied to the material you capture, Chess 960 mode, and a Puzzle Survival mode. Runs on a <b>PeSTO</b>-style evaluation with a Mega Drive palette.</p><p>The one where I stopped trying to be serious.</p>"
-         data-tech="Android,Java/Kotlin,PeSTO engine,Chess 960,Pixel art,Google Play Store"
+         data-desc="<p>A chess engine wearing an arcade jacket. 21 pixel-art enemies across three worlds (Forest, Castle, Volcano), HP bars tied to the material you capture, Chess 960 mode, and a Puzzle Survival mode. Runs on a <b>PeSTO</b>-style evaluation with a Mega Drive palette.</p>"
+         data-tech="Android,Java/Kotlin,PeSTO engine,Chess 960,Pixel art"
          data-link="https://github.com/daitenkutarojurai-ai/Chess-kombat"
          data-link-label="Source on GitHub">
-        <div class="project-media cover-container">
-          <div class="project-cover cover-chess">
-            <div class="pixel-grid"></div>
-            <div class="project-cover-tag">Android · Pixel-art chess</div>
-            <div class="project-cover-title">Chess<br><em>Kombat.</em></div>
-            <div class="pieces"><span>♜</span><span>♞</span></div>
-          </div>
+        <div class="card-cover chess">
+          <span class="cover-num">App · 2024</span>
+          <div class="card-cover-title">Chess Kombat</div>
         </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">01 / Featured</span>
-            <span class="dot">·</span>
-            <span>Android · 2024</span>
-          </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2024</span></div>
           <h3>Chess Kombat</h3>
-          <p>21 pixel-art enemies, 3 worlds, HP bars, Chess 960, Puzzle Survival. A chess engine with a Mega Drive jacket.</p>
-          <div class="project-foot">
-            <span>Java · PeSTO · Pixel-art</span>
-            <span class="view">Read story →</span>
-          </div>
+          <p class="card-desc">21 pixel-art enemies, 3 worlds, HP bars, Chess 960.</p>
+          <div class="card-foot"><span class="views">Android</span><span class="go">Read →</span></div>
+        </div>
+      </a>
+
+      <!-- Groot -->
+      <a class="card reveal" data-delay="3"
+         data-slug="groot"
+         data-title="Groot — I am repaint"
+         data-tagline="A tiny tree with a lot of patience put into it."
+         data-year="2020"
+         data-type="3D print · Hand-painted"
+         data-views="Personal favourite"
+         data-duration="Multi-session paint"
+         data-difficulty="Dry-brush · layered washes"
+         data-img="images/groot.jpg"
+         data-desc="<p>Printed in PLA on a Creality, cleaned and primed, then painted in thin layers with wood-grain detailing on the bark. Moss accents are a 50/50 yellow-green wash; the eyes were the last thing to go in.</p>"
+         data-tech="PLA,Creality Ender,Acrylics,Dry-brush,Washes"
+         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
+         data-link-label="See more on Cults3D">
+        <div class="card-media"><img src="images/groot.jpg" alt="Groot hand-painted 3D print" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2020</span></div>
+          <h3>Groot</h3>
+          <p class="card-desc">Printed in PLA, hand-painted over several sessions.</p>
+          <div class="card-foot"><span class="views">Shelf piece</span><span class="go">Read →</span></div>
+        </div>
+      </a>
+
+      <!-- Photobooth -->
+      <a class="card reveal" data-delay="4"
+         data-slug="photobooth"
+         data-title="Photobooth Pro"
+         data-tagline="A wedding-grade photobooth in a plywood box."
+         data-year="2023"
+         data-type="Hardware · Raspberry Pi"
+         data-views="8,726 views"
+         data-duration="10 steps"
+         data-difficulty="Intermediate"
+         data-img="images/photobooth.jpg"
+         data-desc="<p>Raspberry Pi + Canon DSLR + Canon Selphy printer, wrapped in a custom wooden enclosure. Runs pibooth with a borderless fullscreen UI, CUPS for printing, and custom plugins that push every shot to Telegram and Google Photos in real time.</p><p>Used at an actual wedding. Survived both.</p>"
+         data-tech="Raspberry Pi,Canon EOS 100D,Selphy CP1300,pibooth,CUPS,Telegram,Google Photos"
+         data-link="https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/"
+         data-link-label="View on Instructables">
+        <div class="card-media"><img src="images/photobooth.jpg" alt="Photobooth Pro" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2023</span></div>
+          <h3>Photobooth Pro</h3>
+          <p class="card-desc">DSLR, thermal printer, Telegram bot. Wedding-tested.</p>
+          <div class="card-foot"><span class="views">8.7K views</span><span class="go">Read →</span></div>
         </div>
       </a>
 
       <!-- Cert Quest -->
-      <a class="project reveal span-3" data-delay="2"
+      <a class="card reveal" data-delay="5"
          data-slug="cert"
-         data-title="Cert <em>Quest</em>"
+         data-title="Cert Quest"
          data-tagline="IT certification practice, gamified."
          data-year="2024"
          data-type="Mobile app"
@@ -528,356 +200,15 @@
          data-tech="Mobile,Android,iOS,Google Play"
          data-link="https://github.com/daitenkutarojurai-ai/Certquestsapp"
          data-link-label="Source on GitHub">
-        <div class="project-media cover-container">
-          <div class="project-cover cover-cert">
-            <div class="stack"><span></span><span></span><span></span><span></span><span></span></div>
-            <div class="project-cover-tag">Mobile · 10+ vendors</div>
-            <div class="project-cover-title">Cert<br><em>Quest.</em></div>
-          </div>
+        <div class="card-cover cert">
+          <span class="cover-num">App · 2024</span>
+          <div class="card-cover-title">Cert Quest</div>
         </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">02</span>
-            <span class="dot">·</span>
-            <span>Mobile · 2024</span>
-          </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2024</span></div>
           <h3>Cert Quest</h3>
-          <p>An IT-certification practice app, gamified. Multi-vendor packs, daily streaks, question banks. Closed testing on the Play Store.</p>
-          <div class="project-foot">
-            <span>Mobile · Android</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Salon V1 -->
-      <a class="project featured reveal span-3" data-delay="3"
-         data-slug="salon"
-         data-title="Salon <em>V1</em>"
-         data-tagline="A booking platform, from schema to Stripe."
-         data-year="2025"
-         data-type="Web app"
-         data-views="Private beta"
-         data-duration="In development"
-         data-difficulty="Personal project"
-         data-desc="<p>A booking app I'm building for a small hair salon. Clients book, the owner manages, reminders go out by email and SMS, and payments land without anyone having to babysit a calendar.</p><p>Schema covers salons, staff, services, clients, and appointments. Still in private beta.</p>"
-         data-tech="Web,Mobile,Payments,Notifications"
-         data-link="https://github.com/daitenkutarojurai-ai/salon-v1"
-         data-link-label="Source on GitHub">
-        <div class="project-media cover-container">
-          <div class="project-cover cover-salon">
-            <div class="monogram">Sa.</div>
-            <div class="project-cover-tag">Booking · Web &amp; mobile</div>
-            <div class="project-cover-title">Salon<br><em>V1.</em></div>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">03 / Featured</span>
-            <span class="dot">·</span>
-            <span>Full-stack · 2025</span>
-          </div>
-          <h3>Salon V1</h3>
-          <p>Booking app for a small salon. Clients, staff, reminders, payments — the full loop, without anyone babysitting a spreadsheet.</p>
-          <div class="project-foot">
-            <span>Web · Mobile</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- IT Certif Web -->
-      <a class="project reveal span-2" data-delay="4"
-         data-slug="itweb"
-         data-title="IT Certif <em>Web</em>"
-         data-tagline="Same trainer, no install required."
-         data-year="2024"
-         data-type="Web app"
-         data-views="OVH hosted"
-         data-duration="Offshoot project"
-         data-difficulty="Vanilla JS"
-         data-desc="<p>The web port of Cert Quest, for people who refuse to leave their browser. Same question banks, responsive layout, zero install. Hosted on OVH.</p>"
-         data-tech="Vanilla JS,HTML/CSS,OVH hosting"
-         data-link="https://github.com/daitenkutarojurai-ai/itcertifweb"
-         data-link-label="Source on GitHub">
-        <div class="project-media cover-container">
-          <div class="project-cover cover-web">
-            <div class="project-cover-tag" style="position:relative; z-index:2;">Web · Browser-native</div>
-            <div class="project-cover-title" style="position:relative; z-index:2;">IT Certif<br><em>Web.</em></div>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">04</span>
-            <span class="dot">·</span>
-            <span>Web · 2024</span>
-          </div>
-          <h3>IT Certif · Web</h3>
-          <p>Same trainer, no install. OVH-hosted.</p>
-          <div class="project-foot">
-            <span>Vanilla JS</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Sophia -->
-      <a class="project reveal span-2" data-delay="5"
-         data-slug="sophia"
-         data-title="<em>Sophia</em>"
-         data-tagline="A small lab for a bigger idea."
-         data-year="2025"
-         data-type="Experimental"
-         data-views="WIP"
-         data-duration="Ongoing"
-         data-difficulty="Lab"
-         data-desc="<p>An experimental project I'm tinkering with in public. Check the repo for the current state — it tends to change.</p>"
-         data-tech="Experimental,Iterative,TBD"
-         data-link="https://github.com/daitenkutarojurai-ai/Sophia"
-         data-link-label="Source on GitHub">
-        <div class="project-media cover-container">
-          <div class="project-cover cover-sophia">
-            <div class="orb"></div>
-            <div class="project-cover-tag">Experimental · WIP</div>
-            <div class="project-cover-title"><em>Sophia.</em></div>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">05</span>
-            <span class="dot">·</span>
-            <span>WIP · 2025</span>
-          </div>
-          <h3>Sophia</h3>
-          <p>Lab project. Shape TBD.</p>
-          <div class="project-foot">
-            <span>Experimental</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Cults3D -->
-      <a class="project reveal span-2" data-delay="1"
-         data-slug="cults"
-         data-title="<em>Cults3D</em> Archive"
-         data-tagline="Printable parts from every other project."
-         data-year="Ongoing"
-         data-type="3D Models · STL"
-         data-views="diyfunproject"
-         data-duration="Multi-year archive"
-         data-difficulty="Library"
-         data-desc="<p>Every case, bracket, and enclosure I've needed for the hardware builds above eventually ended up here. Browse my published STLs on Cults3D — free and paid.</p>"
-         data-tech="Fusion 360,STL,3D printing"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
-         data-link-label="Browse on Cults3D">
-        <div class="project-media cover-container">
-          <div class="project-cover cover-cults">
-            <div class="mesh"></div>
-            <div class="project-cover-tag" style="position:relative;z-index:2;">3D Print · STL library</div>
-            <div class="project-cover-title" style="position:relative;z-index:2;"><em>Cults3D.</em></div>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">06</span>
-            <span class="dot">·</span>
-            <span>STL · ongoing</span>
-          </div>
-          <h3>Cults3D Archive</h3>
-          <p>Published STLs: enclosures, brackets, parts.</p>
-          <div class="project-foot">
-            <span>Fusion 360 · STL</span>
-            <span class="view">Browse →</span>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- 3D Printing ====================================================== -->
-<section id="prints">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-head-meta">
-        <span class="num">03 — 3D prints</span>
-        <span class="label">Printed &amp; painted</span>
-      </div>
-      <div>
-        <h2>Plastic, <em>paint</em>, patience.</h2>
-        <p>The side of the workshop that doesn't beep. Everything here is printed at home, cleaned, primed, and hand-painted — from Marvel fan art to tabletop-scale fantasy. A running archive lives on <a href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener"><em>Cults3D</em></a>.</p>
-      </div>
-    </div>
-
-    <div class="bento">
-      <!-- Groot — featured -->
-      <a class="project featured reveal span-4" data-delay="1"
-         data-slug="groot"
-         data-title="<em>Groot</em> — I am repaint"
-         data-tagline="A tiny tree with a lot of patience put into it."
-         data-year="2020"
-         data-type="3D print · Hand-painted"
-         data-views="Personal favourite"
-         data-duration="Multi-session paint"
-         data-difficulty="Dry-brush · layered washes"
-         data-img="images/groot.jpg"
-         data-desc="<p>One of the pieces I keep on the shelf. Printed in PLA on a Creality, cleaned and primed, then painted in thin layers with wood-grain detailing on the bark. Moss accents are a 50/50 yellow-green wash; the eyes were the last thing to go in.</p><p>A reminder that the slow parts of a project are usually the good parts.</p>"
-         data-tech="PLA,Creality Ender,Acrylics,Dry-brush,Washes"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
-         data-link-label="See more on Cults3D">
-        <div class="project-media">
-          <img src="images/groot.jpg" alt="Groot hand-painted 3D print" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">01 / Featured</span>
-            <span class="dot">·</span>
-            <span>3D print · Painted</span>
-          </div>
-          <h3>Groot</h3>
-          <p>Printed in PLA, hand-painted over several sessions. Wood-grain drybrush on the bark, mossy wash in the crevices. Still my favourite thing on the shelf.</p>
-          <div class="project-foot">
-            <span>PLA · Acrylics · Patience</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Garrosh -->
-      <a class="project reveal span-2" data-delay="2"
-         data-slug="garrosh"
-         data-title="<em>Garrosh</em> Hellscream"
-         data-tagline="Warchief, printed in layers."
-         data-year="2019"
-         data-type="3D print · Hand-painted"
-         data-views="Tabletop scale"
-         data-duration="Multi-session paint"
-         data-difficulty="NMM · layered"
-         data-img="images/garrosh.jpg"
-         data-desc="<p>Warcraft's Garrosh in tabletop scale — printed, cleaned, and painted over a weekend. Skin tones went down in three pass washes; the axe is non-metallic metal (NMM) to keep the stylised look.</p>"
-         data-tech="Resin / PLA,Acrylics,NMM,Washes"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
-         data-link-label="See more on Cults3D">
-        <div class="project-media">
-          <img src="images/garrosh.jpg" alt="Garrosh Hellscream painted figure" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">02</span>
-            <span class="dot">·</span>
-            <span>Printed &amp; painted</span>
-          </div>
-          <h3>Garrosh Hellscream</h3>
-          <p>Warcraft's warchief, tabletop scale. NMM axe, layered skin.</p>
-          <div class="project-foot">
-            <span>Acrylics · NMM</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Harry Potter -->
-      <a class="project reveal span-3" data-delay="3"
-         data-slug="harrypotter"
-         data-title="<em>Harry Potter</em> bust"
-         data-tagline="The boy who lived, printed in layers."
-         data-year="2020"
-         data-type="3D print · Hand-painted"
-         data-views="Bust scale"
-         data-duration="Weekend project"
-         data-difficulty="Layered"
-         data-img="images/harrypotter.png"
-         data-desc="<p>Harry Potter bust printed at bust scale. Hair done with dry-brushed brown layers, the scar is a single thin red stroke.</p>"
-         data-tech="PLA,Acrylics,Dry-brush"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
-         data-link-label="See more on Cults3D">
-        <div class="project-media">
-          <img src="images/harrypotter.png" alt="Harry Potter painted figure" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">03</span>
-            <span class="dot">·</span>
-            <span>Printed &amp; painted</span>
-          </div>
-          <h3>Harry Potter</h3>
-          <p>Bust-scale print, dry-brushed hair, one careful scar.</p>
-          <div class="project-foot">
-            <span>PLA · Acrylics</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Tree of Life -->
-      <a class="project reveal span-3" data-delay="4"
-         data-slug="treeoflife"
-         data-title="<em>Tree of Life</em>"
-         data-tagline="A decorative print, branches and all."
-         data-year="2020"
-         data-type="3D print · Decorative"
-         data-views="Printed &amp; finished"
-         data-duration="Long print, careful lift"
-         data-difficulty="Thin walls"
-         data-img="images/treeoflife.jpg"
-         data-desc="<p>Tree of Life — thin-walled decorative print, tricky lift off the bed, clean finish. Sits on a shelf doing nothing useful, and I like it for that.</p>"
-         data-tech="PLA,Thin-wall printing,Acrylics"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
-         data-link-label="See more on Cults3D">
-        <div class="project-media">
-          <img src="images/treeoflife.jpg" alt="Tree of Life 3D print" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">04</span>
-            <span class="dot">·</span>
-            <span>Decorative print</span>
-          </div>
-          <h3>Tree of Life</h3>
-          <p>Thin-walled decorative print. Doesn't do anything. That's the point.</p>
-          <div class="project-foot">
-            <span>PLA · Finish</span>
-            <span class="view">Read →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Chess pieces -->
-      <a class="project reveal span-3" data-delay="2"
-         data-slug="chesspieces"
-         data-title="Printed <em>chess</em> sets"
-         data-tagline="Designed, printed, published on Cults3D."
-         data-year="Ongoing"
-         data-type="3D design · STL"
-         data-views="Cults3D"
-         data-duration="Multi-set archive"
-         data-difficulty="Own designs"
-         data-img="images/chess3d.png"
-         data-desc="<p>A running series of chess sets designed in Fusion, printed, and published on Cults3D. Each set has its own silhouette language — a way to practice shape work between projects.</p>"
-         data-tech="Fusion 360,STL,PLA,Cults3D"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject"
-         data-link-label="Browse on Cults3D">
-        <div class="project-media">
-          <img src="images/chess3d.png" alt="3D-printed chess set" loading="lazy">
-          <div class="project-media-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tag">
-            <span class="hl">06</span>
-            <span class="dot">·</span>
-            <span>Own designs · STL</span>
-          </div>
-          <h3>Chess sets</h3>
-          <p>Own designs, printed and published. Each set a different silhouette exercise.</p>
-          <div class="project-foot">
-            <span>Fusion · STL · Cults3D</span>
-            <span class="view">Browse →</span>
-          </div>
+          <p class="card-desc">Gamified IT-cert trainer. Multi-vendor question banks.</p>
+          <div class="card-foot"><span class="views">Play Store</span><span class="go">Read →</span></div>
         </div>
       </a>
     </div>
@@ -887,110 +218,27 @@
 <!-- About ============================================================ -->
 <section id="about">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-head-meta">
-        <span class="num">04 — Profile</span>
-        <span class="label">About</span>
+    <div class="about-block reveal">
+      <div>
+        <div class="eyebrow">About</div>
+        <h2>Ten years of making things in public.</h2>
       </div>
       <div>
-        <h2>Ten years of <em>making things</em> in public.</h2>
-        <p>The work on this site started as a teenage soldering habit and never really stopped.</p>
-      </div>
-    </div>
-
-    <div class="about-grid reveal">
-      <div class="about-visual">
-        <div class="about-pull">
-          &ldquo;I like the <span class="hl">moment a project</span> stops being a sketch and starts being <em>a thing in the room</em>.&rdquo;
-          <span class="mark">— Thomas Fendrich</span>
-        </div>
-      </div>
-
-      <div class="about-text">
         <p>
-          I'm <b>Thomas</b> — a maker and builder based between Luxembourg and rural France.
-          I've been publishing open hardware and apps since 2016, mostly on
-          <em>Hackster</em> and <em>Instructables</em>, more recently on GitHub and the Play Store.
+          I'm <b>Thomas</b> — a maker based between Luxembourg and rural France. I've been
+          publishing open hardware and apps since 2016, mostly on Hackster and Instructables,
+          more recently on GitHub and the Play Store.
         </p>
         <p>
-          The through-line across everything here: take a familiar object, give it a brain, put it online,
-          and write down how I did it so the next person can skip the frustrating bits. Cumulatively,
-          those write-ups have pulled in <b>100,000+ views</b> and a small, loyal audience of fellow tinkerers.
+          The through-line: take a familiar object, give it a brain, put it online, write down how
+          I did it. Cumulatively those write-ups have pulled in <b>100,000+ views</b> and a small,
+          loyal audience of fellow tinkerers.
         </p>
         <p>
-          Off the keyboard I run marathons, play a lot of chess, design STL models for 3D printing,
-          and host a handful of small podcasts. I draft better ideas than I ship — but I try to fix that
-          by finishing at least one silly thing per quarter.
+          Off the keyboard I run marathons, play chess, design STL models, and host a handful of
+          small podcasts.
         </p>
-
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Listen =========================================================== -->
-<section id="listen">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="section-head-meta">
-        <span class="num">05 — Listen</span>
-        <span class="label">Podcasts &amp; audio</span>
-      </div>
-      <div>
-        <h2>Six shows, one <em>microphone</em>.</h2>
-        <p>Six cloud &amp; DevOps certification podcasts I host. Exam prep, bite-sized, no fluff — pick whichever cert you're chasing.</p>
-      </div>
-    </div>
-
-    <div class="pods">
-      <a class="pod reveal" data-delay="1" style="--pod-accent: #ff9a2e"
-         href="https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o" target="_blank" rel="noopener">
-        <div class="pod-num"><em>01</em></div>
-        <div class="pod-body">
-          <h3>☁️ AWS Solutions Architect · SAA-C03</h3>
-          <div class="meta"><span class="bar"></span>Audio companion for the SAA-C03 exam</div>
-        </div>
-      </a>
-      <a class="pod reveal" data-delay="2" style="--pod-accent: #ff6b42"
-         href="https://open.spotify.com/show/68htxokT392uDDDkMQV4pp" target="_blank" rel="noopener">
-        <div class="pod-num"><em>02</em></div>
-        <div class="pod-body">
-          <h3>☁️ AWS Cloud Practitioner Essentials</h3>
-          <div class="meta"><span class="bar"></span>Cloud fundamentals for beginners</div>
-        </div>
-      </a>
-      <a class="pod reveal" data-delay="3" style="--pod-accent: #9d7cff"
-         href="https://open.spotify.com/show/45BtlX4PaRi1RH4EK3m3Hy" target="_blank" rel="noopener">
-        <div class="pod-num"><em>03</em></div>
-        <div class="pod-body">
-          <h3>☁️ Cloud Engineer Bootcamp</h3>
-          <div class="meta"><span class="bar"></span>AWS · Kubernetes · Git — zero fluff</div>
-        </div>
-      </a>
-      <a class="pod reveal" data-delay="1" style="--pod-accent: #4ad8ff"
-         href="https://open.spotify.com/show/1h7XygOS2eeaSrnVn9iGfN" target="_blank" rel="noopener">
-        <div class="pod-num"><em>04</em></div>
-        <div class="pod-body">
-          <h3>🌐 KCNA · Kubernetes &amp; Cloud Native</h3>
-          <div class="meta"><span class="bar"></span>CNCF landscape, K8s, Prometheus, Helm</div>
-        </div>
-      </a>
-      <a class="pod reveal" data-delay="2" style="--pod-accent: #ff8bc9"
-         href="https://open.spotify.com/show/6IgmNGIgECHiKUO294b1dE" target="_blank" rel="noopener">
-        <div class="pod-num"><em>05</em></div>
-        <div class="pod-body">
-          <h3>🤖 GitLab Certified Git Associate</h3>
-          <div class="meta"><span class="bar"></span>Git, CI/CD pipelines, DevSecOps</div>
-        </div>
-      </a>
-      <a class="pod reveal" data-delay="3" style="--pod-accent: #d9ff4c"
-         href="https://open.spotify.com/show/5taN3x2Hz5tM6NGzb5wI7L" target="_blank" rel="noopener">
-        <div class="pod-num"><em>06</em></div>
-        <div class="pod-body">
-          <h3>🪐 Terraform Bootcamp</h3>
-          <div class="meta"><span class="bar"></span>HashiCorp Terraform certification prep</div>
-        </div>
-      </a>
     </div>
   </div>
 </section>
@@ -998,75 +246,39 @@
 <!-- Contact ========================================================== -->
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="contact-inner">
-      <div class="reveal">
-        <div class="label-accent" style="margin-bottom:24px;">06 — Contact</div>
-        <h2>Let's <em>build</em> something.</h2>
-        <p class="contact-sub">
-          Collaborations, commissions, obscure hardware questions, or just a coffee chat —
-          pick whichever door works.
-        </p>
-      </div>
-
-      <div class="social-list reveal" data-delay="2">
-        <a class="social-item" href="https://www.linkedin.com/in/thomasfendrich" target="_blank" rel="noopener">
-          <span class="idx">/01</span>
-          <span>
-            <span class="name">LinkedIn</span><br>
-            <span class="handle">thomasfendrich</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="social-item" href="https://github.com/daitenkutarojurai-ai" target="_blank" rel="noopener">
-          <span class="idx">/02</span>
-          <span>
-            <span class="name">GitHub</span><br>
-            <span class="handle">daitenkutarojurai-ai</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="social-item" href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">
-          <span class="idx">/03</span>
-          <span>
-            <span class="name">Hackster</span><br>
-            <span class="handle">@thomassxt</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="social-item" href="https://www.instructables.com/member/Thomas%20sxt/instructables/" target="_blank" rel="noopener">
-          <span class="idx">/04</span>
-          <span>
-            <span class="name">Instructables</span><br>
-            <span class="handle">Thomas sxt</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="social-item" href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener">
-          <span class="idx">/05</span>
-          <span>
-            <span class="name">Instagram</span><br>
-            <span class="handle">@diyfunproject</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-        <a class="social-item" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">
-          <span class="idx">/06</span>
-          <span>
-            <span class="name">Cults3D</span><br>
-            <span class="handle">diyfunproject</span>
-          </span>
-          <span class="arrow">↗</span>
-        </a>
-      </div>
+    <div class="reveal">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's build something.</h2>
+      <p>Collaborations, commissions, obscure hardware questions — pick whichever door works.</p>
+    </div>
+    <div class="social-list reveal" data-delay="1">
+      <a class="social-item" href="https://github.com/daitenkutarojurai-ai" target="_blank" rel="noopener">
+        <div><div class="name">GitHub</div><div class="handle">daitenkutarojurai-ai</div></div><span class="arrow">↗</span>
+      </a>
+      <a class="social-item" href="https://www.linkedin.com/in/thomasfendrich" target="_blank" rel="noopener">
+        <div><div class="name">LinkedIn</div><div class="handle">thomasfendrich</div></div><span class="arrow">↗</span>
+      </a>
+      <a class="social-item" href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">
+        <div><div class="name">Hackster</div><div class="handle">@thomassxt</div></div><span class="arrow">↗</span>
+      </a>
+      <a class="social-item" href="https://www.instructables.com/member/Thomas%20sxt/instructables/" target="_blank" rel="noopener">
+        <div><div class="name">Instructables</div><div class="handle">Thomas sxt</div></div><span class="arrow">↗</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener">
+        <div><div class="name">Instagram</div><div class="handle">@diyfunproject</div></div><span class="arrow">↗</span>
+      </a>
+      <a class="social-item" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">
+        <div><div class="name">Cults3D</div><div class="handle">diyfunproject</div></div><span class="arrow">↗</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- Footer =========================================================== -->
 <footer>
-  <div class="wrap" style="display:flex; width:100%; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;">
-    <span>© <span id="year">2026</span> Thomas Fendrich <span class="dot">●</span> Designed &amp; built by hand.</span>
-    <span>All projects open-source · Photos own work</span>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Thomas Fendrich</span>
+    <span>All projects open-source</span>
   </div>
 </footer>
 
@@ -1084,26 +296,11 @@
       <div class="modal-desc" id="modal-desc"></div>
     </div>
     <aside class="modal-side">
-      <div class="modal-side-block">
-        <div class="k">Year</div>
-        <div class="v" id="modal-year"></div>
-      </div>
-      <div class="modal-side-block">
-        <div class="k">Type</div>
-        <div class="v" id="modal-type"></div>
-      </div>
-      <div class="modal-side-block">
-        <div class="k">Metrics</div>
-        <div class="v" id="modal-views"></div>
-      </div>
-      <div class="modal-side-block">
-        <div class="k">Duration · Level</div>
-        <div class="v" id="modal-duration"></div>
-      </div>
-      <div class="modal-side-block">
-        <div class="k">Stack</div>
-        <div class="modal-tech" id="modal-tech"></div>
-      </div>
+      <div class="modal-side-block"><div class="k">Year</div><div class="v" id="modal-year"></div></div>
+      <div class="modal-side-block"><div class="k">Type</div><div class="v" id="modal-type"></div></div>
+      <div class="modal-side-block"><div class="k">Metrics</div><div class="v" id="modal-views"></div></div>
+      <div class="modal-side-block"><div class="k">Duration · Level</div><div class="v" id="modal-duration"></div></div>
+      <div class="modal-side-block"><div class="k">Stack</div><div class="modal-tech" id="modal-tech"></div></div>
     </aside>
     <div class="modal-ctas">
       <a id="modal-link" href="#" target="_blank" rel="noopener" class="btn btn-primary">
@@ -1114,9 +311,6 @@
   </div>
 </div>
 
-<!-- Scripts ========================================================== -->
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script src="effects.js" defer></script>
 <script src="script.js" defer></script>
 </body>
 </html>

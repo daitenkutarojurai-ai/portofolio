@@ -1,7 +1,6 @@
 // ============================================================
 // Thomas Fendrich — portfolio interactions
-// Nav scroll state · reveal observer · card tilt · custom
-// cursor · project modal · count-up for KPIs.
+// Nav scroll state · reveal · filter bar · project modal
 // ============================================================
 
 (function () {
@@ -9,37 +8,10 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ----- Custom cursor --------------------------------------
-  const coarse = matchMedia('(pointer: coarse)').matches;
-  if (!coarse) {
-    const dot  = document.querySelector('.cursor-dot');
-    const ring = document.querySelector('.cursor-ring');
-    if (dot && ring) {
-      let mx = 0, my = 0, rx = 0, ry = 0;
-      window.addEventListener('pointermove', (e) => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-      });
-      (function loop() {
-        rx += (mx - rx) * 0.18;
-        ry += (my - ry) * 0.18;
-        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-        requestAnimationFrame(loop);
-      })();
-      const hoverables = 'a, button, .project, .pod, .social-item, .btn, .pro-focus-item';
-      document.addEventListener('mouseover', (e) => {
-        if (e.target.closest(hoverables)) document.body.classList.add('hovering');
-      });
-      document.addEventListener('mouseout', (e) => {
-        if (e.target.closest(hoverables)) document.body.classList.remove('hovering');
-      });
-    }
-  }
-
   // ----- Nav scroll state -----------------------------------
   const nav = document.getElementById('nav');
   if (nav) {
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
@@ -52,64 +24,63 @@
         io.unobserve(e.target);
       }
     }),
-    { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
   );
   document.querySelectorAll('.reveal').forEach((el) => {
     if (el.dataset.delay) el.style.setProperty('--d', el.dataset.delay);
     io.observe(el);
   });
 
-  // ----- Card tilt on mouse move ----------------------------
-  if (!coarse) {
-    document.querySelectorAll('.project').forEach((card) => {
-      const media = card.querySelector('.project-media img, .project-cover');
-      if (!media) return;
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top)  / r.height - 0.5;
-        media.style.transform = `scale(1.04) translate3d(${x * -8}px, ${y * -8}px, 0)`;
+  // ----- Category filter (works page) -----------------------
+  const grid = document.getElementById('works-grid');
+  const filterBar = document.getElementById('filter-bar');
+  if (grid && filterBar) {
+    const cards = Array.from(grid.querySelectorAll('.card'));
+
+    // Counts per category
+    const counts = { all: cards.length, hardware: 0, software: 0, print: 0, podcast: 0 };
+    cards.forEach((c) => {
+      const cat = c.dataset.cat;
+      if (counts[cat] !== undefined) counts[cat]++;
+    });
+    Object.keys(counts).forEach((k) => {
+      const el = document.getElementById('count-' + k);
+      if (el) el.textContent = counts[k];
+    });
+
+    const visibleEl = document.getElementById('visible-count');
+    const updateVisible = (n) => {
+      if (visibleEl) visibleEl.textContent = n + ' ' + (n === 1 ? 'work' : 'works');
+    };
+    updateVisible(counts.all);
+
+    filterBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      const filter = btn.dataset.filter;
+      filterBar.querySelectorAll('.filter-btn').forEach((b) => b.classList.toggle('active', b === btn));
+      let visible = 0;
+      cards.forEach((c, i) => {
+        const match = filter === 'all' || c.dataset.cat === filter;
+        if (match) {
+          c.style.display = '';
+          c.style.setProperty('--d', (visible % 8));
+          c.classList.remove('in');
+          requestAnimationFrame(() => requestAnimationFrame(() => c.classList.add('in')));
+          visible++;
+        } else {
+          c.style.display = 'none';
+        }
       });
-      card.addEventListener('mouseleave', () => {
-        media.style.transform = '';
-      });
+      updateVisible(visible);
     });
   }
-
-  // ----- KPI count-up ---------------------------------------
-  function animateCount(el) {
-    const raw = el.dataset.count;
-    if (!raw) return;
-    const target = parseFloat(raw);
-    const suffix = el.dataset.suffix || '';
-    const prefix = el.dataset.prefix || '';
-    const dur = 1400;
-    const start = performance.now();
-    function step(now) {
-      const t = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const v = target * eased;
-      el.textContent = prefix + (target >= 1000
-        ? Math.round(v).toLocaleString('en-US')
-        : v.toFixed(target % 1 === 0 ? 0 : 1)) + suffix;
-      if (t < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  const kpiIo = new IntersectionObserver(
-    (entries) => entries.forEach((e) => {
-      if (e.isIntersecting) {
-        animateCount(e.target);
-        kpiIo.unobserve(e.target);
-      }
-    }),
-    { threshold: 0.4 }
-  );
-  document.querySelectorAll('[data-count]').forEach((el) => kpiIo.observe(el));
 
   // ----- Project modal --------------------------------------
   const modal     = document.getElementById('modal');
   const backdrop  = document.getElementById('modal-backdrop');
+  if (!modal) return;
+
   const mClose    = document.getElementById('modal-close');
   const mDismiss  = document.getElementById('modal-dismiss');
   const mImg      = document.getElementById('modal-img');
@@ -129,12 +100,12 @@
     const img = card.dataset.img;
     if (img) {
       mImg.src = img;
-      mImg.alt = (card.dataset.title || '').replace(/<[^>]+>/g, '');
+      mImg.alt = (card.dataset.title || '');
       mHero.style.display = '';
     } else {
       mHero.style.display = 'none';
     }
-    mTitle.innerHTML     = card.dataset.title || '';
+    mTitle.textContent   = card.dataset.title || '';
     mTagline.textContent = card.dataset.tagline || '';
     mDesc.innerHTML      = card.dataset.desc || '';
     mYear.textContent    = card.dataset.year || '';
@@ -164,8 +135,10 @@
     document.body.style.overflow = '';
   }
 
-  document.querySelectorAll('.project').forEach((card) => {
+  document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (e) => {
+      // Podcast cards open Spotify directly (they have href)
+      if (card.tagName === 'A' && card.getAttribute('href') && !card.dataset.title) return;
       if (!card.dataset.title) return;
       e.preventDefault();
       openModal(card);
@@ -175,6 +148,6 @@
   if (mDismiss)  mDismiss.addEventListener('click', closeModal);
   if (backdrop)  backdrop.addEventListener('click', closeModal);
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
 })();
