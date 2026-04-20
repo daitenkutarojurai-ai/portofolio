@@ -494,31 +494,31 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: var(--bg-2);
   cursor: pointer;
-  display: flex; flex-direction: column;
-  transition: border-color 0.2s var(--ease), transform 0.25s var(--ease), background 0.2s var(--ease);
+  aspect-ratio: 4 / 3;
+  display: block;
+  transition: border-color 0.2s var(--ease), transform 0.25s var(--ease);
 }
 .card:hover {
   border-color: var(--border-hi);
-  background: var(--surface-hi);
   transform: translateY(-3px);
 }
 .card-media {
-  aspect-ratio: 4 / 3;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   background: var(--bg-2);
-  position: relative;
 }
 .card-media img,
 .card-media video {
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.5s var(--ease);
+  transition: transform 0.6s var(--ease), filter 0.35s var(--ease);
 }
 .card:hover .card-media img,
-.card:hover .card-media video { transform: scale(1.03); }
+.card:hover .card-media video { transform: scale(1.05); filter: brightness(0.9); }
 .card-media[data-pos="top"] img,
 .card-media[data-pos="top"] video { object-position: center top; }
 .card-media[data-pos="bottom"] img,
@@ -528,12 +528,12 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
 }
 .card-media.portrait img {
   object-fit: contain;
-  padding: 8px;
+  padding: 10px;
 }
 .card-media .media-badge {
   position: absolute;
   top: 10px; left: 10px;
-  z-index: 2;
+  z-index: 3;
   display: inline-flex; align-items: center; gap: 5px;
   padding: 3px 8px;
   border-radius: 999px;
@@ -552,10 +552,17 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
   animation: pulse-dot 1.6s infinite;
 }
 .card-body {
-  padding: 16px 18px 18px;
-  display: flex; flex-direction: column;
-  gap: 8px;
-  flex: 1;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 14px 16px 14px;
+  z-index: 2;
+  color: #fff;
+  background: linear-gradient(to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.70) 45%,
+    rgba(0,0,0,0.20) 85%,
+    transparent 100%);
+  display: flex; flex-direction: column; gap: 4px;
 }
 .card-meta {
   display: flex; align-items: center; gap: 8px;
@@ -563,37 +570,44 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
   font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.65);
 }
-.card-meta .tag {
-  color: var(--accent);
-}
-.card-meta .sep { color: var(--dim); }
+.card-meta .tag { color: var(--accent); }
+.card-meta .sep { color: rgba(255, 255, 255, 0.3); }
 .card h3 {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: var(--text);
+  color: #fff;
 }
 .card-desc {
-  font-size: 13.5px;
-  color: var(--muted);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.5;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease), opacity 0.3s var(--ease), margin-top 0.35s var(--ease);
+}
+.card:hover .card-desc,
+.card:focus-visible .card-desc {
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 2px;
 }
 .card-foot {
-  margin-top: auto;
-  padding-top: 10px;
+  margin-top: 6px;
   display: flex; justify-content: space-between; align-items: center;
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: rgba(255, 255, 255, 0.7);
 }
-.card-foot .views { color: var(--muted); }
+.card-foot .views { color: rgba(255, 255, 255, 0.7); }
 .card-foot .go {
-  color: var(--text);
-  opacity: 0.7;
+  color: #fff;
+  opacity: 0.8;
   transition: opacity 0.2s, transform 0.2s;
 }
 .card:hover .card-foot .go { opacity: 1; transform: translateX(2px); }
@@ -604,11 +618,11 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.85);
   padding: 3px 8px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg-2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
   transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background 0.2s var(--ease);
 }
 .card-ext:hover {
@@ -619,19 +633,14 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
 
 /* Cover cards for software (no photo) */
 .card-cover {
-  aspect-ratio: 4 / 3;
-  position: relative;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   background: var(--bg-2);
-  display: flex; align-items: flex-end;
-  padding: 20px;
 }
 .card-cover-title {
-  position: relative; z-index: 1;
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--text);
+  /* hidden: the card-body h3 carries the title in the new overlay layout */
+  display: none;
 }
 .card-cover.chess {
   background:
@@ -678,11 +687,12 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
               linear-gradient(180deg, var(--bg-2), var(--bg));
 }
 .card-cover .cover-num {
-  position: absolute; top: 16px; right: 18px;
+  position: absolute; top: 14px; right: 16px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.1em;
+  z-index: 3;
 }
 
 /* --------------------------------------------------------------------------
