@@ -217,8 +217,9 @@
          data-duration="Solo project" data-difficulty="Cross-platform"
          data-desc="<p>A certification trainer covering a bunch of vendors across dozens of question packs. Cross-platform, small, no framework bloat.</p><p>Currently in Play Store closed testing.</p>"
          data-tech="Mobile,Android,iOS,Google Play"
+         data-img="images/certquest-screen-1.png"
          data-link="https://github.com/daitenkutarojurai-ai/Certquestsapp" data-link-label="Source on GitHub">
-        <div class="card-media"><img src="images/certquest-banner.png" alt="Cert Quest" loading="lazy"></div>
+        <div class="card-media portrait"><img src="images/certquest-screen-1.png" alt="Cert Quest app" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2024</span></div>
           <h3>Cert Quest</h3>
@@ -300,6 +301,23 @@
         </div>
       </a>
 
+      <a class="card reveal" data-cat="software"
+         data-title="Glaces en Seine" data-tagline="A Sunday briefing for a crêpe caravan on the Seine."
+         data-year="2026" data-type="Next.js dashboard" data-views="Private"
+         data-duration="Weekly forecast" data-difficulty="Full-stack"
+         data-desc="<p>A weather-aware Sunday briefing dashboard for a family food caravan (crêpes, gaufres, glaces) on the Quai de Seine between La Frette-sur-Seine and Cormeilles-en-Parisis.</p><p>Pulls live Open-Meteo weather and Vigicrues river flow, then computes a <b>Cardigan Threshold</b>, a <b>Thermal Pivot</b> (crêpe or glace?), a batter recipe scaler, and a staffing plan. Re-rolls every Monday to the next Sunday.</p>"
+         data-tech="Next.js 14,TypeScript,Tailwind,Open-Meteo,Vigicrues"
+         data-img="images/crepe-banner.png"
+         data-link="#" data-link-label="Private project">
+        <div class="card-media"><img src="images/crepe-app.png" alt="Glaces en Seine dashboard" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2026</span></div>
+          <h3>Glaces en Seine</h3>
+          <p class="card-desc">Sunday briefing for a crêpe caravan. Weather → batter %.</p>
+          <div class="card-foot"><span class="views">Next.js</span><span class="go">Read →</span></div>
+        </div>
+      </a>
+
       <!-- ========== 3D PRINTS ========== -->
       <a class="card reveal" data-cat="print"
          data-title="Groot — I am repaint" data-tagline="A tiny tree with a lot of patience put into it."
@@ -368,11 +386,11 @@
       <a class="card reveal" data-cat="print"
          data-title="Printed chess sets" data-tagline="Designed, printed, published on Cults3D."
          data-year="Ongoing" data-type="3D design · STL" data-views="Cults3D"
-         data-duration="Multi-set archive" data-difficulty="Own designs" data-img="images/chess3d.png"
+         data-duration="Multi-set archive" data-difficulty="Own designs" data-img="images/chess3d-3.jpg"
          data-desc="<p>A running series of chess sets designed in Fusion, printed, and published on Cults3D. Each set has its own silhouette language — a way to practice shape work between projects.</p>"
          data-tech="Fusion 360,STL,PLA,Cults3D"
          data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="Browse on Cults3D">
-        <div class="card-media"><img src="images/chess3d.png" alt="3D chess set" loading="lazy"></div>
+        <div class="card-media"><img src="images/chess3d-3.jpg" alt="3D chess set render" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>Ongoing</span></div>
           <h3>Chess sets</h3>
@@ -428,6 +446,44 @@
           <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>Ongoing</span></div>
           <h3>Print timelapse</h3>
           <p class="card-desc">Ten hours of printing in ten seconds.</p>
+          <div class="card-foot"><span class="views">Video</span><span class="go">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" data-cat="print"
+         data-title="Vase mode timelapse" data-tagline="Spiral extrusion, caught in fast-forward."
+         data-year="2021" data-type="3D print · Timelapse" data-views="Workshop"
+         data-duration="Several-hour print" data-difficulty="Vase mode"
+         data-desc="<p>Single-wall spiral print captured layer-by-layer. Vase mode keeps the nozzle continuously moving — no Z-seam, no retracts, one long ribbon of plastic.</p>"
+         data-tech="Pi Camera,OctoPrint,Vase mode,Timelapse"
+         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="See on Cults3D">
+        <div class="card-media">
+          <span class="media-badge">Timelapse</span>
+          <video src="images/vase-timelapse.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2021</span></div>
+          <h3>Vase timelapse</h3>
+          <p class="card-desc">Spiral-mode print, time-compressed.</p>
+          <div class="card-foot"><span class="views">Video</span><span class="go">Read →</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" data-cat="print"
+         data-title="Printed fountain" data-tagline="Designed in Fusion, printed in PLA, runs on a small pump."
+         data-year="2021" data-type="3D print · Water feature" data-views="Garden"
+         data-duration="Multi-part print" data-difficulty="Sealed assembly"
+         data-desc="<p>A decorative fountain modelled in Fusion 360 and printed in PLA. Sealed with an epoxy coat, reservoir-and-pump loop underneath. Quiet, small, the cat likes it.</p>"
+         data-tech="Fusion 360,PLA,Epoxy seal,12V pump"
+         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="See on Cults3D">
+        <div class="card-media">
+          <span class="media-badge">Demo</span>
+          <video src="images/fountain-demo.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2021</span></div>
+          <h3>Printed fountain</h3>
+          <p class="card-desc">Modelled, printed, sealed. Tiny pump loop.</p>
           <div class="card-foot"><span class="views">Video</span><span class="go">Read →</span></div>
         </div>
       </a>
