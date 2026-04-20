@@ -1,11 +1,14 @@
 # thomas fendrich — portfolio
 
-A one-page editorial portfolio. Dark editorial aesthetic, Fraunces + Plus Jakarta Sans + JetBrains Mono, real project photos, custom cursor, grain overlay, click-to-expand project modals.
+A one-page futuristic portfolio. Dark editorial aesthetic, lime primary + neon cyan/magenta accents, premium glass surfaces, WebGL hero backdrop (distorted icosahedron + particle field via Three.js), Fraunces + Plus Jakarta Sans + JetBrains Mono, custom cursor, grain overlay, click-to-expand project modals.
 
 ## Structure
 ```
 /
-├── index.html        # single-file site (all CSS + JS inline)
+├── index.html        # semantic structure
+├── styles.css        # design tokens, glass, neon, layouts, responsive
+├── script.js         # nav, reveals, tilt, cursor, modal, KPI count-up
+├── effects.js        # Three.js hero: wireframe globe + particles
 ├── images/           # hero photos pulled from project PDFs
 │   ├── babychair.jpg
 │   ├── cocktail-gui.jpg
@@ -19,12 +22,14 @@ A one-page editorial portfolio. Dark editorial aesthetic, Fraunces + Plus Jakart
 └── README.md
 ```
 
+Three.js is loaded from `unpkg.com` (`three@0.160`). No build step.
+
 ## Deploy
 
 ### GitHub Pages
-1. Push these files to `daitenkutarojurai-ai/portofolio`
-2. Settings → Pages → Source: *Deploy from a branch* → Branch: `main` → `/ (root)` → Save
-3. Live in ~1 min at `https://daitenkutarojurai-ai.github.io/portofolio/`
+1. Push to `daitenkutarojurai-ai/portofolio` on `main`.
+2. Settings → Pages → Source: *Deploy from a branch* → `main` → `/ (root)` → Save.
+3. Live in ~1 min at `https://daitenkutarojurai-ai.github.io/portofolio/`.
 
 ### Preview locally
 ```bash
@@ -34,11 +39,14 @@ python3 -m http.server 8000
 
 ## Customize
 
-**Podcast titles** — I don't know your show names, so the 6 podcast cards read `Show · <id-snippet>`. In `index.html`, search for `#listen` and edit the six `<h3>Show · …</h3>` lines.
+**Design tokens** — top of `styles.css`:
+- `--lime` primary `#d9ff4c`
+- `--cyan` accent `#4ad8ff`
+- `--magenta` accent `#ff6bc7`
+- `--bg` near-black `#050608`
 
-**Colors** — tokens at the very top of the `<style>` block:
-- `--accent` electric lime `#d9ff4c`
-- `--warm` coral `#ff6b42`
-- `--bg` near-black `#0a0a0a`
+**Podcast titles** — in `index.html`, search for `#listen` and edit the six `<h3>Show · …</h3>` lines.
 
-**Add a project** — copy any `<a class="project reveal …">` block and edit its `data-*` attributes. The modal picks up everything from them (title, tagline, desc, year, type, views, tech stack, link).
+**Focus card** — section `#focus` in `index.html` holds the "LinkedIn-pro" layer: four active initiatives + stack snapshot. Update as projects ship.
+
+**Add a project** — copy any `<a class="project reveal …">` block in `#work` or `#apps` and edit its `data-*` attributes. The modal picks up everything from them (title, tagline, desc, year, type, views, tech stack, link).
