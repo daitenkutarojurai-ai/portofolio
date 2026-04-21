@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3D Prints — Thomas Fendrich</title>
+<meta name="description" content="Every 3D print I've shipped — own designs on Cults3D, fan art, timelapses, and work-in-progress shots." />
+<meta name="theme-color" content="#0c0c0e" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0c0e'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ff6a2b'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="styles.css">
+<style>
+  .pg-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .pg-back:hover { color: var(--text); }
+  .pg-section-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom: 20px; flex-wrap:wrap; padding-top: clamp(20px, 3vh, 40px); }
+  .pg-section-head h2 { font-size: clamp(20px, 2.4vw, 26px); letter-spacing:-0.015em; }
+  .pg-section-head .eyebrow { margin-bottom: 6px; }
+  .pg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding-bottom: clamp(24px, 4vh, 48px);
+  }
+  @media (max-width: 900px) { .pg-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .pg-grid { grid-template-columns: 1fr; } }
+  .pg-tile {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    aspect-ratio: 4 / 3;
+    display: block;
+    transition: border-color 0.2s var(--ease), transform 0.25s var(--ease);
+  }
+  .pg-tile:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+  .pg-tile img,
+  .pg-tile video {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.5s var(--ease), filter 0.3s var(--ease);
+  }
+  .pg-tile:hover img,
+  .pg-tile:hover video { transform: scale(1.04); filter: brightness(0.92); }
+  .pg-tile .pg-caption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 12px 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4) 70%, transparent);
+    color: #fff;
+    display: flex; justify-content: space-between; align-items: end; gap: 10px;
+    pointer-events: none;
+  }
+  .pg-tile .pg-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .pg-tile .pg-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-top: 3px;
+  }
+  .pg-tile .pg-ext {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .pg-tile .pg-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    z-index: 2;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255, 106, 43, 0.95);
+    color: #0c0c0e;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pg-tile .pg-video-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    z-index: 2;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+</style>
+</head>
+<body class="no-js">
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="works.html">All Works</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <a href="index.html" class="pg-back">← Back to home</a>
+    <div class="eyebrow" style="margin-bottom:12px;">Archive · 3D Printing</div>
+    <h1>Prints, own designs &amp; timelapses.</h1>
+    <p>Featured up top: chess sets and board games I've designed and published on Cults3D. Below: fan art, work-in-progress shots, and timelapses from the workshop.</p>
+  </div>
+</header>
+
+<!-- Featured: own designs with Cults3D links -->
+<section style="padding-top: clamp(24px, 4vh, 48px);">
+  <div class="wrap">
+    <div class="pg-section-head">
+      <div>
+        <div class="eyebrow">Featured · Own designs</div>
+        <h2>Designed, printed, published.</h2>
+      </div>
+      <a class="category-link" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">All STLs on Cults3D <span class="arrow">↗</span></a>
+    </div>
+    <div class="pg-grid">
+      <a class="pg-tile" href="https://cults3d.com/en/3d-model/game/chess-shot-drinking-game" target="_blank" rel="noopener">
+        <span class="pg-badge">Featured</span>
+        <span class="pg-video-badge">Video</span>
+        <video src="images/chesshsot.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Chess Shot</div>
+            <div class="pg-sub">Drinking game · 2022</div>
+          </div>
+          <span class="pg-ext">Cults3D ↗</span>
+        </div>
+      </a>
+      <a class="pg-tile" href="https://cults3d.com/en/3d-model/game/freemason-chess" target="_blank" rel="noopener">
+        <span class="pg-badge">Featured</span>
+        <img src="images/freemaconchess.jpg" alt="Freemason chess set" loading="eager">
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Freemason chess</div>
+            <div class="pg-sub">Own design · STL</div>
+          </div>
+          <span class="pg-ext">Cults3D ↗</span>
+        </div>
+      </a>
+      <a class="pg-tile" href="https://cults3d.com/en/3d-model/game/diyfunproject-2" target="_blank" rel="noopener">
+        <span class="pg-badge">Featured</span>
+        <img src="images/ancientchess.webp" alt="Ancient chess set" loading="eager">
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Ancient chess</div>
+            <div class="pg-sub">Own design · STL</div>
+          </div>
+          <span class="pg-ext">Cults3D ↗</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Timelapses -->
+<section>
+  <div class="wrap">
+    <div class="pg-section-head">
+      <div>
+        <div class="eyebrow">Timelapses</div>
+        <h2>Ten hours in ten seconds.</h2>
+      </div>
+    </div>
+    <div class="pg-grid">
+      <a class="pg-tile" href="images/timelapse.mp4" target="_blank" rel="noopener">
+        <span class="pg-video-badge">Timelapse</span>
+        <video src="images/timelapse.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Print timelapse</div>
+            <div class="pg-sub">Frame-per-layer · ~10 h</div>
+          </div>
+        </div>
+      </a>
+      <a class="pg-tile" href="images/vase-timelapse.mp4" target="_blank" rel="noopener">
+        <span class="pg-video-badge">Timelapse</span>
+        <video src="images/vase-timelapse.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Vase-mode timelapse</div>
+            <div class="pg-sub">Single-wall spiral</div>
+          </div>
+        </div>
+      </a>
+      <a class="pg-tile" href="images/chesshot-wa.mp4" target="_blank" rel="noopener">
+        <span class="pg-video-badge">Video</span>
+        <video src="images/chesshot-wa.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Chess Shot · demo</div>
+            <div class="pg-sub">Short clip</div>
+          </div>
+        </div>
+      </a>
+      <a class="pg-tile" href="images/chesshot-194452.mp4" target="_blank" rel="noopener">
+        <span class="pg-video-badge">Video</span>
+        <video src="images/chesshot-194452.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="pg-caption">
+          <div>
+            <div class="pg-title">Chess Shot · test</div>
+            <div class="pg-sub">Short clip</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Full gallery -->
+<section style="padding-bottom: clamp(40px, 6vh, 72px);">
+  <div class="wrap">
+    <div class="pg-section-head">
+      <div>
+        <div class="eyebrow">Gallery</div>
+        <h2>Fan art, painted prints &amp; work-in-progress.</h2>
+      </div>
+    </div>
+    <div class="pg-grid">
+      <a class="pg-tile" href="images/sonic3d.jpg" target="_blank" rel="noopener">
+        <img src="images/sonic3d.jpg" alt="Sonic 3D print" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Sonic</div><div class="pg-sub">Resin · hand-painted</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/groot.jpg" target="_blank" rel="noopener">
+        <img src="images/groot.jpg" alt="Groot 3D print" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Groot</div><div class="pg-sub">PLA · hand-painted</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/biggrootflower.jpg" target="_blank" rel="noopener">
+        <img src="images/biggrootflower.jpg" alt="Big Groot planter" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Groot planter</div><div class="pg-sub">Printed &amp; planted</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/mario-plant.jpg" target="_blank" rel="noopener">
+        <img src="images/mario-plant.jpg" alt="Mario plant pot" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Mario plant</div><div class="pg-sub">Themed planter</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/bulbizarre.jpg" target="_blank" rel="noopener">
+        <img src="images/bulbizarre.jpg" alt="Bulbasaur planter" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Bulbasaur</div><div class="pg-sub">Planter · fan art</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/yoda-googlehome.jpg" target="_blank" rel="noopener">
+        <img src="images/yoda-googlehome.jpg" alt="Yoda × Google Home cradle" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Yoda × Google Home</div><div class="pg-sub">Custom cradle</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/planetorium1.jpg" target="_blank" rel="noopener">
+        <img src="images/planetorium1.jpg" alt="Planetarium 3D print" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Planetarium</div><div class="pg-sub">Lit from inside</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/pokemoncardholder.jpeg" target="_blank" rel="noopener">
+        <img src="images/pokemoncardholder.jpeg" alt="Pokémon card holder" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Pokémon card holder</div><div class="pg-sub">Display stand</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/diy-bench-table.jpg" target="_blank" rel="noopener">
+        <img src="images/diy-bench-table.jpg" alt="DIY bench and table" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">DIY bench &amp; table</div><div class="pg-sub">Workshop build</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/chaturanga-4player.jpg" target="_blank" rel="noopener">
+        <img src="images/chaturanga-4player.jpg" alt="Chaturanga 4-player chess" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Chaturanga</div><div class="pg-sub">4-player chess</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/harrypotter.png" target="_blank" rel="noopener">
+        <img src="images/harrypotter.png" alt="Harry Potter bust" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Harry Potter</div><div class="pg-sub">Bust · painted</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/garrosh.jpg" target="_blank" rel="noopener">
+        <img src="images/garrosh.jpg" alt="Garrosh figure" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Garrosh</div><div class="pg-sub">Warchief · NMM axe</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/treeoflife.jpg" target="_blank" rel="noopener">
+        <img src="images/treeoflife.jpg" alt="Tree of life 3D print" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Tree of Life</div><div class="pg-sub">Thin-wall decorative</div></div></div>
+      </a>
+      <a class="pg-tile" href="images/clashroyal-3d.jpg" target="_blank" rel="noopener">
+        <img src="images/clashroyal-3d.jpg" alt="Clash Royale figures" loading="lazy">
+        <div class="pg-caption"><div><div class="pg-title">Clash Royale</div><div class="pg-sub">Painted roster</div></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Thomas Fendrich</span>
+    <span><a href="index.html">← Back to home</a></span>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
