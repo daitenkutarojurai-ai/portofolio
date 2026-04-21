@@ -533,12 +533,12 @@ section { padding: clamp(48px, 7vh, 80px) 0; }
 .card-media.zoom-screen img,
 .card-media.zoom-screen video {
   object-position: center top;
-  transform: scale(1.5);
+  transform: scale(1.2);
   transform-origin: center top;
 }
 .card:hover .card-media.zoom-screen img,
 .card:hover .card-media.zoom-screen video {
-  transform: scale(1.55);
+  transform: scale(1.25);
   filter: brightness(0.9);
 }
 .card-media .media-badge {
