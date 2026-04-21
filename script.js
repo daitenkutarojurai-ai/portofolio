@@ -86,6 +86,18 @@
     restart();
   }
 
+  // ----- Videos with a custom start time (loop back to data-start) ---
+  document.querySelectorAll('video[data-start]').forEach((v) => {
+    const t = parseFloat(v.dataset.start) || 0;
+    v.removeAttribute('loop');
+    const seek = () => { try { v.currentTime = t; } catch (e) {} };
+    v.addEventListener('loadedmetadata', () => { seek(); v.play().catch(() => {}); });
+    v.addEventListener('timeupdate', () => {
+      if (v.duration && v.currentTime >= v.duration - 0.08) { seek(); v.play().catch(() => {}); }
+    });
+    v.addEventListener('ended', () => { seek(); v.play().catch(() => {}); });
+  });
+
   // ----- Inject external link chip on cards (non-podcast) ---
   document.querySelectorAll('.card').forEach((card) => {
     const link = card.dataset.link;
