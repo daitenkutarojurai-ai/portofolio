@@ -107,6 +107,46 @@
     text-transform: uppercase;
     color: #fff;
   }
+  /* Mini cross-fade carousel for tiles with multiple angles */
+  .pg-carousel { position: absolute; inset: 0; }
+  .pg-carousel img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+  .pg-carousel.n2 img { animation: pg-fade2 7s infinite; }
+  .pg-carousel.n2 img:nth-child(1) { animation-delay: 0s; }
+  .pg-carousel.n2 img:nth-child(2) { animation-delay: 3.5s; }
+  .pg-carousel.n3 img { animation: pg-fade3 10.5s infinite; }
+  .pg-carousel.n3 img:nth-child(1) { animation-delay: 0s; }
+  .pg-carousel.n3 img:nth-child(2) { animation-delay: 3.5s; }
+  .pg-carousel.n3 img:nth-child(3) { animation-delay: 7s; }
+  @keyframes pg-fade2 {
+    0%, 45% { opacity: 1; }
+    50%, 95% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes pg-fade3 {
+    0%, 30% { opacity: 1; }
+    36%, 96% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  .pg-tile:hover .pg-carousel img { animation-play-state: paused; }
+  .pg-tile .pg-multi-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    z-index: 2;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+  }
 </style>
 </head>
 <body class="no-js">
@@ -176,7 +216,11 @@
       </a>
       <a class="pg-tile" href="https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga" target="_blank" rel="noopener">
         <span class="pg-badge">Featured</span>
-        <img src="images/chatarunga1.png" alt="Chaturanga 4-player chess" loading="eager">
+        <span class="pg-multi-badge">2 views</span>
+        <div class="pg-carousel n2">
+          <img src="images/chatarunga1.png" alt="Chaturanga 4-player chess" loading="eager">
+          <img src="images/chatarunga2.png" alt="Chaturanga 4-player chess — alternate view" loading="lazy">
+        </div>
         <div class="pg-caption">
           <div>
             <div class="pg-title">Chaturanga — 4 players</div>
@@ -278,8 +322,13 @@
         <div class="pg-caption"><div><div class="pg-title">Yoda × Google Home</div><div class="pg-sub">Custom cradle</div></div></div>
       </a>
       <a class="pg-tile" href="images/planetorium1.jpg" target="_blank" rel="noopener">
-        <img src="images/planetorium1.jpg" alt="Planetarium 3D print" loading="lazy">
-        <div class="pg-caption"><div><div class="pg-title">Planetarium</div><div class="pg-sub">Lit from inside</div></div></div>
+        <span class="pg-multi-badge">3 views</span>
+        <div class="pg-carousel n3">
+          <img src="images/planetorium1.jpg" alt="Planetarium 3D print" loading="lazy">
+          <img src="images/planetorium2.jpg" alt="Planetarium 3D print — alt view" loading="lazy">
+          <img src="images/planetorium3.jpg" alt="Planetarium 3D print — alt view 2" loading="lazy">
+        </div>
+        <div class="pg-caption"><div><div class="pg-title">Planetarium</div><div class="pg-sub">Lit from inside · 3 angles</div></div></div>
       </a>
       <a class="pg-tile" href="images/pokemoncardholder.jpeg" target="_blank" rel="noopener">
         <img src="images/pokemoncardholder.jpeg" alt="Pokémon card holder" loading="lazy">
