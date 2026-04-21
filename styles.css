@@ -977,13 +977,18 @@ footer .wrap {
   background: var(--bg-2);
 }
 .modal-ctas {
-  grid-column: 1 / -1;
   display: flex; gap: 10px; flex-wrap: wrap;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
+  padding: 16px clamp(20px, 3vw, 32px);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+  position: sticky;
+  top: 0;
+  z-index: 3;
 }
 @media (max-width: 720px) {
   .modal-body { grid-template-columns: 1fr; }
+  .modal-ctas { padding: 12px 16px; }
+  .modal-ctas .btn { flex: 1; justify-content: center; }
 }
 
 /* --------------------------------------------------------------------------

@@ -132,7 +132,26 @@
   if (grid && filterBar) {
     const cards = Array.from(grid.querySelectorAll('.card'));
 
-    const counts = { all: cards.length, hardware: 0, software: 0, print: 0, podcast: 0 };
+    const isFeatured = (c) =>
+      c.dataset.cat === 'hardware' ||
+      c.dataset.cat === 'software' ||
+      c.dataset.cat === 'podcast' ||
+      c.dataset.featured === 'true';
+    const hasVideo = (c) => !!c.querySelector('video');
+
+    const matchFilter = (c, filter) => {
+      if (filter === 'all') return true;
+      if (filter === 'featured') return isFeatured(c);
+      if (filter === 'video') return hasVideo(c);
+      return c.dataset.cat === filter;
+    };
+
+    const counts = {
+      all: cards.length,
+      featured: cards.filter(isFeatured).length,
+      video: cards.filter(hasVideo).length,
+      hardware: 0, software: 0, print: 0, podcast: 0,
+    };
     cards.forEach((c) => {
       const cat = c.dataset.cat;
       if (counts[cat] !== undefined) counts[cat]++;
@@ -153,8 +172,7 @@
       });
       let visible = 0;
       cards.forEach((c) => {
-        const match = filter === 'all' || c.dataset.cat === filter;
-        if (match) {
+        if (matchFilter(c, filter)) {
           c.style.display = '';
           c.style.setProperty('--d', (visible % 8));
           c.classList.remove('in');
@@ -167,24 +185,25 @@
       updateVisible(visible);
     }
 
+    const valid = ['featured', 'all', 'hardware', 'software', 'print', 'podcast', 'video'];
+
     filterBar.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
       const filter = btn.dataset.filter;
-      history.replaceState(null, '', filter === 'all' ? location.pathname : '#' + filter);
+      history.replaceState(null, '', filter === 'featured' ? location.pathname : '#' + filter);
       applyFilter(filter);
     });
 
-    // Initial filter from URL hash
+    // Initial filter from URL hash (default: featured)
     const hash = location.hash.replace('#', '');
-    const valid = ['hardware', 'software', 'print', 'podcast'];
-    const initial = valid.includes(hash) ? hash : 'all';
+    const initial = valid.includes(hash) ? hash : 'featured';
     applyFilter(initial);
 
     // Respond to hash change (back button)
     window.addEventListener('hashchange', () => {
       const h = location.hash.replace('#', '');
-      applyFilter(valid.includes(h) ? h : 'all');
+      applyFilter(valid.includes(h) ? h : 'featured');
     });
   }
 
@@ -203,10 +222,22 @@
   const mYear = document.getElementById('modal-year');
   const mType = document.getElementById('modal-type');
   const mViews = document.getElementById('modal-views');
-  const mDuration = document.getElementById('modal-duration');
   const mTech = document.getElementById('modal-tech');
   const mLink = document.getElementById('modal-link');
   const mLinkLbl = document.getElementById('modal-link-label');
+  const mLinkWorks = document.getElementById('modal-link-works');
+
+  function inferWorksHash(link) {
+    if (!link) return '';
+    try {
+      const host = new URL(link, location.href).hostname.replace('www.', '');
+      if (host.includes('cults3d')) return '#print';
+      if (host.includes('hackster') || host.includes('instructables')) return '#hardware';
+      if (host.includes('spotify')) return '#podcast';
+      if (host.includes('github') || host.includes('vercel') || host.includes('certquests')) return '#software';
+    } catch (e) {}
+    return '';
+  }
 
   function openModal(card) {
     const video = card.dataset.video;
@@ -240,7 +271,6 @@
     mYear.textContent = card.dataset.year || '';
     mType.textContent = card.dataset.type || '';
     mViews.textContent = card.dataset.views || '';
-    mDuration.textContent = [card.dataset.duration, card.dataset.difficulty].filter(Boolean).join(' · ');
     mTech.innerHTML = '';
     (card.dataset.tech || '').split(',').forEach((t) => {
       const v = t.trim();
@@ -251,6 +281,19 @@
     });
     mLink.href = card.dataset.link || '#';
     mLinkLbl.textContent = card.dataset.linkLabel || 'View project';
+    if (mLinkWorks) {
+      const link = card.dataset.link || '';
+      let isExternal = false;
+      try { isExternal = !!new URL(link, location.href).host && new URL(link, location.href).host !== location.host; }
+      catch (e) { isExternal = false; }
+      const onWorksPage = /works\.html$/i.test(location.pathname);
+      if (isExternal && !onWorksPage) {
+        mLinkWorks.href = 'works.html' + inferWorksHash(link);
+        mLinkWorks.style.display = '';
+      } else {
+        mLinkWorks.style.display = 'none';
+      }
+    }
     modal.classList.add('open');
     backdrop.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');

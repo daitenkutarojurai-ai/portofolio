@@ -39,11 +39,13 @@
 <!-- Filter bar -->
 <div class="wrap">
   <div class="filter-bar" id="filter-bar">
-    <button class="filter-btn active" data-filter="all">All <span class="count" id="count-all"></span></button>
-    <button class="filter-btn" data-filter="hardware">Hardware <span class="count" id="count-hardware"></span></button>
-    <button class="filter-btn" data-filter="software">Software <span class="count" id="count-software"></span></button>
+    <button class="filter-btn active" data-filter="featured">Featured <span class="count" id="count-featured"></span></button>
+    <button class="filter-btn" data-filter="all">All <span class="count" id="count-all"></span></button>
+    <button class="filter-btn" data-filter="hardware">DIY <span class="count" id="count-hardware"></span></button>
+    <button class="filter-btn" data-filter="software">Web / App <span class="count" id="count-software"></span></button>
     <button class="filter-btn" data-filter="print">3D Prints <span class="count" id="count-print"></span></button>
     <button class="filter-btn" data-filter="podcast">Podcasts <span class="count" id="count-podcast"></span></button>
+    <button class="filter-btn" data-filter="video">Videos <span class="count" id="count-video"></span></button>
     <span class="filter-count" id="visible-count"></span>
   </div>
 </div>
@@ -383,7 +385,7 @@
         </div>
       </div>
 
-      <div class="card reveal" data-cat="print"
+      <div class="card reveal" data-cat="print" data-featured="true"
          data-title="Printed chess sets" data-tagline="Designed, printed, published on Cults3D."
          data-year="Ongoing" data-type="3D design · STL" data-views="Cults3D"
          data-duration="Multi-set archive" data-difficulty="Own designs" data-img="images/chess3d-3.jpg"
@@ -469,7 +471,7 @@
         </div>
       </div>
 
-      <div class="card reveal" data-cat="print"
+      <div class="card reveal" data-cat="print" data-featured="true"
          data-title="Printed fountain" data-tagline="Designed in Fusion, printed in PLA, runs on a small pump."
          data-year="2021" data-type="3D print · Water feature" data-views="Garden"
          data-duration="Multi-part print" data-difficulty="Sealed assembly"
@@ -568,6 +570,13 @@
   <div class="modal-hero" id="modal-hero">
     <img id="modal-img" src="" alt="" />
   </div>
+  <div class="modal-ctas">
+    <a id="modal-link" href="#" target="_blank" rel="noopener" class="btn btn-primary">
+      <span id="modal-link-label">View project</span> <span class="arrow">↗</span>
+    </a>
+    <a id="modal-link-works" href="works.html" class="btn" style="display:none;">See all my work <span class="arrow">→</span></a>
+    <button class="btn" id="modal-dismiss">Close</button>
+  </div>
   <div class="modal-body">
     <div class="modal-main">
       <h3 id="modal-title"></h3>
@@ -578,15 +587,8 @@
       <div class="modal-side-block"><div class="k">Year</div><div class="v" id="modal-year"></div></div>
       <div class="modal-side-block"><div class="k">Type</div><div class="v" id="modal-type"></div></div>
       <div class="modal-side-block"><div class="k">Metrics</div><div class="v" id="modal-views"></div></div>
-      <div class="modal-side-block"><div class="k">Duration · Level</div><div class="v" id="modal-duration"></div></div>
       <div class="modal-side-block"><div class="k">Stack</div><div class="modal-tech" id="modal-tech"></div></div>
     </aside>
-    <div class="modal-ctas">
-      <a id="modal-link" href="#" target="_blank" rel="noopener" class="btn btn-primary">
-        <span id="modal-link-label">View project</span> <span class="arrow">↗</span>
-      </a>
-      <button class="btn" id="modal-dismiss">Close</button>
-    </div>
   </div>
 </div>
 
