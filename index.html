@@ -33,6 +33,17 @@
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track">
 
+        <div class="carousel-slide contain">
+          <span class="video-badge">Vase mode</span>
+          <video src="images/vase-timelapse.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <div class="carousel-caption">
+            <div class="eyebrow">3D Print · Timelapse · 2021</div>
+            <h2>Vase mode timelapse.</h2>
+            <p>Single-wall spiral print captured layer-by-layer. No Z-seam, no retracts — one long ribbon of plastic.</p>
+            <a class="btn" href="works.html#print">See all prints <span class="arrow">→</span></a>
+          </div>
+        </div>
+
         <div class="carousel-slide">
           <img src="images/bannerup.png" alt="Glaces en Seine — Crêpe forecast banner" loading="eager">
           <div class="carousel-caption">
@@ -43,8 +54,8 @@
           </div>
         </div>
 
-        <div class="carousel-slide">
-          <img src="images/certquestbanner.png" alt="Cert Quest banner" loading="eager">
+        <div class="carousel-slide contain">
+          <img src="images/cert-quest-feature-1024x500.png" alt="Cert Quest feature" loading="eager">
           <div class="carousel-caption">
             <div class="eyebrow">Mobile · Android · iOS · 2024</div>
             <h2>Cert Quest — IT certification, gamified.</h2>
@@ -53,8 +64,8 @@
           </div>
         </div>
 
-        <div class="carousel-slide">
-          <img src="images/chesskombatc.png" alt="Chess Kombat">
+        <div class="carousel-slide contain">
+          <img src="images/chesskombatlogo.png" alt="Chess Kombat logo">
           <div class="carousel-caption">
             <div class="eyebrow">Android game · Pixel art · 2024</div>
             <h2>Chess Kombat</h2>
@@ -70,16 +81,6 @@
             <h2>Groot — I am repaint</h2>
             <p>PLA print, hand-painted over several sessions. Wood-grain dry-brush on the bark, mossy wash in the crevices.</p>
             <a class="btn" href="works.html#print">View project <span class="arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <img src="images/eggorganiser.jpg" alt="Egg organiser 3D print">
-          <div class="carousel-caption">
-            <div class="eyebrow">3D Print · Functional · 2024</div>
-            <h2>Egg organiser</h2>
-            <p>A printed fridge-drawer organiser for eggs. Fusion-designed, printed in PLA, sized for a standard egg carton.</p>
-            <a class="btn" href="works.html#print">See all prints <span class="arrow">→</span></a>
           </div>
         </div>
 
@@ -105,23 +106,12 @@
         </div>
 
         <div class="carousel-slide">
-          <span class="video-badge">Live demo</span>
-          <video src="images/coffee-demo.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <img src="images/coffee.jpg" alt="Automatic Coffee Machine">
           <div class="carousel-caption">
             <div class="eyebrow">Hardware · Android · 2016 · 41K views</div>
             <h2>Automatic Coffee Machine</h2>
             <p>Espresso machine retrofitted with Bluetooth + Arduino. Android app with voice control. Most-viewed project ever.</p>
             <a class="btn" href="https://www.hackster.io/thomassxt/automatic-coffee-machine-950544" target="_blank" rel="noopener">View project <span class="arrow">↗</span></a>
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <img src="images/chess3d-3.jpg" alt="Printed chess set render">
-          <div class="carousel-caption">
-            <div class="eyebrow">3D Design · STL · Cults3D</div>
-            <h2>Printed chess sets</h2>
-            <p>A running series of chess sets designed in Fusion, printed, and published on Cults3D. Each set has its own silhouette language.</p>
-            <a class="btn" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">View on Cults3D <span class="arrow">↗</span></a>
           </div>
         </div>
 
@@ -184,10 +174,7 @@
          data-desc="<p>Espresso machine retrofitted with a relay, HC-06 Bluetooth, and Arduino Uno. Android app turns it on and times the brew — including a voice-recognition mode.</p>"
          data-tech="Arduino Uno,HC-06 Bluetooth,Relay,Android app,Voice recognition"
          data-link="https://www.hackster.io/thomassxt/automatic-coffee-machine-950544" data-link-label="View on Hackster">
-        <div class="card-media">
-          <span class="media-badge">Video</span>
-          <video src="images/coffee-demo.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        </div>
+        <div class="card-media"><img src="images/coffee.jpg" alt="Automatic Coffee Machine" loading="eager"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2016</span></div>
           <h3>Automatic Coffee Machine</h3>
@@ -200,19 +187,19 @@
       </div>
 
       <div class="card reveal" data-delay="1"
-         data-title="Automated Garden" data-tagline="A little jungle that doesn't need me."
-         data-year="2016" data-type="Hardware · IoT" data-views="38,747 views"
-         data-duration="4 hours build" data-difficulty="Beginner" data-img="images/garden.jpg"
-         data-desc="<p>Self-contained growing chamber wired into the cloud. Pi handles timelapse; Arduino Ethernet Shield pushes sensor data to Cayenne.</p>"
-         data-tech="Arduino Uno,Raspberry Pi 2,Ethernet Shield,Pi Camera,DHT22,Cayenne"
-         data-link="https://www.hackster.io/thomassxt/automated-garden-77bee8" data-link-label="View on Hackster">
-        <div class="card-media"><img src="images/garden.jpg" alt="Automated Garden" loading="eager"></div>
+         data-title="Automated Farm" data-tagline="Fan, light, water. Three relays, zero effort."
+         data-year="2021" data-type="Hardware · IoT" data-views="1,593 views"
+         data-duration="2 hours build" data-difficulty="Beginner" data-img="images/arduinofarm.webp"
+         data-desc="<p>A compact greenhouse rig driven by Arduino Uno. Soil moisture decides when to water; photoresistor decides when to light; timer handles ventilation. Three actuators behind a 4-ch I²C relay.</p>"
+         data-tech="Arduino Uno,4-ch I²C relay,Soil moisture,12V fan,Grow bulb,Pump"
+         data-link="https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102" data-link-label="View on Hackster">
+        <div class="card-media"><img src="images/arduinofarm.webp" alt="Automated Farm" loading="eager"></div>
         <div class="card-body">
-          <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2016</span></div>
-          <h3>Automated Garden</h3>
-          <p class="card-desc">Self-watering, self-lighting cloud-connected chamber.</p>
+          <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2021</span></div>
+          <h3>Automated Farm</h3>
+          <p class="card-desc">Compact greenhouse. Light, fan, pump, sensors.</p>
           <div class="card-foot">
-            <a class="card-ext" href="https://www.hackster.io/thomassxt/automated-garden-77bee8" target="_blank" rel="noopener" onclick="event.stopPropagation()">Hackster ↗</a>
+            <a class="card-ext" href="https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102" target="_blank" rel="noopener" onclick="event.stopPropagation()">Hackster ↗</a>
             <span class="go">Details →</span>
           </div>
         </div>
@@ -221,11 +208,11 @@
       <div class="card reveal" data-delay="2"
          data-title="Photobooth Pro" data-tagline="A wedding-grade photobooth in a plywood box."
          data-year="2023" data-type="Hardware · Raspberry Pi" data-views="8,726 views"
-         data-duration="10 steps" data-difficulty="Intermediate" data-img="images/photobooth.jpg"
+         data-duration="10 steps" data-difficulty="Intermediate" data-img="images/photoboothfront.webp"
          data-desc="<p>Pi + Canon DSLR + Canon Selphy printer in a wooden enclosure. Runs pibooth fullscreen, CUPS for printing, custom plugins push every shot to Telegram and Google Photos.</p>"
          data-tech="Raspberry Pi,Canon EOS 100D,Selphy CP1300,pibooth,CUPS,Telegram,Google Photos"
          data-link="https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/" data-link-label="View on Instructables">
-        <div class="card-media"><img src="images/photobooth.jpg" alt="Photobooth Pro" loading="lazy"></div>
+        <div class="card-media"><img src="images/photoboothfront.webp" alt="Photobooth Pro" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2023</span></div>
           <h3>Photobooth Pro</h3>
@@ -257,8 +244,9 @@
          data-duration="Solo project" data-difficulty="Personal favourite"
          data-desc="<p>Chess engine wearing an arcade jacket. 21 pixel-art enemies across three worlds, HP bars tied to captured material, Chess 960 mode, Puzzle Survival. Runs on a <b>PeSTO</b>-style evaluation.</p>"
          data-tech="Android,Java/Kotlin,PeSTO engine,Chess 960,Pixel art"
+         data-img="images/chesskombatlogo.png"
          data-link="https://github.com/daitenkutarojurai-ai/Chess-kombat" data-link-label="Source on GitHub">
-        <div class="card-media portrait"><img src="images/chesskombat-1.jpg" alt="Chess Kombat screenshot" loading="lazy"></div>
+        <div class="card-media"><img src="images/chesskombatlogo.png" alt="Chess Kombat logo" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2024</span></div>
           <h3>Chess Kombat</h3>
@@ -276,9 +264,9 @@
          data-duration="Solo project" data-difficulty="Cross-platform"
          data-desc="<p>Cross-platform cert trainer covering multiple vendors across dozens of question packs. Currently in Play Store closed testing.</p>"
          data-tech="Mobile,Android,iOS,Google Play"
-         data-img="images/certquest-screen-1.png"
+         data-img="images/cert-quest-feature-1024x500.png"
          data-link="https://github.com/daitenkutarojurai-ai/Certquestsapp" data-link-label="Source on GitHub">
-        <div class="card-media portrait"><img src="images/certquest-screen-1.png" alt="Cert Quest app screenshot" loading="lazy"></div>
+        <div class="card-media"><img src="images/cert-quest-feature-1024x500.png" alt="Cert Quest feature" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2024</span></div>
           <h3>Cert Quest</h3>
