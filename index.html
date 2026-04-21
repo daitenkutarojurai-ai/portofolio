@@ -33,7 +33,7 @@
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track">
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide">
           <span class="video-badge">Timelapse</span>
           <video src="images/timelapse.mp4" autoplay muted loop playsinline preload="auto"></video>
           <div class="carousel-caption">
@@ -44,7 +44,7 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide">
           <img src="images/bannerup.png" alt="Glaces en Seine — Crêpe forecast banner" loading="eager">
           <div class="carousel-caption">
             <div class="eyebrow">Next.js · Dashboard · 2026</div>
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide">
           <img src="images/certquestbanner.png" alt="Cert Quest banner" loading="eager">
           <div class="carousel-caption">
             <div class="eyebrow">Mobile · Android · iOS · 2024</div>
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide">
           <img src="images/chesskombatc.png" alt="Chess Kombat">
           <div class="carousel-caption">
             <div class="eyebrow">Android game · Pixel art · 2024</div>
@@ -74,7 +74,7 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide" data-pos="top">
           <img src="images/biggroot.jpg" alt="Groot 3D print">
           <div class="carousel-caption">
             <div class="eyebrow">3D Print · Hand-painted · 2020</div>
@@ -84,7 +84,17 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide">
+          <img src="images/ikea-plant.jpg" alt="IKEA Smart Plant" loading="eager">
+          <div class="carousel-caption">
+            <div class="eyebrow">Hardware · IoT · 2021</div>
+            <h2>IKEA Smart Plant</h2>
+            <p>An IKEA planter turned into a tiny indoor ecosystem: grow light, 12V fan, water pump and moisture probe behind a 4-channel I²C relay.</p>
+            <a class="btn" href="https://www.hackster.io/thomassxt/ikea-smart-plant-22133b" target="_blank" rel="noopener">View project <span class="arrow">↗</span></a>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
           <img src="images/arduinofarm2.webp" alt="Automated Farm" loading="eager">
           <div class="carousel-caption">
             <div class="eyebrow">Hardware · IoT · 2021</div>
@@ -94,7 +104,7 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
+        <div class="carousel-slide">
           <img src="images/chaturanga-4player.jpg" alt="Chaturanga 4-player chess set" loading="eager">
           <div class="carousel-caption">
             <div class="eyebrow">3D Design · STL · Cults3D</div>
@@ -104,13 +114,13 @@
           </div>
         </div>
 
-        <div class="carousel-slide contain">
-          <img src="images/sonic3d.jpg" alt="Sonic 3D print">
+        <div class="carousel-slide">
+          <img src="images/pokemoncardholder.jpeg" alt="Pokémon card holder — 3D print">
           <div class="carousel-caption">
-            <div class="eyebrow">3D Print · Fan art</div>
-            <h2>Sonic</h2>
-            <p>Printed and painted. Blue, fast, and surprisingly hard to airbrush.</p>
-            <a class="btn" href="works.html#print">See all prints <span class="arrow">→</span></a>
+            <div class="eyebrow">3D Print · Design · Cults3D</div>
+            <h2>Pokémon card holder.</h2>
+            <p>A printed display stand for trading cards. Designed in Fusion, printed in PLA, cleaned up for a shelf-ready finish.</p>
+            <a class="btn" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">View on Cults3D <span class="arrow">↗</span></a>
           </div>
         </div>
 
@@ -197,11 +207,11 @@
       <div class="card reveal" data-delay="2"
          data-title="Photobooth Pro" data-tagline="A wedding-grade photobooth in a plywood box."
          data-year="2023" data-type="Hardware · Raspberry Pi" data-views="8,726 views"
-         data-duration="10 steps" data-difficulty="Intermediate" data-img="images/photoboothfront.webp"
+         data-duration="10 steps" data-difficulty="Intermediate" data-img="images/photoboothfront-1.webp"
          data-desc="<p>Pi + Canon DSLR + Canon Selphy printer in a wooden enclosure. Runs pibooth fullscreen, CUPS for printing, custom plugins push every shot to Telegram and Google Photos.</p>"
          data-tech="Raspberry Pi,Canon EOS 100D,Selphy CP1300,pibooth,CUPS,Telegram,Google Photos"
          data-link="https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/" data-link-label="View on Instructables">
-        <div class="card-media"><img src="images/photoboothfront.webp" alt="Photobooth Pro" loading="lazy"></div>
+        <div class="card-media"><img src="images/photoboothfront-1.webp" alt="Photobooth Pro" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Hardware</span><span class="sep">·</span><span>2023</span></div>
           <h3>Photobooth Pro</h3>
@@ -324,17 +334,17 @@
     </div>
     <div class="works-grid">
       <div class="card reveal"
-         data-title="Groot — I am repaint" data-tagline="A tiny tree with a lot of patience put into it."
-         data-year="2020" data-type="3D print · Hand-painted" data-views="Shelf piece"
-         data-duration="Multi-session paint" data-difficulty="Dry-brush · washes" data-img="images/groot.jpg"
-         data-desc="<p>Printed in PLA on a Creality, cleaned and primed, then painted in thin layers with wood-grain detailing on the bark.</p>"
-         data-tech="PLA,Creality Ender,Acrylics,Dry-brush,Washes"
+         data-title="Yoda × Google Home" data-tagline="A Jedi minder for the smart speaker."
+         data-year="2022" data-type="3D print · Hand-painted" data-views="Shelf piece"
+         data-duration="Weekend project" data-difficulty="Paint · assembly" data-img="images/yoda-googlehome.jpg"
+         data-desc="<p>A custom Yoda stand that cradles a Google Home. Printed in PLA, cleaned up, then hand-painted — robe washes, skin layered, stick dry-brushed.</p>"
+         data-tech="PLA,Acrylics,Washes,Dry-brush"
          data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="See on Cults3D">
-        <div class="card-media"><img src="images/groot.jpg" alt="Groot" loading="lazy"></div>
+        <div class="card-media"><img src="images/yoda-googlehome.jpg" alt="Yoda holding a Google Home" loading="lazy"></div>
         <div class="card-body">
-          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2020</span></div>
-          <h3>Groot</h3>
-          <p class="card-desc">PLA print, hand-painted over several sessions.</p>
+          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2022</span></div>
+          <h3>Yoda × Google Home</h3>
+          <p class="card-desc">Printed Yoda cradle for the Google Home speaker.</p>
           <div class="card-foot">
             <a class="card-ext" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener" onclick="event.stopPropagation()">Cults3D ↗</a>
             <span class="go">Details →</span>
@@ -343,6 +353,44 @@
       </div>
 
       <div class="card reveal" data-delay="1"
+         data-title="Planetarium" data-tagline="Printed planets, lit from the inside."
+         data-year="2023" data-type="3D print · Decorative" data-views="Shelf piece"
+         data-duration="Multi-part print" data-difficulty="Assembly" data-img="images/planetorium1.jpg"
+         data-desc="<p>A decorative planetarium modelled in Fusion and printed in PLA. Translucent filaments let a small LED light up the planets from inside.</p>"
+         data-tech="Fusion 360,PLA,Translucent PLA,LED"
+         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="See on Cults3D">
+        <div class="card-media"><img src="images/planetorium1.jpg" alt="3D printed planetarium" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2023</span></div>
+          <h3>Planetarium</h3>
+          <p class="card-desc">Printed planets, lit from the inside.</p>
+          <div class="card-foot">
+            <a class="card-ext" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener" onclick="event.stopPropagation()">Cults3D ↗</a>
+            <span class="go">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal" data-delay="2"
+         data-title="Pokémon card holder" data-tagline="A printed display stand for trading cards."
+         data-year="2023" data-type="3D print · Design" data-views="Shelf piece"
+         data-duration="Solo print" data-difficulty="Clean finish" data-img="images/pokemoncardholder.jpeg"
+         data-desc="<p>A printable display stand for trading cards. Modelled in Fusion, printed in PLA, cleaned up for a shelf-ready finish.</p>"
+         data-tech="Fusion 360,PLA,Sanding,Finishing"
+         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="See on Cults3D">
+        <div class="card-media"><img src="images/pokemoncardholder.jpeg" alt="Pokémon card holder 3D print" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2023</span></div>
+          <h3>Pokémon card holder</h3>
+          <p class="card-desc">Printed display stand for trading cards.</p>
+          <div class="card-foot">
+            <a class="card-ext" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener" onclick="event.stopPropagation()">Cults3D ↗</a>
+            <span class="go">Details →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal" data-delay="3"
          data-title="Sonic" data-tagline="Printed, primed, painted. Fast enough."
          data-year="2022" data-type="3D print · Hand-painted" data-views="Fan art"
          data-duration="Weekend project" data-difficulty="Airbrush · layered" data-img="images/sonic3d.jpg"
@@ -354,25 +402,6 @@
           <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2022</span></div>
           <h3>Sonic</h3>
           <p class="card-desc">Resin print, hand-painted. Blue is hard to airbrush.</p>
-          <div class="card-foot">
-            <a class="card-ext" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener" onclick="event.stopPropagation()">Cults3D ↗</a>
-            <span class="go">Details →</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card reveal" data-delay="2"
-         data-title="Clash Royale figures" data-tagline="A mini army, printed and painted."
-         data-year="2021" data-type="3D print · Hand-painted" data-views="Collection"
-         data-duration="Multi-print series" data-difficulty="Tabletop scale" data-img="images/clashroyal-3d.jpg"
-         data-desc="<p>A whole roster of Clash Royale troops printed in PLA, sanded, primed, and painted. A small photo setup on the kitchen table for scale.</p>"
-         data-tech="PLA,Acrylics,Primer,Washes"
-         data-link="https://cults3d.com/fr/utilisateurs/diyfunproject" data-link-label="See on Cults3D">
-        <div class="card-media"><img src="images/clashroyal-3d.jpg" alt="Clash Royale 3D figures" loading="lazy"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>2021</span></div>
-          <h3>Clash Royale figures</h3>
-          <p class="card-desc">Mini roster, printed &amp; painted.</p>
           <div class="card-foot">
             <a class="card-ext" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener" onclick="event.stopPropagation()">Cults3D ↗</a>
             <span class="go">Details →</span>
