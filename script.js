@@ -212,6 +212,7 @@
     const video = card.dataset.video;
     const img = card.dataset.img;
     mHero.innerHTML = '';
+    mHero.classList.toggle('fit-contain', card.dataset.fit === 'contain');
     if (video) {
       const v = document.createElement('video');
       v.src = video;
