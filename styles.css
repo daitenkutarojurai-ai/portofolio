@@ -909,7 +909,7 @@ footer .wrap {
   border-radius: 14px 14px 0 0;
 }
 .modal-hero img,
-.modal-hero video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.modal-hero video { width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
 .modal-body {
   padding: clamp(20px, 3vw, 32px);
   display: grid;
