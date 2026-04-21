@@ -209,10 +209,26 @@
   const mLinkLbl = document.getElementById('modal-link-label');
 
   function openModal(card) {
+    const video = card.dataset.video;
     const img = card.dataset.img;
-    if (img) {
-      mImg.src = img;
-      mImg.alt = card.dataset.title || '';
+    mHero.innerHTML = '';
+    if (video) {
+      const v = document.createElement('video');
+      v.src = video;
+      v.autoplay = true;
+      v.muted = true;
+      v.loop = true;
+      v.playsInline = true;
+      v.controls = true;
+      v.preload = 'metadata';
+      mHero.appendChild(v);
+      mHero.style.display = '';
+    } else if (img) {
+      const i = document.createElement('img');
+      i.id = 'modal-img';
+      i.src = img;
+      i.alt = card.dataset.title || '';
+      mHero.appendChild(i);
       mHero.style.display = '';
     } else {
       mHero.style.display = 'none';
@@ -245,6 +261,8 @@
     backdrop.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    const v = mHero.querySelector('video');
+    if (v) { try { v.pause(); } catch (e) {} }
   }
 
   document.querySelectorAll('.card').forEach((card) => {
