@@ -195,9 +195,6 @@
     const hasVideo = (c) => !!c.querySelector('video');
 
     const matchFilter = (c, filter) => {
-      if (filter === 'podcast') return c.dataset.cat === 'podcast';
-      // Podcasts only surface under their own filter.
-      if (c.dataset.cat === 'podcast') return false;
       if (filter === 'all') return true;
       if (filter === 'featured') return isFeatured(c);
       if (filter === 'video') return hasVideo(c);
@@ -300,9 +297,20 @@
   function openModal(card) {
     const video = card.dataset.video;
     const img = card.dataset.img;
+    // Collect gallery: explicit data-imgs wins, otherwise pull from inline slider slides
+    let imgs = (card.dataset.imgs || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (imgs.length === 0) {
+      const slideImgs = Array.from(card.querySelectorAll('.card-slider .slide img'))
+        .map((el) => el.getAttribute('src'));
+      if (slideImgs.length > 1) imgs = slideImgs;
+    }
     mHero.innerHTML = '';
     mHero.classList.toggle('fit-contain', card.dataset.fit === 'contain');
-    if (video) {
+    mHero.classList.remove('has-gallery');
+    // Prefer a gallery when we have more than one picture (even over a video hero)
+    if (imgs.length > 1) {
+      // fall through to gallery branch below
+    } else if (video) {
       const v = document.createElement('video');
       v.src = video;
       v.autoplay = true;
@@ -312,6 +320,45 @@
       v.controls = true;
       v.preload = 'metadata';
       mHero.appendChild(v);
+      mHero.style.display = '';
+    }
+    if (imgs.length > 1) {
+      mHero.classList.add('has-gallery');
+      imgs.forEach((src, i) => {
+        const s = document.createElement('div');
+        s.className = 'modal-slide' + (i === 0 ? ' active' : '');
+        const im = document.createElement('img');
+        im.src = src;
+        im.alt = card.dataset.title || '';
+        im.loading = 'lazy';
+        s.appendChild(im);
+        mHero.appendChild(s);
+      });
+      const dots = document.createElement('div');
+      dots.className = 'modal-dots';
+      imgs.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.className = 'modal-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Image ' + (i + 1));
+        dots.appendChild(d);
+      });
+      const prev = document.createElement('button');
+      prev.type = 'button'; prev.className = 'modal-gnav prev'; prev.setAttribute('aria-label', 'Previous'); prev.textContent = '‹';
+      const next = document.createElement('button');
+      next.type = 'button'; next.className = 'modal-gnav next'; next.setAttribute('aria-label', 'Next'); next.textContent = '›';
+      mHero.appendChild(prev); mHero.appendChild(next); mHero.appendChild(dots);
+      const slides = mHero.querySelectorAll('.modal-slide');
+      const dotEls = dots.querySelectorAll('.modal-dot');
+      let idx = 0;
+      const go = (n) => {
+        idx = (n + slides.length) % slides.length;
+        slides.forEach((el, j) => el.classList.toggle('active', j === idx));
+        dotEls.forEach((el, j) => el.classList.toggle('active', j === idx));
+      };
+      prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
+      next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
+      dotEls.forEach((d, j) => d.addEventListener('click', (e) => { e.stopPropagation(); go(j); }));
       mHero.style.display = '';
     } else if (img) {
       const i = document.createElement('img');
