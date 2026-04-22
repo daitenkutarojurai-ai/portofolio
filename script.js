@@ -5,6 +5,17 @@
 
 (function () {
   document.body.classList.remove('no-js');
+
+  // ----- Animated background layers (grain + ember specks) --------------
+  if (!document.querySelector('.bg-grain')) {
+    const grain = document.createElement('div');
+    grain.className = 'bg-grain';
+    document.body.appendChild(grain);
+    const embers = document.createElement('div');
+    embers.className = 'bg-embers';
+    for (let i = 0; i < 5; i++) embers.appendChild(document.createElement('span'));
+    document.body.appendChild(embers);
+  }
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
