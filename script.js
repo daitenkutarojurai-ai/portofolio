@@ -8,13 +8,25 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // ----- Nav scroll state -----------------------------------
+  // ----- Nav scroll state + progress bar --------------------
   const nav = document.getElementById('nav');
+  let progressBar = null;
   if (nav) {
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    nav.appendChild(progressBar);
   }
+  const onScroll = () => {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 8);
+    if (progressBar) {
+      const h = document.documentElement;
+      const max = (h.scrollHeight - h.clientHeight) || 1;
+      const pct = Math.min(100, Math.max(0, (window.scrollY / max) * 100));
+      progressBar.style.transform = 'scaleX(' + (pct / 100) + ')';
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   // ----- Scroll reveal --------------------------------------
   const io = new IntersectionObserver(
@@ -30,6 +42,13 @@
     if (el.dataset.delay) el.style.setProperty('--d', el.dataset.delay);
     io.observe(el);
   });
+
+  // Toggle each category's ember wash in/out as it enters the viewport
+  const catIo = new IntersectionObserver(
+    (entries) => entries.forEach((e) => e.target.classList.toggle('in-view', e.isIntersecting)),
+    { threshold: 0.15 }
+  );
+  document.querySelectorAll('.category').forEach((el) => catIo.observe(el));
 
   // ----- Carousel -------------------------------------------
   const carousel = document.getElementById('carousel');
@@ -86,6 +105,42 @@
     restart();
   }
 
+  // ----- Preview sliders (multi-image cards) ----------------
+  document.querySelectorAll('.card-slider').forEach((slider) => {
+    const slides = Array.from(slider.querySelectorAll('.slide'));
+    if (slides.length < 2) return;
+    const dotsWrap = document.createElement('div');
+    dotsWrap.className = 'slider-dots';
+    slides.forEach((_, i) => {
+      const s = document.createElement('span');
+      if (i === 0) s.className = 'active';
+      dotsWrap.appendChild(s);
+    });
+    slider.appendChild(dotsWrap);
+    const dots = Array.from(dotsWrap.children);
+    let i = 0;
+    const activateVideo = (slide) => {
+      const v = slide.querySelector('video');
+      if (v) { try { v.currentTime = parseFloat(v.dataset.start) || 0; v.play().catch(() => {}); } catch (e) {} }
+    };
+    const pauseVideo = (slide) => {
+      const v = slide.querySelector('video');
+      if (v) { try { v.pause(); } catch (e) {} }
+    };
+    activateVideo(slides[0]);
+    const step = () => {
+      pauseVideo(slides[i]);
+      slides[i].classList.remove('active');
+      dots[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+      dots[i].classList.add('active');
+      activateVideo(slides[i]);
+    };
+    const period = parseInt(slider.dataset.interval, 10) || 2800;
+    setInterval(step, period);
+  });
+
   // ----- Videos with a custom start time (loop back to data-start) ---
   document.querySelectorAll('video[data-start]').forEach((v) => {
     const t = parseFloat(v.dataset.start) || 0;
@@ -135,11 +190,14 @@
     const isFeatured = (c) =>
       c.dataset.cat === 'hardware' ||
       c.dataset.cat === 'software' ||
-      c.dataset.cat === 'podcast' ||
+      c.dataset.cat === 'book' ||
       c.dataset.featured === 'true';
     const hasVideo = (c) => !!c.querySelector('video');
 
     const matchFilter = (c, filter) => {
+      if (filter === 'podcast') return c.dataset.cat === 'podcast';
+      // Podcasts only surface under their own filter.
+      if (c.dataset.cat === 'podcast') return false;
       if (filter === 'all') return true;
       if (filter === 'featured') return isFeatured(c);
       if (filter === 'video') return hasVideo(c);
@@ -150,7 +208,7 @@
       all: cards.length,
       featured: cards.filter(isFeatured).length,
       video: cards.filter(hasVideo).length,
-      hardware: 0, software: 0, print: 0, podcast: 0,
+      hardware: 0, software: 0, print: 0, book: 0, podcast: 0,
     };
     cards.forEach((c) => {
       const cat = c.dataset.cat;
@@ -185,7 +243,7 @@
       updateVisible(visible);
     }
 
-    const valid = ['featured', 'all', 'hardware', 'software', 'print', 'podcast', 'video'];
+    const valid = ['featured', 'all', 'hardware', 'software', 'print', 'book', 'podcast', 'video'];
 
     filterBar.addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');

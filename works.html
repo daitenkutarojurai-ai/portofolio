@@ -44,6 +44,7 @@
     <button class="filter-btn" data-filter="hardware">DIY <span class="count" id="count-hardware"></span></button>
     <button class="filter-btn" data-filter="software">Web / App <span class="count" id="count-software"></span></button>
     <button class="filter-btn" data-filter="print">3D Prints <span class="count" id="count-print"></span></button>
+    <button class="filter-btn" data-filter="book">Books <span class="count" id="count-book"></span></button>
     <button class="filter-btn" data-filter="podcast">Podcasts <span class="count" id="count-podcast"></span></button>
     <button class="filter-btn" data-filter="video">Videos <span class="count" id="count-video"></span></button>
     <span class="filter-count" id="visible-count"></span>
@@ -226,7 +227,12 @@
          data-desc="<p>A chess engine wearing an arcade jacket. 21 pixel-art enemies across three worlds (Forest, Castle, Volcano), HP bars tied to captured material, Chess 960 mode, Puzzle Survival. Runs on a <b>PeSTO</b>-style evaluation with a Mega Drive palette.</p>"
          data-tech="Android,Java/Kotlin,PeSTO engine,Chess 960,Pixel art"
          data-link="https://github.com/daitenkutarojurai-ai/Chess-kombat" data-link-label="Source on GitHub">
-        <div class="card-media"><img src="images/chesskombatc.png" alt="Chess Kombat banner" loading="lazy"></div>
+        <div class="card-slider" data-interval="2600">
+          <span class="slider-badge">Gallery · 3</span>
+          <div class="slide active"><img src="images/chesskombatc.png" alt="Chess Kombat banner" loading="lazy"></div>
+          <div class="slide"><img src="images/chesskombat-1.jpg" alt="Chess Kombat screen 1" loading="lazy"></div>
+          <div class="slide"><img src="images/chesskombat-2.jpg" alt="Chess Kombat screen 2" loading="lazy"></div>
+        </div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Software</span><span class="sep">·</span><span>2024</span></div>
           <h3>Chess Kombat</h3>
@@ -434,7 +440,12 @@
          data-desc="<p>A four-player Chaturanga set designed in Fusion and printed in PLA. Own silhouette language, published on Cults3D.</p>"
          data-tech="Fusion 360,STL,PLA,Cults3D"
          data-link="https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga" data-link-label="View on Cults3D">
-        <div class="card-media"><img src="images/chatarunga1.png" alt="Chaturanga 4-player chess" loading="lazy"></div>
+        <div class="card-slider" data-interval="2800">
+          <span class="slider-badge">Gallery · 3</span>
+          <div class="slide active"><img src="images/chatarunga1.png" alt="Chaturanga 4-player chess" loading="lazy"></div>
+          <div class="slide"><img src="images/chatarunga2.png" alt="Chaturanga 4-player chess — alt view" loading="lazy"></div>
+          <div class="slide"><img src="images/chaturanga-4player.jpg" alt="Chaturanga 4-player chess — printed set" loading="lazy"></div>
+        </div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">3D Design</span><span class="sep">·</span><span>STL</span></div>
           <h3>Chaturanga — 4 players</h3>
@@ -466,7 +477,12 @@
          data-desc="<p>A set of printed planets, each lit from the inside. Hand-painted, USB powered.</p>"
          data-tech="PLA,Acrylics,LED,USB"
          data-link="prints.html" data-link-label="Open the gallery">
-        <div class="card-media"><img src="images/planetorium1.jpg" alt="3D printed planetarium" loading="lazy"></div>
+        <div class="card-slider" data-interval="2400">
+          <span class="slider-badge">Gallery · 3</span>
+          <div class="slide active"><img src="images/planetorium1.jpg" alt="Planetarium 1" loading="lazy"></div>
+          <div class="slide"><img src="images/planetorium2.jpg" alt="Planetarium 2" loading="lazy"></div>
+          <div class="slide"><img src="images/planetorium3.jpg" alt="Planetarium 3" loading="lazy"></div>
+        </div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>Decorative</span></div>
           <h3>Planetarium</h3>
@@ -743,6 +759,30 @@
           <div class="card-foot"><span class="views">Video</span><span class="go">Read →</span></div>
         </div>
       </div>
+
+      <!-- ========== BOOKS ========== -->
+      <a class="card reveal" data-cat="book" href="https://drive.google.com/file/d/1G9Ae73UgLr0Om8e49PU53jFNHY-7Nn_T/view" target="_blank" rel="noopener">
+        <div class="card-media book-cover auralis" style="position:absolute;inset:0;border-radius:0;box-shadow:none;aspect-ratio:auto;">
+          <div class="planet"></div>
+          <div class="title">La planète Auralis</div>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Book</span><span class="sep">·</span><span>2026</span></div>
+          <h3>La planète Auralis</h3>
+          <p class="card-desc">Illustrated children's book, written and laid out end-to-end.</p>
+          <div class="card-foot"><span class="views">PDF</span><span class="go">Open ↗</span></div>
+        </div>
+      </a>
+
+      <a class="card reveal" data-cat="book" href="https://drive.google.com/file/d/1RDnuJyIEdoXhOZ0pk1GSgKl7_VtfphYH/view" target="_blank" rel="noopener">
+        <div class="card-media"><img src="images/book-poobook.jpg" alt="Poo book — cover" loading="lazy"></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="tag">Book</span><span class="sep">·</span><span>2026</span></div>
+          <h3>Poo Book — anniv Camille</h3>
+          <p class="card-desc">A birthday keepsake — illustrated, stitched, printed.</p>
+          <div class="card-foot"><span class="views">Gift</span><span class="go">Open ↗</span></div>
+        </div>
+      </a>
 
       <!-- ========== PODCASTS ========== -->
       <a class="card reveal" data-cat="podcast" href="https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o" target="_blank" rel="noopener">
