@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- dark indigo background with rounded corners, matches body bg (#131625) -->
+  <rect width="32" height="32" rx="5" fill="#131625"/>
+  <!-- anime-style cut corner in electric cyan -->
+  <path d="M21 0 H32 V11 Z" fill="#00e5ff"/>
+  <!-- bold magenta T monogram (Orbitron-style) -->
+  <path d="M4 10 H28 V15 H18.5 V28 H13.5 V15 H4 Z" fill="#ff2e88"/>
+  <!-- thin cyan underline, ties the two accent colors together -->
+  <rect x="4" y="27" width="24" height="1.5" fill="#00e5ff" opacity="0.75"/>
+</svg>
