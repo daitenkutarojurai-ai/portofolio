@@ -442,4 +442,173 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
+
+  // ============================================================
+  // Premium motion layer
+  // ============================================================
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!reducedMotion) {
+
+    // ----- Page transition curtain ------------------------------
+    let curtain = document.querySelector('.page-curtain');
+    if (!curtain) {
+      curtain = document.createElement('div');
+      curtain.className = 'page-curtain';
+      const mark = document.createElement('div');
+      mark.className = 'curtain-mark';
+      curtain.appendChild(mark);
+      document.body.appendChild(curtain);
+    }
+
+    // Slide-out on page load (curtain starts covering, slides up and away)
+    const introAnim = () => {
+      const a = curtain.animate(
+        [
+          { transform: 'translateY(0)' },
+          { transform: 'translateY(-100%)' }
+        ],
+        { duration: 650, easing: 'cubic-bezier(0.77, 0, 0.175, 1)', fill: 'forwards' }
+      );
+      a.onfinish = () => { curtain.classList.add('done'); };
+    };
+    requestAnimationFrame(introAnim);
+
+    // Slide-in on internal nav
+    const isInternal = (href) => {
+      if (!href) return false;
+      if (href.startsWith('#')) return false;
+      if (href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+      try {
+        const url = new URL(href, location.href);
+        if (url.origin !== location.origin) return false;
+        if (url.pathname === location.pathname) return false;
+        return /\.html?$/i.test(url.pathname) || url.pathname === '/' || url.pathname.endsWith('/');
+      } catch (e) { return false; }
+    };
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href]');
+      if (!a) return;
+      if (a.target === '_blank') return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const href = a.getAttribute('href');
+      if (!isInternal(href)) return;
+      e.preventDefault();
+      curtain.classList.remove('done');
+      curtain.classList.add('active');
+      // Slide curtain back down from above to cover viewport
+      curtain.animate(
+        [
+          { transform: 'translateY(-100%)' },
+          { transform: 'translateY(0)' }
+        ],
+        { duration: 520, easing: 'cubic-bezier(0.77, 0, 0.175, 1)', fill: 'forwards' }
+      );
+      setTimeout(() => { window.location.href = href; }, 480);
+    });
+
+    // Gracefully re-run intro anim when user hits back/forward (bfcache)
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        curtain.classList.remove('active');
+        curtain.classList.remove('done');
+        introAnim();
+      }
+    });
+
+    // ----- Card 3D tilt on hover --------------------------------
+    const tiltCards = document.querySelectorAll('.card[data-title]');
+    tiltCards.forEach((card) => {
+      card.classList.add('tilt-ready');
+      let raf = null;
+      const onMove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rx = (y - 0.5) * -6;
+        const ry = (x - 0.5) * 6;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+        });
+      };
+      const onEnter = () => card.classList.add('tilting');
+      const onLeave = () => {
+        card.classList.remove('tilting');
+        if (raf) cancelAnimationFrame(raf);
+        card.style.transform = '';
+      };
+      card.addEventListener('mouseenter', onEnter);
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseleave', onLeave);
+    });
+
+    // ----- Magnetic buttons -------------------------------------
+    const mags = document.querySelectorAll('.btn, .btn-primary, .category-link');
+    mags.forEach((el) => {
+      el.classList.add('magnetic');
+      const strength = 0.22;
+      const range = 60;
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - (rect.left + rect.width / 2);
+        const y = e.clientY - (rect.top + rect.height / 2);
+        const d = Math.min(range, Math.hypot(x, y)) / range;
+        el.style.transform = `translate(${x * strength * d}px, ${y * strength * d}px)`;
+      });
+      el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+    });
+
+    // ----- Animated section dividers ----------------------------
+    // Auto-insert dividers between top-level .category sections and before footer-like sections
+    const categories = Array.from(document.querySelectorAll('section.category'));
+    categories.forEach((sec, i) => {
+      if (i === 0) return;
+      const div = document.createElement('div');
+      div.className = 'section-divider reveal';
+      const wrap = document.createElement('div');
+      wrap.className = 'wrap';
+      wrap.appendChild(div);
+      sec.parentNode.insertBefore(wrap, sec);
+      io.observe(div);
+    });
+    document.querySelectorAll('.section-divider').forEach((d) => io.observe(d));
+
+    // ----- Character reveal on primary hero heading -------------
+    const heroHeading = document.querySelector('.intro h1');
+    if (heroHeading && !heroHeading.dataset.split) {
+      heroHeading.dataset.split = '1';
+      const walker = document.createTreeWalker(heroHeading, NodeFilter.SHOW_TEXT);
+      const texts = [];
+      let n;
+      while ((n = walker.nextNode())) texts.push(n);
+      let idx = 0;
+      texts.forEach((t) => {
+        const frag = document.createDocumentFragment();
+        const wrap = document.createElement('span');
+        wrap.className = 'char-reveal';
+        t.textContent.split('').forEach((ch) => {
+          const s = document.createElement('span');
+          s.className = 'char';
+          s.style.setProperty('--i', idx++);
+          s.textContent = ch === ' ' ? ' ' : ch;
+          wrap.appendChild(s);
+        });
+        frag.appendChild(wrap);
+        t.replaceWith(frag);
+      });
+      // Trigger reveal shortly after mount
+      const charWraps = heroHeading.querySelectorAll('.char-reveal');
+      const charIo = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); charIo.unobserve(e.target); }
+        });
+      }, { threshold: 0.2 });
+      charWraps.forEach((w) => charIo.observe(w));
+    }
+
+    // ----- Page intro fade once the DOM is ready ----------------
+    document.body.classList.add('page-intro-fade');
+  }
 })();
