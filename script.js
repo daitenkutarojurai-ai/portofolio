@@ -22,6 +22,74 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // ----- Pull-to-refresh (mobile pull + desktop overscroll wheel) -------
+  // When at the very top of the page and the user keeps pulling/scrolling
+  // up past a threshold, reload the page.
+  (function setupPullToRefresh() {
+    const ptr = document.createElement('div');
+    ptr.className = 'ptr-indicator';
+    ptr.innerHTML = '<span class="ptr-spinner"></span><span class="ptr-text">Pull to refresh</span>';
+    document.body.appendChild(ptr);
+
+    const THRESH = 90;
+    let touchStartY = 0;
+    let pulling = false;
+    let pulled = 0;
+
+    const setPull = (px) => {
+      const clamped = Math.max(0, Math.min(140, px));
+      ptr.style.transform = 'translate(-50%, ' + (clamped - 60) + 'px)';
+      ptr.style.opacity = String(Math.min(1, clamped / THRESH));
+      ptr.classList.toggle('ready', clamped >= THRESH);
+    };
+    const reset = () => {
+      ptr.style.transition = 'transform 0.25s var(--ease, ease), opacity 0.25s ease';
+      setPull(0);
+      setTimeout(() => { ptr.style.transition = ''; }, 260);
+      pulling = false;
+      pulled = 0;
+    };
+    const fire = () => {
+      ptr.classList.add('refreshing');
+      ptr.querySelector('.ptr-text').textContent = 'Refreshing…';
+      setTimeout(() => location.reload(), 220);
+    };
+
+    document.addEventListener('touchstart', (e) => {
+      if (window.scrollY <= 0 && e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+        pulling = true;
+        pulled = 0;
+      }
+    }, { passive: true });
+    document.addEventListener('touchmove', (e) => {
+      if (!pulling) return;
+      if (window.scrollY > 0) { reset(); return; }
+      pulled = e.touches[0].clientY - touchStartY;
+      if (pulled > 0) setPull(pulled * 0.6);
+    }, { passive: true });
+    document.addEventListener('touchend', () => {
+      if (!pulling) return;
+      const ready = pulled * 0.6 >= THRESH;
+      if (ready) { fire(); } else { reset(); }
+      pulling = false;
+    }, { passive: true });
+
+    // Desktop: sustained wheel-up at scrollY === 0 reloads the page.
+    let wheelAccum = 0;
+    let wheelTimer = null;
+    window.addEventListener('wheel', (e) => {
+      if (window.scrollY > 1) { wheelAccum = 0; setPull(0); return; }
+      if (e.deltaY < 0) {
+        wheelAccum += -e.deltaY;
+        setPull(Math.min(140, wheelAccum * 0.55));
+        if (wheelAccum > 240) { wheelAccum = 0; fire(); return; }
+        clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(() => { wheelAccum = 0; reset(); }, 500);
+      }
+    }, { passive: true });
+  })();
+
   // ----- Nav scroll state + progress bar --------------------
   const nav = document.getElementById('nav');
   let progressBar = null;
@@ -93,13 +161,15 @@
     function next() { go(idx + 1); }
     function prev() { go(idx - 1); }
     function restart() {
-      clearInterval(timer);
-      timer = setInterval(next, 5500);
+      clearTimeout(timer);
+      // Each slide can override its hold time via data-hold (ms).
+      const hold = parseInt(slides[idx].dataset.hold, 10) || 5500;
+      timer = setTimeout(next, hold);
     }
 
     prevBtn.addEventListener('click', prev);
     nextBtn.addEventListener('click', next);
-    carousel.addEventListener('mouseenter', () => clearInterval(timer));
+    carousel.addEventListener('mouseenter', () => clearTimeout(timer));
     carousel.addEventListener('mouseleave', restart);
 
     // Keyboard
@@ -158,8 +228,13 @@
       dots[i].classList.add('active');
       activateVideo(slides[i]);
     };
-    const period = parseInt(slider.dataset.interval, 10) || 2800;
-    setInterval(step, period);
+    const defaultPeriod = parseInt(slider.dataset.interval, 10) || 2800;
+    const schedule = () => {
+      // Per-slide hold (ms) overrides the default interval.
+      const hold = parseInt(slides[i].dataset.hold, 10) || defaultPeriod;
+      setTimeout(() => { step(); schedule(); }, hold);
+    };
+    schedule();
   });
 
   // ----- Videos with a custom start time (loop back to data-start) ---

@@ -48,7 +48,7 @@
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track">
 
-        <div class="carousel-slide">
+        <div class="carousel-slide" data-hold="6500">
           <span class="video-badge">Timelapse</span>
           <video src="images/timelapse.mp4#t=2" data-start="2" autoplay muted playsinline preload="auto"></video>
           <div class="carousel-caption">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="carousel-slide" data-pos="top">
-          <img src="images/certquestup.png" alt="Cert Quest banner" loading="eager">
+          <img src="images/certquestup.png" alt="Cert Quest banner" loading="lazy">
           <div class="carousel-caption">
             <div class="eyebrow">Mobile · Android · iOS</div>
             <h2>Cert Quest — IT certification, gamified.</h2>
@@ -90,7 +90,7 @@
         </div>
 
         <div class="carousel-slide">
-          <img src="images/ikea-plant.jpg" alt="IKEA Smart Plant" loading="eager">
+          <img src="images/ikea-plant.jpg" alt="IKEA Smart Plant" loading="lazy">
           <div class="carousel-caption">
             <div class="eyebrow">Hardware · IoT</div>
             <h2>IKEA Smart Plant</h2>
@@ -100,7 +100,7 @@
         </div>
 
         <div class="carousel-slide">
-          <img src="images/arduinofarm2.webp" alt="Automated Farm" loading="eager">
+          <img src="images/arduinofarm2.webp" alt="Automated Farm" loading="lazy">
           <div class="carousel-caption">
             <div class="eyebrow">Hardware · IoT</div>
             <h2>Automated Farm</h2>
@@ -110,7 +110,7 @@
         </div>
 
         <div class="carousel-slide">
-          <img src="images/chaturanga-4player.jpg" alt="Chaturanga 4-player chess set" loading="eager">
+          <img src="images/chaturanga-4player.jpg" alt="Chaturanga 4-player chess set" loading="lazy">
           <div class="carousel-caption">
             <div class="eyebrow">3D Design · STL · Cults3D</div>
             <h2>Chaturanga — 4-player chess.</h2>
@@ -246,7 +246,7 @@
          data-desc="<p>A compact greenhouse rig driven by Arduino Uno. Soil moisture decides when to water; photoresistor decides when to light; timer handles ventilation. Three actuators behind a 4-ch I²C relay.</p>"
          data-tech="Arduino Uno,4-ch I²C relay,Soil moisture,12V fan,Grow bulb,Pump"
          data-link="https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102" data-link-label="View on Hackster">
-        <div class="card-media"><img src="images/arduinofarm.webp" alt="Automated Farm" loading="eager"></div>
+        <div class="card-media"><img src="images/arduinofarm.webp" alt="Automated Farm" loading="lazy"></div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">Hardware</span></div>
           <h3>Automated Farm</h3>
@@ -387,7 +387,7 @@
          data-link="https://certquests.com/" data-link-label="Visit certquests.com">
         <div class="card-slider" data-interval="2600">
           <span class="slider-badge">Gallery · 5</span>
-          <div class="slide active"><img src="images/certquestup.png" alt="Cert Quest banner" loading="lazy"></div>
+          <div class="slide active" data-hold="4100"><img src="images/certquestup.png" alt="Cert Quest banner" loading="lazy"></div>
           <div class="slide"><img src="images/certquest-screen-1.png" alt="Cert Quest — certifications list" loading="lazy"></div>
           <div class="slide"><img src="images/certquest-screen-2.png" alt="Cert Quest — quiz" loading="lazy"></div>
           <div class="slide"><img src="images/certquest-screen-3.png" alt="Cert Quest — progress" loading="lazy"></div>
@@ -494,7 +494,7 @@
       <a class="card reveal" data-delay="1" href="works.html#print">
         <div class="card-media">
           <span class="media-badge">Video</span>
-          <video src="images/mushroomlight.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <video src="images/mushroomlight.mp4" autoplay muted loop playsinline preload="metadata"></video>
         </div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>Lamp</span></div>
