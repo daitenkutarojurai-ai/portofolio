@@ -1459,20 +1459,20 @@ footer .wrap {
   border: 1px solid var(--border-hi);
   color: var(--muted);
 }
-@media (max-width: 520px) {
+@media (max-width: 720px) {
   .book-card {
     grid-template-columns: 1fr;
-    padding: 14px;
-    gap: 14px;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
   }
   .book-cover {
-    aspect-ratio: 3 / 4;
-    max-width: 180px;
-    margin: 0 auto;
-    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 0;
+    box-shadow: 0 0 0 1px rgba(255,106,43,0.18) inset;
   }
-  .book-meta { text-align: center; align-items: center; }
-  .book-meta .tags { justify-content: center; }
+  .book-cover img { object-position: center 28%; }
+  .book-meta { padding: 14px 16px 16px; }
 }
 
 /* --------------------------------------------------------------------------
