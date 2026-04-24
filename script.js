@@ -13,8 +13,11 @@
     document.body.appendChild(grain);
     const embers = document.createElement('div');
     embers.className = 'bg-embers';
-    for (let i = 0; i < 5; i++) embers.appendChild(document.createElement('span'));
+    for (let i = 0; i < 12; i++) embers.appendChild(document.createElement('span'));
     document.body.appendChild(embers);
+    const aurora = document.createElement('div');
+    aurora.className = 'bg-aurora';
+    document.body.appendChild(aurora);
   }
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();

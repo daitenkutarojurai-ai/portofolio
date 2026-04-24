@@ -958,51 +958,69 @@ footer .wrap {
 }
 /* Follow bar — colourful social strip, placed prominently above the fold */
 .follow-bar {
-  padding: 36px 0 8px;
+  padding: 48px 0 16px;
 }
 .follow-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   text-align: center;
 }
 .follow-title {
   font-family: var(--font-mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent-soft);
 }
 .social-colorful {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
 }
 .social-colorful a {
   --sc-bg: var(--surface);
-  width: 52px; height: 52px;
+  width: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+.social-colorful a .sc-icon-wrap {
+  width: 62px; height: 62px;
   display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 14px;
+  border-radius: 18px;
   color: #fff;
   background: var(--sc-bg);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.08);
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), filter 0.25s var(--ease);
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.1);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), filter 0.3s var(--ease);
 }
-.social-colorful a:hover {
-  transform: translateY(-3px) scale(1.06);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.12);
-  filter: saturate(1.15) brightness(1.05);
+.social-colorful a:hover .sc-icon-wrap {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.15);
+  filter: saturate(1.2) brightness(1.1);
 }
-.social-colorful svg { width: 24px; height: 24px; }
+.social-colorful svg { width: 26px; height: 26px; }
+.sc-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s var(--ease);
+}
+.social-colorful a:hover .sc-label { color: var(--text-strong); }
 .social-colorful a.sc-github { --sc-bg: #1f2328; }
 .social-colorful a.sc-linkedin { --sc-bg: #0a66c2; }
-.social-colorful a.sc-instagram { --sc-bg: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
-.social-colorful a.sc-cults { --sc-bg: linear-gradient(135deg, #ff3366 0%, #ff6b35 100%); background: linear-gradient(135deg, #ff3366 0%, #ff6b35 100%); }
+.social-colorful a.sc-instagram { --sc-bg: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.social-colorful a.sc-cults { --sc-bg: linear-gradient(135deg, #ff3366 0%, #ff6b35 100%); }
 .social-colorful a.sc-hackster { --sc-bg: #1abc9c; }
-.social-colorful a.sc-instructables { --sc-bg: #fbb90f; color: #1a1a1a; }
-.social-colorful a.sc-email { --sc-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.social-colorful a.sc-instructables { --sc-bg: #fbb90f; }
+.social-colorful a.sc-instructables .sc-icon-wrap { color: #1a1a1a; }
+.social-colorful a.sc-email { --sc-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
 
 /* --------------------------------------------------------------------------
    Modal
@@ -1600,13 +1618,57 @@ body::after {
 .bg-embers span:nth-child(2) { left: 34%;  animation-delay:  6s;  animation-duration: 28s; width: 3px; height: 3px; }
 .bg-embers span:nth-child(3) { left: 58%;  animation-delay:  3s;  animation-duration: 24s; }
 .bg-embers span:nth-child(4) { left: 78%;  animation-delay: 11s;  animation-duration: 30s; width: 5px; height: 5px; }
-.bg-embers span:nth-child(5) { left: 92%;  animation-delay:  8s;  animation-duration: 26s; width: 3px; height: 3px; }
+.bg-embers span:nth-child(5)  { left: 92%;  animation-delay:  8s;  animation-duration: 26s; width: 3px; height: 3px; }
+.bg-embers span:nth-child(6)  { left: 22%;  animation-delay: 14s;  animation-duration: 20s; width: 5px; height: 5px; }
+.bg-embers span:nth-child(7)  { left: 47%;  animation-delay:  2s;  animation-duration: 32s; width: 2px; height: 2px; }
+.bg-embers span:nth-child(8)  { left: 68%;  animation-delay: 18s;  animation-duration: 23s; }
+.bg-embers span:nth-child(9)  { left: 5%;   animation-delay:  9s;  animation-duration: 27s; width: 3px; height: 3px; }
+.bg-embers span:nth-child(10) { left: 83%;  animation-delay: 22s;  animation-duration: 19s; width: 4px; height: 4px; }
+.bg-embers span:nth-child(11) { left: 40%;  animation-delay: 16s;  animation-duration: 34s; width: 2px; height: 2px; }
+.bg-embers span:nth-child(12) { left: 55%;  animation-delay:  5s;  animation-duration: 21s; width: 5px; height: 5px; }
 @keyframes ember-rise {
   0%   { transform: translateY(0) translateX(0); opacity: 0; }
   10%  { opacity: 0.55; }
   50%  { transform: translateY(-55vh) translateX(1.2vw); opacity: 0.5; }
   90%  { opacity: 0.25; }
   100% { transform: translateY(-110vh) translateX(-1vw); opacity: 0; }
+}
+
+/* Slow-drifting aurora blobs — very subtle warm/cool wash behind content */
+.bg-aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-aurora::before,
+.bg-aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.055;
+}
+.bg-aurora::before {
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, #ff6a2b 0%, transparent 70%);
+  top: -150px; left: -150px;
+  animation: aurora-a 28s ease-in-out infinite alternate;
+}
+.bg-aurora::after {
+  width: 550px; height: 550px;
+  background: radial-gradient(circle, #4a7fd4 0%, transparent 70%);
+  bottom: 5%; right: -100px;
+  animation: aurora-b 36s ease-in-out infinite alternate-reverse;
+}
+@keyframes aurora-a {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(140px, 100px) scale(1.2); }
+}
+@keyframes aurora-b {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-100px, -70px) scale(1.15); }
 }
 
 /* --------------------------------------------------------------------------
@@ -1624,5 +1686,5 @@ body::after {
   body::after,
   .bg-grain,
   .bg-embers { animation: none !important; }
-  .bg-grain, .bg-embers { display: none; }
+  .bg-grain, .bg-embers, .bg-aurora { display: none; }
 }
