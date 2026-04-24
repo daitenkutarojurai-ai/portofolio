@@ -19,9 +19,6 @@
     aurora.className = 'bg-aurora';
     document.body.appendChild(aurora);
   }
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
   // ----- Pull-to-refresh (mobile pull + desktop overscroll wheel) -------
   // When at the very top of the page and the user keeps pulling/scrolling
   // up past a threshold, reload the page.
