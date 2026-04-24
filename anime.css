@@ -28,11 +28,11 @@ body.anime::after {
 }
 
 body.anime {
-  /* palette shift */
-  --bg: #06070d;
-  --bg-2: #0a0b14;
-  --surface: #0e1019;
-  --surface-hi: #141725;
+  /* palette shift — lifted a few steps from ink-black for easier reading */
+  --bg: #131625;
+  --bg-2: #191d2f;
+  --surface: #1f2339;
+  --surface-hi: #2a2f49;
   --border: #1e2130;
   --border-hi: #2b3046;
   --text: #f4efe3;
@@ -64,11 +64,67 @@ body.anime {
    elements, no changes to stacking. */
 body.anime .bg-aurora::before {
   background: radial-gradient(circle, #ff2e88 0%, transparent 70%);
-  opacity: 0.08;
+  opacity: 0.18;
+  width: 900px !important;
+  height: 900px !important;
 }
 body.anime .bg-aurora::after {
   background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
-  opacity: 0.06;
+  opacity: 0.14;
+  width: 760px !important;
+  height: 760px !important;
+}
+/* Subtle grid overlay to add depth over the lifted bg */
+body.anime .bg-grain {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) !important;
+  background-size: 48px 48px !important;
+  opacity: 0.5 !important;
+  animation: anime-grid-drift 22s linear infinite;
+}
+@keyframes anime-grid-drift {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 48px 48px, 48px 48px; }
+}
+
+/* Front-page hero: animated glow ring behind the intro heading */
+body.anime section:has(> .wrap > .intro) { position: relative; overflow: hidden; }
+body.anime .intro { position: relative; z-index: 1; }
+body.anime section:has(> .wrap > .intro)::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 20%;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 46, 136, 0.22), transparent 65%);
+  filter: blur(40px);
+  animation: anime-hero-orb 12s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+body.anime section:has(> .wrap > .intro)::after {
+  content: "";
+  position: absolute;
+  top: 50%; right: 10%;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  transform: translate(50%, -50%);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.18), transparent 65%);
+  filter: blur(40px);
+  animation: anime-hero-orb 14s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes anime-hero-orb {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  100% { transform: translate(-45%, -55%) scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.anime section:has(> .wrap > .intro)::before,
+  body.anime section:has(> .wrap > .intro)::after,
+  body.anime .bg-grain { animation: none !important; }
 }
 
 /* ---- Typography -------------------------------------------------------- */
@@ -329,9 +385,23 @@ body.anime .modal {
 /* Compact layout so the popup FITS without scrolling on most screens */
 body.anime .modal-hero {
   aspect-ratio: unset;
-  height: clamp(160px, 28vh, 260px);
+  height: clamp(180px, 32vh, 320px);
   border-radius: 0;
+  background: radial-gradient(circle at center, #1f2339, #0e1019);
 }
+/* When modal-hero carries a gallery, render the image fully contained + centered */
+body.anime .modal-hero img,
+body.anime .modal-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center center !important;
+  display: block;
+}
+/* Gallery nav arrows — smaller + offset so they don't hide the image */
+body.anime .modal-gnav { width: 32px; height: 32px; font-size: 14px; }
+body.anime .modal-gnav.prev { left: 8px; }
+body.anime .modal-gnav.next { right: 8px; }
 body.anime .modal-body {
   padding: 18px clamp(18px, 2.5vw, 26px) 22px;
   gap: clamp(16px, 2.5vw, 24px);
@@ -398,6 +468,36 @@ body.anime .modal-gnav { color: var(--cyan); border-color: var(--cyan); }
 body.anime .modal-gnav:hover { background: var(--cyan); color: #06070d; border-color: var(--cyan); }
 body.anime .modal-dot.active { background: var(--accent); }
 
+/* Works page — top socials row above the page title */
+.page-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.page-socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.page-socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  border-radius: 2px;
+  border: 1px solid var(--border-hi);
+  color: var(--muted);
+  transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
+}
+.page-socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(255, 46, 136, 0.08);
+  transform: translateY(-1px);
+}
+
 /* ---- Per-card media positioning fixes -------------------------------- */
 /* Target specific images by src. For portrait/oddly-framed sources the
    default object-fit:cover crops badly — switch to contain + a dark
@@ -422,10 +522,17 @@ body.anime .modal-dot.active { background: var(--accent); }
   background: radial-gradient(circle at center, #12141c, #06070d) !important;
 }
 
-/* China chess — panoramic, off-centre. Pull focus to center-middle. */
+/* China chess — center on the board itself (lower portion of the frame) */
 .card-media img[src$="china-chess.jpg"] {
+  object-fit: contain !important;
+  object-position: center center !important;
+  background: radial-gradient(circle at center, #1a1e33, #0e1019) !important;
+}
+
+/* Glaces en Seine hero slide — center on the caravan */
+.carousel-slide img[src$="bannerup.png"] {
   object-fit: cover !important;
-  object-position: center 40% !important;
+  object-position: center 55% !important;
 }
 
 /* Warning sign (print-2021-0322b.jpg) — was over-zoomed. Contain so the whole sign shows. */
