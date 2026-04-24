@@ -5,6 +5,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Chakra+Petch:wght@400;500;600;700&display=swap');
 
+html { overflow-x: hidden; }
+body.anime { overflow-x: hidden; }
+
 body.anime {
   /* Palette: ink black + hot magenta + electric cyan + warm ember */
   --bg: #05060a;
@@ -130,17 +133,17 @@ body.anime .eyebrow {
 body.anime .eyebrow {
   color: var(--cyan);
   position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
+  width: fit-content;
 }
 body.anime .eyebrow::before {
   content: "";
-  width: 22px;
+  flex: 0 0 22px;
   height: 2px;
   background: linear-gradient(90deg, var(--cyan), transparent);
 }
-/* eyebrow::after removed — no more katakana subtitle */
 
 body.anime ::selection {
   background: var(--accent);
@@ -423,9 +426,10 @@ body.anime .section-head h2 {
   font-size: clamp(20px, 2.6vw, 30px);
   text-transform: uppercase;
   position: relative;
-  display: inline-block;
+  display: block;
   padding-left: 18px;
-  line-height: 1.1;
+  line-height: 1.15;
+  margin-top: 8px;
 }
 body.anime .category-head h2::before,
 body.anime .section-head h2::before {
@@ -506,6 +510,7 @@ body.anime .card::after {
   background: linear-gradient(135deg, transparent 50%, var(--accent) 50%);
   transition: background 0.25s var(--ease);
   z-index: 2;
+  pointer-events: none;
 }
 body.anime .card:hover {
   transform: translateY(-3px);
@@ -562,6 +567,9 @@ body.anime .card:hover .tag {
   background: rgba(255, 46, 136, 0.08);
 }
 
+body.anime .card-media {
+  position: relative;
+}
 body.anime .card-media::after {
   /* subtle scan overlay on card media */
   content: "";
@@ -569,8 +577,9 @@ body.anime .card-media::after {
   inset: 0;
   background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.12) 2px 3px);
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.35;
   mix-blend-mode: multiply;
+  z-index: 1;
 }
 
 /* ---- Filter bar / chips ------------------------------------------------ */
@@ -658,8 +667,7 @@ body.anime .modal {
   background: var(--bg-2);
   border: 1px solid var(--accent);
   border-radius: 0;
-  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-  box-shadow: 0 0 60px var(--accent-glow);
+  box-shadow: 0 0 60px var(--accent-glow), 0 0 0 1px rgba(0, 229, 255, 0.18);
 }
 body.anime .modal h3 {
   font-family: var(--font-display);
