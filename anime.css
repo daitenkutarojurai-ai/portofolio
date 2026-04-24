@@ -500,10 +500,17 @@ body.anime .modal-dot.active { background: var(--accent); }
   background: radial-gradient(circle at center, #1a1e33, #0e1019) !important;
 }
 
-/* Glaces en Seine hero slide — anchor on the caravan (right side of banner) */
-.carousel-slide img[src$="bannerup.png"] {
+/* Glaces en Seine banner — anchor on the caravan (right side of bannerup.png)
+   applies EVERYWHERE the image is used: carousel slide + card-media + modal hero */
+img[src$="bannerup.png"] {
   object-fit: cover !important;
   object-position: 72% 50% !important;
+}
+/* Modal hero shows the full image: contain + same anchor point */
+.modal-hero img[src$="bannerup.png"],
+.modal-slide img[src$="bannerup.png"] {
+  object-fit: contain !important;
+  object-position: center center !important;
 }
 
 /* Book grid: single card was stretching to full row width. Cap it. */
