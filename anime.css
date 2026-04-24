@@ -536,13 +536,6 @@ body.anime .book-card {
   body.anime .book-card { max-width: none; }
 }
 
-/* Warning sign (print-2021-0322b.jpg) — was over-zoomed. Contain so the whole sign shows. */
-.card-media img[src$="print-2021-0322b.jpg"] {
-  object-fit: contain !important;
-  object-position: center center !important;
-  background: #0a0b14 !important;
-}
-
 /* Mario large figure — slightly too zoomed. Drop the cover zoom. */
 .card-media img[src$="print-2022-1641a.jpg"],
 .card-media img[src$="mario.jpg"] {
