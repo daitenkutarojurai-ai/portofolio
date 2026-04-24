@@ -3,7 +3,7 @@
    Override layer. Loaded AFTER styles.css. Preserves existing class names.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&family=Orbitron:wght@600;800;900&family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+JP:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+JP:wght@500;700;900&display=swap');
 
 body.anime {
   /* Palette: ink black + hot magenta + electric cyan + warm ember */
@@ -33,7 +33,7 @@ body.anime {
   --yellow: #ffe500;
 
   --font: "Chakra Petch", "Inter", system-ui, sans-serif;
-  --font-display: "Zen Dots", "Orbitron", "Chakra Petch", system-ui, sans-serif;
+  --font-display: "Orbitron", "Chakra Petch", system-ui, sans-serif;
   --font-jp: "Noto Sans JP", "Chakra Petch", system-ui, sans-serif;
   --font-mono: "Chakra Petch", ui-monospace, monospace;
 
@@ -45,62 +45,60 @@ body.anime {
   font-feature-settings: "ss01", "cv11";
 }
 
-/* ---- Global overlays: scanlines + halftone + vignette ------------------ */
+/* ---- Sober animated background ---------------------------------------- */
+/*  Fixed, behind everything, pointer-events: none.
+    z-index:0 so nav(50), cards, and modals(150/160) all sit above.     */
+
+body.anime {
+  position: relative;
+  isolation: isolate; /* own stacking context so bg layers stay pinned behind */
+}
 
 body.anime::before {
-  /* fine horizontal scanlines */
+  /* very faint static scanlines, barely visible */
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 900;
+  z-index: -2;
   pointer-events: none;
   background:
     repeating-linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.025) 0px,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px,
-      transparent 3px
+      rgba(255, 255, 255, 0.014) 0 1px,
+      transparent 1px 4px
     );
-  mix-blend-mode: overlay;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 body.anime::after {
-  /* CRT vignette + faint magenta corners */
+  /* slow drifting dual-tone aurora — THE sober animated background */
   content: "";
   position: fixed;
-  inset: 0;
-  z-index: 901;
+  inset: -10%;
+  z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(120% 90% at 10% 0%, rgba(255, 46, 136, 0.12), transparent 55%),
-    radial-gradient(120% 90% at 100% 100%, rgba(0, 229, 255, 0.1), transparent 55%),
-    radial-gradient(100% 100% at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.55) 100%);
+    radial-gradient(38% 30% at 20% 30%, rgba(255, 46, 136, 0.22), transparent 70%),
+    radial-gradient(42% 32% at 80% 70%, rgba(0, 229, 255, 0.18), transparent 70%),
+    radial-gradient(30% 28% at 60% 15%, rgba(255, 106, 43, 0.10), transparent 70%);
+  filter: blur(60px);
+  animation: anime-aurora 28s ease-in-out infinite alternate;
 }
 
-/* subtle halftone dot field */
-body.anime .bg-grain {
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 1.5px);
-  background-size: 4px 4px;
-  opacity: 0.35;
+@keyframes anime-aurora {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1);    }
+  50%  { transform: translate3d(3%,  2%,  0) scale(1.08); }
+  100% { transform: translate3d(-2%, 3%,  0) scale(1.02); }
 }
-body.anime .bg-aurora {
-  background:
-    radial-gradient(60% 40% at 15% 10%, rgba(255, 46, 136, 0.18), transparent 70%),
-    radial-gradient(70% 50% at 85% 30%, rgba(0, 229, 255, 0.12), transparent 70%),
-    radial-gradient(50% 40% at 50% 90%, rgba(255, 106, 43, 0.12), transparent 70%);
-  filter: blur(40px);
+
+@media (prefers-reduced-motion: reduce) {
+  body.anime::after { animation: none; }
 }
-body.anime .bg-embers span {
-  background: var(--cyan);
-  box-shadow: 0 0 6px var(--cyan-glow);
-}
-body.anime .bg-embers span:nth-child(odd) {
-  background: var(--accent);
-  box-shadow: 0 0 6px var(--accent-glow);
-}
+
+/* Neutralise the old grain/aurora/embers layers — the new bg replaces them */
+body.anime .bg-grain,
+body.anime .bg-aurora,
+body.anime .bg-embers { display: none; }
 
 /* ---- Typography -------------------------------------------------------- */
 
@@ -308,13 +306,14 @@ body.anime .carousel-caption .eyebrow {
 }
 body.anime .carousel-caption h2 {
   font-family: var(--font-display);
-  font-size: clamp(26px, 4.8vw, 54px);
-  line-height: 1;
+  font-weight: 800;
+  font-size: clamp(20px, 3.2vw, 38px);
+  line-height: 1.05;
   text-transform: uppercase;
   color: var(--text-strong);
   text-shadow:
-    2px 0 0 rgba(255, 46, 136, 0.35),
-    -2px 0 0 rgba(0, 229, 255, 0.35);
+    1px 0 0 rgba(255, 46, 136, 0.3),
+    -1px 0 0 rgba(0, 229, 255, 0.3);
 }
 body.anime .carousel-caption p {
   font-family: var(--font);
@@ -383,19 +382,20 @@ body.anime .carousel-dot.active {
 body.anime .intro,
 body.anime .hero {
   position: relative;
+  overflow: hidden;
 }
 body.anime .intro::before,
 body.anime .hero::before {
-  /* giant katakana watermark */
+  /* katakana watermark — tamer */
   content: "制作";
   position: absolute;
-  right: -10px;
-  top: -40px;
+  right: -4px;
+  top: -12px;
   font-family: var(--font-jp);
   font-weight: 900;
-  font-size: clamp(120px, 22vw, 280px);
+  font-size: clamp(70px, 11vw, 150px);
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 46, 136, 0.1);
+  -webkit-text-stroke: 1px rgba(255, 46, 136, 0.09);
   line-height: 0.8;
   pointer-events: none;
   z-index: 0;
@@ -404,10 +404,11 @@ body.anime .hero::before {
 body.anime .intro h1,
 body.anime .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(44px, 8vw, 104px);
-  line-height: 0.92;
+  font-weight: 800;
+  font-size: clamp(30px, 5.2vw, 62px);
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   position: relative;
   z-index: 1;
 }
@@ -436,8 +437,9 @@ body.anime .hero-lede b {
 body.anime .intro-stat .n,
 body.anime .hero-stat .n {
   font-family: var(--font-display);
+  font-weight: 700;
   color: var(--text-strong);
-  font-size: 30px;
+  font-size: 24px;
 }
 body.anime .intro-stat .l,
 body.anime .hero-stat .l {
@@ -466,11 +468,13 @@ body.anime .hero-tag .dot {
 body.anime .category-head h2,
 body.anime .section-head h2 {
   font-family: var(--font-display);
-  font-size: clamp(26px, 3.6vw, 42px);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 30px);
   text-transform: uppercase;
   position: relative;
   display: inline-block;
   padding-left: 18px;
+  line-height: 1.1;
 }
 body.anime .category-head h2::before,
 body.anime .section-head h2::before {
@@ -584,10 +588,12 @@ body.anime .card-body {
 }
 body.anime .card-body h3 {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-weight: 700;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.01em;
   color: var(--text-strong);
+  line-height: 1.2;
 }
 body.anime .card-body p {
   font-family: var(--font);
@@ -706,9 +712,10 @@ body.anime .socials a:hover {
 
 body.anime .page-header h1 {
   font-family: var(--font-display);
-  font-size: clamp(40px, 7vw, 84px);
+  font-weight: 800;
+  font-size: clamp(28px, 4.6vw, 54px);
   text-transform: uppercase;
-  line-height: 0.95;
+  line-height: 1.02;
 }
 body.anime .page-header h1 .accent { color: var(--accent); }
 body.anime .page-header::after {
@@ -770,18 +777,44 @@ body.anime [data-glitch].glitching::after {
 
 /* ---- Modal / lightbox -------------------------------------------------- */
 
-body.anime .modal,
-body.anime .lightbox {
-  background: rgba(5, 6, 10, 0.92);
+body.anime .modal-backdrop {
+  background: rgba(5, 6, 10, 0.82);
   backdrop-filter: blur(6px);
 }
-body.anime .modal-content,
-body.anime .lightbox-content {
+body.anime .modal {
+  background: var(--bg-2);
   border: 1px solid var(--accent);
   border-radius: 0;
   clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   box-shadow: 0 0 60px var(--accent-glow);
 }
+body.anime .modal h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+body.anime .modal-close {
+  border-radius: 0;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+body.anime .modal-close:hover {
+  background: var(--accent);
+  color: #05060a;
+}
+body.anime .modal-gnav {
+  border-radius: 0;
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+body.anime .modal-gnav:hover {
+  background: var(--cyan);
+  color: #05060a;
+  border-color: var(--cyan);
+}
+body.anime .modal-dot.active { background: var(--accent); }
 
 /* ---- Reduced motion ---------------------------------------------------- */
 
