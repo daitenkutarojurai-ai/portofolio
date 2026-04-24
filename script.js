@@ -367,6 +367,8 @@
   const mTech = document.getElementById('modal-tech');
   const mLink = document.getElementById('modal-link');
   const mLinkLbl = document.getElementById('modal-link-label');
+  const mLink2 = document.getElementById('modal-link-2');
+  const mLink2Lbl = document.getElementById('modal-link-2-label');
   const mLinkWorks = document.getElementById('modal-link-works');
 
   function inferWorksHash(link) {
@@ -473,6 +475,17 @@
     });
     mLink.href = card.dataset.link || '#';
     mLinkLbl.textContent = card.dataset.linkLabel || 'View project';
+    if (mLink2 && mLink2Lbl) {
+      const link2 = card.dataset.link2 || '';
+      const link2Lbl = card.dataset.link2Label || '';
+      if (link2 && link2Lbl) {
+        mLink2.href = link2;
+        mLink2Lbl.textContent = link2Lbl;
+        mLink2.style.display = '';
+      } else {
+        mLink2.style.display = 'none';
+      }
+    }
     if (mLinkWorks) {
       const link = card.dataset.link || '';
       let isExternal = false;
