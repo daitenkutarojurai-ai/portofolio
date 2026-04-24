@@ -316,6 +316,69 @@ body.anime .modal {
   background: var(--bg-2);
   border: 1px solid var(--accent);
   box-shadow: 0 0 50px rgba(255, 46, 136, 0.35);
+  width: min(880px, calc(100% - 24px));
+  max-height: 92vh;
+  overflow-y: auto;
+}
+/* Compact layout so the popup FITS without scrolling on most screens */
+body.anime .modal-hero {
+  aspect-ratio: unset;
+  height: clamp(160px, 28vh, 260px);
+  border-radius: 0;
+}
+body.anime .modal-body {
+  padding: 18px clamp(18px, 2.5vw, 26px) 22px;
+  gap: clamp(16px, 2.5vw, 24px);
+  grid-template-columns: 1.7fr 1fr;
+}
+body.anime .modal-ctas {
+  padding: 12px clamp(18px, 2.5vw, 26px);
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+body.anime .modal-ctas .btn { padding: 8px 14px; font-size: 11px; }
+body.anime .modal h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  margin-bottom: 6px;
+  line-height: 1.15;
+}
+body.anime .modal-tagline {
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+body.anime .modal-desc p {
+  font-size: 13px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+body.anime .modal-side {
+  padding: 12px;
+  gap: 10px;
+  background: var(--surface);
+  border-color: var(--border-hi);
+  border-radius: 2px;
+}
+body.anime .modal-side-block .k { font-size: 10px; margin-bottom: 2px; color: var(--cyan); }
+body.anime .modal-side-block .v { font-size: 12px; }
+body.anime .modal-tech { gap: 6px; display: flex; flex-wrap: wrap; }
+body.anime .modal-tech span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 2px 6px;
+  border: 1px solid var(--border-hi);
+  color: var(--muted);
+  border-radius: 2px;
+}
+@media (max-width: 640px) {
+  body.anime .modal-body { grid-template-columns: 1fr; }
 }
 body.anime .modal h3 {
   font-family: var(--font-display);

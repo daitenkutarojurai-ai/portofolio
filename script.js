@@ -381,15 +381,15 @@
       i.alt = card.dataset.title || '';
       mHero.appendChild(i);
       mHero.style.display = '';
-    } else {
+    } else if (!video) {
       mHero.style.display = 'none';
     }
     mTitle.textContent = card.dataset.title || '';
     mTagline.textContent = card.dataset.tagline || '';
     mDesc.innerHTML = card.dataset.desc || '';
-    mYear.textContent = card.dataset.year || '';
-    mType.textContent = card.dataset.type || '';
-    mViews.textContent = card.dataset.views || '';
+    if (mYear) mYear.textContent = card.dataset.year || '';
+    if (mType) mType.textContent = card.dataset.type || '';
+    if (mViews) mViews.textContent = card.dataset.views || '';
     mTech.innerHTML = '';
     (card.dataset.tech || '').split(',').forEach((t) => {
       const v = t.trim();
