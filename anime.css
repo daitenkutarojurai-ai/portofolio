@@ -1,0 +1,807 @@
+/* ==========================================================================
+   anime.css — Edgerunners / JJK inspired visual skin
+   Override layer. Loaded AFTER styles.css. Preserves existing class names.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&family=Orbitron:wght@600;800;900&family=Chakra+Petch:wght@400;500;600;700&family=Noto+Sans+JP:wght@500;700;900&display=swap');
+
+body.anime {
+  /* Palette: ink black + hot magenta + electric cyan + warm ember */
+  --bg: #05060a;
+  --bg-2: #0a0b12;
+  --surface: #0e1018;
+  --surface-hi: #151824;
+  --border: #1f2230;
+  --border-hi: #2d3246;
+  --text: #f5f1e6;
+  --text-strong: #ffffff;
+  --muted: #8a8fa5;
+  --dim: #4a4f62;
+
+  --accent: #ff2e88;          /* hot magenta — primary pop */
+  --accent-soft: #ff6ab0;
+  --accent-warm: #ff6a2b;     /* kept ember, now tertiary */
+  --accent-ember: #ffb074;
+  --accent-dim: rgba(255, 46, 136, 0.15);
+  --accent-glow: rgba(255, 46, 136, 0.45);
+  --accent-wash: rgba(255, 46, 136, 0.08);
+
+  --cyan: #00e5ff;
+  --cyan-soft: #5cf2ff;
+  --cyan-glow: rgba(0, 229, 255, 0.4);
+
+  --yellow: #ffe500;
+
+  --font: "Chakra Petch", "Inter", system-ui, sans-serif;
+  --font-display: "Zen Dots", "Orbitron", "Chakra Petch", system-ui, sans-serif;
+  --font-jp: "Noto Sans JP", "Chakra Petch", system-ui, sans-serif;
+  --font-mono: "Chakra Petch", ui-monospace, monospace;
+
+  --radius: 2px;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* ---- Global overlays: scanlines + halftone + vignette ------------------ */
+
+body.anime::before {
+  /* fine horizontal scanlines */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+body.anime::after {
+  /* CRT vignette + faint magenta corners */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 901;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 10% 0%, rgba(255, 46, 136, 0.12), transparent 55%),
+    radial-gradient(120% 90% at 100% 100%, rgba(0, 229, 255, 0.1), transparent 55%),
+    radial-gradient(100% 100% at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* subtle halftone dot field */
+body.anime .bg-grain {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 1.5px);
+  background-size: 4px 4px;
+  opacity: 0.35;
+}
+body.anime .bg-aurora {
+  background:
+    radial-gradient(60% 40% at 15% 10%, rgba(255, 46, 136, 0.18), transparent 70%),
+    radial-gradient(70% 50% at 85% 30%, rgba(0, 229, 255, 0.12), transparent 70%),
+    radial-gradient(50% 40% at 50% 90%, rgba(255, 106, 43, 0.12), transparent 70%);
+  filter: blur(40px);
+}
+body.anime .bg-embers span {
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan-glow);
+}
+body.anime .bg-embers span:nth-child(odd) {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+}
+
+/* ---- Typography -------------------------------------------------------- */
+
+body.anime h1,
+body.anime h2,
+body.anime h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--text-strong);
+}
+body.anime h1 { letter-spacing: -0.01em; }
+body.anime h4 {
+  font-family: var(--font);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+body.anime .mono,
+body.anime .eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+body.anime .eyebrow {
+  color: var(--cyan);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+body.anime .eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+}
+body.anime .eyebrow::after {
+  content: attr(data-jp);
+  font-family: var(--font-jp);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  opacity: 0.9;
+  font-size: 10px;
+}
+
+body.anime ::selection {
+  background: var(--accent);
+  color: #05060a;
+  text-shadow: 0 0 6px var(--accent-glow);
+}
+body.anime ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent), var(--cyan));
+  border: 2px solid var(--bg);
+}
+
+/* ---- Nav --------------------------------------------------------------- */
+
+body.anime .nav {
+  background: linear-gradient(180deg, rgba(5, 6, 10, 0.9), rgba(5, 6, 10, 0.55));
+  backdrop-filter: blur(12px) saturate(140%);
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, var(--accent), var(--cyan), transparent) 1;
+}
+body.anime .nav.scrolled {
+  border-image: linear-gradient(90deg, transparent, var(--accent) 30%, var(--cyan) 70%, transparent) 1;
+}
+body.anime .nav-brand {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-strong);
+}
+body.anime .nav-brand::before {
+  content: "TF";
+  letter-spacing: 0.02em;
+}
+body.anime .nav-brand::after {
+  content: "メイカー";
+  position: absolute;
+  left: 100%;
+  margin-left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-jp);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  opacity: 0.75;
+  white-space: nowrap;
+}
+body.anime .nav-brand:hover { transform: none; }
+body.anime .nav-brand:hover::after { color: var(--cyan); }
+
+body.anime .nav-links a {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  position: relative;
+  padding: 4px 8px;
+  transition: color 0.2s var(--ease);
+}
+body.anime .nav-links a::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 -4px 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s var(--ease);
+}
+body.anime .nav-links a:hover {
+  color: var(--text-strong);
+}
+body.anime .nav-links a:hover::before { transform: scaleX(1); }
+
+body.anime .scroll-progress {
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ---- Buttons (angular, sweep fill) ------------------------------------ */
+
+body.anime .btn {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 12px 20px;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  position: relative;
+  overflow: hidden;
+  transition: color 0.25s var(--ease);
+  z-index: 1;
+}
+body.anime .btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  transform: translateX(-101%);
+  transition: transform 0.35s var(--ease);
+  z-index: -1;
+}
+body.anime .btn:hover {
+  color: #05060a;
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: transparent;
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+body.anime .btn:hover::before { transform: translateX(0); }
+body.anime .btn .arrow { font-weight: 900; }
+body.anime .btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #05060a;
+}
+body.anime .btn-primary::before {
+  background: linear-gradient(90deg, var(--cyan), var(--accent));
+}
+body.anime .btn-primary:hover {
+  color: #05060a;
+  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(0, 229, 255, 0.25);
+}
+
+/* ---- Carousel ---------------------------------------------------------- */
+
+body.anime .carousel {
+  border-radius: 0;
+  border: 1px solid var(--border-hi);
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+}
+body.anime .carousel-slide::after {
+  content: "";
+  background:
+    linear-gradient(180deg, transparent 40%, rgba(5, 6, 10, 0.75) 80%, rgba(5, 6, 10, 0.95) 100%),
+    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, 0.08) 3px 4px);
+}
+
+body.anime .carousel-caption {
+  padding: 28px 32px 32px;
+  background: linear-gradient(180deg, transparent, rgba(5, 6, 10, 0.7));
+  border-left: 3px solid var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+body.anime .carousel-caption .eyebrow {
+  color: var(--cyan);
+  font-size: 11px;
+}
+body.anime .carousel-caption h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4.8vw, 54px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text-strong);
+  text-shadow:
+    2px 0 0 rgba(255, 46, 136, 0.35),
+    -2px 0 0 rgba(0, 229, 255, 0.35);
+}
+body.anime .carousel-caption p {
+  font-family: var(--font);
+  max-width: 58ch;
+}
+body.anime .carousel-caption .btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #05060a;
+}
+body.anime .carousel-caption .btn:hover {
+  background: transparent;
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+body.anime .carousel-slide .video-badge {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 10px;
+  background: var(--accent);
+  color: #05060a;
+  border-radius: 0;
+  padding: 6px 10px;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+  border: 0;
+}
+body.anime .carousel-slide .video-badge::before {
+  background: #05060a;
+}
+
+body.anime .carousel-nav {
+  background: rgba(5, 6, 10, 0.8);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  border-radius: 0;
+  width: 44px;
+  height: 44px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: all 0.2s var(--ease);
+}
+body.anime .carousel-nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #05060a;
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+body.anime .carousel-dot {
+  background: var(--border-hi);
+  width: 20px;
+  height: 3px;
+  border-radius: 0;
+  transition: all 0.25s var(--ease);
+}
+body.anime .carousel-dot.active {
+  background: linear-gradient(90deg, var(--accent), var(--cyan));
+  width: 34px;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ---- Intro / Hero ------------------------------------------------------ */
+
+body.anime .intro,
+body.anime .hero {
+  position: relative;
+}
+body.anime .intro::before,
+body.anime .hero::before {
+  /* giant katakana watermark */
+  content: "制作";
+  position: absolute;
+  right: -10px;
+  top: -40px;
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: clamp(120px, 22vw, 280px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 46, 136, 0.1);
+  line-height: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.anime .intro h1,
+body.anime .hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 8vw, 104px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 1;
+}
+body.anime .intro h1 .accent,
+body.anime .hero h1 .accent {
+  color: var(--accent);
+  text-shadow:
+    0 0 16px var(--accent-glow),
+    3px 3px 0 rgba(0, 229, 255, 0.25);
+  display: inline-block;
+}
+body.anime .intro p,
+body.anime .hero-lede {
+  font-family: var(--font);
+  font-size: 16px;
+  max-width: 62ch;
+  position: relative;
+  z-index: 1;
+}
+body.anime .intro p b,
+body.anime .hero-lede b {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+body.anime .intro-stat .n,
+body.anime .hero-stat .n {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  font-size: 30px;
+}
+body.anime .intro-stat .l,
+body.anime .hero-stat .l {
+  font-family: var(--font-mono);
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+body.anime .hero-tag {
+  border: 1px solid var(--cyan);
+  background: rgba(0, 229, 255, 0.08);
+  color: var(--cyan);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  border-radius: 0;
+  font-family: var(--font-mono);
+  letter-spacing: 0.2em;
+}
+body.anime .hero-tag .dot {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ---- Category / Section headings -------------------------------------- */
+
+body.anime .category-head h2,
+body.anime .section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.6vw, 42px);
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  padding-left: 18px;
+}
+body.anime .category-head h2::before,
+body.anime .section-head h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  background: linear-gradient(180deg, var(--accent), var(--cyan));
+  border-radius: 0;
+}
+body.anime .category-head h2::after {
+  content: attr(data-jp);
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  display: block;
+  margin-top: 6px;
+  opacity: 0.8;
+}
+
+body.anime .category {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+body.anime .category::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+body.anime .category-link,
+body.anime .section-head-link {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+body.anime .category-link:hover,
+body.anime .section-head-link:hover { color: var(--accent); }
+
+/* ---- Cards (angular, speed-line hover, dual-tone glow) ---------------- */
+
+body.anime .card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  position: relative;
+  transition:
+    transform 0.3s var(--ease),
+    border-color 0.25s var(--ease),
+    background 0.25s var(--ease);
+}
+body.anime .card::before {
+  /* speed lines — sweep in on hover */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    115deg,
+    transparent 0 18px,
+    rgba(0, 229, 255, 0.14) 18px 19px,
+    transparent 19px 40px
+  );
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  z-index: 3;
+  mix-blend-mode: screen;
+}
+body.anime .card::after {
+  /* corner mark — top-right cut accent */
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, transparent 50%, var(--accent) 50%);
+  transition: background 0.25s var(--ease);
+  z-index: 2;
+}
+body.anime .card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: var(--surface-hi);
+  box-shadow:
+    0 0 0 1px var(--accent) inset,
+    0 8px 32px rgba(255, 46, 136, 0.25),
+    0 2px 0 var(--cyan);
+}
+body.anime .card:hover::before { opacity: 1; }
+body.anime .card:hover::after { background: linear-gradient(135deg, transparent 50%, var(--cyan) 50%); }
+body.anime .card:hover .card-media img,
+body.anime .card:hover .card-media video {
+  transform: scale(1.06);
+  filter: brightness(0.95) saturate(1.15) contrast(1.05);
+}
+
+body.anime .card-body {
+  padding: 18px;
+}
+body.anime .card-body h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--text-strong);
+}
+body.anime .card-body p {
+  font-family: var(--font);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+body.anime .card-tags span,
+body.anime .card .tag {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 10px;
+  border: 1px solid var(--border-hi);
+  color: var(--cyan);
+  padding: 3px 8px;
+  border-radius: 0;
+  background: rgba(0, 229, 255, 0.06);
+}
+body.anime .card:hover .card-tags span,
+body.anime .card:hover .tag {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(255, 46, 136, 0.08);
+}
+
+body.anime .card-media::after {
+  /* subtle scan overlay on card media */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.12) 2px 3px);
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+
+/* ---- Filter bar / chips ------------------------------------------------ */
+
+body.anime .filter-bar button,
+body.anime .filter-btn,
+body.anime .chip {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 11px;
+  border: 1px solid var(--border-hi);
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 14px;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  transition: all 0.2s var(--ease);
+}
+body.anime .filter-bar button:hover,
+body.anime .filter-btn:hover,
+body.anime .chip:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+body.anime .filter-bar button.active,
+body.anime .filter-btn.active,
+body.anime .chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #05060a;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* ---- Footer / contact -------------------------------------------------- */
+
+body.anime .footer,
+body.anime footer {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, var(--accent), var(--cyan), transparent) 1;
+  background: linear-gradient(180deg, transparent, rgba(255, 46, 136, 0.04));
+  position: relative;
+}
+body.anime .footer::before,
+body.anime footer::before {
+  content: "またね";
+  position: absolute;
+  right: var(--gutter);
+  top: -18px;
+  padding: 4px 10px;
+  background: var(--bg);
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+/* ---- Social icons / links --------------------------------------------- */
+
+body.anime .social a,
+body.anime .socials a {
+  border: 1px solid var(--border-hi);
+  border-radius: 0;
+  transition: all 0.2s var(--ease);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+body.anime .social a:hover,
+body.anime .socials a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+/* ---- Page header (works / prints) ------------------------------------- */
+
+body.anime .page-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 84px);
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+body.anime .page-header h1 .accent { color: var(--accent); }
+body.anime .page-header::after {
+  content: attr(data-jp);
+  display: block;
+  font-family: var(--font-jp);
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.4em;
+  color: var(--cyan);
+  margin-top: 14px;
+  opacity: 0.8;
+}
+
+/* ---- Glitch-ready text (opt-in via [data-glitch]) --------------------- */
+
+body.anime [data-glitch] {
+  position: relative;
+  display: inline-block;
+}
+body.anime [data-glitch]::before,
+body.anime [data-glitch]::after {
+  content: attr(data-glitch);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.18s var(--ease);
+}
+body.anime [data-glitch]::before {
+  color: var(--accent);
+  transform: translate(2px, 0);
+  mix-blend-mode: screen;
+}
+body.anime [data-glitch]::after {
+  color: var(--cyan);
+  transform: translate(-2px, 0);
+  mix-blend-mode: screen;
+}
+body.anime [data-glitch]:hover::before,
+body.anime [data-glitch]:hover::after,
+body.anime [data-glitch].glitching::before,
+body.anime [data-glitch].glitching::after {
+  opacity: 1;
+  animation: anime-jitter 0.28s steps(4) infinite;
+}
+body.anime [data-glitch]:hover::after,
+body.anime [data-glitch].glitching::after {
+  animation-delay: 0.04s;
+}
+
+@keyframes anime-jitter {
+  0%   { transform: translate(2px, 0); }
+  25%  { transform: translate(-2px, 1px); }
+  50%  { transform: translate(1px, -1px); }
+  75%  { transform: translate(-1px, 2px); }
+  100% { transform: translate(2px, 0); }
+}
+
+/* ---- Modal / lightbox -------------------------------------------------- */
+
+body.anime .modal,
+body.anime .lightbox {
+  background: rgba(5, 6, 10, 0.92);
+  backdrop-filter: blur(6px);
+}
+body.anime .modal-content,
+body.anime .lightbox-content {
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  box-shadow: 0 0 60px var(--accent-glow);
+}
+
+/* ---- Reduced motion ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body.anime [data-glitch]:hover::before,
+  body.anime [data-glitch]:hover::after,
+  body.anime [data-glitch].glitching::before,
+  body.anime [data-glitch].glitching::after {
+    animation: none;
+    opacity: 0.6;
+  }
+  body.anime .carousel-caption h2 { text-shadow: none; }
+  body.anime .btn::before { transition: none; }
+}
+
+/* ---- Small screens ----------------------------------------------------- */
+
+@media (max-width: 720px) {
+  body.anime .nav-brand::after { display: none; }
+  body.anime .intro::before,
+  body.anime .hero::before { font-size: 140px; top: -20px; }
+  body.anime .carousel-caption h2 { text-shadow: 1px 0 0 var(--accent-glow), -1px 0 0 var(--cyan-glow); }
+}

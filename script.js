@@ -611,4 +611,19 @@
     // ----- Page intro fade once the DOM is ready ----------------
     document.body.classList.add('page-intro-fade');
   }
+
+  // ----- Anime: occasional RGB-split glitch burst on [data-glitch] ----
+  if (document.body.classList.contains('anime') &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const glitchTargets = document.querySelectorAll('[data-glitch]');
+    if (glitchTargets.length) {
+      const burst = () => {
+        const el = glitchTargets[Math.floor(Math.random() * glitchTargets.length)];
+        el.classList.add('glitching');
+        setTimeout(() => el.classList.remove('glitching'), 220 + Math.random() * 220);
+        setTimeout(burst, 3200 + Math.random() * 4800);
+      };
+      setTimeout(burst, 2000);
+    }
+  }
 })();
