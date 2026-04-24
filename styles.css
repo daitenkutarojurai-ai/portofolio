@@ -1462,17 +1462,25 @@ footer .wrap {
 @media (max-width: 720px) {
   .book-card {
     grid-template-columns: 1fr;
-    padding: 0;
-    gap: 0;
-    overflow: hidden;
+    padding: 16px;
+    gap: 14px;
   }
   .book-cover {
-    aspect-ratio: 16 / 10;
-    border-radius: 0;
-    box-shadow: 0 0 0 1px rgba(255,106,43,0.18) inset;
+    aspect-ratio: 3 / 4;
+    width: 55%;
+    max-width: 200px;
+    margin: 0 auto;
   }
-  .book-cover img { object-position: center 28%; }
-  .book-meta { padding: 14px 16px 16px; }
+  .book-cover img {
+    object-fit: contain;
+    object-position: center;
+  }
+  .book-meta {
+    text-align: center;
+    align-items: center;
+    min-width: 0;
+  }
+  .book-meta .tags { justify-content: center; }
 }
 
 /* --------------------------------------------------------------------------
