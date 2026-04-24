@@ -108,13 +108,20 @@
       if (e.key === 'ArrowRight') next();
     });
 
-    // Touch swipe
-    let startX = 0;
-    carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    // Touch swipe — only fire when the gesture is clearly horizontal,
+    // so vertical page-scrolling through the carousel never gets hijacked.
+    let startX = 0, startY = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
     carousel.addEventListener('touchend', (e) => {
       const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 40) (dx < 0 ? next() : prev());
-    });
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+        (dx < 0 ? next() : prev());
+      }
+    }, { passive: true });
 
     restart();
   }
