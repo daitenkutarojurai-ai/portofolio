@@ -205,12 +205,17 @@ body.anime .nav {
   border-bottom: 1px solid var(--border);
 }
 body.anime .nav-brand {
-  background: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 46, 136, 0.18), 0 0 10px rgba(255, 46, 136, 0.35);
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: url("favicon.svg") center/contain no-repeat;
+  box-shadow: 0 0 0 1px rgba(255, 46, 136, 0.25), 0 0 12px rgba(255, 46, 136, 0.25);
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 body.anime .nav-brand:hover {
-  background: var(--cyan);
-  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.18), 0 0 10px rgba(0, 229, 255, 0.4);
+  background: url("favicon.svg") center/contain no-repeat;
+  box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.45), 0 0 16px rgba(0, 229, 255, 0.4);
+  transform: scale(1.06);
 }
 body.anime .nav-links a {
   font-family: var(--font-mono);
