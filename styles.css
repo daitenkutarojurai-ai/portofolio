@@ -596,6 +596,8 @@ section { padding: clamp(32px, 5vh, 56px) 0; }
   transform-origin: center top;
 }
 .card-media.sonic-pos img { object-position: center 30%; }
+.card-media.pos-upper img,
+.card-media.pos-upper video { object-position: center 28%; }
 .card-media.chess-center video { object-position: center 72%; }
 .card-media.fit-contain {
   background: radial-gradient(circle at center, #17181e, #0c0c0e);
