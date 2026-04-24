@@ -428,9 +428,57 @@
     if (v) { try { v.pause(); } catch (e) {} }
   }
 
+  // Auto-fill modal data from the card's own DOM if the card doesn't
+  // already have explicit data-* attrs. Lets every card open the popup
+  // instead of redirecting away.
+  const autoFillCardData = (card) => {
+    if (card.dataset.title) return true;
+    const h3 = card.querySelector('h3');
+    const desc = card.querySelector('.card-desc, p');
+    const imgEl = card.querySelector('.card-media img, .card-slider img');
+    const vidEl = card.querySelector('.card-media video');
+    const metaTag = card.querySelector('.card-meta .tag');
+    const href = card.getAttribute('href');
+    if (!h3 || !(imgEl || vidEl)) return false;
+    const stripOrigin = (u) => u
+      ? u.replace(location.origin + '/', '').replace(location.origin, '')
+      : '';
+    card.dataset.title = h3.textContent.trim();
+    if (desc) card.dataset.desc = '<p>' + desc.textContent.trim() + '</p>';
+    if (metaTag) card.dataset.type = metaTag.textContent.trim();
+    if (vidEl && vidEl.getAttribute('src')) {
+      card.dataset.video = vidEl.getAttribute('src').split('#')[0];
+    }
+    if (imgEl && imgEl.getAttribute('src')) {
+      card.dataset.img = imgEl.getAttribute('src');
+    }
+    const sliderImgs = card.querySelectorAll('.card-slider .slide img');
+    if (sliderImgs.length > 1) {
+      card.dataset.imgs = Array.from(sliderImgs)
+        .map((i) => i.getAttribute('src'))
+        .join(',');
+    }
+    if (href) {
+      card.dataset.link = href;
+      const label =
+        href.includes('cults3d') ? 'View on Cults3D' :
+        href.includes('hackster') ? 'View on Hackster' :
+        href.includes('github') ? 'View on GitHub' :
+        href.includes('instructables') ? 'View on Instructables' :
+        href.includes('spotify') ? 'Listen on Spotify' :
+        href.includes('canva') ? 'Read the book' :
+        href.startsWith('works.html') ? 'See in All Works' :
+        'View project';
+      card.dataset.linkLabel = label;
+    }
+    return true;
+  };
+
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', (e) => {
-      if (card.tagName === 'A' && card.getAttribute('href') && !card.dataset.title) return;
+      // Ignore clicks on internal nav buttons (card-ext link, etc.)
+      if (e.target.closest('.card-ext')) return;
+      if (!card.dataset.title) autoFillCardData(card);
       if (!card.dataset.title) return;
       e.preventDefault();
       openModal(card);
