@@ -1,27 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
-  <!-- indigo rounded tile, matches body bg (#131625) -->
-  <rect width="32" height="32" rx="5" fill="#131625"/>
-  <!-- Tamagotchi, 14×15 grid × 2, x offset 2 / y offset 1 -->
-  <g fill="#ff2e88">
-    <rect x="14" y="1"  width="4"  height="2"/>
-    <rect x="12" y="3"  width="8"  height="2"/>
-    <rect x="8"  y="5"  width="16" height="2"/>
-    <rect x="6"  y="7"  width="20" height="2"/>
-    <rect x="2"  y="9"  width="28" height="2"/>
-    <rect x="2"  y="11" width="2"  height="6"/>
-    <rect x="28" y="11" width="2"  height="6"/>
-    <rect x="2"  y="17" width="28" height="2"/>
-    <rect x="2"  y="19" width="4"  height="4"/>
-    <rect x="10" y="19" width="4"  height="4"/>
-    <rect x="18" y="19" width="4"  height="4"/>
-    <rect x="26" y="19" width="4"  height="4"/>
-    <rect x="2"  y="23" width="28" height="2"/>
-    <rect x="4"  y="25" width="24" height="2"/>
-    <rect x="6"  y="27" width="20" height="2"/>
-    <rect x="8"  y="29" width="16" height="2"/>
-  </g>
-  <!-- LCD screen -->
-  <rect x="6" y="11" width="20" height="6" fill="#00e5ff"/>
-  <!-- pet blob on screen -->
-  <rect x="14" y="13" width="4" height="4" fill="#131625"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- indigo rounded tile -->
+  <rect width="100" height="100" rx="16" fill="#131625"/>
+  <!-- outer hexagon, cyan stroke -->
+  <polygon points="50,8 84,28 84,72 50,92 16,72 16,28"
+    fill="#ff2e88" fill-opacity="0.12"
+    stroke="#00e5ff" stroke-width="7" stroke-linejoin="round"/>
+  <!-- inner hexagon, magenta stroke -->
+  <polygon points="50,28 68,38 68,62 50,72 32,62 32,38"
+    fill="none" stroke="#ff2e88" stroke-width="4" stroke-linejoin="round"/>
 </svg>
