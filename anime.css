@@ -1,80 +1,74 @@
 /* ==========================================================================
-   anime.css — Edgerunners / JJK inspired visual skin
-   Override layer. Loaded AFTER styles.css. Preserves existing class names.
+   anime.css — minimal, safe override layer
+   Loaded AFTER styles.css. Only re-skins colors / fonts / borders.
+   Zero pseudo-elements on body, zero fixed layers, zero isolation contexts.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Chakra+Petch:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Chakra+Petch:wght@400;500;600;700&display=swap');
+
+html, body { overscroll-behavior-y: none; }
+
+/* CRITICAL: styles.css applies `animation: pageIntroFade ... both` on
+   .page-intro-fade which animates transform + filter on body. Even
+   after the animation completes, `fill: both` keeps computed transform
+   at matrix(1,0,0,1,0,0) which is NON-none and makes body the
+   containing block for every position:fixed descendant. The modal
+   then opens at body's center (~3000px down), and .bg-embers /
+   body::before / body::after sized to body produce ~765px of phantom
+   scroll past the footer. Kill the animation to fix both bugs. */
+body.anime.page-intro-fade,
+body.anime .page-intro-fade {
+  animation: none !important;
+  transform: none !important;
+  filter: none !important;
+}
+body.anime::before,
+body.anime::after {
+  display: none !important;   /* kill the legacy ember-drift pseudos too */
+}
 
 body.anime {
-  /* Palette: ink black + hot magenta + electric cyan + warm ember */
-  --bg: #05060a;
-  --bg-2: #0a0b12;
-  --surface: #0e1018;
-  --surface-hi: #151824;
-  --border: #1f2230;
-  --border-hi: #2d3246;
-  --text: #f5f1e6;
+  /* palette shift */
+  --bg: #06070d;
+  --bg-2: #0a0b14;
+  --surface: #0e1019;
+  --surface-hi: #141725;
+  --border: #1e2130;
+  --border-hi: #2b3046;
+  --text: #f4efe3;
   --text-strong: #ffffff;
-  --muted: #8a8fa5;
+  --muted: #8c91a5;
   --dim: #4a4f62;
 
-  --accent: #ff2e88;          /* hot magenta — primary pop */
+  --accent: #ff2e88;
   --accent-soft: #ff6ab0;
-  --accent-warm: #ff6a2b;     /* kept ember, now tertiary */
+  --accent-warm: #ff6a2b;
   --accent-ember: #ffb074;
   --accent-dim: rgba(255, 46, 136, 0.15);
   --accent-glow: rgba(255, 46, 136, 0.45);
   --accent-wash: rgba(255, 46, 136, 0.08);
 
   --cyan: #00e5ff;
-  --cyan-soft: #5cf2ff;
-  --cyan-glow: rgba(0, 229, 255, 0.4);
-
-  --yellow: #ffe500;
 
   --font: "Chakra Petch", "Inter", system-ui, sans-serif;
   --font-display: "Orbitron", "Chakra Petch", system-ui, sans-serif;
   --font-mono: "Chakra Petch", ui-monospace, monospace;
 
-  --radius: 2px;
-
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-feature-settings: "ss01", "cv11";
 }
 
-/* ---- Sober animated background ---------------------------------------- */
-/*  Fixed, behind everything, pointer-events: none.
-    z-index:0 so nav(50), cards, and modals(150/160) all sit above.     */
-
-html, body { overscroll-behavior-y: none; }
-
-/* Animated background — repurpose the existing .bg-aurora div that
-   script.js appends (no pseudo-element, no stacking-context weirdness) */
-body.anime .bg-grain,
-body.anime .bg-embers { display: none; }
-body.anime .bg-aurora {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(40% 34% at 18% 28%, rgba(255, 46, 136, 0.18), transparent 70%),
-    radial-gradient(42% 34% at 82% 72%, rgba(0, 229, 255, 0.14), transparent 70%);
-  animation: anime-aurora 32s ease-in-out infinite alternate;
-  will-change: transform;
-  filter: none;
-  opacity: 1;
+/* Keep the existing .bg-grain / .bg-embers / .bg-aurora layers in
+   styles.css — only recolor the aurora radial tones. No new fixed
+   elements, no changes to stacking. */
+body.anime .bg-aurora::before {
+  background: radial-gradient(circle, #ff2e88 0%, transparent 70%);
+  opacity: 0.08;
 }
-
-@keyframes anime-aurora {
-  0%   { transform: translate3d(-2%, -1%, 0); }
-  100% { transform: translate3d(2%, 2%, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body.anime .bg-aurora { animation: none; }
+body.anime .bg-aurora::after {
+  background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
+  opacity: 0.06;
 }
 
 /* ---- Typography -------------------------------------------------------- */
@@ -83,105 +77,95 @@ body.anime h1,
 body.anime h2,
 body.anime h3 {
   font-family: var(--font-display);
-  letter-spacing: 0.01em;
   text-transform: uppercase;
-  line-height: 1;
+  letter-spacing: 0;
   color: var(--text-strong);
 }
-body.anime h1 { letter-spacing: -0.01em; }
-body.anime h4 {
-  font-family: var(--font);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
+body.anime h1 { line-height: 1.05; }
+body.anime h2 { line-height: 1.1; }
+body.anime h3 { line-height: 1.2; }
 
 body.anime .mono,
 body.anime .eyebrow {
   font-family: var(--font-mono);
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: 11px;
 }
+body.anime .eyebrow { color: var(--cyan); }
 
-body.anime .eyebrow {
-  color: var(--cyan);
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: fit-content;
+body.anime .intro h1,
+body.anime .hero h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 4.2vw, 46px);
+  line-height: 1.08;
+  text-transform: uppercase;
 }
-body.anime .eyebrow::before {
-  content: "";
-  flex: 0 0 22px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--cyan), transparent);
+body.anime .intro h1 .accent,
+body.anime .hero h1 .accent {
+  color: var(--accent);
+  text-shadow: none;
 }
 
-body.anime ::selection {
-  background: var(--accent);
-  color: #05060a;
-  text-shadow: 0 0 6px var(--accent-glow);
+body.anime .page-header h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(24px, 4vw, 42px);
+  text-transform: uppercase;
+  line-height: 1.08;
 }
-body.anime ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--accent), var(--cyan));
-  border: 2px solid var(--bg);
+body.anime .page-header h1 .accent { color: var(--accent); }
+
+body.anime .category-head h2,
+body.anime .section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 28px);
+  text-transform: uppercase;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+body.anime .carousel-caption h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(20px, 3.2vw, 36px);
+  text-transform: uppercase;
+  line-height: 1.1;
 }
 
 /* ---- Nav --------------------------------------------------------------- */
 
 body.anime .nav {
-  background: rgba(5, 6, 10, 0.92);
-  border-bottom: 1px solid transparent;
-  border-image: linear-gradient(90deg, transparent, var(--accent), var(--cyan), transparent) 1;
-}
-body.anime .nav.scrolled {
-  border-image: linear-gradient(90deg, transparent, var(--accent) 30%, var(--cyan) 70%, transparent) 1;
+  background: rgba(6, 7, 13, 0.92);
+  border-bottom: 1px solid var(--border);
 }
 body.anime .nav-brand {
   background: var(--accent);
-  box-shadow: 0 0 0 3px rgba(255, 46, 136, 0.2), 0 0 12px var(--accent-glow);
+  box-shadow: 0 0 0 3px rgba(255, 46, 136, 0.18), 0 0 10px rgba(255, 46, 136, 0.35);
 }
 body.anime .nav-brand:hover {
   background: var(--cyan);
-  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.2), 0 0 12px var(--cyan-glow);
-  transform: scale(1.2);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.18), 0 0 10px rgba(0, 229, 255, 0.4);
 }
-
 body.anime .nav-links a {
   font-family: var(--font-mono);
   font-weight: 600;
-  font-size: 12px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  font-size: 12px;
   color: var(--muted);
-  position: relative;
-  padding: 4px 8px;
-  transition: color 0.2s var(--ease);
 }
-body.anime .nav-links a::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 -4px 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--cyan));
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.25s var(--ease);
-}
-body.anime .nav-links a:hover {
-  color: var(--text-strong);
-}
-body.anime .nav-links a:hover::before { transform: scaleX(1); }
+body.anime .nav-links a:hover,
+body.anime .nav-links a.active { color: var(--text-strong); }
 
 body.anime .scroll-progress {
   background: linear-gradient(90deg, var(--accent), var(--cyan));
-  box-shadow: 0 0 8px var(--accent-glow);
 }
 
-/* ---- Buttons (angular, sweep fill) ------------------------------------ */
+/* ---- Buttons ----------------------------------------------------------- */
 
 body.anime .btn {
   font-family: var(--font-mono);
@@ -189,449 +173,158 @@ body.anime .btn {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-size: 12px;
-  padding: 12px 20px;
-  border-radius: 0;
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-  background: transparent;
   border: 1px solid var(--cyan);
   color: var(--cyan);
-  position: relative;
-  overflow: hidden;
-  transition: color 0.25s var(--ease);
-  z-index: 1;
-}
-body.anime .btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--accent), var(--cyan));
-  transform: translateX(-101%);
-  transition: transform 0.35s var(--ease);
-  z-index: -1;
+  background: transparent;
+  border-radius: 2px;
+  padding: 10px 18px;
 }
 body.anime .btn:hover {
-  color: #05060a;
-  transform: translateY(-1px);
-  border-color: var(--accent);
-  background: transparent;
-  box-shadow: 0 0 24px var(--accent-glow);
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #06070d;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.3);
 }
-body.anime .btn:hover::before { transform: translateX(0); }
-body.anime .btn .arrow { font-weight: 900; }
 body.anime .btn-primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #05060a;
-}
-body.anime .btn-primary::before {
-  background: linear-gradient(90deg, var(--cyan), var(--accent));
+  color: #06070d;
 }
 body.anime .btn-primary:hover {
-  color: #05060a;
-  box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(0, 229, 255, 0.25);
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 18px rgba(255, 46, 136, 0.35);
 }
 
 /* ---- Carousel ---------------------------------------------------------- */
 
 body.anime .carousel {
-  border-radius: 0;
   border: 1px solid var(--border-hi);
-  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  border-radius: 2px;
 }
-body.anime .carousel-slide::after {
-  content: "";
-  background:
-    linear-gradient(180deg, transparent 40%, rgba(5, 6, 10, 0.75) 80%, rgba(5, 6, 10, 0.95) 100%),
-    repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, 0.08) 3px 4px);
-}
-
 body.anime .carousel-caption {
-  padding: 28px 32px 32px;
-  background: linear-gradient(180deg, transparent, rgba(5, 6, 10, 0.7));
   border-left: 3px solid var(--accent);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-body.anime .carousel-caption .eyebrow {
-  color: var(--cyan);
-  font-size: 11px;
-}
-body.anime .carousel-caption h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(20px, 3.2vw, 36px);
-  line-height: 1.08;
-  text-transform: uppercase;
-  color: var(--text-strong);
-}
-body.anime .carousel-caption p {
-  font-family: var(--font);
-  max-width: 58ch;
-}
-body.anime .carousel-caption .btn {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #05060a;
-}
-body.anime .carousel-caption .btn:hover {
-  background: transparent;
-  color: var(--cyan);
-  border-color: var(--cyan);
-}
-
 body.anime .carousel-slide .video-badge {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  font-size: 10px;
   background: var(--accent);
-  color: #05060a;
-  border-radius: 0;
-  padding: 6px 10px;
-  clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-  border: 0;
+  color: #06070d;
+  border-radius: 2px;
 }
-body.anime .carousel-slide .video-badge::before {
-  background: #05060a;
-}
-
+body.anime .carousel-slide .video-badge::before { background: #06070d; }
 body.anime .carousel-nav {
-  background: rgba(5, 6, 10, 0.8);
   border: 1px solid var(--cyan);
   color: var(--cyan);
-  border-radius: 0;
-  width: 44px;
-  height: 44px;
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-  transition: all 0.2s var(--ease);
+  background: rgba(6, 7, 13, 0.7);
+  border-radius: 2px;
 }
 body.anime .carousel-nav:hover {
   background: var(--accent);
   border-color: var(--accent);
-  color: #05060a;
-  box-shadow: 0 0 20px var(--accent-glow);
+  color: #06070d;
 }
-
-body.anime .carousel-dot {
-  background: var(--border-hi);
-  width: 20px;
-  height: 3px;
-  border-radius: 0;
-  transition: all 0.25s var(--ease);
-}
+body.anime .carousel-dot { border-radius: 0; width: 18px; height: 3px; background: var(--border-hi); }
 body.anime .carousel-dot.active {
   background: linear-gradient(90deg, var(--accent), var(--cyan));
-  width: 34px;
-  box-shadow: 0 0 8px var(--accent-glow);
+  width: 30px;
 }
 
-/* ---- Intro / Hero ------------------------------------------------------ */
+/* ---- Cards ------------------------------------------------------------- */
 
-body.anime .intro,
-body.anime .hero { position: relative; }
-/* watermark pseudo-element removed */
+body.anime .card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+body.anime .card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 22px rgba(255, 46, 136, 0.2);
+}
 
-body.anime .intro h1,
-body.anime .hero h1 {
+/* Tag pill inside card-meta — plain muted text, no background box */
+body.anime .card-meta { color: var(--muted); }
+body.anime .card-meta .tag { color: var(--accent); }
+body.anime .card-meta .sep { color: var(--dim); }
+
+body.anime .card h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(26px, 4.2vw, 48px);
-  line-height: 1.08;
+  font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 0;
-  position: relative;
-  z-index: 1;
-}
-body.anime .intro h1 .accent,
-body.anime .hero h1 .accent {
-  color: var(--accent);
-  display: inline;
-  text-shadow: none;
-}
-body.anime .intro p,
-body.anime .hero-lede {
-  font-family: var(--font);
-  font-size: 16px;
-  max-width: 62ch;
-  position: relative;
-  z-index: 1;
-}
-body.anime .intro p b,
-body.anime .hero-lede b {
-  color: var(--cyan);
-  font-weight: 600;
 }
 
-body.anime .intro-stat .n,
-body.anime .hero-stat .n {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--text-strong);
-  font-size: 24px;
-}
-body.anime .intro-stat .l,
-body.anime .hero-stat .l {
-  font-family: var(--font-mono);
-  letter-spacing: 0.2em;
-  color: var(--cyan);
-  font-weight: 600;
-}
+/* ---- Category + Section heads ----------------------------------------- */
 
-body.anime .hero-tag {
-  border: 1px solid var(--cyan);
-  background: rgba(0, 229, 255, 0.08);
-  color: var(--cyan);
-  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-  border-radius: 0;
-  font-family: var(--font-mono);
-  letter-spacing: 0.2em;
-}
-body.anime .hero-tag .dot {
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent-glow);
-}
-
-/* ---- Category / Section headings -------------------------------------- */
-
-body.anime .category-head h2,
-body.anime .section-head h2 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(20px, 2.6vw, 30px);
-  text-transform: uppercase;
-  position: relative;
-  display: block;
-  padding-left: 18px;
-  line-height: 1.15;
-  margin-top: 8px;
-}
 body.anime .category-head h2::before,
 body.anime .section-head h2::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 6px;
-  bottom: 6px;
-  width: 4px;
   background: linear-gradient(180deg, var(--accent), var(--cyan));
-  border-radius: 0;
-}
-/* section subtitle pseudo removed */
-
-body.anime .category {
-  position: relative;
-  border-bottom: 1px solid var(--border);
-}
-body.anime .category::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 120px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), transparent);
+  width: 4px;
 }
 
 body.anime .category-link,
 body.anime .section-head-link {
   font-family: var(--font-mono);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--cyan);
+  border-color: var(--border-hi);
 }
 body.anime .category-link:hover,
-body.anime .section-head-link:hover { color: var(--accent); }
-
-/* ---- Cards (angular, speed-line hover, dual-tone glow) ---------------- */
-
-body.anime .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  position: relative;
-  transition:
-    transform 0.25s var(--ease),
-    border-color 0.2s var(--ease),
-    background 0.2s var(--ease);
-}
-body.anime .card:hover {
-  border-color: var(--accent);
-  background: var(--surface-hi);
-  box-shadow: 0 6px 24px rgba(255, 46, 136, 0.2);
-}
-body.anime .card:hover .card-media img,
-body.anime .card:hover .card-media video {
-  transform: scale(1.04);
-}
-
-body.anime .card-body {
-  padding: 18px;
-}
-body.anime .card-body h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--text-strong);
-  line-height: 1.2;
-}
-body.anime .card-body p {
-  font-family: var(--font);
-  color: var(--muted);
-  font-size: 14px;
-}
-
-body.anime .card-tags span,
-body.anime .card .tag {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-size: 10px;
-  color: var(--muted);
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-body.anime .card:hover .card-tags span,
-body.anime .card:hover .tag {
+body.anime .section-head-link:hover {
   color: var(--accent);
+  border-color: var(--accent);
 }
 
-/* card-media scan overlay removed for performance */
+/* ---- Filter / chips ---------------------------------------------------- */
 
-/* ---- Filter bar / chips ------------------------------------------------ */
-
-body.anime .filter-bar button,
 body.anime .filter-btn,
 body.anime .chip {
   font-family: var(--font-mono);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-size: 11px;
-  border: 1px solid var(--border-hi);
-  background: transparent;
-  color: var(--muted);
-  padding: 8px 14px;
-  border-radius: 0;
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-  transition: all 0.2s var(--ease);
+  border-radius: 2px;
 }
-body.anime .filter-bar button:hover,
-body.anime .filter-btn:hover,
-body.anime .chip:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-}
-body.anime .filter-bar button.active,
 body.anime .filter-btn.active,
 body.anime .chip.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: #05060a;
-  box-shadow: 0 0 16px var(--accent-glow);
+  color: #06070d;
 }
 
-/* ---- Footer / contact -------------------------------------------------- */
+/* ---- Social list ------------------------------------------------------- */
 
-body.anime .footer,
+body.anime .social-item .name { color: var(--text-strong); }
+body.anime .social-item .handle { color: var(--muted); }
+body.anime .social-item:hover {
+  background: var(--surface-hi);
+}
+body.anime .social-item:hover .name { color: var(--accent); }
+
+/* ---- Footer ------------------------------------------------------------ */
+
 body.anime footer {
-  border-top: 1px solid transparent;
-  border-image: linear-gradient(90deg, transparent, var(--accent), var(--cyan), transparent) 1;
-  background: linear-gradient(180deg, transparent, rgba(255, 46, 136, 0.04));
-  position: relative;
-}
-/* footer JP badge removed */
-
-/* ---- Social icons / links --------------------------------------------- */
-
-body.anime .social a,
-body.anime .socials a {
-  border: 1px solid var(--border-hi);
-  border-radius: 0;
-  transition: all 0.2s var(--ease);
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-}
-body.anime .social a:hover,
-body.anime .socials a:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  box-shadow: 0 0 16px var(--accent-glow);
-  transform: translateY(-2px);
+  border-top: 1px solid var(--border-hi);
+  color: var(--muted);
 }
 
-/* ---- Page header (works / prints) ------------------------------------- */
+/* ---- Modal — surface skin only, leave behavior to styles.css ---------- */
 
-body.anime .page-header h1 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(24px, 4vw, 44px);
-  text-transform: uppercase;
-  line-height: 1.08;
-}
-body.anime .page-header h1 .accent { color: var(--accent); }
-/* page-header JP pseudo removed */
-
-/* Glitch system removed — caused illegible text ghosting on hero H1s. */
-
-/* ---- Modal / lightbox -------------------------------------------------- */
-/* Minimal override — leave layout/opacity/transform to styles.css so the
-   open/close transition keeps working. Only re-skin surfaces. */
-
-body.anime .modal-backdrop {
-  background: rgba(5, 6, 10, 0.9);
-}
 body.anime .modal {
   background: var(--bg-2);
   border: 1px solid var(--accent);
-  box-shadow: 0 0 60px var(--accent-glow);
-}
-body.anime .modal.open {
-  opacity: 1 !important;
-  pointer-events: auto !important;
-}
-body.anime .modal-backdrop.open {
-  opacity: 1 !important;
-  pointer-events: auto !important;
+  box-shadow: 0 0 50px rgba(255, 46, 136, 0.35);
 }
 body.anime .modal h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
   text-transform: uppercase;
-  line-height: 1.15;
+  font-size: 20px;
 }
-body.anime .modal-close {
-  border-radius: 0;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-body.anime .modal-close:hover {
-  background: var(--accent);
-  color: #05060a;
-}
-body.anime .modal-gnav {
-  border-radius: 0;
-  border-color: var(--cyan);
-  color: var(--cyan);
-}
-body.anime .modal-gnav:hover {
-  background: var(--cyan);
-  color: #05060a;
-  border-color: var(--cyan);
-}
+body.anime .modal-close { color: var(--accent); border-color: var(--accent); }
+body.anime .modal-close:hover { background: var(--accent); color: #06070d; }
+body.anime .modal-gnav { color: var(--cyan); border-color: var(--cyan); }
+body.anime .modal-gnav:hover { background: var(--cyan); color: #06070d; border-color: var(--cyan); }
 body.anime .modal-dot.active { background: var(--accent); }
-
-/* ---- Reduced motion ---------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-  body.anime .carousel-caption h2 { text-shadow: none; }
-  body.anime .btn::before { transition: none; }
-}
-
-@media (max-width: 720px) {
-  body.anime .carousel-caption h2 { text-shadow: none; }
-}
