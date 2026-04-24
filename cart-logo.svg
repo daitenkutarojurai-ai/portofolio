@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 10" shape-rendering="crispEdges">
+  <!-- Mega Drive cart silhouette, 12×10 pixel grid, site palette -->
+  <!-- top notch / connector tab -->
+  <rect x="4" y="0" width="4" height="2" fill="#00e5ff"/>
+  <!-- cart body -->
+  <rect x="0" y="2" width="12" height="8" fill="#00e5ff"/>
+  <!-- magenta label sticker -->
+  <rect x="1" y="4" width="10" height="4" fill="#ff2e88"/>
+</svg>
