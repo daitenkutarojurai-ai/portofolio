@@ -48,19 +48,15 @@ body.anime {
 /*  Fixed, behind everything, pointer-events: none.
     z-index:0 so nav(50), cards, and modals(150/160) all sit above.     */
 
-body.anime {
-  position: relative;
-  isolation: isolate; /* own stacking context so bg layers stay pinned behind */
-  min-height: 100vh;
-  overscroll-behavior-y: none;
-}
-html { overscroll-behavior-y: none; }
+html, body { overscroll-behavior-y: none; }
 
-body.anime::after {
-  /* slow drifting dual-tone aurora — sober animated background */
-  content: "";
+/* Animated background — repurpose the existing .bg-aurora div that
+   script.js appends (no pseudo-element, no stacking-context weirdness) */
+body.anime .bg-grain,
+body.anime .bg-embers { display: none; }
+body.anime .bg-aurora {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
   background:
@@ -68,6 +64,8 @@ body.anime::after {
     radial-gradient(42% 34% at 82% 72%, rgba(0, 229, 255, 0.14), transparent 70%);
   animation: anime-aurora 32s ease-in-out infinite alternate;
   will-change: transform;
+  filter: none;
+  opacity: 1;
 }
 
 @keyframes anime-aurora {
@@ -76,13 +74,8 @@ body.anime::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.anime::after { animation: none; }
+  body.anime .bg-aurora { animation: none; }
 }
-
-/* Neutralise the old grain/aurora/embers layers — the new bg replaces them */
-body.anime .bg-grain,
-body.anime .bg-aurora,
-body.anime .bg-embers { display: none; }
 
 /* ---- Typography -------------------------------------------------------- */
 
@@ -585,6 +578,8 @@ body.anime .page-header h1 .accent { color: var(--accent); }
 /* Glitch system removed — caused illegible text ghosting on hero H1s. */
 
 /* ---- Modal / lightbox -------------------------------------------------- */
+/* Minimal override — leave layout/opacity/transform to styles.css so the
+   open/close transition keeps working. Only re-skin surfaces. */
 
 body.anime .modal-backdrop {
   background: rgba(5, 6, 10, 0.9);
@@ -592,8 +587,15 @@ body.anime .modal-backdrop {
 body.anime .modal {
   background: var(--bg-2);
   border: 1px solid var(--accent);
-  border-radius: 0;
-  box-shadow: 0 0 60px var(--accent-glow), 0 0 0 1px rgba(0, 229, 255, 0.18);
+  box-shadow: 0 0 60px var(--accent-glow);
+}
+body.anime .modal.open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+body.anime .modal-backdrop.open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
 }
 body.anime .modal h3 {
   font-family: var(--font-display);
