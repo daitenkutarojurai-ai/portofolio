@@ -468,35 +468,6 @@ body.anime .modal-gnav { color: var(--cyan); border-color: var(--cyan); }
 body.anime .modal-gnav:hover { background: var(--cyan); color: #06070d; border-color: var(--cyan); }
 body.anime .modal-dot.active { background: var(--accent); }
 
-/* Works page — top socials row above the page title */
-.page-header-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.page-socials {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.page-socials a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px; height: 34px;
-  border-radius: 2px;
-  border: 1px solid var(--border-hi);
-  color: var(--muted);
-  transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
-}
-.page-socials a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: rgba(255, 46, 136, 0.08);
-  transform: translateY(-1px);
-}
 
 /* ---- Per-card media positioning fixes -------------------------------- */
 /* Target specific images by src. For portrait/oddly-framed sources the
@@ -529,10 +500,19 @@ body.anime .modal-dot.active { background: var(--accent); }
   background: radial-gradient(circle at center, #1a1e33, #0e1019) !important;
 }
 
-/* Glaces en Seine hero slide — center on the caravan */
+/* Glaces en Seine hero slide — anchor on the caravan (right side of banner) */
 .carousel-slide img[src$="bannerup.png"] {
   object-fit: cover !important;
-  object-position: center 55% !important;
+  object-position: 72% 50% !important;
+}
+
+/* Book grid: single card was stretching to full row width. Cap it. */
+body.anime .book-grid {
+  grid-template-columns: repeat(auto-fill, minmax(360px, 420px)) !important;
+  justify-content: start !important;
+}
+body.anime .book-card {
+  max-width: 560px;
 }
 
 /* Warning sign (print-2021-0322b.jpg) — was over-zoomed. Contain so the whole sign shows. */
