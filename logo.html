@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Logo Lab — Thomas Fendrich</title>
+<meta name="description" content="Temporary logo lab — candidate pixel marks for the site." />
+<meta name="theme-color" content="#131625" />
+<meta name="robots" content="noindex" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .pg-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .pg-back:hover { color: var(--text); }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    padding-bottom: clamp(24px, 4vh, 48px);
+  }
+  .logo-card {
+    position: relative;
+    border: 1px solid var(--border);
+    background: #0c0e18;
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s var(--ease), transform 0.25s var(--ease);
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+  .logo-card .stage {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(0, 229, 255, 0.08), transparent 55%),
+      radial-gradient(circle at 70% 80%, rgba(255, 46, 136, 0.08), transparent 55%),
+      #131625;
+  }
+  .logo-card .stage svg {
+    width: 62%;
+    height: 62%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+  .logo-card.wide .stage svg { width: 80%; height: auto; }
+  .logo-card.tall .stage svg { width: auto; height: 72%; }
+  .logo-card .meta {
+    padding: 10px 14px 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .logo-card .meta .name {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+  }
+  .logo-card .meta .grid {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .logo-card .live-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0c0c0e;
+    background: #00e5ff;
+    padding: 3px 7px;
+    border-radius: 999px;
+  }
+
+  .lab-note {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body class="no-js anime">
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <a href="index.html" class="pg-back">← Back to home</a>
+    <div class="eyebrow" style="margin-bottom:12px;">Temporary · Logo Lab</div>
+    <h1>Pixel marks · picking the one.</h1>
+    <p>Every candidate mark for the site, all on the same indigo stage. Same two accents: cyan <code>#00e5ff</code> + magenta <code>#ff2e88</code>. The tamagotchi is the one currently live in the favicon and OG card.</p>
+    <div class="lab-note">Draft page · not linked from the nav · <code>noindex</code>.</div>
+  </div>
+</header>
+
+<section style="padding-top: clamp(16px, 3vh, 32px);">
+  <div class="wrap">
+    <div class="logo-grid">
+
+      <!-- 1 · Tamagotchi (LIVE) -->
+      <div class="logo-card">
+        <span class="live-badge">Live</span>
+        <div class="stage">
+          <svg viewBox="0 0 14 15" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="6" y="0" width="2" height="1"/><rect x="5" y="1" width="4" height="1"/>
+              <rect x="3" y="2" width="8" height="1"/><rect x="2" y="3" width="10" height="1"/>
+              <rect x="0" y="4" width="14" height="1"/>
+              <rect x="0" y="5" width="1" height="3"/><rect x="13" y="5" width="1" height="3"/>
+              <rect x="0" y="8" width="14" height="1"/>
+              <rect x="0" y="9" width="2" height="2"/><rect x="4" y="9" width="2" height="2"/>
+              <rect x="8" y="9" width="2" height="2"/><rect x="12" y="9" width="2" height="2"/>
+              <rect x="0" y="11" width="14" height="1"/>
+              <rect x="1" y="12" width="12" height="1"/>
+              <rect x="2" y="13" width="10" height="1"/>
+              <rect x="3" y="14" width="8" height="1"/>
+            </g>
+            <rect x="2" y="5" width="10" height="3" fill="#00e5ff"/>
+            <rect x="6" y="6" width="2" height="2" fill="#131625"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Tamagotchi</span><span class="grid">14×15</span></div>
+      </div>
+
+      <!-- 2 · Sonic ring remix -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 10 10" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#00e5ff">
+              <rect x="3" y="0" width="4" height="1"/>
+              <rect x="1" y="1" width="8" height="1"/>
+              <rect x="0" y="2" width="2" height="3"/>
+              <rect x="8" y="2" width="2" height="3"/>
+            </g>
+            <g fill="#ff2e88">
+              <rect x="0" y="5" width="2" height="3"/>
+              <rect x="8" y="5" width="2" height="3"/>
+              <rect x="1" y="8" width="8" height="1"/>
+              <rect x="3" y="9" width="4" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Sonic Ring</span><span class="grid">10×10</span></div>
+      </div>
+
+      <!-- 3 · 8-bit heart -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 8 7" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="1" y="0" width="2" height="1"/><rect x="5" y="0" width="2" height="1"/>
+              <rect x="0" y="1" width="8" height="3"/>
+              <rect x="1" y="4" width="6" height="1"/>
+              <rect x="2" y="5" width="4" height="1"/>
+              <rect x="3" y="6" width="2" height="1"/>
+            </g>
+            <rect x="1" y="1" width="2" height="2" fill="#00e5ff"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">8-bit Heart</span><span class="grid">8×7</span></div>
+      </div>
+
+      <!-- 4 · Mega Drive cart -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 12 10" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="0" width="4" height="2" fill="#00e5ff"/>
+            <rect x="0" y="2" width="12" height="8" fill="#00e5ff"/>
+            <rect x="1" y="4" width="10" height="4" fill="#ff2e88"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Mega Drive Cart</span><span class="grid">12×10</span></div>
+      </div>
+
+      <!-- 5 · Health bar -->
+      <div class="logo-card wide">
+        <div class="stage">
+          <svg viewBox="0 0 16 4" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="0" y="0" width="16" height="1"/>
+              <rect x="0" y="3" width="16" height="1"/>
+              <rect x="0" y="1" width="1"  height="2"/>
+              <rect x="15" y="1" width="1" height="2"/>
+            </g>
+            <rect x="2" y="1" width="9" height="2" fill="#00e5ff"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Health Bar</span><span class="grid">16×4</span></div>
+      </div>
+
+      <!-- 6 · Space Invader -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 11 8" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#00e5ff">
+              <rect x="2" y="0" width="1" height="1"/><rect x="8" y="0" width="1" height="1"/>
+              <rect x="3" y="1" width="1" height="1"/><rect x="7" y="1" width="1" height="1"/>
+              <rect x="2" y="2" width="7" height="1"/>
+              <rect x="1" y="3" width="2" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="8" y="3" width="2" height="1"/>
+              <rect x="0" y="4" width="11" height="1"/>
+              <rect x="0" y="5" width="1" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="10" y="5" width="1" height="1"/>
+              <rect x="0" y="6" width="1" height="1"/><rect x="2" y="6" width="1" height="1"/><rect x="8" y="6" width="1" height="1"/><rect x="10" y="6" width="1" height="1"/>
+              <rect x="3" y="7" width="2" height="1"/><rect x="6" y="7" width="2" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Space Invader</span><span class="grid">11×8</span></div>
+      </div>
+
+      <!-- 7 · Pac-Man ghost -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 10 9" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="2" y="0" width="6" height="1"/>
+              <rect x="1" y="1" width="8" height="1"/>
+              <rect x="0" y="2" width="10" height="1"/>
+              <rect x="0" y="3" width="2" height="2"/><rect x="4" y="3" width="2" height="2"/><rect x="8" y="3" width="2" height="2"/>
+              <rect x="0" y="5" width="10" height="3"/>
+              <rect x="0" y="8" width="1" height="1"/><rect x="2" y="8" width="2" height="1"/><rect x="5" y="8" width="2" height="1"/><rect x="8" y="8" width="2" height="1"/>
+            </g>
+            <rect x="2" y="3" width="2" height="2" fill="#00e5ff"/>
+            <rect x="6" y="3" width="2" height="2" fill="#00e5ff"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Ghost</span><span class="grid">10×9</span></div>
+      </div>
+
+      <!-- 8 · Pixel sword -->
+      <div class="logo-card tall">
+        <div class="stage">
+          <svg viewBox="0 0 9 14" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="4" y="0" width="1" height="2"/>
+              <rect x="3" y="2" width="3" height="6"/>
+              <rect x="2" y="8" width="5" height="1"/>
+              <rect x="0" y="9" width="9" height="1"/>
+              <rect x="3" y="13" width="3" height="1"/>
+            </g>
+            <rect x="3" y="10" width="3" height="3" fill="#00e5ff"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Sword</span><span class="grid">9×14</span></div>
+      </div>
+
+      <!-- 9 · Gem / diamond -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 7 7" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#00e5ff">
+              <rect x="2" y="0" width="3" height="1"/>
+              <rect x="1" y="1" width="5" height="1"/>
+              <rect x="0" y="2" width="7" height="1"/>
+              <rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            </g>
+            <g fill="#ff2e88">
+              <rect x="1" y="3" width="5" height="1"/>
+              <rect x="1" y="4" width="5" height="1"/>
+              <rect x="2" y="5" width="3" height="1"/>
+              <rect x="3" y="6" width="1" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Gem</span><span class="grid">7×7</span></div>
+      </div>
+
+      <!-- 10 · D-pad -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 9 9" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#00e5ff">
+              <rect x="3" y="0" width="3" height="3"/>
+              <rect x="0" y="3" width="3" height="3"/>
+              <rect x="6" y="3" width="3" height="3"/>
+              <rect x="3" y="6" width="3" height="3"/>
+            </g>
+            <rect x="3" y="3" width="3" height="3" fill="#ff2e88"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">D-pad</span><span class="grid">9×9</span></div>
+      </div>
+
+      <!-- 11 · Spark / star -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 7 7" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#00e5ff">
+              <rect x="3" y="0" width="1" height="1"/>
+              <rect x="2" y="1" width="3" height="1"/>
+              <rect x="0" y="2" width="7" height="1"/>
+              <rect x="1" y="3" width="2" height="1"/><rect x="4" y="3" width="2" height="1"/>
+              <rect x="0" y="4" width="7" height="1"/>
+              <rect x="2" y="5" width="3" height="1"/>
+              <rect x="3" y="6" width="1" height="1"/>
+            </g>
+            <rect x="3" y="3" width="1" height="1" fill="#ff2e88"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Spark</span><span class="grid">7×7</span></div>
+      </div>
+
+      <!-- 12 · Cassette tape -->
+      <div class="logo-card wide">
+        <div class="stage">
+          <svg viewBox="0 0 10 6" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="0" y="0" width="10" height="1"/>
+              <rect x="0" y="1" width="1"  height="4"/>
+              <rect x="9" y="1" width="1"  height="4"/>
+              <rect x="0" y="5" width="10" height="1"/>
+            </g>
+            <rect x="2" y="1" width="2" height="2" fill="#00e5ff"/>
+            <rect x="6" y="1" width="2" height="2" fill="#00e5ff"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Cassette</span><span class="grid">10×6</span></div>
+      </div>
+
+      <!-- 13 · Floppy disk -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 10 10" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="0" y="0" width="9"  height="1"/>
+              <rect x="0" y="1" width="10" height="9"/>
+            </g>
+            <rect x="3" y="2" width="3" height="3" fill="#00e5ff"/>
+            <rect x="4" y="3" width="1" height="1" fill="#131625"/>
+            <rect x="1" y="6" width="8" height="3" fill="#00e5ff"/>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Floppy</span><span class="grid">10×10</span></div>
+      </div>
+
+      <!-- 14 · Joystick -->
+      <div class="logo-card">
+        <div class="stage">
+          <svg viewBox="0 0 11 11" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#00e5ff">
+              <rect x="3" y="0" width="5" height="1"/>
+              <rect x="2" y="1" width="7" height="1"/>
+              <rect x="1" y="2" width="9" height="2"/>
+              <rect x="2" y="4" width="7" height="1"/>
+            </g>
+            <g fill="#ff2e88">
+              <rect x="4" y="5" width="3" height="3"/>
+              <rect x="2" y="8" width="7" height="1"/>
+              <rect x="1" y="9" width="9" height="1"/>
+              <rect x="0" y="10" width="11" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Joystick</span><span class="grid">11×11</span></div>
+      </div>
+
+      <!-- 15 · Lightning bolt -->
+      <div class="logo-card tall">
+        <div class="stage">
+          <svg viewBox="0 0 6 10" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#ff2e88">
+              <rect x="2" y="0" width="4" height="1"/>
+              <rect x="1" y="1" width="4" height="1"/>
+              <rect x="0" y="2" width="4" height="1"/>
+              <rect x="1" y="3" width="3" height="1"/>
+              <rect x="0" y="4" width="5" height="1"/>
+              <rect x="1" y="5" width="5" height="1"/>
+              <rect x="2" y="6" width="4" height="1"/>
+              <rect x="2" y="7" width="3" height="1"/>
+              <rect x="1" y="8" width="3" height="1"/>
+              <rect x="0" y="9" width="3" height="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="meta"><span class="name">Bolt</span><span class="grid">6×10</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer style="padding: clamp(24px, 4vh, 48px) 0; border-top: 1px solid var(--border);">
+  <div class="wrap">
+    <p class="lab-note">Pick one, tell me the name, I swap it into favicon + og-card.</p>
+  </div>
+</footer>
+
+</body>
+</html>
