@@ -309,11 +309,6 @@
       if (el) el.textContent = counts[k];
     });
 
-    const visibleEl = document.getElementById('visible-count');
-    const updateVisible = (n) => {
-      if (visibleEl) visibleEl.textContent = n + ' ' + (n === 1 ? 'work' : 'works');
-    };
-
     function applyFilter(filter) {
       filterBar.querySelectorAll('.filter-btn').forEach((b) => {
         b.classList.toggle('active', b.dataset.filter === filter);
@@ -330,7 +325,6 @@
           c.style.display = 'none';
         }
       });
-      updateVisible(visible);
     }
 
     const valid = ['featured', 'all', 'hardware', 'software', 'print', 'book', 'podcast', 'video'];
