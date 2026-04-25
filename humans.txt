@@ -12,11 +12,11 @@
   Hackster:     @thomassxt          https://www.hackster.io/thomassxt
   Instructables: Thomas sxt         https://www.instructables.com/member/Thomas%20sxt/instructables/
   GitHub:       daitenkutarojurai-ai https://github.com/daitenkutarojurai-ai
-  LinkedIn:                          https://www.linkedin.com/in/thomasfendrich
+  LinkedIn:                          (icon in site footer)
 
 /* CREDITS */
 
-  Luc Fendrich (Dad)  — printed and painted a good share of the 3D pieces.
+  Luc (Dad)            — printed and painted a good share of the 3D pieces.
   Gilles Miara         — helped design several of the 3D pieces.
 
 /* SITE */

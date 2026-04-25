@@ -1,5 +1,5 @@
 // ============================================================
-// Thomas Fendrich — portfolio interactions
+// diyfunproject — portfolio interactions
 // Carousel · nav · reveal · filter bar (with hash) · modal
 // ============================================================
 

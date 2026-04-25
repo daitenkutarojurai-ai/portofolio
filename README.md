@@ -1,4 +1,4 @@
-# thomas fendrich — portfolio
+# diyfunproject — portfolio
 
 A one-page futuristic portfolio. Dark editorial aesthetic, lime primary + neon cyan/magenta accents, premium glass surfaces, WebGL hero backdrop (distorted icosahedron + particle field via Three.js), Fraunces + Plus Jakarta Sans + JetBrains Mono, custom cursor, grain overlay, click-to-expand project modals.
 
