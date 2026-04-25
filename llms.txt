@@ -16,7 +16,7 @@
 - [3D prints](https://diyfunproject.com/prints.html) — own STL designs published on Cults3D, fan-art prints, timelapses
 - [Game Boy build](https://diyfunproject.com/gameboy.html) — full gallery for the 3D-printed Arduino-powered handheld
 - [News](https://diyfunproject.com/news.html) — curated discovery hub: Arduino, Raspberry Pi, 3D printing & DIY news sources, blogs and communities
-- [Now](https://diyfunproject.com/now.html) — what diyfunproject is currently focused on this season (link-box grid)
+- [Contact](https://diyfunproject.com/contact.html) — contact form (Web3Forms) + social channels for commissions, collaborations, questions
 
 ## Per-project landing pages
 

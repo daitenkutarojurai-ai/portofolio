@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — diyfunproject · commissions, collaborations, questions</title>
+<meta name="description" content="Get in touch with diyfunproject — commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message via the form, or reach out on Instagram, LinkedIn, or by email." />
+<meta name="keywords" content="contact diyfunproject, hire indie maker, hardware commission, STL licensing, podcast guest, collaboration" />
+<meta name="author" content="diyfunproject" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#131625" />
+<link rel="canonical" href="https://diyfunproject.com/contact.html" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="diyfunproject" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://diyfunproject.com/contact.html" />
+<meta property="og:title" content="Contact — diyfunproject" />
+<meta property="og:description" content="Commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message — usually responded to within 48 hours." />
+<meta property="og:image" content="https://diyfunproject.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Contact — diyfunproject" />
+<meta name="twitter:description" content="Commissions, collaborations, build questions, STL licensing." />
+<meta name="twitter:image" content="https://diyfunproject.com/og-card.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .pg-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .pg-back:hover { color: var(--text); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 24px;
+    padding: clamp(20px, 4vh, 56px) 0;
+    align-items: start;
+  }
+  @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-card {
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    border-radius: var(--radius);
+    padding: clamp(22px, 3vw, 34px);
+    transition: border-color 0.2s var(--ease);
+  }
+  .contact-card:hover { border-color: var(--border-hi); }
+
+  .contact-card h2 {
+    font-size: clamp(20px, 2.4vw, 26px);
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .contact-card .lead {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+
+  .field {
+    display: flex; flex-direction: column;
+    gap: 6px;
+  }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14.5px;
+    padding: 12px 14px;
+    transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    outline: none;
+    border-color: var(--accent, #d9ff4c);
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 140px;
+    font-family: inherit;
+  }
+  /* honeypot — hidden from real users, shown to dumb bots */
+  .hp-field {
+    position: absolute !important;
+    left: -9999px;
+    width: 1px; height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .submit-row {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .submit-btn {
+    background: linear-gradient(135deg, #ff2e88, #4ad8ff);
+    color: #0a0a0c;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: transform 0.2s var(--ease), filter 0.2s var(--ease), opacity 0.2s var(--ease);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .submit-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+  .submit-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+  .submit-note {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .form-status {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: none;
+  }
+  .form-status.is-visible { display: block; }
+  .form-status.is-success {
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    color: #6efc9a;
+  }
+  .form-status.is-error {
+    background: rgba(255, 80, 80, 0.1);
+    border: 1px solid rgba(255, 80, 80, 0.4);
+    color: #ff8080;
+  }
+
+  /* Right column — alt contact methods */
+  .alt-row {
+    display: flex; flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .alt-pill {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.2s var(--ease), transform 0.2s var(--ease), background 0.2s var(--ease);
+  }
+  .alt-pill:hover {
+    border-color: var(--border-hi);
+    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(255,46,136,0.05), rgba(74,216,255,0.05));
+  }
+  .alt-pill .alt-icon {
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    flex-shrink: 0;
+  }
+  .alt-pill .alt-icon svg { width: 18px; height: 18px; }
+  .alt-pill .alt-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+  .alt-pill .alt-name { font-size: 13.5px; font-weight: 600; }
+  .alt-pill .alt-handle {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11.5px;
+    color: var(--muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .why-list { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+  .why-list li {
+    list-style: none;
+    padding-left: 22px;
+    position: relative;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .why-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent, #d9ff4c);
+    font-weight: 700;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://diyfunproject.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://diyfunproject.com/contact.html"}
+      ]
+    },
+    {
+      "@type": "ContactPage",
+      "name": "Contact diyfunproject",
+      "description": "Contact form and alternate channels for commissions, collaborations, build questions, STL licensing, and podcast guesting.",
+      "url": "https://diyfunproject.com/contact.html",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "WebSite", "@id": "https://diyfunproject.com/#website"},
+      "mainEntity": {
+        "@type": "Person",
+        "name": "diyfunproject",
+        "url": "https://diyfunproject.com/",
+        "email": "mailto:daitenkutarojurai@gmail.com",
+        "sameAs": [
+          "https://www.instagram.com/diyfunproject/",
+          "https://www.linkedin.com/in/thomasfendrich",
+          "https://www.hackster.io/thomassxt",
+          "https://cults3d.com/fr/utilisateurs/diyfunproject",
+          "https://github.com/daitenkutarojurai-ai"
+        ]
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="no-js anime">
+
+<!-- Nav -->
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="news.html">News</a>
+    <a href="index.html#about">About</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+</nav>
+
+<!-- Header -->
+<header class="page-header">
+  <div class="wrap">
+    <a href="index.html" class="pg-back">← Back to home</a>
+    <div class="eyebrow" style="margin-bottom:12px;">Get in touch</div>
+    <h1>Let's build something.</h1>
+    <p>Commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message — usually responded to within 48 hours.</p>
+  </div>
+</header>
+
+<!-- Body -->
+<main>
+  <section>
+    <div class="wrap">
+      <div class="contact-grid">
+
+        <!-- LEFT: form -->
+        <div class="contact-card">
+          <h2>Send a message</h2>
+          <p class="lead">Lands directly in my inbox. No mailing list, no auto-responder, no marketing follow-up.</p>
+
+          <form id="contact-form" novalidate>
+            <!-- Honeypot (hidden) — bots fill this; humans don't see it -->
+            <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" />
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+              <div class="field full">
+                <label for="topic">Topic</label>
+                <select id="topic" name="topic">
+                  <option value="Commission / hire">Commission / hire — I want to pay you to build something</option>
+                  <option value="Collaboration">Collaboration — let's build something together</option>
+                  <option value="STL licensing">STL licensing — commercial use of one of your designs</option>
+                  <option value="Build question">Build question — help with one of your tutorials</option>
+                  <option value="Podcast guest">Podcast guest — invite to your show</option>
+                  <option value="Press / media">Press / media — interview or article</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required minlength="10" placeholder="Tell me what you're working on, or what you need help with."></textarea>
+              </div>
+            </div>
+
+            <!-- Web3Forms fields -->
+            <input type="hidden" name="access_key" value="841ff9aa-8feb-4fb1-b99e-515d906cfaab" />
+            <input type="hidden" name="subject" value="diyfunproject.com — new contact message" />
+            <input type="hidden" name="from_name" value="diyfunproject.com" />
+
+            <div class="submit-row">
+              <button type="submit" class="submit-btn" id="submit-btn">
+                <span id="btn-label">Send message</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <span class="submit-note">Your details aren't stored on this site — they go straight via Web3Forms.</span>
+            </div>
+
+            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <!-- RIGHT: alternate contact + why-write -->
+        <div class="contact-card">
+          <h2>Other ways to reach me</h2>
+          <p class="lead">Pick whatever's easiest for you.</p>
+
+          <div class="alt-row">
+            <a class="alt-pill" href="mailto:daitenkutarojurai@gmail.com" aria-label="Email">
+              <span class="alt-icon" style="color:#ff7676;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </span>
+              <span class="alt-body">
+                <span class="alt-name">Email</span>
+                <span class="alt-handle">daitenkutarojurai@gmail.com</span>
+              </span>
+            </a>
+
+            <a class="alt-pill" href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener" aria-label="Instagram">
+              <span class="alt-icon" style="color:#ff5096;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+              </span>
+              <span class="alt-body">
+                <span class="alt-name">Instagram</span>
+                <span class="alt-handle">@diyfunproject</span>
+              </span>
+            </a>
+
+            <a class="alt-pill" href="https://www.linkedin.com/in/thomasfendrich" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <span class="alt-icon" style="color:#4ad8ff;">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+              </span>
+              <span class="alt-body">
+                <span class="alt-name">LinkedIn</span>
+                <span class="alt-handle">linkedin.com/in/thomasfendrich</span>
+              </span>
+            </a>
+
+            <a class="alt-pill" href="https://github.com/daitenkutarojurai-ai" target="_blank" rel="noopener" aria-label="GitHub">
+              <span class="alt-icon" style="color:#fff;">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.69-3.88-1.54-3.88-1.54-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.15v3.18c0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+              </span>
+              <span class="alt-body">
+                <span class="alt-name">GitHub</span>
+                <span class="alt-handle">@daitenkutarojurai-ai</span>
+              </span>
+            </a>
+          </div>
+
+          <h2 style="margin-top: 28px;">Good reasons to write</h2>
+          <ul class="why-list">
+            <li>You want to <b>commission a build</b> — hardware, app, dashboard, STL set.</li>
+            <li>You want to <b>license one of the STL designs</b> for commercial use.</li>
+            <li>You're stuck on a tutorial of mine — <b>show me your code</b>, I'll help.</li>
+            <li>You're a podcast or magazine and want to <b>feature a project</b>.</li>
+            <li>You spotted a bug, broken link, or factual error on this site.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+// AJAX form submission to Web3Forms
+(function () {
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnLabel = document.getElementById('btn-label');
+  if (!form) return;
+
+  function showStatus(kind, message) {
+    status.classList.remove('is-success', 'is-error');
+    status.classList.add('is-visible', 'is-' + kind);
+    status.textContent = message;
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // honeypot — bot detection
+    const botcheck = form.querySelector('input[name="botcheck"]');
+    if (botcheck && botcheck.checked) {
+      // silently drop bot submissions
+      return;
+    }
+
+    submitBtn.disabled = true;
+    btnLabel.textContent = 'Sending…';
+    status.classList.remove('is-visible');
+
+    const formData = new FormData(form);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        showStatus('success', '✓ Message sent. I\'ll get back to you within 48 hours — usually faster.');
+        form.reset();
+      } else {
+        showStatus('error', '✗ ' + (data.message || 'Something went wrong. Please try again — or email me directly at daitenkutarojurai@gmail.com.'));
+      }
+    } catch (err) {
+      showStatus('error', '✗ Network error. Please try again — or email me directly at daitenkutarojurai@gmail.com.');
+    } finally {
+      submitBtn.disabled = false;
+      btnLabel.textContent = 'Send message';
+    }
+  });
+})();
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-socials social-colorful">
+      <a class="sc-instagram" href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener" aria-label="Instagram"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></span><span class="sc-label">Instagram</span></a>
+      <a class="sc-cults" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener" aria-label="Cults3D"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.18 6.9 3.83L12 11.83 5.1 8.01 12 4.18zM5 9.66l6 3.33v7.77l-6-3.33V9.66zm14 0v7.77l-6 3.33v-7.77l6-3.33z"/></svg></span><span class="sc-label">Cults3D</span></a>
+      <a class="sc-hackster" href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener" aria-label="Hackster"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h2.4v5.3h3.2V5H11v8.4H8.6v-2.8H5.4v2.8H3V5zm9.2 0h5.5c1.5 0 2.5 1 2.5 2.5v.9c0 1-.5 1.8-1.3 2.2l2 2.8h-2.8L16.5 11h-1.9v2.4H12.2V5zm2.4 2v2h2.6c.6 0 1-.3 1-1s-.4-1-1-1h-2.6zM3 15h18v2H3v-2zm0 3h18v2H3v-2z"/></svg></span><span class="sc-label">Hackster</span></a>
+      <a class="sc-instructables" href="https://www.instructables.com/member/Thomas%20sxt/instructables/" target="_blank" rel="noopener" aria-label="Instructables"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v4h-4v12H8V8H4V4zm6 6h4v8h-4v-8z"/></svg></span><span class="sc-label">Instructables</span></a>
+      <a class="sc-github" href="https://github.com/daitenkutarojurai-ai" target="_blank" rel="noopener" aria-label="GitHub"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.69-3.88-1.54-3.88-1.54-.52-1.33-1.27-1.69-1.27-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.74.4-1.25.72-1.54-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.59.23 2.77.11 3.06.73.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.15v3.18c0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></span><span class="sc-label">GitHub</span></a>
+      <a class="sc-linkedin" href="https://www.linkedin.com/in/thomasfendrich" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span><span class="sc-label">LinkedIn</span></a>
+      <a class="sc-email" href="mailto:daitenkutarojurai@gmail.com" aria-label="Email"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="sc-label">Email</span></a>
+    </div>
+    <div class="footer-meta">
+      <span>All projects open-source</span>
+      <span><a href="index.html">← Back to home</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

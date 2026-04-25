@@ -54,12 +54,15 @@
     font-size: 13.5px;
   }
 
-  /* Branded source tiles — typographic display in a colored background, since I don't have official logos */
+  /* Branded source tiles — typographic display in a colored background, since I don't have official logos.
+     Anchor name to UPPER half so the bottom card-body gradient doesn't overlap it. */
   .source-tile {
     position: absolute;
     inset: 0;
     display: flex;
-    align-items: center; justify-content: center;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 18%;
     overflow: hidden;
     background: var(--bg-2);
   }
@@ -76,12 +79,35 @@
     z-index: 1;
     font-family: var(--font-mono, ui-monospace, monospace);
     font-weight: 700;
-    font-size: clamp(22px, 4vw, 36px);
+    font-size: clamp(20px, 3.4vw, 30px);
     letter-spacing: -0.02em;
     text-align: center;
     padding: 0 18px;
-    line-height: 1.05;
+    line-height: 1.0;
     text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    max-width: 100%;
+    word-break: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* Override 4:3 aspect on news so descriptions can fit comfortably */
+  .news-section .card { aspect-ratio: auto; min-height: 320px; }
+  /* Allow descriptions to be visible (not just on hover) so the SEO content is always readable */
+  .news-section .card .card-desc {
+    max-height: 240px;
+    opacity: 0.92;
+    margin-top: 4px;
+  }
+  .news-section .card:hover .card-desc { max-height: 280px; opacity: 1; }
+  /* Slightly taller source-tile area so the name has room before the body overlay */
+  .news-section .card .card-body {
+    background: linear-gradient(to top,
+      rgba(0,0,0,0.95) 0%,
+      rgba(0,0,0,0.92) 38%,
+      rgba(0,0,0,0.6) 75%,
+      transparent 100%);
+    padding: 16px 14px 14px;
   }
 
   /* Brand-flavored gradients (approximations, not official assets) */
@@ -191,9 +217,8 @@
     <a href="index.html">Home</a>
     <a href="works.html">All Works</a>
     <a href="news.html" class="active">News</a>
-    <a href="now.html">Now</a>
     <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="contact.html">Contact</a>
   </div>
 </nav>
 
@@ -254,7 +279,7 @@
           <div class="card-media">
             <div class="source-tile src-arduino">
               <span class="source-ribbon">Official · Arduino</span>
-              <span class="source-name">Arduino<br>Blog</span>
+              <span class="source-name">Arduino Blog</span>
             </div>
           </div>
           <div class="card-body">
@@ -284,7 +309,7 @@
           <div class="card-media">
             <div class="source-tile src-adalearn">
               <span class="source-ribbon">Tutorials</span>
-              <span class="source-name">Adafruit<br>Learn</span>
+              <span class="source-name">Adafruit Learn</span>
             </div>
           </div>
           <div class="card-body">
