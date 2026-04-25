@@ -3,21 +3,32 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Maker · Hardware · 3D · Games</title>
-<meta name="description" content="Independent maker. Connected hardware, 3D-printed figures, pixel-art games, podcasts." />
+<title>diyfunproject — Independent maker · Arduino, 3D prints, apps, podcasts</title>
+<meta name="description" content="Ten years of independent making — open hardware on Arduino &amp; Raspberry Pi, original STL designs on Cults3D, hand-painted 3D prints, pixel-art Android games, and cloud / DevOps podcasts. 100,000+ views on Hackster &amp; Instructables." />
+<meta name="keywords" content="independent maker, Arduino projects, Raspberry Pi projects, 3D printing portfolio, STL designs, Cults3D creator, Hackster, Instructables, pixel art game, Chess Kombat, Cert Quest, IoT projects, DevOps podcast, AWS podcast, Terraform podcast" />
+<meta name="author" content="diyfunproject" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="theme-color" content="#131625" />
+<link rel="canonical" href="https://daitenkutarojurai-ai.github.io/portofolio/" />
 
 <!-- Open Graph / social share -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Maker · Hardware · 3D · Games" />
-<meta property="og:description" content="Independent maker. Connected hardware, 3D-printed figures, pixel-art games, podcasts." />
-<meta property="og:image" content="og-card.png" />
+<meta property="og:site_name" content="diyfunproject" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://daitenkutarojurai-ai.github.io/portofolio/" />
+<meta property="og:title" content="diyfunproject — Independent maker · Arduino, 3D prints, apps, podcasts" />
+<meta property="og:description" content="Ten years of independent making — open hardware, original STL designs on Cults3D, pixel-art Android games, and cloud / DevOps podcasts." />
+<meta property="og:image" content="https://daitenkutarojurai-ai.github.io/portofolio/og-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="diyfunproject — featured projects" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Maker · Hardware · 3D · Games" />
-<meta name="twitter:description" content="Independent maker. Connected hardware, 3D-printed figures, pixel-art games, podcasts." />
-<meta name="twitter:image" content="og-card.png" />
+<meta name="twitter:title" content="diyfunproject — Independent maker · Arduino, 3D prints, apps, podcasts" />
+<meta name="twitter:description" content="Hardware on Arduino, STL designs on Cults3D, pixel-art Android games, cloud / DevOps podcasts." />
+<meta name="twitter:image" content="https://daitenkutarojurai-ai.github.io/portofolio/og-card.png" />
+
+<!-- RSS auto-discovery -->
+<link rel="alternate" type="application/rss+xml" title="diyfunproject — Journal RSS" href="https://daitenkutarojurai-ai.github.io/portofolio/feed.xml" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,14 +40,67 @@
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="anime.css">
+
+<!-- JSON-LD: Person + WebSite + ItemList of featured projects -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://daitenkutarojurai-ai.github.io/portofolio/#person",
+      "name": "diyfunproject",
+      "alternateName": ["thomassxt", "daitenkutarojurai-ai"],
+      "description": "Independent maker. Open hardware, 3D design, mobile games, cloud podcasts.",
+      "url": "https://daitenkutarojurai-ai.github.io/portofolio/",
+      "email": "mailto:daitenkutarojurai@gmail.com",
+      "knowsAbout": ["Arduino", "Raspberry Pi", "3D printing", "STL design", "Fusion 360", "Mobile development", "Android", "Pixel art", "AWS", "Terraform", "Kubernetes"],
+      "sameAs": [
+        "https://www.hackster.io/thomassxt",
+        "https://www.instructables.com/member/Thomas%20sxt/instructables/",
+        "https://cults3d.com/fr/utilisateurs/diyfunproject",
+        "https://github.com/daitenkutarojurai-ai",
+        "https://www.instagram.com/diyfunproject/",
+        "https://www.linkedin.com/in/thomasfendrich",
+        "https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://daitenkutarojurai-ai.github.io/portofolio/#website",
+      "url": "https://daitenkutarojurai-ai.github.io/portofolio/",
+      "name": "diyfunproject — Independent maker portfolio",
+      "description": "Hardware, 3D prints, apps, podcasts.",
+      "inLanguage": "en",
+      "publisher": {"@id": "https://daitenkutarojurai-ai.github.io/portofolio/#person"}
+    },
+    {
+      "@type": "ItemList",
+      "name": "Featured projects",
+      "itemListOrder": "https://schema.org/ItemListOrderDescending",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "item": {"@type": "CreativeWork", "name": "Glaces en Seine — Crêpe forecast", "url": "https://crepesforecast.vercel.app/", "description": "A weather-aware Sunday briefing for a crêpe caravan on the Seine."}},
+        {"@type": "ListItem", "position": 2, "item": {"@type": "MobileApplication", "name": "Cert Quest", "url": "https://certquests.com/", "description": "Gamified IT-certification trainer — web and Android.", "operatingSystem": "Android, Web", "applicationCategory": "EducationApplication"}},
+        {"@type": "ListItem", "position": 3, "item": {"@type": "MobileApplication", "name": "Chess Kombat", "url": "https://github.com/daitenkutarojurai-ai/Chess-kombat", "description": "Pixel-art chess engine with 21 enemies, 3 worlds, HP bars, Chess 960.", "operatingSystem": "Android", "applicationCategory": "GameApplication"}},
+        {"@type": "ListItem", "position": 4, "item": {"@type": "CreativeWork", "name": "IKEA Smart Plant", "url": "https://www.hackster.io/thomassxt/ikea-smart-plant-22133b", "description": "IKEA planter turned indoor ecosystem — grow light, fan, water pump, moisture probe."}},
+        {"@type": "ListItem", "position": 5, "item": {"@type": "CreativeWork", "name": "Automated Farm", "url": "https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102", "description": "Compact greenhouse driven by Arduino Uno and a 4-channel I²C relay."}},
+        {"@type": "ListItem", "position": 6, "item": {"@type": "CreativeWork", "name": "Photobooth Pro", "url": "https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/", "description": "Wedding-grade photobooth on Raspberry Pi with Canon DSLR and Selphy printer."}},
+        {"@type": "ListItem", "position": 7, "item": {"@type": "CreativeWork", "name": "Chaturanga — 4-player chess", "url": "https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga", "description": "Four-player chess set designed in Fusion 360, published on Cults3D."}},
+        {"@type": "ListItem", "position": 8, "item": {"@type": "CreativeWork", "name": "Chess Shot — drinking game", "url": "https://cults3d.com/en/3d-model/game/chess-shot-drinking-game", "description": "Chess set where each piece holds a shot glass. STL pack on Cults3D."}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body class="no-js anime">
 
 <!-- Nav -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Primary">
   <a href="#top" class="nav-brand" aria-label="Home"></a>
   <div class="nav-links">
     <a href="works.html">All Works</a>
+    <a href="journal.html">Journal</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>

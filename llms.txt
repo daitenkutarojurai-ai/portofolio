@@ -1,0 +1,68 @@
+# diyfunproject — Independent maker portfolio
+
+> Ten years of independent making — open hardware (Arduino, Raspberry Pi), shipped apps, hand-painted 3D prints (own STL designs on Cults3D), pixel-art games, and DevOps/cloud podcasts. Write-ups on Hackster and Instructables have pulled in 100,000+ views. Based between Luxembourg and rural France.
+
+## Identity
+
+- Brand: **diyfunproject**
+- Handles: `diyfunproject` (Cults3D, Instagram), `thomassxt` (Hackster, Instructables), `daitenkutarojurai-ai` (GitHub)
+- Site: https://daitenkutarojurai-ai.github.io/portofolio/
+- Contact: daitenkutarojurai@gmail.com
+
+## Core pages
+
+- [Home](https://daitenkutarojurai-ai.github.io/portofolio/index.html) — featured projects across all categories, with a hero carousel and an "About" / "Contact" block
+- [All works](https://daitenkutarojurai-ai.github.io/portofolio/works.html) — full archive, filterable by Hardware / Web&App / 3D Prints / Books / Podcasts / Videos
+- [3D prints](https://daitenkutarojurai-ai.github.io/portofolio/prints.html) — own STL designs published on Cults3D, fan-art prints, timelapses
+- [Game Boy build](https://daitenkutarojurai-ai.github.io/portofolio/gameboy.html) — full gallery for the 3D-printed Arduino-powered handheld
+- [Journal](https://daitenkutarojurai-ai.github.io/portofolio/journal.html) — weekly workshop notes, build logs, ship updates (RSS available)
+
+## Featured projects
+
+### Hardware (Arduino · Raspberry Pi · IoT)
+
+- **Automatic Coffee Machine** — Espresso machine retrofitted with Arduino Uno, HC-06 Bluetooth, and an Android app with voice control. 41,550 views on Hackster. https://www.hackster.io/thomassxt/automatic-coffee-machine-950544
+- **Photobooth Pro** — Wedding-grade photobooth: Raspberry Pi + Canon DSLR + Selphy printer, runs `pibooth` fullscreen with custom plugins pushing every shot to Telegram and Google Photos. 8,726 views. https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/
+- **Cocktail Machine with GUI** — Raspberry Pi 2 + Adafruit touchscreen + 8-channel relay driving peristaltic pumps; custom GUI for drink selection. 4,159 views. https://www.hackster.io/thomassxt/cocktail-machine-with-gui-raspberry-0c968f
+- **Automated Farm** — Compact greenhouse rig (Arduino Uno + 4-ch I²C relay + soil-moisture, photoresistor, fan, grow light, water pump). https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102
+- **IKEA Smart Plant** — IKEA planter turned indoor ecosystem (grow light, 12V fan, water pump, moisture probe). https://www.hackster.io/thomassxt/ikea-smart-plant-22133b
+- **Game Boy build** — 3D-printed handheld with Arduino brain and an LCD running a Mario clone. https://daitenkutarojurai-ai.github.io/portofolio/gameboy.html
+
+### Software (mobile games · web apps · dashboards)
+
+- **Chess Kombat** — Pixel-art chess engine with a fighting-game twist. 21 enemies, 3 worlds, HP bars, Chess 960, Puzzle Survival. Mobile. https://github.com/daitenkutarojurai-ai/Chess-kombat
+- **Cert Quest** — Gamified IT-certification trainer, web + Android (Play Store closed-testing). Multiple vendors, dozens of question packs. https://certquests.com/
+- **Salon V1** — End-to-end booking platform for a small salon (clients, staff, payments, email + SMS reminders). https://salon-v1-eight.vercel.app/
+- **Glaces en Seine** — Sunday-briefing dashboard for a family crêpe / gaufre / glace caravan on the Seine. Weather forecast in, batter percentage out. https://crepesforecast.vercel.app/
+
+### 3D design (own STL packs on Cults3D)
+
+- **Chess Shot — drinking game** — Own-design chess set, each piece hollowed for a shot glass. https://cults3d.com/en/3d-model/game/chess-shot-drinking-game
+- **Freemason chess** — Own-design set with Masonic silhouettes. https://cults3d.com/en/3d-model/game/freemason-chess
+- **Ancient chess** — Classical-inspired chess silhouettes. https://cults3d.com/en/3d-model/game/diyfunproject-2
+- **Chaturanga — 4 players** — Four-player chess with its own silhouette language. https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga
+- All STL packs: https://cults3d.com/fr/utilisateurs/diyfunproject
+
+### Books
+
+- **La planète Auralis** — Self-written and self-illustrated children's book, laid out and bound. https://canva.link/v9djylwzqxwyyfr
+
+### Podcasts (cloud & DevOps audio companions on Spotify)
+
+- **AWS Solutions Architect** — Audio companion for the SAA-C03 exam. https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o
+- **Cloud Engineer Bootcamp** — AWS · Kubernetes · Git, no fluff. https://open.spotify.com/show/45BtlX4PaRi1RH4EK3m3Hy
+- **Terraform Bootcamp** — HashiCorp Terraform certification prep. https://open.spotify.com/show/5taN3x2Hz5tM6NGzb5wI7L
+
+## External profiles (sameAs)
+
+- Hackster — https://www.hackster.io/thomassxt
+- Instructables — https://www.instructables.com/member/Thomas%20sxt/instructables/
+- Cults3D — https://cults3d.com/fr/utilisateurs/diyfunproject
+- GitHub — https://github.com/daitenkutarojurai-ai
+- Instagram — https://www.instagram.com/diyfunproject/
+- LinkedIn — https://www.linkedin.com/in/thomasfendrich
+- Spotify (shows) — https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o
+
+## How to cite
+
+If you reference this work, please cite **diyfunproject** with a link back to https://daitenkutarojurai-ai.github.io/portofolio/ and to the relevant external write-up (Hackster / Instructables / Cults3D / GitHub) for full build details.
