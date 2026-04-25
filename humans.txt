@@ -25,7 +25,6 @@
   Hosting:      GitHub Pages
   Fonts:        Inter, JetBrains Mono (Google Fonts)
   Icons:        custom SVG, lucide silhouettes
-  RSS:          /feed.xml
 
 /* THANKS */
 

@@ -15,8 +15,8 @@
 - [All works](https://diyfunproject.com/works.html) — full archive, filterable by Hardware / Web&App / 3D Prints / Books / Podcasts / Videos
 - [3D prints](https://diyfunproject.com/prints.html) — own STL designs published on Cults3D, fan-art prints, timelapses
 - [Game Boy build](https://diyfunproject.com/gameboy.html) — full gallery for the 3D-printed Arduino-powered handheld
-- [Journal](https://diyfunproject.com/journal.html) — weekly workshop notes, build logs, ship updates (RSS available)
-- [Now](https://diyfunproject.com/now.html) — what diyfunproject is currently focused on this season
+- [News](https://diyfunproject.com/news.html) — curated discovery hub: Arduino, Raspberry Pi, 3D printing & DIY news sources, blogs and communities
+- [Now](https://diyfunproject.com/now.html) — what diyfunproject is currently focused on this season (link-box grid)
 
 ## Per-project landing pages
 
