@@ -4,8 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>News — Arduino, Raspberry Pi, 3D printing &amp; DIY discovery · diyfunproject</title>
-<meta name="description" content="A curated discovery hub for makers — the news sites, blogs and communities I actually read. Hackaday, Adafruit, Make:, Arduino &amp; Raspberry Pi blogs, plus the best subreddits for hardware, 3D printing and DIY." />
-<meta name="keywords" content="Arduino news, Raspberry Pi news, DIY news, 3D printing news, maker news, Hackaday, Adafruit, Make magazine, Hackster, Sparkfun, r/arduino, r/raspberry_pi, r/3dprinting, electronics news" />
+<meta name="description" content="A curated discovery hub for makers — the news sites, blogs and communities I actually read, organized by what you're trying to do (catch up on news / learn / find an STL / look up a part / get help). Original commentary on each source." />
+<meta name="keywords" content="Arduino news, Raspberry Pi news, DIY news, 3D printing news, maker news, Hackaday review, Adafruit blog, Make magazine, Hackster, Sparkfun, r/arduino, r/raspberry_pi, r/3dprinting, electronics tutorials, STL libraries" />
 <meta name="author" content="diyfunproject" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="theme-color" content="#131625" />
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="https://diyfunproject.com/news.html" />
 <meta property="og:title" content="News — Arduino, Raspberry Pi, 3D printing &amp; DIY discovery" />
-<meta property="og:description" content="The news sites, blogs and communities I actually read. Curated boxes — click and go." />
+<meta property="og:description" content="The news sites, blogs and communities I actually read. Curated by intent, with original commentary." />
 <meta property="og:image" content="https://diyfunproject.com/og-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -40,111 +40,96 @@
   .pg-back:hover { color: var(--text); }
 
   .news-section { padding: clamp(20px, 4vh, 56px) 0; }
-  .news-section h2.section-title {
+  .news-section .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .news-section h2 {
     font-size: clamp(20px, 2.4vw, 26px);
     letter-spacing: -0.015em;
-    margin-bottom: 6px;
   }
   .news-section .section-sub {
     color: var(--muted);
     font-size: 13.5px;
-    margin-bottom: 16px;
   }
 
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
-  }
-
-  .news-box {
-    display: flex; flex-direction: column;
-    gap: 10px;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
+  /* Branded source tiles — typographic display in a colored background, since I don't have official logos */
+  .source-tile {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center; justify-content: center;
+    overflow: hidden;
     background: var(--bg-2);
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.2s var(--ease), transform 0.25s var(--ease), background 0.2s var(--ease);
+  }
+  .source-tile::after {
+    /* subtle dot grid texture */
+    content: "";
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 12px 12px;
+    pointer-events: none;
+  }
+  .source-tile .source-name {
     position: relative;
-    min-height: 130px;
-  }
-  .news-box:hover {
-    border-color: var(--border-hi);
-    transform: translateY(-3px);
-    background: linear-gradient(135deg, rgba(255,46,136,0.04), rgba(74,216,255,0.04));
+    z-index: 1;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-weight: 700;
+    font-size: clamp(22px, 4vw, 36px);
+    letter-spacing: -0.02em;
+    text-align: center;
+    padding: 0 18px;
+    line-height: 1.05;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
   }
 
-  .news-box .news-eyebrow {
-    font-family: var(--font-mono, ui-monospace, monospace);
-    font-size: 10px;
-    letter-spacing: 0.14em;
+  /* Brand-flavored gradients (approximations, not official assets) */
+  .src-hackaday  { background: radial-gradient(circle at 70% 20%, rgba(255,170,0,0.2), transparent 60%), linear-gradient(135deg, #1a1a1a, #0a0a0a); }
+  .src-hackaday  .source-name { color: #ffaa00; }
+  .src-adafruit  { background: radial-gradient(circle at 30% 30%, rgba(255,80,150,0.22), transparent 60%), linear-gradient(135deg, #1d0a14, #08020a); }
+  .src-adafruit  .source-name { color: #ff5096; }
+  .src-arduino   { background: radial-gradient(circle at 50% 50%, rgba(0,151,157,0.25), transparent 65%), linear-gradient(135deg, #062626, #021212); }
+  .src-arduino   .source-name { color: #00b3b8; }
+  .src-rpi       { background: radial-gradient(circle at 60% 40%, rgba(197,26,74,0.28), transparent 60%), linear-gradient(135deg, #1c060d, #0a0205); }
+  .src-rpi       .source-name { color: #ff5677; }
+  .src-sparkfun  { background: radial-gradient(circle at 50% 50%, rgba(229,30,30,0.22), transparent 60%), linear-gradient(135deg, #1c0707, #0a0202); }
+  .src-sparkfun  .source-name { color: #ff5252; }
+  .src-eevblog   { background: radial-gradient(circle at 70% 30%, rgba(255,221,51,0.22), transparent 60%), linear-gradient(135deg, #1a1808, #080701); }
+  .src-eevblog   .source-name { color: #ffdd33; }
+  .src-make      { background: radial-gradient(circle at 30% 60%, rgba(229,46,46,0.22), transparent 60%), linear-gradient(135deg, #1a0707, #080202); }
+  .src-make      .source-name { color: #ff6464; }
+  .src-hackster  { background: radial-gradient(circle at 50% 30%, rgba(64,150,238,0.25), transparent 60%), linear-gradient(135deg, #07101e, #02060c); }
+  .src-hackster  .source-name { color: #5cabf0; }
+  .src-instructables { background: radial-gradient(circle at 50% 50%, rgba(254,168,52,0.24), transparent 60%), linear-gradient(135deg, #1a0e02, #080502); }
+  .src-instructables .source-name { color: #ffaa3c; }
+  .src-all3dp    { background: radial-gradient(circle at 30% 30%, rgba(0,200,140,0.2), transparent 60%), linear-gradient(135deg, #051a14, #021008); }
+  .src-all3dp    .source-name { color: #2cd6a8; }
+  .src-cults3d   { background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.22), transparent 60%), linear-gradient(135deg, #15110a, #080604); }
+  .src-cults3d   .source-name { color: #d4af37; }
+  .src-printables { background: radial-gradient(circle at 50% 50%, rgba(255,138,46,0.22), transparent 60%), linear-gradient(135deg, #1a0a02, #080302); }
+  .src-printables .source-name { color: #ff8a2e; }
+  .src-thingiverse { background: radial-gradient(circle at 50% 50%, rgba(34,164,235,0.22), transparent 60%), linear-gradient(135deg, #061319, #020608); }
+  .src-thingiverse .source-name { color: #45b8e8; }
+  .src-reddit    { background: radial-gradient(circle at 50% 50%, rgba(255,69,0,0.22), transparent 60%), linear-gradient(135deg, #1a0700, #080300); }
+  .src-reddit    .source-name { color: #ff5722; }
+  .src-adalearn  { background: radial-gradient(circle at 30% 70%, rgba(255,80,150,0.18), transparent 60%), linear-gradient(135deg, #0a0a14, #050508); }
+  .src-adalearn  .source-name { color: #ff80b8; }
+
+  /* ribbon tag in corner */
+  .source-tile .source-ribbon {
+    position: absolute;
+    top: 10px; left: 10px;
+    z-index: 2;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .news-box .news-eyebrow .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-  }
-  .news-box.cat-arduino .news-eyebrow .dot { background: #00979d; }
-  .news-box.cat-rpi .news-eyebrow .dot { background: #c51a4a; }
-  .news-box.cat-3dp .news-eyebrow .dot { background: #ff7a3d; }
-  .news-box.cat-maker .news-eyebrow .dot { background: #d9ff4c; }
-  .news-box.cat-electronics .news-eyebrow .dot { background: #4ad8ff; }
-  .news-box.cat-community .news-eyebrow .dot { background: #ff6bc7; }
-
-  .news-box h2 {
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0;
-    line-height: 1.3;
-    color: var(--text);
-  }
-  .news-box .news-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.5;
-    margin: 0;
-  }
-
-  .news-box .news-meta {
-    margin-top: auto;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono, ui-monospace, monospace);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-  }
-  .news-box .news-arrow {
-    color: var(--accent, #d9ff4c);
-    font-size: 14px;
-    transition: transform 0.2s var(--ease);
-  }
-  .news-box:hover .news-arrow { transform: translateX(4px); }
-
-  .news-note {
-    margin: clamp(20px, 3vh, 36px) 0 0;
-    border: 1px dashed var(--border);
-    background: var(--bg-2);
-    border-radius: var(--radius);
-    padding: 18px 22px;
-    color: var(--muted);
-    font-size: 13.5px;
-    line-height: 1.6;
-  }
-  .news-note strong { color: var(--text); }
-  .news-note a { color: var(--accent, #d9ff4c); text-decoration: none; border-bottom: 1px dashed currentColor; }
-  .news-note a:hover { color: #fff; }
-
-  /* Footer socials */
-  .footer-socials { gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
-  .footer-socials a .sc-icon-wrap { width: 36px; height: 36px; }
-  .footer-socials a .sc-label { display: none; }
-  @media (min-width: 700px) {
-    .footer-socials { justify-content: flex-start; }
+    color: #fff;
   }
 </style>
 
@@ -162,7 +147,7 @@
     {
       "@type": "CollectionPage",
       "name": "Maker news & DIY discovery",
-      "description": "Curated index of news sites, blogs and communities for Arduino, Raspberry Pi, 3D printing, electronics and DIY makers.",
+      "description": "Intent-organized index of news sites, blogs and communities for Arduino, Raspberry Pi, 3D printing, electronics and DIY makers, with original commentary on each source.",
       "url": "https://diyfunproject.com/news.html",
       "inLanguage": "en",
       "dateModified": "2026-04-25",
@@ -170,28 +155,26 @@
       "author": {"@type": "Person", "name": "diyfunproject", "url": "https://diyfunproject.com/"},
       "mainEntity": {
         "@type": "ItemList",
-        "name": "Recommended maker / DIY resources",
+        "name": "Recommended maker / DIY resources by intent",
         "itemListElement": [
           {"@type": "ListItem", "position": 1, "url": "https://hackaday.com/", "name": "Hackaday"},
           {"@type": "ListItem", "position": 2, "url": "https://blog.adafruit.com/", "name": "Adafruit Blog"},
-          {"@type": "ListItem", "position": 3, "url": "https://makezine.com/", "name": "Make: Magazine"},
-          {"@type": "ListItem", "position": 4, "url": "https://www.hackster.io/", "name": "Hackster"},
-          {"@type": "ListItem", "position": 5, "url": "https://blog.arduino.cc/", "name": "Arduino Blog"},
-          {"@type": "ListItem", "position": 6, "url": "https://www.raspberrypi.com/news/", "name": "Raspberry Pi News"},
-          {"@type": "ListItem", "position": 7, "url": "https://www.sparkfun.com/news", "name": "SparkFun News"},
-          {"@type": "ListItem", "position": 8, "url": "https://learn.adafruit.com/", "name": "Adafruit Learn"},
-          {"@type": "ListItem", "position": 9, "url": "https://all3dp.com/", "name": "All3DP"},
-          {"@type": "ListItem", "position": 10, "url": "https://3dprintingindustry.com/", "name": "3D Printing Industry"},
-          {"@type": "ListItem", "position": 11, "url": "https://cults3d.com/", "name": "Cults3D"},
-          {"@type": "ListItem", "position": 12, "url": "https://www.printables.com/", "name": "Printables"},
+          {"@type": "ListItem", "position": 3, "url": "https://blog.arduino.cc/", "name": "Arduino Blog"},
+          {"@type": "ListItem", "position": 4, "url": "https://learn.adafruit.com/", "name": "Adafruit Learn"},
+          {"@type": "ListItem", "position": 5, "url": "https://www.hackster.io/", "name": "Hackster"},
+          {"@type": "ListItem", "position": 6, "url": "https://www.instructables.com/", "name": "Instructables"},
+          {"@type": "ListItem", "position": 7, "url": "https://makezine.com/", "name": "Make: Magazine"},
+          {"@type": "ListItem", "position": 8, "url": "https://cults3d.com/", "name": "Cults3D"},
+          {"@type": "ListItem", "position": 9, "url": "https://www.printables.com/", "name": "Printables"},
+          {"@type": "ListItem", "position": 10, "url": "https://www.thingiverse.com/", "name": "Thingiverse"},
+          {"@type": "ListItem", "position": 11, "url": "https://www.raspberrypi.com/news/", "name": "Raspberry Pi News"},
+          {"@type": "ListItem", "position": 12, "url": "https://www.sparkfun.com/news", "name": "SparkFun News"},
           {"@type": "ListItem", "position": 13, "url": "https://www.eevblog.com/", "name": "EEVblog"},
-          {"@type": "ListItem", "position": 14, "url": "https://www.electronics-tutorials.ws/", "name": "Electronics Tutorials"},
+          {"@type": "ListItem", "position": 14, "url": "https://all3dp.com/", "name": "All3DP"},
           {"@type": "ListItem", "position": 15, "url": "https://www.reddit.com/r/arduino/", "name": "r/arduino"},
           {"@type": "ListItem", "position": 16, "url": "https://www.reddit.com/r/raspberry_pi/", "name": "r/raspberry_pi"},
           {"@type": "ListItem", "position": 17, "url": "https://www.reddit.com/r/3Dprinting/", "name": "r/3Dprinting"},
-          {"@type": "ListItem", "position": 18, "url": "https://www.reddit.com/r/DIY/", "name": "r/DIY"},
-          {"@type": "ListItem", "position": 19, "url": "https://www.reddit.com/r/electronics/", "name": "r/electronics"},
-          {"@type": "ListItem", "position": 20, "url": "https://www.reddit.com/r/PrintedCircuitBoard/", "name": "r/PrintedCircuitBoard"}
+          {"@type": "ListItem", "position": 18, "url": "https://www.reddit.com/r/DIY/", "name": "r/DIY"}
         ]
       }
     }
@@ -220,207 +203,353 @@
     <a href="index.html" class="pg-back">← Back to home</a>
     <div class="eyebrow" style="margin-bottom:12px;">Discover · Maker news</div>
     <h1>Arduino, Raspberry Pi, 3D printing &amp; DIY.</h1>
-    <p>The news sites, blogs and communities I actually read. Curated, not algorithmically generated. Click any box to open the source.</p>
+    <p>The news sites, blogs and communities I actually read — organized by <i>what you're trying to do</i>, not alphabetically. Each card carries my own take on why the source is worth your time.</p>
   </div>
 </header>
 
 <main>
 
-  <!-- Maker / DIY news -->
+  <!-- 01 — What's new today -->
   <section class="news-section">
     <div class="wrap">
-      <h2 class="section-title">Maker &amp; DIY news</h2>
-      <p class="section-sub">The general-interest hubs that cover everything from Arduino to vintage radio restoration.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">01 · What's new today</div>
+          <h2>The daily-pulse feeds — open one, get caught up.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="news-grid">
-
-        <a class="news-box cat-maker" href="https://hackaday.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Maker · Daily</div>
-          <h2>Hackaday</h2>
-          <p class="news-desc">Daily round-ups of clever hacks, new tools, broken things people fixed. The closest thing to a global maker newspaper.</p>
-          <div class="news-meta"><span>hackaday.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://hackaday.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-hackaday">
+              <span class="source-ribbon">Daily · Maker</span>
+              <span class="source-name">Hackaday</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Daily</span></div>
+            <h3>Hackaday</h3>
+            <p class="card-desc">The closest thing to a global maker newspaper. Multiple posts a day, mostly clever hacks (laser-cut things, retro-computing finds, "look at this 3D-printed thing"). High signal, low ad-clutter. The "Hackaday Prize" contests are also worth tracking.</p>
+            <div class="card-foot"><span class="views">hackaday.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-maker" href="https://makezine.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Maker · Magazine</div>
-          <h2>Make: Magazine</h2>
-          <p class="news-desc">The original maker magazine. Long-form project write-ups, maker faire coverage, and ongoing series on every craft.</p>
-          <div class="news-meta"><span>makezine.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://blog.adafruit.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-adafruit">
+              <span class="source-ribbon">Daily · Electronics</span>
+              <span class="source-name">Adafruit</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Daily</span></div>
+            <h3>Adafruit Blog</h3>
+            <p class="card-desc">The blog of the New York electronics shop. Multi-post-per-day mix of new products, learn-system updates, and community shoutouts. Limor Fried's editorial voice keeps it warm and weird in the best way.</p>
+            <div class="card-foot"><span class="views">blog.adafruit.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-maker" href="https://www.hackster.io/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Maker · Community</div>
-          <h2>Hackster</h2>
-          <p class="news-desc">Community-driven hardware projects with full step-by-steps. Where most of my own builds live (<a href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">thomassxt</a>).</p>
-          <div class="news-meta"><span>hackster.io</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-maker" href="https://www.instructables.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Maker · How-to</div>
-          <h2>Instructables</h2>
-          <p class="news-desc">Step-by-step DIY tutorials across hardware, woodworking, food, costumes. Diverse, beginner-friendly, contest-driven.</p>
-          <div class="news-meta"><span>instructables.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://blog.arduino.cc/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-arduino">
+              <span class="source-ribbon">Official · Arduino</span>
+              <span class="source-name">Arduino<br>Blog</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Official</span></div>
+            <h3>Arduino Blog</h3>
+            <p class="card-desc">Straight from Arduino HQ — new boards (UNO R4, Nano ESP32), IDE 2.x updates, education partnerships, and a "project of the week" series. Best place to know <i>what Arduino is doing</i> rather than what people are doing with it.</p>
+            <div class="card-foot"><span class="views">blog.arduino.cc</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- Arduino & RPi -->
+  <!-- 02 — Tutorials & deep dives -->
   <section class="news-section">
     <div class="wrap">
-      <h2 class="section-title">Arduino &amp; Raspberry Pi</h2>
-      <p class="section-sub">Official channels and the best second-party blogs for both ecosystems.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">02 · Tutorials &amp; deep dives</div>
+          <h2>When you need a step-by-step instead of a feed.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="news-grid">
-
-        <a class="news-box cat-arduino" href="https://blog.arduino.cc/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Arduino · Official</div>
-          <h2>Arduino Blog</h2>
-          <p class="news-desc">New boards, IDE releases, community projects, and case studies straight from Arduino HQ.</p>
-          <div class="news-meta"><span>blog.arduino.cc</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://learn.adafruit.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-adalearn">
+              <span class="source-ribbon">Tutorials</span>
+              <span class="source-name">Adafruit<br>Learn</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Tutorials</span></div>
+            <h3>Adafruit Learn</h3>
+            <p class="card-desc">Massive library of free, photographed, beginner-friendly tutorials. Best on-ramp for anyone new to electronics — wiring diagrams are clean, the code samples actually compile, and they cover both Arduino C++ and CircuitPython.</p>
+            <div class="card-foot"><span class="views">learn.adafruit.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-rpi" href="https://www.raspberrypi.com/news/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Raspberry Pi · Official</div>
-          <h2>Raspberry Pi News</h2>
-          <p class="news-desc">Hardware launches (Pi 5, Pico 2, AI HAT), Raspberry Pi OS updates, education and community projects.</p>
-          <div class="news-meta"><span>raspberrypi.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.hackster.io/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-hackster">
+              <span class="source-ribbon">Community</span>
+              <span class="source-name">Hackster</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Community</span></div>
+            <h3>Hackster</h3>
+            <p class="card-desc">Community-driven hardware projects with full step-by-steps — schematics, parts lists, code, BOM. Where most of <a href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">my own builds</a> live. Search before you reinvent: someone's probably done a 90% version of your idea.</p>
+            <div class="card-foot"><span class="views">hackster.io</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-electronics" href="https://blog.adafruit.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Adafruit · Daily</div>
-          <h2>Adafruit Blog</h2>
-          <p class="news-desc">Multi-post-per-day blog covering electronics culture, new products, learn-system tutorials, and community shoutouts.</p>
-          <div class="news-meta"><span>blog.adafruit.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.instructables.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-instructables">
+              <span class="source-ribbon">How-to</span>
+              <span class="source-name">Instructables</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">How-to</span></div>
+            <h3>Instructables</h3>
+            <p class="card-desc">Step-by-step DIY tutorials across electronics, woodworking, food, costumes. Broader than electronics-only sites, more beginner-friendly than Hackster. The contests drive interesting one-off builds you wouldn't see otherwise.</p>
+            <div class="card-foot"><span class="views">instructables.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-electronics" href="https://learn.adafruit.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Adafruit · Learn</div>
-          <h2>Adafruit Learn</h2>
-          <p class="news-desc">A massive library of free, photographed, beginner-friendly tutorials. Best on-ramp for anyone new to electronics.</p>
-          <div class="news-meta"><span>learn.adafruit.com</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-electronics" href="https://www.sparkfun.com/news" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>SparkFun</div>
-          <h2>SparkFun News</h2>
-          <p class="news-desc">Sister-vibe to Adafruit. Open-source hardware, sensor breakouts, education kits, and a strong tutorials section.</p>
-          <div class="news-meta"><span>sparkfun.com</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-electronics" href="https://www.eevblog.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Electronics · Deep dive</div>
-          <h2>EEVblog</h2>
-          <p class="news-desc">Dave Jones tearing apart oscilloscopes, debunking dodgy products, and explaining why your project doesn't work.</p>
-          <div class="news-meta"><span>eevblog.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://makezine.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-make">
+              <span class="source-ribbon">Magazine</span>
+              <span class="source-name">Make:</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Magazine</span></div>
+            <h3>Make: Magazine</h3>
+            <p class="card-desc">The original maker magazine. Long-form project write-ups, tool reviews, interviews with prolific makers. Not as fast-paced as Hackaday but the articles age well — the same Arduino-driven CNC build will still teach you something three years later.</p>
+            <div class="card-foot"><span class="views">makezine.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- 3D printing -->
+  <!-- 03 — Find an STL -->
   <section class="news-section">
     <div class="wrap">
-      <h2 class="section-title">3D printing</h2>
-      <p class="section-sub">News, model libraries and the workshops where the chess sets get printed.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">03 · Find an STL</div>
+          <h2>The libraries I search before designing from scratch.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="news-grid">
-
-        <a class="news-box cat-3dp" href="https://all3dp.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>3D printing · News</div>
-          <h2>All3DP</h2>
-          <p class="news-desc">Buyer's guides, printer reviews, slicer tutorials, materials comparisons. Reliable starting point for anything 3D printing.</p>
-          <div class="news-meta"><span>all3dp.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://cults3d.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-cults3d">
+              <span class="source-ribbon">STL · Marketplace</span>
+              <span class="source-name">Cults3D</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Marketplace</span></div>
+            <h3>Cults3D</h3>
+            <p class="card-desc">STL marketplace and library. Designers can charge for premium files; lots of free packs too. Where my own chess sets and figures live (<a href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">diyfunproject</a>). Better curation than Thingiverse, smaller catalogue than Printables.</p>
+            <div class="card-foot"><span class="views">cults3d.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-3dp" href="https://3dprintingindustry.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>3D printing · Industry</div>
-          <h2>3D Printing Industry</h2>
-          <p class="news-desc">More B2B-leaning. New machines, materials, partnerships, conferences. The trade-press perspective.</p>
-          <div class="news-meta"><span>3dprintingindustry.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.printables.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-printables">
+              <span class="source-ribbon">STL · Free</span>
+              <span class="source-name">Printables</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Library</span></div>
+            <h3>Printables</h3>
+            <p class="card-desc">Free STL library by Prusa. Active contests, gamification (you earn "PrusaPoints" on filament), and no paywall on community uploads. Best signal-to-noise of the free libraries right now.</p>
+            <div class="card-foot"><span class="views">printables.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-3dp" href="https://cults3d.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>STL · Marketplace</div>
-          <h2>Cults3D</h2>
-          <p class="news-desc">STL marketplace and library where my own chess sets and figures live (<a href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">diyfunproject</a>).</p>
-          <div class="news-meta"><span>cults3d.com</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-3dp" href="https://www.printables.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>STL · Library</div>
-          <h2>Printables</h2>
-          <p class="news-desc">Free STL library by Prusa. Active contests, gamification, no paywall on community uploads.</p>
-          <div class="news-meta"><span>printables.com</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-3dp" href="https://www.thingiverse.com/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>STL · Classic</div>
-          <h2>Thingiverse</h2>
-          <p class="news-desc">The original community STL library. Massive back-catalogue; quality varies but the search-by-thing surface is unmatched.</p>
-          <div class="news-meta"><span>thingiverse.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.thingiverse.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-thingiverse">
+              <span class="source-ribbon">STL · Classic</span>
+              <span class="source-name">Thingiverse</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Library</span></div>
+            <h3>Thingiverse</h3>
+            <p class="card-desc">The original community STL library, owned by MakerBot. Massive back-catalogue (15+ years), so the search-by-thing surface is unmatched. Quality varies and the UI hasn't aged well, but for "find me a printable X" it's still a first stop.</p>
+            <div class="card-foot"><span class="views">thingiverse.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- Communities -->
+  <!-- 04 — Reference & reviews -->
   <section class="news-section">
     <div class="wrap">
-      <h2 class="section-title">Communities</h2>
-      <p class="section-sub">Reddit subs that catch problems, fixes, and "look what I just made" posts faster than any blog.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">04 · Reference &amp; reviews</div>
+          <h2>For when "how does this part actually work?" matters.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="news-grid">
-
-        <a class="news-box cat-community" href="https://www.reddit.com/r/arduino/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Reddit · Arduino</div>
-          <h2>r/arduino</h2>
-          <p class="news-desc">Project shows, beginner help, library recommendations. Great place to ask "why won't this code compile?".</p>
-          <div class="news-meta"><span>reddit.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.raspberrypi.com/news/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-rpi">
+              <span class="source-ribbon">Official · RPi</span>
+              <span class="source-name">RPi News</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Official</span></div>
+            <h3>Raspberry Pi News</h3>
+            <p class="card-desc">Hardware launches (Pi 5, Pico 2, AI HAT, Camera Module 3), Raspberry Pi OS updates, education projects, and benchmarks. Less editorial than Hackaday — pure first-party news.</p>
+            <div class="card-foot"><span class="views">raspberrypi.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-community" href="https://www.reddit.com/r/raspberry_pi/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Reddit · Pi</div>
-          <h2>r/raspberry_pi</h2>
-          <p class="news-desc">Pi-specific projects, OS troubleshooting, peripheral compatibility, and the latest community Pi 5 builds.</p>
-          <div class="news-meta"><span>reddit.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.sparkfun.com/news" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-sparkfun">
+              <span class="source-ribbon">Open hardware</span>
+              <span class="source-name">SparkFun</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Reference</span></div>
+            <h3>SparkFun News</h3>
+            <p class="card-desc">Sister-vibe to Adafruit — Boulder-based, open-source hardware focus. The "Hookup Guides" tutorial section is one of the cleanest in the industry; sensor breakouts come with proper Eagle/KiCad files.</p>
+            <div class="card-foot"><span class="views">sparkfun.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-community" href="https://www.reddit.com/r/3Dprinting/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Reddit · 3DP</div>
-          <h2>r/3Dprinting</h2>
-          <p class="news-desc">Print-failure post-mortems, slicer settings, printer recommendations. Wiki on the sidebar is gold.</p>
-          <div class="news-meta"><span>reddit.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.eevblog.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-eevblog">
+              <span class="source-ribbon">Deep dive</span>
+              <span class="source-name">EEVblog</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Deep dive</span></div>
+            <h3>EEVblog</h3>
+            <p class="card-desc">Dave Jones tearing apart oscilloscopes, debunking dodgy products, and explaining why your circuit doesn't work. The forum is gold for component-level questions where the Adafruit-style "use this breakout" answer doesn't fit.</p>
+            <div class="card-foot"><span class="views">eevblog.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="news-box cat-community" href="https://www.reddit.com/r/DIY/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Reddit · DIY</div>
-          <h2>r/DIY</h2>
-          <p class="news-desc">Broader than electronics — woodworking, plumbing, home renovation. The "I just built X over the weekend" feed.</p>
-          <div class="news-meta"><span>reddit.com</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-community" href="https://www.reddit.com/r/electronics/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Reddit · Electronics</div>
-          <h2>r/electronics</h2>
-          <p class="news-desc">Heavier engineering bias than r/arduino. Schematics, PCB design, signal-integrity discussions.</p>
-          <div class="news-meta"><span>reddit.com</span><span class="news-arrow">↗</span></div>
-        </a>
-
-        <a class="news-box cat-community" href="https://www.reddit.com/r/PrintedCircuitBoard/" target="_blank" rel="noopener">
-          <div class="news-eyebrow"><span class="dot"></span>Reddit · PCB</div>
-          <h2>r/PrintedCircuitBoard</h2>
-          <p class="news-desc">PCB review subreddit. Post your KiCad/Altium screenshots, get layout critique before you order from JLCPCB.</p>
-          <div class="news-meta"><span>reddit.com</span><span class="news-arrow">↗</span></div>
+        <a class="card reveal" href="https://all3dp.com/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-all3dp">
+              <span class="source-ribbon">3D printing · Reviews</span>
+              <span class="source-name">All3DP</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Reviews</span></div>
+            <h3>All3DP</h3>
+            <p class="card-desc">Buyer's guides, printer reviews, slicer tutorials, materials comparisons. Most reliable starting point for "should I buy printer X" or "PETG vs PLA for outdoor parts" kind of questions.</p>
+            <div class="card-foot"><span class="views">all3dp.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
       </div>
+    </div>
+  </section>
 
-      <div class="news-note">
-        <strong>Why a curated discovery page?</strong> Algorithmic feeds drown the good stuff. This list is the actual short-list of sites I open every week — kept compact, kept human, updated when the lineup changes. If you have a source I should add, <a href="mailto:daitenkutarojurai@gmail.com">email me</a>.
+  <!-- 05 — Get help -->
+  <section class="news-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">05 · Get help</div>
+          <h2>When the project doesn't compile and the docs lied.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
+
+        <a class="card reveal" href="https://www.reddit.com/r/arduino/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-reddit">
+              <span class="source-ribbon">Reddit · Arduino</span>
+              <span class="source-name">r/arduino</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Community</span></div>
+            <h3>r/arduino</h3>
+            <p class="card-desc">Project shows, beginner help, library recommendations. The mods enforce the "show your code and wiring" rule, so help requests are usually answerable. Good first stop for "why won't this compile?".</p>
+            <div class="card-foot"><span class="views">reddit.com/r/arduino</span><span class="go">Open ↗</span></div>
+          </div>
+        </a>
+
+        <a class="card reveal" href="https://www.reddit.com/r/raspberry_pi/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-reddit">
+              <span class="source-ribbon">Reddit · Pi</span>
+              <span class="source-name">r/raspberry_pi</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Community</span></div>
+            <h3>r/raspberry_pi</h3>
+            <p class="card-desc">Pi-specific projects, OS troubleshooting, peripheral compatibility, and the latest community Pi 5 builds. Good for "does X HAT work with Y model?" kind of compatibility questions.</p>
+            <div class="card-foot"><span class="views">reddit.com/r/raspberry_pi</span><span class="go">Open ↗</span></div>
+          </div>
+        </a>
+
+        <a class="card reveal" href="https://www.reddit.com/r/3Dprinting/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-reddit">
+              <span class="source-ribbon">Reddit · 3DP</span>
+              <span class="source-name">r/3Dprinting</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Community</span></div>
+            <h3>r/3Dprinting</h3>
+            <p class="card-desc">Print-failure post-mortems, slicer settings, printer recommendations. The wiki on the sidebar is the actual reason to subscribe — best free troubleshooting reference for FDM printing.</p>
+            <div class="card-foot"><span class="views">reddit.com/r/3Dprinting</span><span class="go">Open ↗</span></div>
+          </div>
+        </a>
+
+        <a class="card reveal" href="https://www.reddit.com/r/DIY/" target="_blank" rel="noopener">
+          <div class="card-media">
+            <div class="source-tile src-reddit">
+              <span class="source-ribbon">Reddit · DIY</span>
+              <span class="source-name">r/DIY</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Community</span></div>
+            <h3>r/DIY</h3>
+            <p class="card-desc">Broader than electronics — woodworking, plumbing, home renovation. "I built X over the weekend" kind of feed. Useful when an electronics project needs a wooden enclosure and the wood is the part you've never done before.</p>
+            <div class="card-foot"><span class="views">reddit.com/r/DIY</span><span class="go">Open ↗</span></div>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
@@ -439,8 +568,10 @@
       <a class="sc-linkedin" href="https://www.linkedin.com/in/thomasfendrich" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span><span class="sc-label">LinkedIn</span></a>
       <a class="sc-email" href="mailto:daitenkutarojurai@gmail.com" aria-label="Email"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="sc-label">Email</span></a>
     </div>
-    <span>All projects open-source</span>
-    <span><a href="index.html">← Back to home</a></span>
+    <div class="footer-meta">
+      <span>All projects open-source</span>
+      <span><a href="index.html">← Back to home</a></span>
+    </div>
   </div>
 </footer>
 

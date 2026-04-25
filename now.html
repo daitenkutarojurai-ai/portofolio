@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Now — what diyfunproject is up to right now</title>
-<meta name="description" content="What I'm focused on this season — projects on the bench, what's printing, what's shipping next. Each box links to the live thing. Updated monthly. Part of the /now movement." />
+<meta name="description" content="What I'm focused on this season — projects on the bench, what's printing, what's recording. Each card links straight to the live thing. Updated monthly. Part of the /now movement." />
 <meta name="keywords" content="now page, currently working on, indie maker now, what is diyfunproject doing, current focus" />
 <meta name="author" content="diyfunproject" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="https://diyfunproject.com/now.html" />
 <meta property="og:title" content="Now — what diyfunproject is up to right now" />
-<meta property="og:description" content="Bench, prints, shipping, podcasts. Each box links to the live thing." />
+<meta property="og:description" content="Bench, prints, shipping, podcasts. Each card links to the live thing." />
 <meta property="og:image" content="https://diyfunproject.com/og-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -65,93 +65,21 @@
     100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
   }
 
-  .now-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 12px;
-    padding: clamp(16px, 3vh, 36px) 0;
-  }
-
-  .now-box {
-    display: flex; flex-direction: column;
-    gap: 10px;
-    padding: 18px 20px;
-    border: 1px solid var(--border);
-    background: var(--bg-2);
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.2s var(--ease), transform 0.25s var(--ease), background 0.2s var(--ease);
-    position: relative;
-    min-height: 130px;
-  }
-  .now-box:hover {
-    border-color: var(--border-hi);
-    transform: translateY(-3px);
-    background: linear-gradient(135deg, rgba(255,46,136,0.04), rgba(74,216,255,0.04));
-  }
-
-  .now-box .now-eyebrow {
-    font-family: var(--font-mono, ui-monospace, monospace);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .now-box h2 {
-    font-size: 15.5px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0;
-    line-height: 1.35;
-    color: var(--text);
-  }
-
-  .now-box .now-meta {
-    margin-top: auto;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono, ui-monospace, monospace);
-    font-size: 11px;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-  }
-  .now-box .now-arrow {
-    color: var(--accent, #d9ff4c);
-    font-size: 14px;
-    transition: transform 0.2s var(--ease);
-  }
-  .now-box:hover .now-arrow { transform: translateX(4px); }
-
-  .now-box.no-link {
-    cursor: default;
-  }
-  .now-box.no-link:hover {
-    transform: none;
-    background: var(--bg-2);
-  }
-
   .now-section {
     padding: clamp(20px, 4vh, 56px) 0;
   }
-  .now-section h2.section-title {
-    font-size: clamp(18px, 2vw, 22px);
+  .now-section .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px; flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .now-section h2 {
+    font-size: clamp(20px, 2.4vw, 26px);
     letter-spacing: -0.015em;
-    margin-bottom: 6px;
   }
   .now-section .section-sub {
     color: var(--muted);
     font-size: 13.5px;
-    margin-bottom: 4px;
-  }
-
-  /* Footer socials */
-  .footer-socials { gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
-  .footer-socials a .sc-icon-wrap { width: 36px; height: 36px; }
-  .footer-socials a .sc-label { display: none; }
-  @media (min-width: 700px) {
-    .footer-socials { justify-content: flex-start; }
   }
 </style>
 
@@ -190,67 +118,97 @@
     <a href="index.html" class="pg-back">← Back to home</a>
     <div class="eyebrow" style="margin-bottom:12px;">/now</div>
     <h1>What I'm working on right now.</h1>
-    <p>Each box links to the live thing — open source on GitHub, live web app, podcast on Spotify, STL on Cults3D. <a href="https://nownownow.com/about" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed currentColor;">/now page</a> in the Derek-Sivers tradition.</p>
+    <p>Each card links straight to the live thing — open-source repo, live web app, podcast on Spotify, STL on Cults3D. <a href="https://nownownow.com/about" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed currentColor;">/now page</a> in the Derek-Sivers tradition.</p>
     <div class="now-stamp"><span class="dot"></span>Last updated · April 2026</div>
   </div>
 </header>
 
 <main>
 
-  <!-- Shipping / building right now -->
+  <!-- Shipping -->
   <section class="now-section">
     <div class="wrap">
-      <h2 class="section-title">Shipping</h2>
-      <p class="section-sub">Live, in-flight, getting iterations this season.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">01 · Shipping</div>
+          <h2>Live, in-flight, getting iterations this season.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="now-grid">
-
-        <a class="now-box" href="https://certquests.com/" target="_blank" rel="noopener">
-          <div class="now-eyebrow">On the bench</div>
-          <h2>Cert Quest — Play Store launch</h2>
-          <div class="now-meta"><span>certquests.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://certquests.com/" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/certquest-banner.png" alt="Cert Quest banner — gamified IT certification trainer" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">On the bench</span></div>
+            <h3>Cert Quest — Play Store launch</h3>
+            <p class="card-desc">Wrapping the Play Store closed-test cycle. Question packs stable; gamification tuning is the last block before public release.</p>
+            <div class="card-foot"><span class="views">certquests.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="https://crepesforecast.vercel.app/" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Iterating</div>
-          <h2>Glaces en Seine — engine v3</h2>
-          <div class="now-meta"><span>crepesforecast.vercel.app</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://crepesforecast.vercel.app/" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/bannerup.png" alt="Glaces en Seine — Sunday-briefing dashboard" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Iterating</span></div>
+            <h3>Glaces en Seine — engine v3</h3>
+            <p class="card-desc">v3 will train a small regression on past sales vs briefing signals. Plus a shopping-list generator scaled by batter %.</p>
+            <div class="card-foot"><span class="views">crepesforecast.vercel.app</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="https://github.com/daitenkutarojurai-ai/Chess-kombat" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Open source</div>
-          <h2>Chess Kombat — engine refactor</h2>
-          <div class="now-meta"><span>github.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://github.com/daitenkutarojurai-ai/Chess-kombat" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/chesskombatc.png" alt="Chess Kombat — pixel-art chess RPG banner" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Open source</span></div>
+            <h3>Chess Kombat — engine refactor</h3>
+            <p class="card-desc">Splitting the chess engine from the campaign UI so the engine is reusable for puzzle-mode and future variants.</p>
+            <div class="card-foot"><span class="views">github.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- Designing / printing -->
+  <!-- Designing & printing -->
   <section class="now-section">
     <div class="wrap">
-      <h2 class="section-title">Designing &amp; printing</h2>
-      <p class="section-sub">Fusion 360 to PLA — published or in-progress.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">02 · Designing &amp; printing</div>
+          <h2>Fusion 360 to PLA — published or in-progress.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="now-grid">
-
-        <a class="now-box" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Designing</div>
-          <h2>Chess set #6 — silhouette study</h2>
-          <div class="now-meta"><span>cults3d.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/chatarunga2.png" alt="Chess set design in Fusion 360" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Designing</span></div>
+            <h3>Chess set #6 — silhouette study</h3>
+            <p class="card-desc">A sixth original chess set. Constraint: each piece readable from across the table at one glance. Two players this time.</p>
+            <div class="card-foot"><span class="views">cults3d.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Latest STL</div>
-          <h2>Chaturanga — 4-player chess</h2>
-          <div class="now-meta"><span>cults3d.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/chaturanga-4player.jpg" alt="Chaturanga 4-player chess set printed in PLA" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Latest STL</span></div>
+            <h3>Chaturanga — 4-player chess</h3>
+            <p class="card-desc">Four-player chess set with its own silhouette language. Each army readable at a glance. STL pack on Cults3D.</p>
+            <div class="card-foot"><span class="views">cults3d.com</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="prints.html">
-          <div class="now-eyebrow">Gallery</div>
-          <h2>All prints &amp; STL designs</h2>
-          <div class="now-meta"><span>diyfunproject.com</span><span class="now-arrow">→</span></div>
+        <a class="card reveal" href="prints.html">
+          <div class="card-media"><img src="images/yoda-googlehome.jpg" alt="Yoda × Google Home — hand-painted 3D print" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Gallery</span></div>
+            <h3>All prints &amp; STL designs</h3>
+            <p class="card-desc">Original chess sets, fan-art prints, timelapses, hand-painted figures. The full workshop archive.</p>
+            <div class="card-foot"><span class="views">diyfunproject.com</span><span class="go">View →</span></div>
+          </div>
         </a>
 
       </div>
@@ -260,57 +218,87 @@
   <!-- Recording -->
   <section class="now-section">
     <div class="wrap">
-      <h2 class="section-title">Recording</h2>
-      <p class="section-sub">Cloud / DevOps audio companions. Next season: Vault or Packer.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">03 · Recording</div>
+          <h2>Cloud / DevOps audio companions on Spotify.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="now-grid">
-
-        <a class="now-box" href="https://open.spotify.com/show/5taN3x2Hz5tM6NGzb5wI7L" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Latest season</div>
-          <h2>Terraform Bootcamp</h2>
-          <div class="now-meta"><span>spotify.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://open.spotify.com/show/5taN3x2Hz5tM6NGzb5wI7L" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/terraformpodcast.png" alt="Terraform Bootcamp podcast cover" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Latest season</span></div>
+            <h3>Terraform Bootcamp</h3>
+            <p class="card-desc">Audio companion for the HashiCorp Terraform Associate exam. First season just wrapped.</p>
+            <div class="card-foot"><span class="views">spotify.com</span><span class="go">Listen ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="https://open.spotify.com/show/45BtlX4PaRi1RH4EK3m3Hy" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Active</div>
-          <h2>Cloud Engineer Bootcamp</h2>
-          <div class="now-meta"><span>spotify.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://open.spotify.com/show/45BtlX4PaRi1RH4EK3m3Hy" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/aicertquestpodcastlogo.jpg" alt="Cloud Engineer Bootcamp podcast cover" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Active</span></div>
+            <h3>Cloud Engineer Bootcamp</h3>
+            <p class="card-desc">AWS · Kubernetes · Git, no fluff. The cross-vendor cloud-eng audio reference.</p>
+            <div class="card-foot"><span class="views">spotify.com</span><span class="go">Listen ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Active</div>
-          <h2>AWS Solutions Architect</h2>
-          <div class="now-meta"><span>spotify.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/awssolutionsarchotectpodcast.png" alt="AWS Solutions Architect podcast cover" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Active</span></div>
+            <h3>AWS Solutions Architect</h3>
+            <p class="card-desc">Audio companion for the SAA-C03 exam. Use it in the car or while running, then test recall in the Cert Quest app.</p>
+            <div class="card-foot"><span class="views">spotify.com</span><span class="go">Listen ↗</span></div>
+          </div>
         </a>
 
       </div>
     </div>
   </section>
 
-  <!-- Following -->
+  <!-- Following the workshop -->
   <section class="now-section">
     <div class="wrap">
-      <h2 class="section-title">Following the workshop</h2>
-      <p class="section-sub">Where the in-progress shots and shipping updates land.</p>
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">04 · Following the workshop</div>
+          <h2>Where in-progress shots and shipping updates land.</h2>
+        </div>
+      </div>
+      <div class="works-grid">
 
-      <div class="now-grid">
-
-        <a class="now-box" href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener">
-          <div class="now-eyebrow">In-progress</div>
-          <h2>Instagram · @diyfunproject</h2>
-          <div class="now-meta"><span>instagram.com</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/coffee-build-1.jpg" alt="Workshop bench — in-progress build shot" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">In-progress</span></div>
+            <h3>Instagram · @diyfunproject</h3>
+            <p class="card-desc">The bench, mid-build. New STLs out of the printer, prints curing, things that exploded. The unfiltered feed.</p>
+            <div class="card-foot"><span class="views">instagram.com</span><span class="go">Follow ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">
-          <div class="now-eyebrow">Long-form</div>
-          <h2>Hackster · @thomassxt</h2>
-          <div class="now-meta"><span>hackster.io</span><span class="now-arrow">↗</span></div>
+        <a class="card reveal" href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">
+          <div class="card-media"><img src="images/arduinofarm2.webp" alt="Hackster build — Arduino automation project" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Long-form</span></div>
+            <h3>Hackster · @thomassxt</h3>
+            <p class="card-desc">Full build write-ups with parts lists, schematics, code. 100,000+ views across the catalogue.</p>
+            <div class="card-foot"><span class="views">hackster.io</span><span class="go">Open ↗</span></div>
+          </div>
         </a>
 
-        <a class="now-box" href="news.html">
-          <div class="now-eyebrow">Discover</div>
-          <h2>Maker news · Arduino · RPi · DIY</h2>
-          <div class="now-meta"><span>diyfunproject.com</span><span class="now-arrow">→</span></div>
+        <a class="card reveal" href="news.html">
+          <div class="card-media"><img src="images/gameboybuilding2.jpg" alt="Maker workshop — Game Boy build in progress" loading="lazy" decoding="async"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="tag">Discover</span></div>
+            <h3>Maker news · Arduino · RPi · DIY</h3>
+            <p class="card-desc">The news sites, blogs and communities I actually read. Curated, organized by intent.</p>
+            <div class="card-foot"><span class="views">diyfunproject.com</span><span class="go">View →</span></div>
+          </div>
         </a>
 
       </div>
@@ -331,8 +319,10 @@
       <a class="sc-linkedin" href="https://www.linkedin.com/in/thomasfendrich" target="_blank" rel="noopener" aria-label="LinkedIn"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span><span class="sc-label">LinkedIn</span></a>
       <a class="sc-email" href="mailto:daitenkutarojurai@gmail.com" aria-label="Email"><span class="sc-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span class="sc-label">Email</span></a>
     </div>
-    <span>All projects open-source</span>
-    <span><a href="index.html">← Back to home</a></span>
+    <div class="footer-meta">
+      <span>All projects open-source</span>
+      <span><a href="index.html">← Back to home</a></span>
+    </div>
   </div>
 </footer>
 
