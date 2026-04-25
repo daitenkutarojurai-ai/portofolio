@@ -1,0 +1,32 @@
+/* TEAM */
+
+  Maker:        diyfunproject
+  Site:         https://daitenkutarojurai-ai.github.io/portofolio/
+  Contact:      daitenkutarojurai [at] gmail.com
+  From:         Luxembourg & rural France
+
+/* HANDLES */
+
+  Cults3D:      diyfunproject       https://cults3d.com/fr/utilisateurs/diyfunproject
+  Instagram:    @diyfunproject      https://www.instagram.com/diyfunproject/
+  Hackster:     @thomassxt          https://www.hackster.io/thomassxt
+  Instructables: Thomas sxt         https://www.instructables.com/member/Thomas%20sxt/instructables/
+  GitHub:       daitenkutarojurai-ai https://github.com/daitenkutarojurai-ai
+  LinkedIn:                          https://www.linkedin.com/in/thomasfendrich
+
+/* CREDITS */
+
+  Luc Fendrich (Dad)  — printed and painted a good share of the 3D pieces.
+  Gilles Miara         — helped design several of the 3D pieces.
+
+/* SITE */
+
+  Standards:    HTML5, CSS, vanilla JS — no build step
+  Hosting:      GitHub Pages
+  Fonts:        Inter, JetBrains Mono (Google Fonts)
+  Icons:        custom SVG, lucide silhouettes
+  RSS:          /feed.xml
+
+/* THANKS */
+
+  100,000+ readers across Hackster and Instructables.

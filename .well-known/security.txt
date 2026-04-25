@@ -1,0 +1,4 @@
+Contact: mailto:daitenkutarojurai@gmail.com
+Expires: 2027-04-25T00:00:00.000Z
+Preferred-Languages: en, fr
+Canonical: https://daitenkutarojurai-ai.github.io/portofolio/.well-known/security.txt

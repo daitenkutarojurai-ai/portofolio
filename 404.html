@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Not found · diyfunproject</title>
+<meta name="description" content="That page doesn't exist — but the rest of the workshop does. Browse the works, the journal, the 3D prints, or head back home." />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#131625" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .nf-wrap {
+    min-height: 70vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(40px, 8vh, 120px) 0;
+  }
+  .nf-card {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .nf-code {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: clamp(64px, 14vw, 140px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #ff2e88, #4ad8ff 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 8px;
+  }
+  .nf-eyebrow {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .nf-title {
+    font-size: clamp(22px, 3vw, 32px);
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .nf-sub {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .nf-links {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  .nf-links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13.5px;
+    transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .nf-links a:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+  .nf-links a.primary {
+    background: linear-gradient(135deg, rgba(255,46,136,0.15), rgba(74,216,255,0.15));
+    border-color: rgba(255,255,255,0.18);
+  }
+</style>
+</head>
+<body class="no-js anime">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="journal.html">Journal</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<main class="nf-wrap">
+  <div class="wrap">
+    <div class="nf-card">
+      <div class="nf-code">404</div>
+      <div class="nf-eyebrow">page not found</div>
+      <h1 class="nf-title">That URL fell off the bench.</h1>
+      <p class="nf-sub">Maybe the link rotted, maybe the page moved. Either way — pick a door and you'll be back in the workshop.</p>
+      <div class="nf-links">
+        <a class="primary" href="index.html">← Back to home</a>
+        <a href="works.html">All works</a>
+        <a href="journal.html">Journal</a>
+        <a href="prints.html">3D prints</a>
+        <a href="https://www.hackster.io/thomassxt" target="_blank" rel="noopener">Hackster ↗</a>
+        <a href="https://cults3d.com/fr/utilisateurs/diyfunproject" target="_blank" rel="noopener">Cults3D ↗</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>All projects open-source</span>
+  </div>
+</footer>
+
+</body>
+</html>
