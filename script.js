@@ -279,6 +279,7 @@
   const filterBar = document.getElementById('filter-bar');
   if (grid && filterBar) {
     const cards = Array.from(grid.querySelectorAll('.card'));
+    const sectionHeadings = Array.from(grid.querySelectorAll('.works-section-heading'));
 
     const isFeatured = (c) =>
       c.dataset.cat === 'hardware' ||
@@ -324,6 +325,16 @@
         } else {
           c.style.display = 'none';
         }
+      });
+      // Show section headings only when relevant: 'all'/'featured' shows all,
+      // a specific category filter shows only matching heading(s), 'video' hides all.
+      sectionHeadings.forEach((h) => {
+        const sectionCat = h.dataset.catSection;
+        let show;
+        if (filter === 'all' || filter === 'featured') show = true;
+        else if (filter === 'video') show = false;
+        else show = (sectionCat === filter);
+        h.classList.toggle('is-hidden', !show);
       });
     }
 
