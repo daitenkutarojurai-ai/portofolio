@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chess Kombat — pixel-art chess RPG for Android · diyfunproject</title>
+<meta name="description" content="Chess Kombat is a chess engine wearing an arcade jacket — 21 pixel-art enemies across 3 worlds, HP bars tied to captured material, Chess 960 and Puzzle Survival modes. Free Android game." />
+<meta name="keywords" content="Chess Kombat, pixel art chess game, chess RPG, chess fighting game, Android chess game, indie chess, Chess 960 mobile, puzzle survival, free chess game, chess engine pixel art, retro chess" />
+<meta name="author" content="diyfunproject" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#131625" />
+<link rel="canonical" href="https://diyfunproject.com/chess-kombat.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="diyfunproject" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://diyfunproject.com/chess-kombat.html" />
+<meta property="og:title" content="Chess Kombat — pixel-art chess RPG for Android" />
+<meta property="og:description" content="A chess engine wearing an arcade jacket. 21 pixel-art enemies, 3 worlds, HP bars, Chess 960, Puzzle Survival." />
+<meta property="og:image" content="https://diyfunproject.com/images/chesskombatc.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Chess Kombat — pixel-art chess RPG for Android" />
+<meta name="twitter:description" content="A chess engine wearing an arcade jacket. 21 enemies, 3 worlds, HP bars, Chess 960." />
+<meta name="twitter:image" content="https://diyfunproject.com/images/chesskombatc.png" />
+
+<!-- RSS auto-discovery -->
+<link rel="alternate" type="application/rss+xml" title="diyfunproject — Journal RSS" href="https://diyfunproject.com/feed.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .pj-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .pj-back:hover { color: var(--text); }
+
+  .pj-hero {
+    padding: clamp(20px, 4vh, 48px) 0;
+  }
+  .pj-hero img {
+    width: 100%; height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .pj-cta-row {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .pj-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
+  }
+  .pj-cta:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+  .pj-cta.primary {
+    background: linear-gradient(135deg, rgba(255,46,136,0.18), rgba(74,216,255,0.18));
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .pj-section { padding: clamp(20px, 4vh, 56px) 0; }
+  .pj-section h2 {
+    font-size: clamp(20px, 2.4vw, 28px);
+    letter-spacing: -0.015em;
+    margin-bottom: 16px;
+  }
+  .pj-section p { line-height: 1.7; font-size: 15px; margin-bottom: 12px; }
+
+  .pj-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .pj-feature {
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .pj-feature h3 {
+    font-size: 14.5px;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .pj-feature p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+
+  .pj-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 760px) { .pj-gallery { grid-template-columns: 1fr; } }
+  .pj-gallery img {
+    width: 100%; height: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: block;
+  }
+
+  .pj-stack {
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .pj-stack span {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--text);
+  }
+</style>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://diyfunproject.com/"},
+        {"@type": "ListItem", "position": 2, "name": "All works", "item": "https://diyfunproject.com/works.html"},
+        {"@type": "ListItem", "position": 3, "name": "Chess Kombat", "item": "https://diyfunproject.com/chess-kombat.html"}
+      ]
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "Chess Kombat",
+      "alternateName": "Chess Kombat — pixel-art chess RPG",
+      "description": "A pixel-art chess engine with a fighting-game twist. 21 enemies across 3 worlds, HP bars tied to captured material, Chess 960 random-start mode, and Puzzle Survival.",
+      "url": "https://diyfunproject.com/chess-kombat.html",
+      "image": "https://diyfunproject.com/images/chesskombatc.png",
+      "operatingSystem": "Android",
+      "applicationCategory": "GameApplication",
+      "applicationSubCategory": "Strategy",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "creator": {"@type": "Person", "name": "diyfunproject", "url": "https://diyfunproject.com/"},
+      "softwareVersion": "Closed test",
+      "downloadUrl": "https://github.com/daitenkutarojurai-ai/Chess-kombat",
+      "keywords": "chess, pixel art, RPG, fighting game, Chess 960, mobile game"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is Chess Kombat?", "acceptedAnswer": {"@type": "Answer", "text": "Chess Kombat is a pixel-art chess RPG for Android that wraps a real chess engine in a fighting-game presentation. You play through 21 hand-drawn enemies across 3 worlds; pieces have HP bars tied to captured material, and the campaign mixes standard chess, Chess 960, and Puzzle Survival modes."}},
+        {"@type": "Question", "name": "Is Chess Kombat free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Chess Kombat is free. Source code is available on GitHub under the diyfunproject organization."}},
+        {"@type": "Question", "name": "What chess variants does Chess Kombat support?", "acceptedAnswer": {"@type": "Answer", "text": "Three: standard chess, Chess 960 (also called Fischer Random — randomized back-rank, mirrored on both sides), and Puzzle Survival (endless mate-in-N puzzles with an HP bar that ticks down with the clock)."}},
+        {"@type": "Question", "name": "Does Chess Kombat work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the chess engine and all 21 campaign opponents run locally on the device. No network required."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="no-js anime">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="journal.html">Journal</a>
+    <a href="now.html">Now</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <a href="works.html" class="pj-back">← All works</a>
+    <div class="eyebrow" style="margin-bottom:12px;">Mobile game · Pixel art · Strategy</div>
+    <h1>Chess Kombat — chess wearing an arcade jacket.</h1>
+    <p>A pixel-art chess engine where every piece has a face, every match has a soundtrack, and every capture lands like a punch. Twenty-one hand-drawn opponents across three worlds. Free on Android.</p>
+    <div class="pj-cta-row">
+      <a class="pj-cta primary" href="https://github.com/daitenkutarojurai-ai/Chess-kombat" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">↗</span></a>
+      <a class="pj-cta" href="works.html#software">More software works</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pj-hero">
+    <div class="wrap">
+      <img src="images/chesskombatc.png" alt="Chess Kombat — main banner with pixel-art chess pieces facing off" loading="eager" decoding="async">
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>What it is</h2>
+      <p>Chess Kombat takes the cleanest possible thing — two players, 64 squares, full-information game — and dresses it up in the loudest possible costume. The engine underneath is real: it plays real chess, evaluates real positions, and respects all the standard rules. The presentation on top is a 16-bit fighting game.</p>
+      <p>Every campaign opponent is hand-drawn pixel art. Each piece has an HP bar that drains as it loses material; lose your queen and the bar takes a chunk. The world map progresses through three themed acts — and the soundtrack changes with the world. It is, in short, what would happen if Street Fighter ate a chess book.</p>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Features</h2>
+      <div class="pj-features">
+        <div class="pj-feature"><h3>21 hand-drawn opponents</h3><p>Three acts, each with their own art and music. Difficulty ramps from "club regular" to "you'll need an opening repertoire".</p></div>
+        <div class="pj-feature"><h3>HP-bar damage system</h3><p>Pieces show health proportional to remaining material. A king alone on the board feels like a final boss with one heart left.</p></div>
+        <div class="pj-feature"><h3>Chess 960 mode</h3><p>Randomized back rank, mirrored on both sides. Opening prep goes in the bin. Pure middlegame from move one.</p></div>
+        <div class="pj-feature"><h3>Puzzle Survival</h3><p>Endless mate-in-N puzzles with an HP bar that ticks down with the clock. Wrong moves cost health. How long can you last?</p></div>
+        <div class="pj-feature"><h3>Plays offline</h3><p>The full engine and all opponents run locally on the device. No account, no servers, no waiting.</p></div>
+        <div class="pj-feature"><h3>Free, source-available</h3><p>Free on Android, source on GitHub for anyone who wants to fork the engine or remix the art.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Tech stack</h2>
+      <div class="pj-stack">
+        <span>Android</span>
+        <span>Kotlin</span>
+        <span>Jetpack Compose</span>
+        <span>Custom chess engine</span>
+        <span>Pixel-art assets</span>
+        <span>Offline-first</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Frequently asked</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Is Chess Kombat free?</summary>
+          <div class="faq-body"><p>Yes. Free download, no in-app purchases, no ads in the campaign. Source on <a href="https://github.com/daitenkutarojurai-ai/Chess-kombat" target="_blank" rel="noopener">GitHub</a>.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it play real chess?</summary>
+          <div class="faq-body"><p>Yes — the engine respects all standard rules including castling, en passant, pawn promotion, threefold repetition, and the 50-move rule. The "fighting game" layer is purely cosmetic, plus the HP-bar visualization.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What's Chess 960?</summary>
+          <div class="faq-body"><p>Also called Fischer Random Chess. The back rank is randomized at the start of the game (with the same arrangement on both sides, so it stays symmetric). Bishops still go on opposite colors, the king is still between the rooks. Result: opening theory becomes useless, you're playing pure chess from move one.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Will there be an iOS version?</summary>
+          <div class="faq-body"><p>Not on the immediate roadmap. The engine is portable; the bottleneck is the Apple Developer Program fee + App Store review cycle, which doesn't make sense for a free game with no monetization. If demand is loud enough, that calculus changes.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap" style="text-align:center;">
+      <h2>Get the game</h2>
+      <p>Source &amp; release builds on GitHub.</p>
+      <div class="pj-cta-row" style="justify-content:center;">
+        <a class="pj-cta primary" href="https://github.com/daitenkutarojurai-ai/Chess-kombat" target="_blank" rel="noopener">View on GitHub <span aria-hidden="true">↗</span></a>
+        <a class="pj-cta" href="works.html">All works →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>All projects open-source</span>
+    <span><a href="index.html">← Back to home</a></span>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -3,42 +3,82 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://daitenkutarojurai-ai.github.io/portofolio/</loc>
+    <loc>https://diyfunproject.com/</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://daitenkutarojurai-ai.github.io/portofolio/og-card.png</image:loc>
+      <image:loc>https://diyfunproject.com/og-card.png</image:loc>
       <image:title>diyfunproject — Independent maker</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://daitenkutarojurai-ai.github.io/portofolio/works.html</loc>
+    <loc>https://diyfunproject.com/works.html</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://daitenkutarojurai-ai.github.io/portofolio/prints.html</loc>
+    <loc>https://diyfunproject.com/prints.html</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://daitenkutarojurai-ai.github.io/portofolio/gameboy.html</loc>
+    <loc>https://diyfunproject.com/gameboy.html</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://daitenkutarojurai-ai.github.io/portofolio/journal.html</loc>
+    <loc>https://diyfunproject.com/journal.html</loc>
     <lastmod>2026-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://diyfunproject.com/now.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://diyfunproject.com/chess-kombat.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://diyfunproject.com/images/chesskombatc.png</image:loc>
+      <image:title>Chess Kombat — pixel-art chess RPG</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://diyfunproject.com/cert-quest.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://diyfunproject.com/images/certquest-banner.png</image:loc>
+      <image:title>Cert Quest — gamified IT certification practice</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://diyfunproject.com/glaces-en-seine.html</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://diyfunproject.com/images/bannerup.png</image:loc>
+      <image:title>Glaces en Seine — Sunday-briefing dashboard</image:title>
+    </image:image>
   </url>
 
 </urlset>

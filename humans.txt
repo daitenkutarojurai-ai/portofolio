@@ -1,7 +1,7 @@
 /* TEAM */
 
   Maker:        diyfunproject
-  Site:         https://daitenkutarojurai-ai.github.io/portofolio/
+  Site:         https://diyfunproject.com/
   Contact:      daitenkutarojurai [at] gmail.com
   From:         Luxembourg & rural France
 

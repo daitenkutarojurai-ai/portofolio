@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Glaces en Seine — weather-aware Sunday briefing for a crêpe caravan · diyfunproject</title>
+<meta name="description" content="A weather-aware Sunday-briefing dashboard for a family food caravan (crêpes, gaufres, glaces) on the Seine. Weather forecast in, batter percentage and staffing plan out. Built with Next.js, deployed on Vercel." />
+<meta name="keywords" content="Glaces en Seine, crepe forecast, food truck weather dashboard, Next.js dashboard, Open-Meteo, weather-driven business app, food caravan tools, Sunday briefing, crepe caravan, La Frette-sur-Seine" />
+<meta name="author" content="diyfunproject" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#131625" />
+<link rel="canonical" href="https://diyfunproject.com/glaces-en-seine.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="diyfunproject" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://diyfunproject.com/glaces-en-seine.html" />
+<meta property="og:title" content="Glaces en Seine — weather-aware Sunday briefing" />
+<meta property="og:description" content="Weather forecast in, batter percentage and staffing plan out. A Sunday briefing for a crêpe caravan." />
+<meta property="og:image" content="https://diyfunproject.com/images/bannerup.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Glaces en Seine — weather-aware Sunday briefing" />
+<meta name="twitter:description" content="Weather forecast in, batter percentage out." />
+<meta name="twitter:image" content="https://diyfunproject.com/images/bannerup.png" />
+
+<link rel="alternate" type="application/rss+xml" title="diyfunproject — Journal RSS" href="https://diyfunproject.com/feed.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .pj-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .pj-back:hover { color: var(--text); }
+  .pj-hero { padding: clamp(20px, 4vh, 48px) 0; }
+  .pj-hero img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
+  .pj-cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .pj-cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-2); color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color 0.2s var(--ease), transform 0.2s var(--ease); }
+  .pj-cta:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+  .pj-cta.primary { background: linear-gradient(135deg, rgba(255,46,136,0.18), rgba(74,216,255,0.18)); border-color: rgba(255,255,255,0.2); }
+  .pj-section { padding: clamp(20px, 4vh, 56px) 0; }
+  .pj-section h2 { font-size: clamp(20px, 2.4vw, 28px); letter-spacing: -0.015em; margin-bottom: 16px; }
+  .pj-section p { line-height: 1.7; font-size: 15px; margin-bottom: 12px; }
+  .pj-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .pj-feature { border: 1px solid var(--border); background: var(--bg-2); border-radius: var(--radius); padding: 16px 18px; }
+  .pj-feature h3 { font-size: 14.5px; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .pj-feature p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+  .pj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pj-stack span { font-family: var(--font-mono, ui-monospace, monospace); font-size: 11px; letter-spacing: 0.05em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--text); }
+  .pj-formula {
+    border-left: 3px solid var(--accent, #d9ff4c);
+    padding: 10px 14px;
+    background: var(--bg-2);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 13px;
+    margin: 8px 0 14px;
+    overflow-x: auto;
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://diyfunproject.com/"},
+        {"@type": "ListItem", "position": 2, "name": "All works", "item": "https://diyfunproject.com/works.html"},
+        {"@type": "ListItem", "position": 3, "name": "Glaces en Seine", "item": "https://diyfunproject.com/glaces-en-seine.html"}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Glaces en Seine — Crêpe Forecast",
+      "alternateName": "Crêpe Forecast",
+      "description": "A weather-aware Sunday-briefing dashboard for a family food caravan on the Seine. Combines Open-Meteo weather data with a custom recipe-scaler engine to recommend batter percentage, topping mix, and staffing plan for the upcoming Sunday.",
+      "url": "https://diyfunproject.com/glaces-en-seine.html",
+      "image": "https://diyfunproject.com/images/bannerup.png",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "creator": {"@type": "Person", "name": "diyfunproject", "url": "https://diyfunproject.com/"},
+      "featureList": "Open-Meteo weather forecast, target-Sunday rolling, recipe scaler, staffing plan, ferry pulse timeline, Vigicrues river flow, social signal, kid-bribe window, celestial special, sources confidence panel",
+      "url": "https://crepesforecast.vercel.app/",
+      "downloadUrl": "https://crepesforecast.vercel.app/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is Glaces en Seine?", "acceptedAnswer": {"@type": "Answer", "text": "A weather-aware Sunday-briefing dashboard for a family food caravan (crêpes, gaufres, glaces) on the Quai de Seine between La Frette-sur-Seine and Cormeilles-en-Parisis. Every metric targets the upcoming Sunday — weather forecast in, batter percentage and staffing plan out."}},
+        {"@type": "Question", "name": "Why a Sunday briefing?", "acceptedAnswer": {"@type": "Answer", "text": "The caravan operates Sundays. Knowing on Wednesday whether Sunday will be sunny or rainy changes how much batter to prep, whether to bring an extra person, and which toppings to over-stock. The dashboard refreshes through the week so the forecast sharpens as Sunday approaches."}},
+        {"@type": "Question", "name": "Where does the weather data come from?", "acceptedAnswer": {"@type": "Answer", "text": "Open-Meteo (api.open-meteo.com) — free, no API key required, generous rate limits. The dashboard queries the exact target Sunday using start_date and end_date parameters."}},
+        {"@type": "Question", "name": "Is the source code available?", "acceptedAnswer": {"@type": "Answer", "text": "The live dashboard is at crepesforecast.vercel.app. The engine logic — Cardigan Threshold, Thermal Pivot, Bribe-O-Meter, Recipe Scaler — is documented in the project README."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="no-js anime">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="journal.html">Journal</a>
+    <a href="now.html">Now</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <a href="works.html" class="pj-back">← All works</a>
+    <div class="eyebrow" style="margin-bottom:12px;">Web app · Next.js · Weather-driven</div>
+    <h1>Glaces en Seine — weather forecast in, batter % out.</h1>
+    <p>A Sunday-briefing dashboard for a family food caravan on the Quai de Seine. Every metric targets the upcoming Sunday — load it on Wednesday and it's already telling you what Sunday will look like, what to prep, and how many people to bring.</p>
+    <div class="pj-cta-row">
+      <a class="pj-cta primary" href="https://crepesforecast.vercel.app/" target="_blank" rel="noopener">Open the live dashboard <span aria-hidden="true">↗</span></a>
+      <a class="pj-cta" href="works.html#software">More software works</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pj-hero">
+    <div class="wrap">
+      <img src="images/bannerup.png" alt="Glaces en Seine — Sunday-briefing dashboard banner" loading="eager" decoding="async">
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>The problem</h2>
+      <p>The caravan operates one day a week. Sunday weather changes everything: how much batter to prep on Friday, whether to bring an extra person, which toppings to over-stock, when the ferry will dump foot traffic on the quai, whether the Sunday market will be crowded enough to spill over.</p>
+      <p>Checking five weather sites and three local-events pages on Wednesday morning was the workflow. Glaces en Seine collapses that into one page that updates several times during the week so the forecast sharpens as Sunday approaches. Rolls forward to the next Sunday at Monday 00:00 local.</p>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>The engine — opinionated, auditable</h2>
+      <p>All the formulas live in one file (<code>lib/engine.ts</code>) so the caravan operator can read and challenge them. A few of the headline metrics:</p>
+
+      <h3 style="font-size:15px; margin:14px 0 6px;">Cardigan Threshold (<code>Ct</code>)</h3>
+      <div class="pj-formula">Ct = (T × S) − W &nbsp;&nbsp;// S = 1.0 if sun, 0.5 otherwise. Ct &gt; 15 → "Grand-Mère RED" alert</div>
+
+      <h3 style="font-size:15px; margin:14px 0 6px;">Thermal Pivot (<code>Pt</code>)</h3>
+      <div class="pj-formula">Pt = ((T + S) − 21) / 5 &nbsp;&nbsp;// S = +3 sun, 0 clouds. Pt &lt; 0 = Crêpe day, &gt; 0 = Glace day, &gt; 2 = Heat Drink Alert</div>
+
+      <h3 style="font-size:15px; margin:14px 0 6px;">Recipe Scaler (batter %)</h3>
+      <div class="pj-formula">Batter % = 100 + rain_adjustment + event_bumps + grand_mère_factor</div>
+
+      <p>Plus a Bribe-O-Meter for the 16:00–17:30 stroller-rush window, a Lycra Coefficient (cycling-traffic proxy), a Napkin Forecast (driven by RNSA pollen risk), and a celestial-transit toggle for the daily special.</p>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>What the briefing surfaces</h2>
+      <div class="pj-features">
+        <div class="pj-feature"><h3>Aperçu Dimanche</h3><p>5-second snapshot at the top: feels-like temperature, mode (Crêpe / Glace), cardigan level, batter %, staffing, expected affluence.</p></div>
+        <div class="pj-feature"><h3>Météo &amp; Clientèle</h3><p>Hourly temperature bars + "who's coming" block driven by pivot and stroller-window factor.</p></div>
+        <div class="pj-feature"><h3>Pulse timeline</h3><p>Ferry arrivals, church mass let-out, theater intermission, SNCF Ligne J delays — moments when foot traffic spikes.</p></div>
+        <div class="pj-feature"><h3>Recipe scaler</h3><p>Topping mix, batter percentage, staffing recommendation. The "what to actually prep" answer.</p></div>
+        <div class="pj-feature"><h3>Vigicrues</h3><p>Live Seine river-flow level for the La Frette section. Useful when the quai floods.</p></div>
+        <div class="pj-feature"><h3>Sources confidence</h3><p>Every data source is tagged live / simulated / unavailable. No silent fake data.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Tech stack</h2>
+      <div class="pj-stack">
+        <span>Next.js 14 (App Router)</span>
+        <span>TypeScript strict</span>
+        <span>Tailwind CSS</span>
+        <span>Open-Meteo API</span>
+        <span>Vigicrues</span>
+        <span>Vercel</span>
+        <span>Server components</span>
+        <span>5-min auto-refresh</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Frequently asked</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Where is the caravan?</summary>
+          <div class="faq-body"><p>On the Quai de Seine between <b>La Frette-sur-Seine (95530)</b> and <b>Cormeilles-en-Parisis (95240)</b> — Île-de-France, north-west of Paris. Coordinates: 48.9843, 2.1836.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why target the upcoming Sunday instead of "today"?</summary>
+          <div class="faq-body"><p>The caravan only operates Sundays. The interesting question is "what should I prep on Friday for Sunday?", not "what's the weather right now?". So the engine queries Open-Meteo with <code>start_date=end_date=</code> set to the next Sunday. The board rolls forward at Monday 00:00 local.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What's "Grand-Mère RED"?</summary>
+          <div class="faq-body"><p>An alert state when the cardigan threshold (Ct) exceeds 15 — meaning it's so warm-and-windy that an older customer is at risk of catching a chill if they linger. Triggers a pulsing red chip in the header and changes the recommended staffing pattern toward shorter wait times.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is the data all live?</summary>
+          <div class="faq-body"><p>Open-Meteo (weather) and Vigicrues (river) are live. SNCF, RNSA pollen, and social signals are stubbed for now and clearly tagged as "SIMULATED" in the UI — no silent fake data. Replacing each stub with a real feed is on the roadmap.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap" style="text-align:center;">
+      <h2>See it in action</h2>
+      <p>The dashboard is live and refreshes through the week.</p>
+      <div class="pj-cta-row" style="justify-content:center;">
+        <a class="pj-cta primary" href="https://crepesforecast.vercel.app/" target="_blank" rel="noopener">Open crepesforecast.vercel.app <span aria-hidden="true">↗</span></a>
+        <a class="pj-cta" href="works.html">All works →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>All projects open-source</span>
+    <span><a href="index.html">← Back to home</a></span>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

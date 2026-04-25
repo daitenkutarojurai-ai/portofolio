@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Now — what diyfunproject is up to right now</title>
+<meta name="description" content="What I'm focused on this season — projects on the bench, what's printing, what I'm reading, what's shipping next. Updated monthly. Part of the /now movement (nownownow.com)." />
+<meta name="keywords" content="now page, currently working on, indie maker now, what is diyfunproject doing, current focus" />
+<meta name="author" content="diyfunproject" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#131625" />
+<link rel="canonical" href="https://diyfunproject.com/now.html" />
+
+<!-- Open Graph / social share -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="diyfunproject" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://diyfunproject.com/now.html" />
+<meta property="og:title" content="Now — what diyfunproject is up to right now" />
+<meta property="og:description" content="What I'm focused on this season — bench, prints, reading, shipping. Updated monthly." />
+<meta property="og:image" content="https://diyfunproject.com/og-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Now — what diyfunproject is up to right now" />
+<meta name="twitter:description" content="Bench, prints, reading, shipping. Updated monthly." />
+<meta name="twitter:image" content="https://diyfunproject.com/og-card.png" />
+
+<!-- RSS auto-discovery -->
+<link rel="alternate" type="application/rss+xml" title="diyfunproject — Journal RSS" href="https://diyfunproject.com/feed.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .now-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .now-back:hover { color: var(--text); }
+
+  .now-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: clamp(16px, 3vh, 36px) 0 clamp(40px, 6vh, 72px);
+  }
+  @media (max-width: 760px) { .now-grid { grid-template-columns: 1fr; } }
+
+  .now-card {
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    border-radius: var(--radius);
+    padding: clamp(18px, 2.4vw, 26px);
+    transition: border-color 0.2s var(--ease);
+  }
+  .now-card:hover { border-color: var(--border-hi); }
+
+  .now-card .now-eyebrow {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .now-card h2 {
+    font-size: clamp(18px, 2vw, 22px);
+    letter-spacing: -0.015em;
+    margin: 0 0 12px;
+  }
+  .now-card .body {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .now-card .body p { margin: 0 0 10px; }
+  .now-card .body p:last-child { margin-bottom: 0; }
+  .now-card .body a {
+    color: var(--accent, #d9ff4c);
+    text-decoration: none;
+    border-bottom: 1px dashed currentColor;
+  }
+  .now-card .body a:hover { color: #fff; }
+  .now-card .body ul {
+    margin: 6px 0 12px 18px;
+    padding: 0;
+  }
+  .now-card .body li { margin-bottom: 4px; }
+
+  .now-card.wide { grid-column: 1 / -1; }
+
+  .now-stamp {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--muted);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .now-stamp .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+    animation: now-pulse 2s ease-out infinite;
+  }
+  @keyframes now-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+  }
+</style>
+</head>
+<body class="no-js anime">
+
+<!-- Nav -->
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="journal.html">Journal</a>
+    <a href="now.html" class="active">Now</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Header -->
+<header class="page-header">
+  <div class="wrap">
+    <a href="index.html" class="now-back">← Back to home</a>
+    <div class="eyebrow" style="margin-bottom:12px;">/now</div>
+    <h1>What I'm working on right now.</h1>
+    <p>A snapshot of the current season — what's on the bench, what's printing overnight, what's shipping next. This is a <a href="https://nownownow.com/about" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed currentColor;">/now page</a> in the Derek-Sivers tradition. Updated roughly monthly.</p>
+    <div class="now-stamp"><span class="dot"></span>Last updated · April 2026</div>
+  </div>
+</header>
+
+<!-- Now grid -->
+<main>
+  <section>
+    <div class="wrap">
+      <div class="now-grid">
+
+        <article class="now-card">
+          <div class="now-eyebrow">On the bench</div>
+          <h2>Cert Quest — Play Store closed test → public launch</h2>
+          <div class="body">
+            <p>Wrapping the Play Store closed-test cycle for <a href="https://certquests.com/" target="_blank" rel="noopener">Cert Quest</a>. Question packs across multiple IT-cert vendors are stable; the gamification layer (XP, streak, daily challenge) is the last thing being tuned before public release.</p>
+            <p>Next vendor on the roadmap: Microsoft Azure (AZ-900 then AZ-104).</p>
+          </div>
+        </article>
+
+        <article class="now-card">
+          <div class="now-eyebrow">Printing</div>
+          <h2>Chess set #6 — silhouette study</h2>
+          <div class="body">
+            <p>Designing a sixth original chess set in Fusion 360. The constraint this time: each piece readable from across the table at one glance, like the four-player <a href="https://cults3d.com/en/3d-model/game/chess-4-players-chaturanga" target="_blank" rel="noopener">Chaturanga</a> — but for two players.</p>
+            <p>Print queue: 6 pieces × ~5h each on the Bambu, PLA matte black + bone white.</p>
+          </div>
+        </article>
+
+        <article class="now-card">
+          <div class="now-eyebrow">Shipping</div>
+          <h2>Glaces en Seine — engine v3, sell-through log</h2>
+          <div class="body">
+            <p><a href="https://crepesforecast.vercel.app/" target="_blank" rel="noopener">Glaces en Seine</a> v3 will accept a nightly POST of <code>{date, crepes, glaces, waffles}</code> sales and train a lightweight regression on briefing signals vs. real sales — so the Sunday forecast actually learns from past Sundays.</p>
+            <p>Also adding a shopping-list generator scaled by the recipe-scaler batter percentage.</p>
+          </div>
+        </article>
+
+        <article class="now-card">
+          <div class="now-eyebrow">Recording</div>
+          <h2>Next podcast season — Vault or Packer?</h2>
+          <div class="body">
+            <p>The HashiCorp Terraform Bootcamp season wrapped. The next season is likely <b>HashiCorp Vault</b> (more demand from the audience) or <b>Packer</b> (shorter, gets me back to baking faster). Polling on Instagram <a href="https://www.instagram.com/diyfunproject/" target="_blank" rel="noopener">@diyfunproject</a>.</p>
+          </div>
+        </article>
+
+        <article class="now-card">
+          <div class="now-eyebrow">Reading</div>
+          <h2>Books on the desk</h2>
+          <div class="body">
+            <ul>
+              <li><i>The Pragmatic Programmer</i> — re-read, mostly for the chapter on tracer bullets.</li>
+              <li><i>Designing Data-Intensive Applications</i> — slow chew, one chapter per week.</li>
+              <li><i>The Mythical Man-Month</i> — because it never gets old.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="now-card">
+          <div class="now-eyebrow">Listening</div>
+          <h2>Workshop background</h2>
+          <div class="body">
+            <p>While printing or soldering: lo-fi-but-not-lo-fi instrumental sets, the occasional film score (Joe Hisaishi, Ramin Djawadi). Anything with vocals breaks concentration on Arduino code.</p>
+          </div>
+        </article>
+
+        <article class="now-card wide">
+          <div class="now-eyebrow">Not doing</div>
+          <h2>What I deliberately said no to this season</h2>
+          <div class="body">
+            <p>The corollary to a good <i>now</i> page is the list of things you said no to. This season, I'm not:</p>
+            <ul>
+              <li>Starting a YouTube channel — write-ups on Hackster &amp; Instructables already cover the same ground for me, and video editing eats workshop time.</li>
+              <li>Adding a Discord — the existing channels (Instagram DMs, GitHub issues, email) already cover what I can answer in a week.</li>
+              <li>Rewriting older Hackster posts — the audience has moved on; new builds compound better than refurbishing old ones.</li>
+            </ul>
+            <p>If you came here looking for any of those — sorry, won't happen this season. Maybe later.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- JSON-LD: WebPage with dateModified for freshness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Now — what diyfunproject is up to right now",
+  "url": "https://diyfunproject.com/now.html",
+  "description": "Snapshot of current focus — bench, prints, reading, shipping. Updated monthly.",
+  "dateModified": "2026-04-25",
+  "inLanguage": "en",
+  "isPartOf": {"@type": "WebSite", "@id": "https://diyfunproject.com/#website"},
+  "author": {"@type": "Person", "name": "diyfunproject", "url": "https://diyfunproject.com/"}
+}
+</script>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <span>All projects open-source</span>
+    <span><a href="index.html">← Back to home</a></span>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

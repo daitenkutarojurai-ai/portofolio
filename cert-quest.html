@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cert Quest — gamified IT certification practice (web + Android) · diyfunproject</title>
+<meta name="description" content="Cert Quest turns IT certification practice into a game — multi-vendor question packs, XP, streaks, daily challenges. Free web app at certquests.com, Android app in Play Store closed test. Covers AWS, Azure, Kubernetes, Terraform, Git." />
+<meta name="keywords" content="Cert Quest, IT certification practice, gamified cert prep, AWS practice exam, Azure practice exam, Kubernetes practice, Terraform practice, free cert prep, AWS SAA-C03 practice, free Android cert app, IT exam quiz" />
+<meta name="author" content="diyfunproject" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#131625" />
+<link rel="canonical" href="https://diyfunproject.com/cert-quest.html" />
+
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="diyfunproject" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:url" content="https://diyfunproject.com/cert-quest.html" />
+<meta property="og:title" content="Cert Quest — gamified IT certification practice" />
+<meta property="og:description" content="Multi-vendor question packs, XP, streaks, daily challenges. Free web app + Android closed test." />
+<meta property="og:image" content="https://diyfunproject.com/images/certquest-banner.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Cert Quest — gamified IT certification practice" />
+<meta name="twitter:description" content="Multi-vendor question packs, XP, streaks. Free web + Android." />
+<meta name="twitter:image" content="https://diyfunproject.com/images/certquest-banner.png" />
+
+<link rel="alternate" type="application/rss+xml" title="diyfunproject — Journal RSS" href="https://diyfunproject.com/feed.xml" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="mask-icon" href="favicon.svg" color="#ff2e88">
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="anime.css">
+<style>
+  .pj-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-bottom: 18px; transition: color 0.2s var(--ease); }
+  .pj-back:hover { color: var(--text); }
+  .pj-hero { padding: clamp(20px, 4vh, 48px) 0; }
+  .pj-hero img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
+  .pj-cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  .pj-cta { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--bg-2); color: var(--text); text-decoration: none; font-size: 14px; font-weight: 600; transition: border-color 0.2s var(--ease), transform 0.2s var(--ease); }
+  .pj-cta:hover { border-color: var(--border-hi); transform: translateY(-2px); }
+  .pj-cta.primary { background: linear-gradient(135deg, rgba(255,46,136,0.18), rgba(74,216,255,0.18)); border-color: rgba(255,255,255,0.2); }
+  .pj-section { padding: clamp(20px, 4vh, 56px) 0; }
+  .pj-section h2 { font-size: clamp(20px, 2.4vw, 28px); letter-spacing: -0.015em; margin-bottom: 16px; }
+  .pj-section p { line-height: 1.7; font-size: 15px; margin-bottom: 12px; }
+  .pj-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .pj-feature { border: 1px solid var(--border); background: var(--bg-2); border-radius: var(--radius); padding: 16px 18px; }
+  .pj-feature h3 { font-size: 14.5px; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .pj-feature p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.55; }
+  .pj-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 760px) { .pj-gallery { grid-template-columns: 1fr; } }
+  .pj-gallery img { width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); display: block; }
+  .pj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pj-stack span { font-family: var(--font-mono, ui-monospace, monospace); font-size: 11px; letter-spacing: 0.05em; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--text); }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://diyfunproject.com/"},
+        {"@type": "ListItem", "position": 2, "name": "All works", "item": "https://diyfunproject.com/works.html"},
+        {"@type": "ListItem", "position": 3, "name": "Cert Quest", "item": "https://diyfunproject.com/cert-quest.html"}
+      ]
+    },
+    {
+      "@type": "MobileApplication",
+      "name": "Cert Quest",
+      "alternateName": "Cert Quest — gamified IT certification practice",
+      "description": "A gamified IT certification trainer. Multi-vendor question packs (AWS, Azure, Kubernetes, Terraform, Git), XP system, daily streaks, and daily challenges. Free on the web at certquests.com, Android app in Play Store closed testing.",
+      "url": "https://diyfunproject.com/cert-quest.html",
+      "image": "https://diyfunproject.com/images/certquest-banner.png",
+      "operatingSystem": "Android, Web",
+      "applicationCategory": "EducationApplication",
+      "applicationSubCategory": "Test Prep",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "creator": {"@type": "Person", "name": "diyfunproject", "url": "https://diyfunproject.com/"},
+      "downloadUrl": "https://certquests.com/",
+      "keywords": "IT certification, AWS, Azure, Kubernetes, Terraform, Git, exam prep, gamified learning"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What certifications does Cert Quest cover?", "acceptedAnswer": {"@type": "Answer", "text": "AWS (Cloud Practitioner CLF-C02, Solutions Architect SAA-C03), Azure (AZ-900 in progress), Kubernetes (KCNA), HashiCorp Terraform Associate, GitLab Certified Git, with more vendor packs added as the question library grows."}},
+        {"@type": "Question", "name": "Is Cert Quest free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The web app at certquests.com is free to use, and the Android app (currently in Play Store closed testing) will launch free as well."}},
+        {"@type": "Question", "name": "How is it different from other practice platforms?", "acceptedAnswer": {"@type": "Answer", "text": "Cert Quest is structured as a game: XP for correct answers, streaks for consecutive daily sessions, daily challenges that mix questions across vendors. The goal is making cert prep feel like Duolingo, not like a flashcard app."}},
+        {"@type": "Question", "name": "Where do the questions come from?", "acceptedAnswer": {"@type": "Answer", "text": "Original question packs written against the published exam blueprints for each vendor. Each question includes an explanation and references back to the relevant docs."}},
+        {"@type": "Question", "name": "Will there be more vendors?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the next priority packs on the roadmap are Microsoft Azure (AZ-900 then AZ-104), Google Cloud (Associate Cloud Engineer), and HashiCorp Vault."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="no-js anime">
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand" aria-label="Home"></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="works.html">All Works</a>
+    <a href="journal.html">Journal</a>
+    <a href="now.html">Now</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="page-header">
+  <div class="wrap">
+    <a href="works.html" class="pj-back">← All works</a>
+    <div class="eyebrow" style="margin-bottom:12px;">Mobile + Web · Education · Cert prep</div>
+    <h1>Cert Quest — IT certification, gamified.</h1>
+    <p>Multi-vendor IT certification practice that feels like a game. Question packs across AWS, Azure, Kubernetes, Terraform, Git. XP, streaks, daily challenges. Free on the web; Android app in Play Store closed test.</p>
+    <div class="pj-cta-row">
+      <a class="pj-cta primary" href="https://certquests.com/" target="_blank" rel="noopener">Open the web app <span aria-hidden="true">↗</span></a>
+      <a class="pj-cta" href="#" target="_blank" rel="noopener">Get on Play Store <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="pj-hero">
+    <div class="wrap">
+      <img src="images/certquest-banner.png" alt="Cert Quest banner — gamified IT certification trainer" loading="eager" decoding="async">
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Why this exists</h2>
+      <p>Most IT-cert practice platforms are flashcard apps in a corporate trench-coat. Pages of dense text, "review your wrong answers", maybe a leaderboard nobody uses. Cert Quest takes the opposite approach: treat the learner like someone who already knows how to use a phone, and build the loop that <i>actually</i> keeps people coming back — XP, streaks, and a daily challenge that mixes vendors so you can't just grind one pack to oblivion.</p>
+      <p>The underlying questions are written against the official exam blueprints, with explanations and links to the source docs. The gamification is the wrapper, not the substance.</p>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Vendors covered</h2>
+      <div class="pj-features">
+        <div class="pj-feature"><h3>AWS</h3><p>Cloud Practitioner (CLF-C02), Solutions Architect Associate (SAA-C03). Full audio companions on Spotify.</p></div>
+        <div class="pj-feature"><h3>Microsoft Azure</h3><p>AZ-900 fundamentals in progress. AZ-104 next.</p></div>
+        <div class="pj-feature"><h3>Kubernetes</h3><p>KCNA (Kubernetes &amp; Cloud Native Associate). Terminology-heavy — the daily-challenge format works really well here.</p></div>
+        <div class="pj-feature"><h3>HashiCorp Terraform</h3><p>Terraform Associate. Audio companion podcast covers the same syllabus.</p></div>
+        <div class="pj-feature"><h3>GitLab Git</h3><p>GitLab Certified Git Associate. Workflow-heavy questions.</p></div>
+        <div class="pj-feature"><h3>More incoming</h3><p>Roadmap: GCP Associate Cloud Engineer, HashiCorp Vault, AWS Developer Associate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>The gamification layer</h2>
+      <div class="pj-features">
+        <div class="pj-feature"><h3>XP per question</h3><p>Right answers grant XP weighted by difficulty. Wrong answers don't punish — they queue the question for spaced repetition.</p></div>
+        <div class="pj-feature"><h3>Daily streak</h3><p>Hit your daily question goal to keep the streak. Miss a day, the streak resets — which is exactly what makes it work.</p></div>
+        <div class="pj-feature"><h3>Daily challenge</h3><p>A 5-question mix from across the vendors you've enrolled in. Forces context-switching and tests breadth, not just one pack's depth.</p></div>
+        <div class="pj-feature"><h3>Progress tracking</h3><p>Per-domain mastery percentage so you know what to study before sitting the actual exam.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Tech stack</h2>
+      <div class="pj-stack">
+        <span>Web app</span>
+        <span>Android (Kotlin)</span>
+        <span>Backend API</span>
+        <span>JWT auth</span>
+        <span>Spaced repetition</span>
+        <span>Offline-capable</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap">
+      <h2>Frequently asked</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Is it really free?</summary>
+          <div class="faq-body"><p>Yes. The web app at <a href="https://certquests.com/" target="_blank" rel="noopener">certquests.com</a> is free, and the Android app launches free. No paywalls between you and the question banks.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Where do the questions come from?</summary>
+          <div class="faq-body"><p>Original questions written against the official exam blueprints for each vendor. Every question includes an explanation and a doc reference, so when you get one wrong you actually learn the underlying concept rather than just the answer pattern.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How is the Android app different from the web app?</summary>
+          <div class="faq-body"><p>Same content, different ergonomics. The Android app is offline-first (study on the metro), supports background notifications for the daily streak, and the UI is tuned for short 5-minute sessions on a phone screen.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is there an audio version?</summary>
+          <div class="faq-body"><p>Yes — the cert prep podcasts on Spotify cover the same syllabus in long-form audio (<a href="https://open.spotify.com/show/5bVErIehwL8N2vWlrc568o" target="_blank" rel="noopener">AWS SAA-C03</a>, <a href="https://open.spotify.com/show/5taN3x2Hz5tM6NGzb5wI7L" target="_blank" rel="noopener">Terraform Bootcamp</a>, etc). Use them in the car or while running, then test recall in the app.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="pj-section">
+    <div class="wrap" style="text-align:center;">
+      <h2>Try it</h2>
+      <p>The web app is live; the Android app is in closed testing.</p>
+      <div class="pj-cta-row" style="justify-content:center;">
+        <a class="pj-cta primary" href="https://certquests.com/" target="_blank" rel="noopener">Open certquests.com <span aria-hidden="true">↗</span></a>
+        <a class="pj-cta" href="works.html">All works →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>All projects open-source</span>
+    <span><a href="index.html">← Back to home</a></span>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

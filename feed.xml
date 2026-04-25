@@ -5,22 +5,22 @@
      xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>diyfunproject — Workshop Journal</title>
-    <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html</link>
-    <atom:link href="https://daitenkutarojurai-ai.github.io/portofolio/feed.xml" rel="self" type="application/rss+xml" />
+    <link>https://diyfunproject.com/journal.html</link>
+    <atom:link href="https://diyfunproject.com/feed.xml" rel="self" type="application/rss+xml" />
     <description>Weekly workshop notes and build logs from an independent maker — Arduino, Raspberry Pi, 3D printing, mobile games, cloud podcasts.</description>
     <language>en-us</language>
     <lastBuildDate>Sat, 25 Apr 2026 12:00:00 +0000</lastBuildDate>
     <generator>Hand-written</generator>
     <image>
-      <url>https://daitenkutarojurai-ai.github.io/portofolio/og-card.png</url>
+      <url>https://diyfunproject.com/og-card.png</url>
       <title>diyfunproject — Workshop Journal</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html</link>
+      <link>https://diyfunproject.com/journal.html</link>
     </image>
 
     <item>
       <title>Cert Quest CTA — website and Play Store on the same line</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-25-cert-quest-cta</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-25-cert-quest-cta</guid>
+      <link>https://diyfunproject.com/journal.html#2026-04-25-cert-quest-cta</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-04-25-cert-quest-cta</guid>
       <pubDate>Sat, 25 Apr 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>Software</category>
@@ -30,8 +30,8 @@
 
     <item>
       <title>Cert Quest and IT Certif Web — separate banners</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-18-certquest-imagery</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-18-certquest-imagery</guid>
+      <link>https://diyfunproject.com/journal.html#2026-04-18-certquest-imagery</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-04-18-certquest-imagery</guid>
       <pubDate>Sat, 18 Apr 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>Content</category>
@@ -40,8 +40,8 @@
 
     <item>
       <title>Glaces en Seine — engine v2 anchored on the upcoming Sunday</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-11-glaces-engine</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-11-glaces-engine</guid>
+      <link>https://diyfunproject.com/journal.html#2026-04-11-glaces-engine</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-04-11-glaces-engine</guid>
       <pubDate>Sat, 11 Apr 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>Software</category>
@@ -51,8 +51,8 @@
 
     <item>
       <title>Chess Kombat — Chess 960 and Puzzle Survival landed</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-04-chess-kombat-960</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-04-04-chess-kombat-960</guid>
+      <link>https://diyfunproject.com/journal.html#2026-04-04-chess-kombat-960</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-04-04-chess-kombat-960</guid>
       <pubDate>Sat, 04 Apr 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>Game</category>
@@ -62,8 +62,8 @@
 
     <item>
       <title>Game Boy build — handheld boots a Mario clone</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-03-28-gameboy-mario</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-03-28-gameboy-mario</guid>
+      <link>https://diyfunproject.com/journal.html#2026-03-28-gameboy-mario</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-03-28-gameboy-mario</guid>
       <pubDate>Sat, 28 Mar 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>Hardware</category>
@@ -73,8 +73,8 @@
 
     <item>
       <title>Cults3D — Chaturanga 4-player set published</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-03-21-cults-chaturanga</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-03-21-cults-chaturanga</guid>
+      <link>https://diyfunproject.com/journal.html#2026-03-21-cults-chaturanga</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-03-21-cults-chaturanga</guid>
       <pubDate>Sat, 21 Mar 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>3D design</category>
@@ -84,8 +84,8 @@
 
     <item>
       <title>Terraform Bootcamp — first season wrapped</title>
-      <link>https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-03-14-podcast-terraform</link>
-      <guid isPermaLink="true">https://daitenkutarojurai-ai.github.io/portofolio/journal.html#2026-03-14-podcast-terraform</guid>
+      <link>https://diyfunproject.com/journal.html#2026-03-14-podcast-terraform</link>
+      <guid isPermaLink="true">https://diyfunproject.com/journal.html#2026-03-14-podcast-terraform</guid>
       <pubDate>Sat, 14 Mar 2026 12:00:00 +0000</pubDate>
       <dc:creator>diyfunproject</dc:creator>
       <category>Podcast</category>

@@ -91,7 +91,7 @@ def main():
     body_html = md_to_html(body_md)
     body_text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", body_html))[:280]
 
-    base = "https://daitenkutarojurai-ai.github.io/portofolio"
+    base = "https://diyfunproject.com"
     entry_url = f"{base}/journal.html#{slug}"
     pretty_date = today.replace("-", " · ")
 

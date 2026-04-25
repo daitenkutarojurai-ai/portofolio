@@ -29,7 +29,7 @@ Three.js is loaded from `unpkg.com` (`three@0.160`). No build step.
 ### GitHub Pages
 1. Push to `daitenkutarojurai-ai/portofolio` on `main`.
 2. Settings → Pages → Source: *Deploy from a branch* → `main` → `/ (root)` → Save.
-3. Live in ~1 min at `https://daitenkutarojurai-ai.github.io/portofolio/`.
+3. Live in ~1 min at `https://diyfunproject.com/`.
 
 ### Preview locally
 ```bash

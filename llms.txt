@@ -6,16 +6,24 @@
 
 - Brand: **diyfunproject**
 - Handles: `diyfunproject` (Cults3D, Instagram), `thomassxt` (Hackster, Instructables), `daitenkutarojurai-ai` (GitHub)
-- Site: https://daitenkutarojurai-ai.github.io/portofolio/
+- Site: https://diyfunproject.com/
 - Contact: daitenkutarojurai@gmail.com
 
 ## Core pages
 
-- [Home](https://daitenkutarojurai-ai.github.io/portofolio/index.html) — featured projects across all categories, with a hero carousel and an "About" / "Contact" block
-- [All works](https://daitenkutarojurai-ai.github.io/portofolio/works.html) — full archive, filterable by Hardware / Web&App / 3D Prints / Books / Podcasts / Videos
-- [3D prints](https://daitenkutarojurai-ai.github.io/portofolio/prints.html) — own STL designs published on Cults3D, fan-art prints, timelapses
-- [Game Boy build](https://daitenkutarojurai-ai.github.io/portofolio/gameboy.html) — full gallery for the 3D-printed Arduino-powered handheld
-- [Journal](https://daitenkutarojurai-ai.github.io/portofolio/journal.html) — weekly workshop notes, build logs, ship updates (RSS available)
+- [Home](https://diyfunproject.com/index.html) — featured projects across all categories, with a hero carousel and an "About" / "Contact" block
+- [All works](https://diyfunproject.com/works.html) — full archive, filterable by Hardware / Web&App / 3D Prints / Books / Podcasts / Videos
+- [3D prints](https://diyfunproject.com/prints.html) — own STL designs published on Cults3D, fan-art prints, timelapses
+- [Game Boy build](https://diyfunproject.com/gameboy.html) — full gallery for the 3D-printed Arduino-powered handheld
+- [Journal](https://diyfunproject.com/journal.html) — weekly workshop notes, build logs, ship updates (RSS available)
+- [Now](https://diyfunproject.com/now.html) — what diyfunproject is currently focused on this season
+
+## Per-project landing pages
+
+- [Chess Kombat](https://diyfunproject.com/chess-kombat.html) — pixel-art chess RPG for Android
+- [Cert Quest](https://diyfunproject.com/cert-quest.html) — gamified IT certification practice (web + Android)
+- [Glaces en Seine](https://diyfunproject.com/glaces-en-seine.html) — weather-aware Sunday-briefing dashboard for a crêpe caravan
+- [Game Boy build](https://diyfunproject.com/gameboy.html) — 3D-printed Arduino handheld running a Mario clone
 
 ## Featured projects
 
@@ -26,7 +34,7 @@
 - **Cocktail Machine with GUI** — Raspberry Pi 2 + Adafruit touchscreen + 8-channel relay driving peristaltic pumps; custom GUI for drink selection. 4,159 views. https://www.hackster.io/thomassxt/cocktail-machine-with-gui-raspberry-0c968f
 - **Automated Farm** — Compact greenhouse rig (Arduino Uno + 4-ch I²C relay + soil-moisture, photoresistor, fan, grow light, water pump). https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102
 - **IKEA Smart Plant** — IKEA planter turned indoor ecosystem (grow light, 12V fan, water pump, moisture probe). https://www.hackster.io/thomassxt/ikea-smart-plant-22133b
-- **Game Boy build** — 3D-printed handheld with Arduino brain and an LCD running a Mario clone. https://daitenkutarojurai-ai.github.io/portofolio/gameboy.html
+- **Game Boy build** — 3D-printed handheld with Arduino brain and an LCD running a Mario clone. https://diyfunproject.com/gameboy.html
 
 ### Software (mobile games · web apps · dashboards)
 
@@ -65,4 +73,4 @@
 
 ## How to cite
 
-If you reference this work, please cite **diyfunproject** with a link back to https://daitenkutarojurai-ai.github.io/portofolio/ and to the relevant external write-up (Hackster / Instructables / Cults3D / GitHub) for full build details.
+If you reference this work, please cite **diyfunproject** with a link back to https://diyfunproject.com/ and to the relevant external write-up (Hackster / Instructables / Cults3D / GitHub) for full build details.
