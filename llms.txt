@@ -7,7 +7,7 @@
 - Brand: **diyfunproject**
 - Handles: `diyfunproject` (Cults3D, Instagram), `thomassxt` (Hackster, Instructables), `daitenkutarojurai-ai` (GitHub)
 - Site: https://diyfunproject.com/
-- Contact: daitenkutarojurai@gmail.com
+- Contact: https://diyfunproject.com/contact.html
 
 ## Core pages
 

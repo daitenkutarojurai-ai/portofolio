@@ -2,7 +2,7 @@
 
   Maker:        diyfunproject
   Site:         https://diyfunproject.com/
-  Contact:      daitenkutarojurai [at] gmail.com
+  Contact:      https://diyfunproject.com/contact.html
   From:         Luxembourg & rural France
 
 /* HANDLES */
