@@ -326,15 +326,17 @@
           c.style.display = 'none';
         }
       });
-      // Show section headings only when relevant: 'all'/'featured' shows all,
-      // a specific category filter shows only matching heading(s), 'video' hides all.
-      sectionHeadings.forEach((h) => {
-        const sectionCat = h.dataset.catSection;
-        let show;
-        if (filter === 'all' || filter === 'featured') show = true;
-        else if (filter === 'video') show = false;
-        else show = (sectionCat === filter);
-        h.classList.toggle('is-hidden', !show);
+      // Show a section heading only if at least one of its cards is visible.
+      // "video" always hides headings (cards span multiple sections).
+      const gridChildren = Array.from(grid.children);
+      sectionHeadings.forEach((h, idx) => {
+        if (filter === 'video') { h.classList.add('is-hidden'); return; }
+        const nextHeading = sectionHeadings[idx + 1];
+        const hIdx = gridChildren.indexOf(h);
+        const nIdx = nextHeading ? gridChildren.indexOf(nextHeading) : gridChildren.length;
+        const hasVisible = gridChildren.slice(hIdx + 1, nIdx)
+          .some(el => el.classList.contains('card') && el.style.display !== 'none');
+        h.classList.toggle('is-hidden', !hasVisible);
       });
     }
 
@@ -575,6 +577,9 @@
     card.addEventListener('click', (e) => {
       // Ignore clicks on internal nav buttons (card-ext link, etc.)
       if (e.target.closest('.card-ext')) return;
+      // <a> cards (podcasts, books) that link externally → let browser navigate
+      if (card.tagName === 'A' && card.getAttribute('href') &&
+          !card.getAttribute('href').startsWith('#')) return;
       if (!card.dataset.title) autoFillCardData(card);
       if (!card.dataset.title) return;
       e.preventDefault();
