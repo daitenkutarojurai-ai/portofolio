@@ -623,6 +623,12 @@ section { padding: clamp(32px, 5vh, 56px) 0; }
   transform: translateY(-4px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
 }
+.card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent), 0 12px 32px rgba(0, 0, 0, 0.45);
+  border-color: var(--border-hi);
+  transform: translateY(-4px);
+}
 .card-media {
   position: absolute;
   inset: 0;
