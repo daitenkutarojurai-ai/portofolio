@@ -180,6 +180,9 @@
   #btn-retry { padding:9px 22px; border-radius:999px; background:var(--accent); border:none; color:#fff; font-size:13px; font-weight:600; cursor:pointer; transition:opacity 0.18s var(--ease); }
   #btn-retry:hover { opacity:0.85; }
 
+  /* ── hidden attribute fix (CSS display overrides browser default) ── */
+  [hidden] { display: none !important; }
+
   /* ── hidden filter ── */
   .news-card.nc-hidden { display:none; }
 
