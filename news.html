@@ -252,7 +252,7 @@
         <button class="filter-btn" data-source="adafruit">Adafruit</button>
         <button class="filter-btn" data-source="arduino">Arduino</button>
         <button class="filter-btn" data-source="make">Make:</button>
-        <button class="filter-btn" data-source="all3dp">All3DP</button>
+        <button class="filter-btn" data-source="cnx">CNX Software</button>
         <button class="filter-btn" data-source="rpi">Raspberry Pi</button>
       </div>
 
@@ -280,7 +280,7 @@
           <a href="https://blog.adafruit.com/" target="_blank" rel="noopener">Adafruit Blog</a>
           <a href="https://blog.arduino.cc/" target="_blank" rel="noopener">Arduino Blog</a>
           <a href="https://makezine.com/" target="_blank" rel="noopener">Make:</a>
-          <a href="https://all3dp.com/" target="_blank" rel="noopener">All3DP</a>
+          <a href="https://www.cnx-software.com/" target="_blank" rel="noopener">CNX Software</a>
           <a href="https://www.raspberrypi.com/news/" target="_blank" rel="noopener">Raspberry Pi News</a>
         </div>
         <button id="btn-retry">Try again</button>
@@ -314,78 +314,54 @@
 (function () {
   'use strict';
 
-  var SOURCES = [
-    { id: 'hackaday', label: 'Hackaday',       color: '#ffaa00', feed: 'https://hackaday.com/feed/',             url: 'https://hackaday.com/' },
-    { id: 'adafruit', label: 'Adafruit',        color: '#ff5096', feed: 'https://blog.adafruit.com/feed/',        url: 'https://blog.adafruit.com/' },
-    { id: 'arduino',  label: 'Arduino',         color: '#00b3b8', feed: 'https://blog.arduino.cc/feed/',          url: 'https://blog.arduino.cc/' },
-    { id: 'make',     label: 'Make:',           color: '#ff6464', feed: 'https://makezine.com/feed/',             url: 'https://makezine.com/' },
-    { id: 'all3dp',   label: 'All3DP',          color: '#2cd6a8', feed: 'https://all3dp.com/feed/',               url: 'https://all3dp.com/' },
-    { id: 'rpi',      label: 'Raspberry Pi',    color: '#ff5677', feed: 'https://www.raspberrypi.com/news/feed/', url: 'https://www.raspberrypi.com/news/' }
-  ];
-
-  var API_BASE = 'https://api.rss2json.com/v1/api.json?rss_url=';
-
   var grid       = document.getElementById('news-grid');
   var skeleton   = document.getElementById('skeleton-grid');
   var errorState = document.getElementById('error-state');
   var statusEl   = document.getElementById('feed-status');
 
-  /* ── helpers ── */
-  function stripHtml(html) {
-    var div = document.createElement('div');
-    div.innerHTML = html;
-    return div.textContent || div.innerText || '';
-  }
-
-  function truncate(text, len) {
-    var t = (text || '').replace(/\s+/g, ' ').trim();
-    if (t.length <= len) return t;
-    return t.slice(0, len).replace(/\s+\S*$/, '') + '…';
-  }
-
+  /* ── time helper ── */
   function timeAgo(dateStr) {
     if (!dateStr) return '';
     var d = new Date(dateStr);
     if (isNaN(d)) return '';
     var diff = (Date.now() - d) / 1000;
-    if (diff < 3600)    return Math.round(diff / 60) + 'm ago';
-    if (diff < 86400)   return Math.round(diff / 3600) + 'h ago';
-    if (diff < 604800)  return Math.round(diff / 86400) + 'd ago';
+    if (diff < 3600)   return Math.round(diff / 60) + 'm ago';
+    if (diff < 86400)  return Math.round(diff / 3600) + 'h ago';
+    if (diff < 604800) return Math.round(diff / 86400) + 'd ago';
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
   }
 
-  /* ── build a single article card ── */
-  function makeCard(item, source, staggerIdx) {
+  /* ── build a single article card from pre-processed JSON ── */
+  function makeCard(article, idx) {
     var a = document.createElement('a');
     a.className = 'news-card reveal';
-    a.href = item.link || source.url;
+    a.href = article.link || '#';
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    a.dataset.source = source.id;
-    a.style.setProperty('--d', String(staggerIdx % 12));
+    a.dataset.source = article.sourceId;
+    a.style.setProperty('--d', String(idx % 12));
 
     /* thumbnail or accent bar */
-    var thumb = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
-    if (thumb) {
+    if (article.thumbnail) {
       var img = document.createElement('img');
       img.className = 'nc-thumb';
       img.loading = 'lazy';
       img.alt = '';
-      img.src = thumb;
-      var accentHidden = document.createElement('div');
-      accentHidden.className = 'nc-accent';
-      accentHidden.style.background = source.color;
-      accentHidden.style.display = 'none';
+      img.src = article.thumbnail;
+      var accentFallback = document.createElement('div');
+      accentFallback.className = 'nc-accent';
+      accentFallback.style.background = article.color;
+      accentFallback.style.display = 'none';
       img.onerror = function () {
         img.style.display = 'none';
-        accentHidden.style.display = 'block';
+        accentFallback.style.display = 'block';
       };
       a.appendChild(img);
-      a.appendChild(accentHidden);
+      a.appendChild(accentFallback);
     } else {
       var accent = document.createElement('div');
       accent.className = 'nc-accent';
-      accent.style.background = source.color;
+      accent.style.background = article.color;
       a.appendChild(accent);
     }
 
@@ -398,11 +374,11 @@
 
     var srcSpan = document.createElement('span');
     srcSpan.className = 'nc-source';
-    srcSpan.style.color = source.color;
-    srcSpan.textContent = source.label;
+    srcSpan.style.color = article.color;
+    srcSpan.textContent = article.label;
     meta.appendChild(srcSpan);
 
-    var ago = timeAgo(item.pubDate);
+    var ago = timeAgo(article.pubDate);
     if (ago) {
       var dateSpan = document.createElement('span');
       dateSpan.className = 'nc-date';
@@ -413,15 +389,13 @@
 
     var h3 = document.createElement('h3');
     h3.className = 'nc-title';
-    h3.textContent = item.title || 'Article';
+    h3.textContent = article.title || 'Article';
     body.appendChild(h3);
 
-    var raw = item.description || item.content || '';
-    var excerpt = truncate(stripHtml(raw), 220);
-    if (excerpt) {
+    if (article.excerpt) {
       var p = document.createElement('p');
       p.className = 'nc-excerpt';
-      p.textContent = excerpt;
+      p.textContent = article.excerpt;
       body.appendChild(p);
     }
 
@@ -434,18 +408,30 @@
     return a;
   }
 
-  /* ── fetch one RSS source via rss2json ── */
-  function fetchSource(source, delayMs) {
-    return new Promise(function (resolve, reject) {
-      setTimeout(function () {
-        fetch(API_BASE + encodeURIComponent(source.feed))
-          .then(function (res) { return res.json(); })
-          .then(function (json) {
-            if (json.status !== 'ok') { reject(new Error(json.message || 'bad status')); return; }
-            resolve({ source: source, items: json.items || [] });
-          })
-          .catch(reject);
-      }, delayMs);
+  /* ── render articles into the grid ── */
+  function render(data) {
+    var articles = data.articles || [];
+    if (articles.length === 0) {
+      errorState.hidden = false;
+      statusEl.textContent = 'No articles found.';
+      return;
+    }
+
+    grid.innerHTML = '';
+    articles.forEach(function (article, idx) {
+      grid.appendChild(makeCard(article, idx));
+    });
+    grid.hidden = false;
+
+    var updatedAgo = data.updated ? timeAgo(data.updated) : '';
+    statusEl.textContent = articles.length + ' articles' +
+      (updatedAgo ? ' · updated ' + updatedAgo : '') +
+      (data.failed && data.failed.length ? ' · ' + data.failed.length + ' source(s) unavailable' : '');
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        grid.querySelectorAll('.news-card.reveal').forEach(function (c) { c.classList.add('in'); });
+      });
     });
   }
 
@@ -456,49 +442,20 @@
     errorState.hidden = true;
     statusEl.textContent = 'Loading articles…';
 
-    var promises = SOURCES.map(function (s, i) { return fetchSource(s, i * 200); });
-
-    Promise.allSettled(promises).then(function (results) {
-      var articles = [];
-      var failCount = 0;
-
-      results.forEach(function (r) {
-        if (r.status !== 'fulfilled') { failCount++; return; }
-        var source = r.value.source;
-        r.value.items.forEach(function (item) {
-          articles.push({ item: item, source: source, date: new Date(item.pubDate || 0) });
-        });
-      });
-
-      skeleton.hidden = true;
-
-      if (articles.length === 0) {
+    fetch('data/news.json?v=' + Date.now())
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        skeleton.hidden = true;
+        render(data);
+      })
+      .catch(function () {
+        skeleton.hidden = true;
         errorState.hidden = false;
-        statusEl.textContent = 'Could not load any articles.';
-        return;
-      }
-
-      /* sort newest first */
-      articles.sort(function (a, b) { return b.date - a.date; });
-
-      /* clear and populate grid */
-      grid.innerHTML = '';
-      articles.forEach(function (a, idx) {
-        grid.appendChild(makeCard(a.item, a.source, idx));
+        statusEl.textContent = 'Could not load articles.';
       });
-      grid.hidden = false;
-
-      var loaded = SOURCES.length - failCount;
-      statusEl.textContent = articles.length + ' articles from ' + loaded + ' of ' + SOURCES.length + ' sources' + (failCount ? ' (' + failCount + ' source' + (failCount > 1 ? 's' : '') + ' unavailable)' : '') + '.';
-
-      /* trigger reveal animations */
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          var cards = grid.querySelectorAll('.news-card.reveal');
-          cards.forEach(function (c) { c.classList.add('in'); });
-        });
-      });
-    });
   }
 
   /* ── filter ── */
@@ -515,11 +472,8 @@
 
   /* ── retry button ── */
   var retryBtn = document.getElementById('btn-retry');
-  if (retryBtn) {
-    retryBtn.addEventListener('click', load);
-  }
+  if (retryBtn) retryBtn.addEventListener('click', load);
 
-  /* ── kick off ── */
   load();
 })();
 </script>
