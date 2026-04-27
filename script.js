@@ -28,16 +28,30 @@
     ptr.innerHTML = '<span class="ptr-spinner"></span><span class="ptr-text">Pull to refresh</span>';
     document.body.appendChild(ptr);
 
-    const THRESH = 90;
+    // Visual indicator threshold (where the spinner shows "ready")
+    const THRESH = 120;
+    // Hard threshold to actually fire (must exceed this for >= DWELL_MS)
+    const FIRE_THRESH = 160;
+    // How long the user must hold past FIRE_THRESH before refresh fires
+    const DWELL_MS = 350;
+    // Cooldown after any near-fire / reset / page-load grace
+    const COOLDOWN_MS = 1500;
+    const PAGE_LOAD_GRACE_MS = 1800;
+
     let touchStartY = 0;
     let pulling = false;
     let pulled = 0;
+    let dwellTimer = null;
+    let cooldownUntil = performance.now() + PAGE_LOAD_GRACE_MS;
+
+    const inCooldown = () => performance.now() < cooldownUntil;
+    const armCooldown = (ms) => { cooldownUntil = performance.now() + (ms || COOLDOWN_MS); };
 
     const setPull = (px) => {
-      const clamped = Math.max(0, Math.min(140, px));
+      const clamped = Math.max(0, Math.min(180, px));
       ptr.style.transform = 'translate(-50%, ' + (clamped - 60) + 'px)';
       ptr.style.opacity = String(Math.min(1, clamped / THRESH));
-      ptr.classList.toggle('ready', clamped >= THRESH);
+      ptr.classList.toggle('ready', clamped >= FIRE_THRESH);
     };
     const reset = () => {
       ptr.style.transition = 'transform 0.25s var(--ease, ease), opacity 0.25s ease';
@@ -45,14 +59,19 @@
       setTimeout(() => { ptr.style.transition = ''; }, 260);
       pulling = false;
       pulled = 0;
+      clearTimeout(dwellTimer);
+      dwellTimer = null;
     };
     const fire = () => {
+      armCooldown(4000); // long cooldown so post-reload focus loops don't retrigger
       ptr.classList.add('refreshing');
       ptr.querySelector('.ptr-text').textContent = 'Refreshing…';
       setTimeout(() => location.reload(), 220);
     };
 
+    // ---- Touch (mobile) -----
     document.addEventListener('touchstart', (e) => {
+      if (inCooldown()) return;
       if (window.scrollY <= 0 && e.touches.length === 1) {
         touchStartY = e.touches[0].clientY;
         pulling = true;
@@ -63,26 +82,56 @@
       if (!pulling) return;
       if (window.scrollY > 0) { reset(); return; }
       pulled = e.touches[0].clientY - touchStartY;
-      if (pulled > 0) setPull(pulled * 0.6);
+      const visualPx = pulled * 0.55;
+      if (pulled > 0) setPull(visualPx);
+
+      // Dwell-fire: must hold past FIRE_THRESH for DWELL_MS
+      if (visualPx >= FIRE_THRESH) {
+        if (!dwellTimer) {
+          dwellTimer = setTimeout(() => {
+            if (pulling && pulled * 0.55 >= FIRE_THRESH) fire();
+          }, DWELL_MS);
+        }
+      } else if (dwellTimer) {
+        clearTimeout(dwellTimer);
+        dwellTimer = null;
+      }
     }, { passive: true });
     document.addEventListener('touchend', () => {
       if (!pulling) return;
-      const ready = pulled * 0.6 >= THRESH;
-      if (ready) { fire(); } else { reset(); }
-      pulling = false;
+      // No instant-fire on release — the dwell timer is the only path.
+      // Anything short of dwell-fire just resets.
+      reset();
+      armCooldown(); // brief lockout after any pull attempt
     }, { passive: true });
 
-    // Desktop: sustained wheel-up at scrollY === 0 reloads the page.
+    // ---- Desktop wheel -----
+    // Require a sustained, deliberate up-scroll burst at scrollY === 0.
     let wheelAccum = 0;
     let wheelTimer = null;
+    let wheelTicks = 0; // count of wheel events in the current burst
     window.addEventListener('wheel', (e) => {
-      if (window.scrollY > 1) { wheelAccum = 0; setPull(0); return; }
+      if (inCooldown()) { wheelAccum = 0; wheelTicks = 0; return; }
+      if (window.scrollY > 1) { wheelAccum = 0; wheelTicks = 0; setPull(0); return; }
       if (e.deltaY < 0) {
         wheelAccum += -e.deltaY;
-        setPull(Math.min(140, wheelAccum * 0.55));
-        if (wheelAccum > 240) { wheelAccum = 0; fire(); return; }
+        wheelTicks++;
+        setPull(Math.min(180, wheelAccum * 0.35));
+        // Fire only after both: large accumulation AND multiple discrete wheel events.
+        // This blocks single fast trackpad flings from triggering a refresh.
+        if (wheelAccum > 900 && wheelTicks >= 8) {
+          wheelAccum = 0;
+          wheelTicks = 0;
+          fire();
+          return;
+        }
         clearTimeout(wheelTimer);
-        wheelTimer = setTimeout(() => { wheelAccum = 0; reset(); }, 500);
+        wheelTimer = setTimeout(() => {
+          wheelAccum = 0;
+          wheelTicks = 0;
+          reset();
+          armCooldown(); // brief lockout after any near-attempt
+        }, 600);
       }
     }, { passive: true });
   })();
