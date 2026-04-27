@@ -2446,6 +2446,11 @@ footer .footer-meta {
    and disabled on touch where they'd be annoying.
    ================================================================ */
 
+/* Atomic word groups for the home headline so PRINTS never breaks mid-word.
+   Each .np stays whole; the line wraps between groups. */
+.intro h1 .np,
+.hero h1 .np { white-space: nowrap; }
+
 /* 1. Cursor spotlight ---------------------------------------------------- */
 .fx-spotlight {
   position: fixed; inset: 0;
