@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="https://diyfunproject.com/contact.html" />
 <meta property="og:title" content="Contact — diyfunproject" />
-<meta property="og:description" content="Commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message — usually responded to within 48 hours." />
+<meta property="og:description" content="Commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message — usually responded to within 24 hours." />
 <meta property="og:image" content="https://diyfunproject.com/og-card.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -304,8 +304,8 @@
   <div class="wrap">
     <a href="index.html" class="pg-back">← Back to home</a>
     <div class="eyebrow" style="margin-bottom:12px;">Get in touch</div>
-    <h1>Let's build something.</h1>
-    <p>Commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message — usually responded to within 48 hours.</p>
+    <h1>Let's build something</h1>
+    <p>Commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message — usually responded to within 24 hours.</p>
   </div>
 </header>
 
@@ -406,7 +406,7 @@
             </a>
           </div>
 
-          <h2 style="margin-top: 28px;">Good reasons to write</h2>
+          <h2 style="margin-top: 28px;">Good reasons to text me</h2>
           <ul class="why-list">
             <li>You want to <b>commission a build</b> — hardware, app, dashboard, STL set.</li>
             <li>You want to <b>license one of the STL designs</b> for commercial use.</li>
@@ -461,7 +461,7 @@
       const data = await response.json();
 
       if (response.ok && data.success) {
-        showStatus('success', '✓ Message sent — I\'ll get back to you within 48 hours, usually faster.');
+        showStatus('success', '✓ Message sent — I\'ll get back to you within 24 hours, usually faster.');
         form.reset();
         btnLabel.textContent = '✓ Sent';
         submitBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
