@@ -763,3 +763,213 @@
   }
 
 })();
+
+// ============================================================
+// FX layer — spotlight, magnetic tilt + sheen, click ripple,
+// konami matrix rain. Idempotent + reduced-motion aware.
+// ============================================================
+(function () {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const touch = matchMedia('(hover: none)').matches;
+
+  // ----- A. Cursor spotlight follower --------------------------
+  if (!reduced && !touch) {
+    const sp = document.createElement('div');
+    sp.className = 'fx-spotlight';
+    document.body.appendChild(sp);
+    let mouseRaf = 0;
+    let mx = 0, my = 0;
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      if (!mouseRaf) {
+        mouseRaf = requestAnimationFrame(() => {
+          sp.style.setProperty('--mx', mx + 'px');
+          sp.style.setProperty('--my', my + 'px');
+          mouseRaf = 0;
+        });
+      }
+      if (!document.body.classList.contains('fx-mouse-active')) {
+        document.body.classList.add('fx-mouse-active');
+      }
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => {
+      document.body.classList.remove('fx-mouse-active');
+    });
+  }
+
+  // ----- B. Holographic sheen on cards (rides on existing 3D tilt) ----
+  if (!reduced && !touch) {
+    document.querySelectorAll('.card').forEach((card) => {
+      if (card.closest('.modal')) return;
+      if (card.querySelector(':scope > .fx-sheen')) return; // idempotent
+      const sheen = document.createElement('div');
+      sheen.className = 'fx-sheen';
+      card.appendChild(sheen);
+      let sheenRaf = 0;
+      let lx = 0, ly = 0;
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        lx = (e.clientX - r.left) / (r.width || 1);
+        ly = (e.clientY - r.top) / (r.height || 1);
+        if (!sheenRaf) {
+          sheenRaf = requestAnimationFrame(() => {
+            sheen.style.setProperty('--sx', (lx * 100).toFixed(1) + '%');
+            sheen.style.setProperty('--sy', (ly * 100).toFixed(1) + '%');
+            sheenRaf = 0;
+          });
+        }
+      });
+    });
+  }
+
+  // ----- C. Click ripple on buttons & cards -------------------
+  function spawnRipple(host, x, y) {
+    if (reduced) return;
+    const cs = getComputedStyle(host);
+    if (cs.position === 'static') host.style.position = 'relative';
+    host.classList.add('fx-ripple-host');
+    const r = host.getBoundingClientRect();
+    const dot = document.createElement('span');
+    dot.className = 'fx-ripple';
+    dot.style.left = (x - r.left) + 'px';
+    dot.style.top = (y - r.top) + 'px';
+    host.appendChild(dot);
+    setTimeout(() => dot.remove(), 600);
+  }
+  document.addEventListener('click', (e) => {
+    // Avoid double-rippling: pick the innermost matching host
+    const host = e.target.closest('.btn, .card, .carousel-nav, .filter-btn, .sc-icon-wrap, .chip');
+    if (!host) return;
+    spawnRipple(host, e.clientX, e.clientY);
+  }, true);
+
+  // ----- D. Eyebrow text scramble on reveal -------------------
+  if (!reduced) {
+    const SCRAMBLE_CHARS = '!<>-_\\/[]{}=+*^?#__01';
+    const scramble = (el, targetText) => {
+      const total = targetText.length;
+      const FRAMES = Math.min(24, Math.max(12, Math.floor(total * 1.4)));
+      let frame = 0;
+      const tick = () => {
+        frame++;
+        const progress = frame / FRAMES;
+        let out = '';
+        for (let i = 0; i < total; i++) {
+          const reveal = (i / total) <= progress;
+          out += reveal
+            ? targetText[i]
+            : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        }
+        el.textContent = out;
+        if (frame < FRAMES) requestAnimationFrame(tick);
+        else el.textContent = targetText;
+      };
+      tick();
+    };
+    let stagger = 0;
+    const ebIo = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting || e.target.dataset.scrambled) return;
+        const target = e.target;
+        target.dataset.scrambled = '1';
+        const text = (target.textContent || '').trim();
+        if (!text || text.length > 80 || target.querySelector('*')) {
+          ebIo.unobserve(target);
+          return;
+        }
+        const delay = stagger;
+        stagger += 80;
+        setTimeout(() => scramble(target, text), delay);
+        // reset stagger after a quiet beat so later sections don't pile up
+        clearTimeout(window.__ebReset);
+        window.__ebReset = setTimeout(() => { stagger = 0; }, 900);
+        ebIo.unobserve(target);
+      });
+    }, { threshold: 0.55 });
+    document.querySelectorAll('.eyebrow').forEach((el) => ebIo.observe(el));
+  }
+
+  // ----- E. Konami → Matrix rain ------------------------------
+  const SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let seqIdx = 0;
+  let matrixOpen = false;
+  window.addEventListener('keydown', (e) => {
+    const want = SEQ[seqIdx];
+    const got = (e.key && e.key.length === 1) ? e.key.toLowerCase() : e.key;
+    const wantNorm = (want.length === 1) ? want.toLowerCase() : want;
+    if (got === wantNorm) {
+      seqIdx++;
+      if (seqIdx === SEQ.length) {
+        seqIdx = 0;
+        if (!matrixOpen) openMatrix();
+      }
+    } else {
+      // allow restart from a partial match if the new key matches SEQ[0]
+      seqIdx = (got === SEQ[0].toLowerCase() || got === SEQ[0]) ? 1 : 0;
+    }
+  });
+
+  function openMatrix() {
+    matrixOpen = true;
+    const wrap = document.createElement('div');
+    wrap.className = 'fx-matrix';
+    const cv = document.createElement('canvas');
+    wrap.appendChild(cv);
+    document.body.appendChild(wrap);
+    const badge = document.createElement('div');
+    badge.className = 'fx-matrix-badge';
+    badge.textContent = '// signal acquired — click to dismiss';
+    document.body.appendChild(badge);
+    requestAnimationFrame(() => wrap.classList.add('in'));
+
+    const ctx = cv.getContext('2d');
+    let w = cv.width = window.innerWidth;
+    let h = cv.height = window.innerHeight;
+    const FONT = 16;
+    let cols = Math.floor(w / FONT);
+    let drops = new Array(cols).fill(0).map(() => Math.random() * -50);
+    const chars = '01░▒▓<>/?[]{}#$%&*+-=ABCDEFαβΣΨ⌬⎔';
+    let raf, alive = true;
+
+    const onResize = () => {
+      w = cv.width = window.innerWidth;
+      h = cv.height = window.innerHeight;
+      cols = Math.floor(w / FONT);
+      drops = new Array(cols).fill(0).map(() => Math.random() * -50);
+    };
+    window.addEventListener('resize', onResize);
+
+    const tick = () => {
+      if (!alive) return;
+      ctx.fillStyle = 'rgba(6, 7, 13, 0.12)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.font = FONT + 'px ui-monospace, "JetBrains Mono", monospace';
+      for (let c = 0; c < cols; c++) {
+        const ch = chars[Math.floor(Math.random() * chars.length)];
+        const y = drops[c] * FONT;
+        ctx.fillStyle = (c % 9 === 0) ? '#ff2e88' : '#00e5ff';
+        ctx.fillText(ch, c * FONT, y);
+        if (y > h && Math.random() > 0.975) drops[c] = 0;
+        drops[c] += 1;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    if (!reduced) tick();
+    else { ctx.fillStyle = '#06070d'; ctx.fillRect(0, 0, w, h); ctx.fillStyle = '#00e5ff'; ctx.font = '24px monospace'; ctx.fillText('// reduced motion — animation disabled', 30, 60); }
+
+    const close = () => {
+      alive = false;
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('keydown', escClose);
+      wrap.classList.remove('in');
+      badge.remove();
+      setTimeout(() => { wrap.remove(); matrixOpen = false; }, 400);
+    };
+    const escClose = (e) => { if (e.key === 'Escape') close(); };
+    setTimeout(() => { if (matrixOpen) close(); }, 7500);
+    wrap.addEventListener('click', close);
+    window.addEventListener('keydown', escClose);
+  }
+})();
