@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Cert Quest — gamified IT certification practice (web + Android) · diyfunproject</title>
 <meta name="description" content="Cert Quest turns IT certification practice into a game — multi-vendor question packs, XP, streaks, daily challenges. Free web app at certquests.com, Android app in Play Store closed test. Covers AWS, Azure, Kubernetes, Terraform, Git." />
 <meta name="keywords" content="Cert Quest, IT certification practice, gamified cert prep, AWS practice exam, Azure practice exam, Kubernetes practice, Terraform practice, free cert prep, AWS SAA-C03 practice, free Android cert app, IT exam quiz" />
@@ -32,6 +34,7 @@
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="favicon.svg" color="#ff2e88">
 
 <link rel="stylesheet" href="styles.css">
@@ -100,7 +103,7 @@
     <p>Multi-vendor IT certification practice that feels like a game. Question packs across AWS, Azure, Kubernetes, Terraform, Git. XP, streaks, daily challenges. Free on the web; Android app in Play Store closed test.</p>
     <div class="pj-cta-row">
       <a class="pj-cta primary" href="https://certquests.com/" target="_blank" rel="noopener">Open the web app <span aria-hidden="true">↗</span></a>
-      <a class="pj-cta" href="#" target="_blank" rel="noopener">Get on Play Store <span aria-hidden="true">↗</span></a>
+      <span class="pj-cta pj-cta-disabled" aria-disabled="true" title="In Play Store closed testing">Play Store · soon</span>
     </div>
   </div>
 </header>

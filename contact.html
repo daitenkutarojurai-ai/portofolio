@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Contact — diyfunproject · commissions, collaborations, questions</title>
 <meta name="description" content="Get in touch with diyfunproject — commissions, collaborations, build questions, STL licensing, podcast guesting. Send a message via the form, or reach out on Instagram, LinkedIn or GitHub." />
 <meta name="keywords" content="contact diyfunproject, hire indie maker, hardware commission, STL licensing, podcast guest, collaboration" />
@@ -31,6 +33,7 @@
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="favicon.svg" color="#ff2e88">
 
 <link rel="stylesheet" href="styles.css">
@@ -327,11 +330,11 @@
             <div class="form-grid">
               <div class="field">
                 <label for="name">Your name</label>
-                <input type="text" id="name" name="name" required autocomplete="name" />
+                <input type="text" id="name" name="name" required autocomplete="name" maxlength="120" />
               </div>
               <div class="field">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required autocomplete="email" />
+                <input type="email" id="email" name="email" required autocomplete="email" maxlength="200" />
               </div>
               <div class="field full">
                 <label for="topic">Topic</label>
@@ -347,7 +350,7 @@
               </div>
               <div class="field full">
                 <label for="message">Message</label>
-                <textarea id="message" name="message" required minlength="10" placeholder="Tell me what you're working on, or what you need help with."></textarea>
+                <textarea id="message" name="message" required minlength="10" maxlength="5000" placeholder="Tell me what you're working on, or what you need help with."></textarea>
               </div>
             </div>
 
@@ -452,6 +455,7 @@
     status.classList.remove('is-visible');
 
     const formData = new FormData(form);
+    let succeeded = false;
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -461,6 +465,7 @@
       const data = await response.json();
 
       if (response.ok && data.success) {
+        succeeded = true;
         showStatus('success', '✓ Message sent — I\'ll get back to you within 24 hours, usually faster.');
         form.reset();
         btnLabel.textContent = '✓ Sent';
@@ -477,7 +482,9 @@
     } finally {
       submitBtn.disabled = false;
       submitBtn.classList.remove('is-loading');
-      btnLabel.textContent = 'Send message';
+      // Only reset the label on error — success keeps the "✓ Sent" label
+      // until the 3-second setTimeout above swaps it back.
+      if (!succeeded) btnLabel.textContent = 'Send message';
     }
   });
 })();

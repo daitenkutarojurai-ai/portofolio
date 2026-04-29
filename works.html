@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>All works — hardware, apps, 3D prints &amp; podcasts · diyfunproject</title>
 <meta name="description" content="The full archive of an independent maker — every Arduino &amp; Raspberry Pi build, mobile / web app, hand-painted 3D print and DevOps podcast. Filter by category and click any card for the full story." />
 <meta name="keywords" content="maker portfolio, Arduino projects, Raspberry Pi projects, 3D printing portfolio, STL Cults3D, mobile app, Android game, pixel art, IT certification app, AWS podcast, Terraform podcast, Hackster, Instructables" />
@@ -33,6 +35,7 @@
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="favicon.svg" color="#ff2e88">
 
 <link rel="stylesheet" href="styles.css">
@@ -451,7 +454,7 @@
          data-link="prints.html" data-link-label="Open the gallery">
         <div class="card-media">
           <span class="media-badge">Video</span>
-          <video src="images/mushroomlight.mp4" autoplay muted loop playsinline preload="auto"></video>
+          <video src="images/mushroomlight.mp4" autoplay muted loop playsinline preload="metadata"></video>
         </div>
         <div class="card-body">
           <div class="card-meta"><span class="tag">3D Print</span><span class="sep">·</span><span>Lamp</span></div>

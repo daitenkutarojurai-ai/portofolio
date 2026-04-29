@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>diyfunproject — Independent maker · Arduino, 3D prints, apps, podcasts</title>
 <meta name="description" content="Ten years of independent making — open hardware on Arduino &amp; Raspberry Pi, original STL designs on Cults3D, hand-painted 3D prints, pixel-art Android games, and cloud / DevOps podcasts. 100,000+ views on Hackster &amp; Instructables." />
 <meta name="keywords" content="independent maker, Arduino projects, Raspberry Pi projects, 3D printing portfolio, STL designs, Cults3D creator, Hackster, Instructables, pixel art game, Chess Kombat, Cert Quest, IoT projects, DevOps podcast, AWS podcast, Terraform podcast" />
@@ -44,6 +46,7 @@
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="favicon.svg" color="#ff2e88">
 
 <link rel="stylesheet" href="styles.css">
@@ -129,7 +132,7 @@
 
         <div class="carousel-slide" data-hold="6500">
           <span class="video-badge">Timelapse</span>
-          <video src="images/timelapse.mp4#t=2" data-start="2" autoplay muted playsinline preload="auto"></video>
+          <video src="images/timelapse.mp4#t=2" data-start="2" autoplay muted playsinline preload="metadata"></video>
           <div class="carousel-caption">
             <div class="eyebrow">3D Print · Timelapse · Live</div>
             <h2>From nothing to something</h2>
@@ -156,7 +159,7 @@
             <p>Cross-platform trainer covering multiple vendors across dozens of question packs. Currently in Play Store closed testing.</p>
             <div class="btn-row">
               <a class="btn" href="https://certquests.com/" target="_blank" rel="noopener">Visit website <span class="arrow">↗</span></a>
-              <a class="btn" href="#" target="_blank" rel="noopener">Get on Play Store <span class="arrow">↗</span></a>
+              <span class="btn btn-disabled" aria-disabled="true" title="In Play Store closed testing">Play Store · soon</span>
             </div>
           </div>
         </div>

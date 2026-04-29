@@ -135,6 +135,13 @@ def fetch_feed(source):
 
         excerpt = truncate(strip_html(desc))
 
+        # Defense-in-depth: a hostile feed could put `javascript:` or `data:`
+        # in <link>/<thumbnail>; never let those reach the DOM as href/src.
+        if link and not re.match(r'^https?://', link, re.I):
+            link = ''
+        if thumb and not re.match(r'^https?://', thumb, re.I):
+            thumb = ''
+
         articles.append({
             'sourceId':  source['id'],
             'label':     source['label'],

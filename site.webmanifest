@@ -1,0 +1,14 @@
+{
+  "name": "diyfunproject — maker portfolio",
+  "short_name": "diyfunproject",
+  "description": "Independent maker — hardware, software, 3D prints, podcasts.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0e",
+  "theme_color": "#131625",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

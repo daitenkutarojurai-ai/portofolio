@@ -143,6 +143,15 @@
     progressBar = document.createElement('div');
     progressBar.className = 'scroll-progress';
     nav.appendChild(progressBar);
+    // Publish the nav's measured height so sticky elements (filter-bar)
+    // sit flush even when the nav links wrap onto two rows on narrow widths.
+    const setNavH = () => {
+      document.documentElement.style.setProperty(
+        '--nav-h', nav.offsetHeight + 'px'
+      );
+    };
+    setNavH();
+    window.addEventListener('resize', setNavH, { passive: true });
   }
   const onScroll = () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 8);
@@ -180,8 +189,8 @@
 
   // ----- Carousel -------------------------------------------
   const carousel = document.getElementById('carousel');
-  if (carousel) {
-    const track = document.getElementById('carousel-track');
+  const track = carousel && document.getElementById('carousel-track');
+  if (carousel && track) {
     const slides = Array.from(track.children);
     const dotsWrap = document.getElementById('carousel-dots');
     const prevBtn = document.getElementById('carousel-prev');
@@ -189,14 +198,16 @@
     let idx = 0;
     let timer = null;
 
-    slides.forEach((_, i) => {
-      const d = document.createElement('button');
-      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Slide ' + (i + 1));
-      d.addEventListener('click', () => go(i));
-      dotsWrap.appendChild(d);
-    });
-    const dots = Array.from(dotsWrap.children);
+    if (dotsWrap) {
+      slides.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Slide ' + (i + 1));
+        d.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(d);
+      });
+    }
+    const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
 
     function go(i) {
       idx = (i + slides.length) % slides.length;
@@ -213,13 +224,18 @@
       timer = setTimeout(next, hold);
     }
 
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
+    if (prevBtn) prevBtn.addEventListener('click', prev);
+    if (nextBtn) nextBtn.addEventListener('click', next);
     carousel.addEventListener('mouseenter', () => clearTimeout(timer));
     carousel.addEventListener('mouseleave', restart);
 
-    // Keyboard
+    // Keyboard — but ignore arrows when typing or when an interactive
+    // element has focus (otherwise typing in a future input would step
+    // the carousel under the user).
     document.addEventListener('keydown', (e) => {
+      const t = e.target;
+      if (t && (t.matches('input, textarea, select, [contenteditable="true"]') ||
+                t.isContentEditable)) return;
       if (e.key === 'ArrowLeft') prev();
       if (e.key === 'ArrowRight') next();
     });
@@ -412,9 +428,12 @@
   }
 
   // ----- Project modal --------------------------------------
+  // Only present on index.html and works.html. The motion-layer code below
+  // must still run on every page, so we *gate* the modal block instead of
+  // early-returning out of the IIFE.
   const modal = document.getElementById('modal');
   const backdrop = document.getElementById('modal-backdrop');
-  if (!modal) return;
+  if (modal && backdrop) {
 
   const mClose = document.getElementById('modal-close');
   const mDismiss = document.getElementById('modal-dismiss');
@@ -510,6 +529,9 @@
       prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
       next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
       dotEls.forEach((d, j) => d.addEventListener('click', (e) => { e.stopPropagation(); go(j); }));
+      // Expose nav for the once-attached touch handler below to find. Each
+      // openModal replaces this so swipes always target the current gallery.
+      mHero._galleryGo = (delta) => go(idx + delta);
       mHero.style.display = '';
     } else if (img) {
       const i = document.createElement('img');
@@ -574,6 +596,25 @@
     document.body.style.overflow = '';
     const v = mHero.querySelector('video');
     if (v) { try { v.pause(); } catch (e) {} }
+    mHero._galleryGo = null;
+  }
+
+  // Modal gallery touch swipe — attached once, reads the current gallery's
+  // navigator from `mHero._galleryGo` (set by openModal when a gallery exists).
+  // Skips the gesture for vertical motion so the modal can still be scrolled.
+  if (mHero) {
+    let _gsx = 0, _gsy = 0;
+    mHero.addEventListener('touchstart', (e) => {
+      _gsx = e.touches[0].clientX; _gsy = e.touches[0].clientY;
+    }, { passive: true });
+    mHero.addEventListener('touchend', (e) => {
+      if (!mHero._galleryGo) return;
+      const dx = e.changedTouches[0].clientX - _gsx;
+      const dy = e.changedTouches[0].clientY - _gsy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+        mHero._galleryGo(dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
   }
 
   // Auto-fill modal data from the card's own DOM if the card doesn't
@@ -641,6 +682,8 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
   });
+
+  } // end: if (modal && backdrop)
 
   // ============================================================
   // Premium motion layer

@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>News — Live maker articles · Arduino, Raspberry Pi, 3D printing · diyfunproject</title>
 <meta name="description" content="Live articles from the maker community — Hackaday, Adafruit, Arduino Blog, Make:, All3DP and Raspberry Pi News. Fresh from the source, read on this page." />
 <meta name="keywords" content="Arduino news, Raspberry Pi news, DIY news, 3D printing news, maker news, Hackaday, Adafruit blog, Make magazine, All3DP, electronics news" />
@@ -31,6 +33,7 @@
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="mask-icon" href="favicon.svg" color="#ff2e88">
 
 <link rel="stylesheet" href="styles.css">
@@ -332,10 +335,14 @@
   }
 
   /* ── build a single article card from pre-processed JSON ── */
+  function safeUrl(u) {
+    return /^https?:\/\//i.test(u || '') ? u : '#';
+  }
+
   function makeCard(article, idx) {
     var a = document.createElement('a');
     a.className = 'news-card reveal';
-    a.href = article.link || '#';
+    a.href = safeUrl(article.link);
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
     a.dataset.source = article.sourceId;
@@ -347,7 +354,7 @@
       img.className = 'nc-thumb';
       img.loading = 'lazy';
       img.alt = '';
-      img.src = article.thumbnail;
+      img.src = safeUrl(article.thumbnail);
       var accentFallback = document.createElement('div');
       accentFallback.className = 'nc-accent';
       accentFallback.style.background = article.color;
