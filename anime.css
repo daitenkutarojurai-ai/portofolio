@@ -421,38 +421,8 @@ body.anime .modal-desc p {
   line-height: 1.55;
   margin-bottom: 8px;
 }
-body.anime .modal-side {
-  padding: 12px;
-  gap: 10px;
-  background: var(--surface);
-  border-color: var(--border-hi);
-  border-radius: 2px;
-}
-body.anime .modal-side-block .k { font-size: 10px; margin-bottom: 2px; color: var(--cyan); }
-body.anime .modal-side-block .v { font-size: 12px; }
-body.anime .modal-tech { gap: 6px; display: flex; flex-wrap: wrap; }
-body.anime .modal-tech span {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 2px 6px;
-  border: 1px solid var(--border-hi);
-  color: var(--muted);
-  border-radius: 2px;
-}
-@media (max-width: 640px) {
-  body.anime .modal-body { grid-template-columns: 1fr; }
-}
-body.anime .modal h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 20px;
-}
 body.anime .modal-close { color: var(--accent); border-color: var(--accent); }
 body.anime .modal-close:hover { background: var(--accent); color: #06070d; }
-body.anime .modal-gnav { color: var(--cyan); border-color: var(--cyan); }
-body.anime .modal-gnav:hover { background: var(--cyan); color: #06070d; border-color: var(--cyan); }
-body.anime .modal-dot.active { background: var(--accent); }
 
 
 /* ---- Per-card media positioning fixes -------------------------------- */
@@ -492,11 +462,11 @@ img[src$="bannerup.png"] {
   object-fit: cover !important;
   object-position: 72% 50% !important;
 }
-/* Modal hero shows the full image: contain + same anchor point */
-.modal-hero img[src$="bannerup.png"],
-.modal-slide img[src$="bannerup.png"] {
-  object-fit: contain !important;
-  object-position: center center !important;
+/* Modal hero shows the same image with the anchor point — cover so it
+   fills the box (no letterbox bars). */
+.modal-hero img[src$="bannerup.png"] {
+  object-fit: cover !important;
+  object-position: 72% 50% !important;
 }
 
 /* Book grid: single card was stretching to full row width. Cap it. */

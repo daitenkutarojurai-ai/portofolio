@@ -19,23 +19,21 @@
     aurora.className = 'bg-aurora';
     document.body.appendChild(aurora);
   }
-  // ----- Pull-to-refresh — DISABLED -----------------------------------
-  // The custom PTR was hard to trigger (160px + 350ms dwell) and conflicted
-  // with the browser's native pull-to-refresh on iOS Safari + Chrome
-  // Android, occasionally freezing the page. The native behaviour is good
-  // enough; the IIFE below short-circuits without attaching listeners.
-  if (false) (function setupPullToRefresh() {
+  // ----- Pull-to-refresh — easier thresholds --------------------------
+  // Re-enabled per request. Lowered the bar substantially so a normal pull
+  // fires the reload — previously 160px + 350ms was too hard.
+  (function setupPullToRefresh() {
     const ptr = document.createElement('div');
     ptr.className = 'ptr-indicator';
     ptr.innerHTML = '<span class="ptr-spinner"></span><span class="ptr-text">Pull to refresh</span>';
     document.body.appendChild(ptr);
 
     // Visual indicator threshold (where the spinner shows "ready")
-    const THRESH = 120;
+    const THRESH = 60;
     // Hard threshold to actually fire (must exceed this for >= DWELL_MS)
-    const FIRE_THRESH = 160;
+    const FIRE_THRESH = 80;
     // How long the user must hold past FIRE_THRESH before refresh fires
-    const DWELL_MS = 350;
+    const DWELL_MS = 150;
     // Cooldown after any near-fire / reset / page-load grace
     const COOLDOWN_MS = 1500;
     const PAGE_LOAD_GRACE_MS = 1800;
@@ -119,9 +117,9 @@
         wheelAccum += -e.deltaY;
         wheelTicks++;
         setPull(Math.min(180, wheelAccum * 0.35));
-        // Fire only after both: large accumulation AND multiple discrete wheel events.
+        // Fire only after both: enough accumulation AND multiple discrete wheel events.
         // This blocks single fast trackpad flings from triggering a refresh.
-        if (wheelAccum > 900 && wheelTicks >= 8) {
+        if (wheelAccum > 500 && wheelTicks >= 5) {
           wheelAccum = 0;
           wheelTicks = 0;
           fire();
