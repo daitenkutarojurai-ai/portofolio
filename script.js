@@ -165,6 +165,44 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // ----- Mobile drawer (hamburger menu) ----------------------
+  // Pairs with .nav-burger + #nav-drawer in every page's <nav>.
+  // Closes on link tap, ESC, outside click, and viewport widening.
+  const burger = document.getElementById('nav-burger');
+  const drawer = document.getElementById('nav-drawer');
+  if (burger && drawer) {
+    const setDrawer = (open) => {
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      drawer.classList.toggle('open', open);
+      if (open) drawer.removeAttribute('hidden');
+      else drawer.setAttribute('hidden', '');
+      document.body.classList.toggle('nav-locked', open);
+    };
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setDrawer(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    drawer.addEventListener('click', (e) => {
+      // Close when a link inside the drawer is tapped
+      const link = e.target.closest('a');
+      if (link) setDrawer(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+        setDrawer(false);
+        burger.focus();
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (burger.getAttribute('aria-expanded') !== 'true') return;
+      if (e.target.closest('#nav')) return;
+      setDrawer(false);
+    });
+    const wide = window.matchMedia('(min-width: 841px)');
+    wide.addEventListener('change', (m) => { if (m.matches) setDrawer(false); });
+  }
+
   // ----- Scroll reveal --------------------------------------
   const io = new IntersectionObserver(
     (entries) => entries.forEach((e) => {
