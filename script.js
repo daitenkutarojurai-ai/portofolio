@@ -475,159 +475,24 @@
 
   const mClose = document.getElementById('modal-close');
   const mDismiss = document.getElementById('modal-dismiss');
-  const mImg = document.getElementById('modal-img');
-  const mHero = document.getElementById('modal-hero');
   const mTitle = document.getElementById('modal-title');
   const mTagline = document.getElementById('modal-tagline');
   const mDesc = document.getElementById('modal-desc');
-  const mYear = document.getElementById('modal-year');
-  const mType = document.getElementById('modal-type');
-  const mViews = document.getElementById('modal-views');
-  const mTech = document.getElementById('modal-tech');
   const mLink = document.getElementById('modal-link');
   const mLinkLbl = document.getElementById('modal-link-label');
-  const mLink2 = document.getElementById('modal-link-2');
-  const mLink2Lbl = document.getElementById('modal-link-2-label');
-  const mLinkWorks = document.getElementById('modal-link-works');
-
-  function inferWorksHash(link) {
-    if (!link) return '';
-    try {
-      const host = new URL(link, location.href).hostname.replace('www.', '');
-      if (host.includes('cults3d')) return '#print';
-      if (host.includes('hackster') || host.includes('instructables')) return '#hardware';
-      if (host.includes('spotify')) return '#podcast';
-      if (host.includes('github') || host.includes('vercel') || host.includes('certquests')) return '#software';
-    } catch (e) {}
-    return '';
-  }
 
   function openModal(card) {
-    const video = card.dataset.video;
-    const img = card.dataset.img;
-    // Collect gallery: explicit data-imgs wins, otherwise pull from inline slider slides
-    let imgs = (card.dataset.imgs || '').split(',').map((s) => s.trim()).filter(Boolean);
-    if (imgs.length === 0) {
-      const slideImgs = Array.from(card.querySelectorAll('.card-slider .slide img'))
-        .map((el) => el.getAttribute('src'));
-      if (slideImgs.length > 1) imgs = slideImgs;
-    }
-    mHero.innerHTML = '';
-    mHero.classList.toggle('fit-contain', card.dataset.fit === 'contain');
-    mHero.classList.remove('has-gallery');
-    // Prefer a gallery when we have more than one picture (even over a video hero)
-    if (imgs.length > 1) {
-      // fall through to gallery branch below
-    } else if (video) {
-      const v = document.createElement('video');
-      v.src = video;
-      v.autoplay = true;
-      v.muted = true;
-      v.loop = true;
-      v.playsInline = true;
-      v.controls = true;
-      v.preload = 'metadata';
-      mHero.appendChild(v);
-      mHero.style.display = '';
-    }
-    if (imgs.length > 1) {
-      mHero.classList.add('has-gallery');
-      imgs.forEach((src, i) => {
-        const s = document.createElement('div');
-        s.className = 'modal-slide' + (i === 0 ? ' active' : '');
-        const im = document.createElement('img');
-        im.src = src;
-        im.alt = card.dataset.title || '';
-        im.loading = 'lazy';
-        s.appendChild(im);
-        mHero.appendChild(s);
-      });
-      const dots = document.createElement('div');
-      dots.className = 'modal-dots';
-      imgs.forEach((_, i) => {
-        const d = document.createElement('button');
-        d.type = 'button';
-        d.className = 'modal-dot' + (i === 0 ? ' active' : '');
-        d.setAttribute('aria-label', 'Image ' + (i + 1));
-        dots.appendChild(d);
-      });
-      const prev = document.createElement('button');
-      prev.type = 'button'; prev.className = 'modal-gnav prev'; prev.setAttribute('aria-label', 'Previous'); prev.textContent = '‹';
-      const next = document.createElement('button');
-      next.type = 'button'; next.className = 'modal-gnav next'; next.setAttribute('aria-label', 'Next'); next.textContent = '›';
-      mHero.appendChild(prev); mHero.appendChild(next); mHero.appendChild(dots);
-      const slides = mHero.querySelectorAll('.modal-slide');
-      const dotEls = dots.querySelectorAll('.modal-dot');
-      let idx = 0;
-      const go = (n) => {
-        idx = (n + slides.length) % slides.length;
-        slides.forEach((el, j) => el.classList.toggle('active', j === idx));
-        dotEls.forEach((el, j) => el.classList.toggle('active', j === idx));
-      };
-      prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1); });
-      next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1); });
-      dotEls.forEach((d, j) => d.addEventListener('click', (e) => { e.stopPropagation(); go(j); }));
-      // Expose nav for the once-attached touch handler below to find. Each
-      // openModal replaces this so swipes always target the current gallery.
-      mHero._galleryGo = (delta) => go(idx + delta);
-      mHero.style.display = '';
-    } else if (img) {
-      const i = document.createElement('img');
-      i.id = 'modal-img';
-      i.src = img;
-      i.alt = card.dataset.title || '';
-      mHero.appendChild(i);
-      mHero.style.display = '';
-    } else if (!video) {
-      mHero.style.display = 'none';
-    }
-    mTitle.textContent = card.dataset.title || '';
-    mTagline.textContent = card.dataset.tagline || '';
-    mDesc.innerHTML = card.dataset.desc || '';
-    if (mYear) mYear.textContent = card.dataset.year || '';
-    if (mType) mType.textContent = card.dataset.type || '';
-    if (mViews) mViews.textContent = card.dataset.views || '';
-    mTech.innerHTML = '';
-    (card.dataset.tech || '').split(',').forEach((t) => {
-      const v = t.trim();
-      if (!v) return;
-      const s = document.createElement('span');
-      s.textContent = v;
-      mTech.appendChild(s);
-    });
-    mLink.href = card.dataset.link || '#';
-    // Always use the same primary label so every project's main CTA has the
-    // same width and reads identically. The card's data-link still drives the
-    // destination — internal links get a softer label.
-    {
-      const link = card.dataset.link || '';
-      let isExternal = false;
-      try { isExternal = !!new URL(link, location.href).host && new URL(link, location.href).host !== location.host; }
-      catch (e) { isExternal = false; }
-      mLinkLbl.textContent = isExternal ? 'Visit project' : 'Open page';
-    }
-    if (mLink2 && mLink2Lbl) {
-      const link2 = card.dataset.link2 || '';
-      const link2Lbl = card.dataset.link2Label || '';
-      if (link2 && link2Lbl) {
-        mLink2.href = link2;
-        mLink2Lbl.textContent = link2Lbl;
-        mLink2.style.display = '';
-      } else {
-        mLink2.style.display = 'none';
-      }
-    }
-    if (mLinkWorks) {
-      const link = card.dataset.link || '';
-      let isExternal = false;
-      try { isExternal = !!new URL(link, location.href).host && new URL(link, location.href).host !== location.host; }
-      catch (e) { isExternal = false; }
-      const onWorksPage = /works\.html$/i.test(location.pathname);
-      if (isExternal && !onWorksPage) {
-        mLinkWorks.href = 'works.html' + inferWorksHash(link);
-        mLinkWorks.style.display = '';
-      } else {
-        mLinkWorks.style.display = 'none';
+    if (mTitle)   mTitle.textContent   = card.dataset.title   || '';
+    if (mTagline) mTagline.textContent = card.dataset.tagline || '';
+    if (mDesc)    mDesc.innerHTML      = card.dataset.desc    || '';
+    if (mLink) {
+      mLink.href = card.dataset.link || '#';
+      if (mLinkLbl) {
+        const link = card.dataset.link || '';
+        let isExternal = false;
+        try { isExternal = !!new URL(link, location.href).host && new URL(link, location.href).host !== location.host; }
+        catch (e) { isExternal = false; }
+        mLinkLbl.textContent = isExternal ? 'Visit project' : 'Open page';
       }
     }
     modal.classList.add('open');
@@ -641,27 +506,6 @@
     backdrop.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    const v = mHero.querySelector('video');
-    if (v) { try { v.pause(); } catch (e) {} }
-    mHero._galleryGo = null;
-  }
-
-  // Modal gallery touch swipe — attached once, reads the current gallery's
-  // navigator from `mHero._galleryGo` (set by openModal when a gallery exists).
-  // Skips the gesture for vertical motion so the modal can still be scrolled.
-  if (mHero) {
-    let _gsx = 0, _gsy = 0;
-    mHero.addEventListener('touchstart', (e) => {
-      _gsx = e.touches[0].clientX; _gsy = e.touches[0].clientY;
-    }, { passive: true });
-    mHero.addEventListener('touchend', (e) => {
-      if (!mHero._galleryGo) return;
-      const dx = e.changedTouches[0].clientX - _gsx;
-      const dy = e.changedTouches[0].clientY - _gsy;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) {
-        mHero._galleryGo(dx < 0 ? 1 : -1);
-      }
-    }, { passive: true });
   }
 
   // Auto-fill modal data from the card's own DOM if the card doesn't
