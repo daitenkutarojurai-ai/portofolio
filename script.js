@@ -19,10 +19,12 @@
     aurora.className = 'bg-aurora';
     document.body.appendChild(aurora);
   }
-  // ----- Pull-to-refresh (mobile pull + desktop overscroll wheel) -------
-  // When at the very top of the page and the user keeps pulling/scrolling
-  // up past a threshold, reload the page.
-  (function setupPullToRefresh() {
+  // ----- Pull-to-refresh — DISABLED -----------------------------------
+  // The custom PTR was hard to trigger (160px + 350ms dwell) and conflicted
+  // with the browser's native pull-to-refresh on iOS Safari + Chrome
+  // Android, occasionally freezing the page. The native behaviour is good
+  // enough; the IIFE below short-circuits without attaching listeners.
+  if (false) (function setupPullToRefresh() {
     const ptr = document.createElement('div');
     ptr.className = 'ptr-indicator';
     ptr.innerHTML = '<span class="ptr-spinner"></span><span class="ptr-text">Pull to refresh</span>';
@@ -475,6 +477,7 @@
 
   const mClose = document.getElementById('modal-close');
   const mDismiss = document.getElementById('modal-dismiss');
+  const mHero = document.getElementById('modal-hero');
   const mTitle = document.getElementById('modal-title');
   const mTagline = document.getElementById('modal-tagline');
   const mDesc = document.getElementById('modal-desc');
@@ -482,6 +485,29 @@
   const mLinkLbl = document.getElementById('modal-link-label');
 
   function openModal(card) {
+    if (mHero) {
+      mHero.innerHTML = '';
+      mHero.classList.toggle('fit-contain', card.dataset.fit === 'contain');
+      const video = card.dataset.video;
+      const img = card.dataset.img;
+      if (video) {
+        const v = document.createElement('video');
+        v.src = video;
+        v.autoplay = true; v.muted = true; v.loop = true;
+        v.playsInline = true; v.controls = true;
+        v.preload = 'metadata';
+        mHero.appendChild(v);
+        mHero.style.display = '';
+      } else if (img) {
+        const i = document.createElement('img');
+        i.src = img;
+        i.alt = card.dataset.title || '';
+        mHero.appendChild(i);
+        mHero.style.display = '';
+      } else {
+        mHero.style.display = 'none';
+      }
+    }
     if (mTitle)   mTitle.textContent   = card.dataset.title   || '';
     if (mTagline) mTagline.textContent = card.dataset.tagline || '';
     if (mDesc)    mDesc.innerHTML      = card.dataset.desc    || '';
@@ -506,6 +532,10 @@
     backdrop.classList.remove('open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (mHero) {
+      const v = mHero.querySelector('video');
+      if (v) { try { v.pause(); } catch (e) {} }
+    }
   }
 
   // Auto-fill modal data from the card's own DOM if the card doesn't
