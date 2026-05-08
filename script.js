@@ -179,7 +179,8 @@
       drawer.classList.toggle('open', open);
       if (open) drawer.removeAttribute('hidden');
       else drawer.setAttribute('hidden', '');
-      document.body.classList.toggle('nav-locked', open);
+      // Don't lock body scroll — locking on iOS Safari while user mid-scrolls
+      // resets scrollY and freezes the page.
     };
     burger.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -483,11 +484,18 @@
   const mDesc = document.getElementById('modal-desc');
   const mLink = document.getElementById('modal-link');
   const mLinkLbl = document.getElementById('modal-link-label');
+  const mLinkWorks = document.getElementById('modal-link-works');
+  // Hide the "See all my work" CTA when we're already on the works archive.
+  if (mLinkWorks && /works\.html$/i.test(location.pathname)) {
+    mLinkWorks.style.display = 'none';
+  }
 
   function openModal(card) {
     if (mHero) {
       mHero.innerHTML = '';
-      mHero.classList.toggle('fit-contain', card.dataset.fit === 'contain');
+      // Always fill the hero box — `data-fit="contain"` is ignored here so
+      // we never get empty letterbox bars in the modal preview.
+      mHero.classList.remove('fit-contain');
       const video = card.dataset.video;
       const img = card.dataset.img;
       if (video) {
