@@ -200,22 +200,21 @@ body.anime .carousel-caption h2 {
 
 /* ---- Nav --------------------------------------------------------------- */
 
-body.anime .nav {
-  background: rgba(6, 7, 13, 0.92);
-  border-bottom: 1px solid var(--border);
-}
-body.anime .nav-brand {
-  width: 30px;
-  height: 30px;
-  border-radius: 6px;
-  background: url("favicon.svg") center/contain no-repeat;
+/* The .nav itself is now `position: fixed` with its own background pill in
+   styles.css. anime.css must not add its own bg/border-bottom — that
+   stretches a panel across the viewport behind the pill. */
+body.anime .nav { background: transparent; border-bottom: none; }
+
+/* IMPORTANT: do NOT shrink .nav-brand to 30×30. The brand is now a
+   logo-tile + 2-line wordmark layout (handled in styles.css). The old
+   anime override turned the whole brand into a 30×30 favicon block which
+   clipped the wordmark and caused the topbar to look "broken". */
+body.anime .nav-brand-logo {
   box-shadow: 0 0 0 1px rgba(255, 46, 136, 0.25), 0 0 12px rgba(255, 46, 136, 0.25);
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+  transition: box-shadow 0.2s var(--ease);
 }
-body.anime .nav-brand:hover {
-  background: url("favicon.svg") center/contain no-repeat;
+body.anime .nav-brand:hover .nav-brand-logo {
   box-shadow: 0 0 0 1px rgba(0, 229, 255, 0.45), 0 0 16px rgba(0, 229, 255, 0.4);
-  transform: scale(1.06);
 }
 body.anime .nav-links a {
   font-family: var(--font-mono);
@@ -270,9 +269,9 @@ body.anime .carousel {
   border: 1px solid var(--border-hi);
   border-radius: 2px;
 }
-body.anime .carousel-caption {
-  border-left: 3px solid var(--accent);
-}
+/* The caption already has a full pink outline (styles.css) — don't add a
+   conflicting left border on top. */
+body.anime .carousel-caption { border-left: none; }
 body.anime .carousel-slide .video-badge {
   background: var(--accent);
   color: #06070d;
@@ -383,42 +382,24 @@ body.anime .modal {
   background: var(--bg-2);
   border: 1px solid var(--accent);
   box-shadow: 0 0 50px rgba(255, 46, 136, 0.35);
-  width: min(880px, calc(100% - 24px));
-  max-height: 92vh;
-  overflow-y: auto;
+  /* Width / max-height managed in styles.css for the new compact modal */
 }
-/* Compact layout so the popup FITS without scrolling on most screens */
+/* Hero image fills the box (no letterbox bars) — matches styles.css */
 body.anime .modal-hero {
-  aspect-ratio: unset;
-  height: clamp(180px, 32vh, 320px);
-  border-radius: 0;
   background: radial-gradient(circle at center, #1f2339, #0e1019);
 }
-/* When modal-hero carries a gallery, render the image fully contained + centered */
 body.anime .modal-hero img,
-body.anime .modal-slide img {
+body.anime .modal-hero video {
   width: 100%;
   height: 100%;
-  object-fit: contain !important;
-  object-position: center center !important;
+  object-fit: cover;
+  object-position: center;
   display: block;
 }
-/* Gallery nav arrows — smaller + offset so they don't hide the image */
-body.anime .modal-gnav { width: 32px; height: 32px; font-size: 14px; }
-body.anime .modal-gnav.prev { left: 8px; }
-body.anime .modal-gnav.next { right: 8px; }
+/* The modal-side / Stack panel is gone — single column body */
 body.anime .modal-body {
-  padding: 18px clamp(18px, 2.5vw, 26px) 22px;
-  gap: clamp(16px, 2.5vw, 24px);
-  grid-template-columns: 1.7fr 1fr;
+  grid-template-columns: 1fr;
 }
-body.anime .modal-ctas {
-  padding: 12px clamp(18px, 2.5vw, 26px);
-  gap: 10px;
-  display: flex;
-  flex-wrap: wrap;
-}
-body.anime .modal-ctas .btn { padding: 8px 14px; font-size: 11px; }
 body.anime .modal h3 {
   font-family: var(--font-display);
   font-weight: 700;
