@@ -596,7 +596,16 @@
       mTech.appendChild(s);
     });
     mLink.href = card.dataset.link || '#';
-    mLinkLbl.textContent = card.dataset.linkLabel || 'View project';
+    // Always use the same primary label so every project's main CTA has the
+    // same width and reads identically. The card's data-link still drives the
+    // destination — internal links get a softer label.
+    {
+      const link = card.dataset.link || '';
+      let isExternal = false;
+      try { isExternal = !!new URL(link, location.href).host && new URL(link, location.href).host !== location.host; }
+      catch (e) { isExternal = false; }
+      mLinkLbl.textContent = isExternal ? 'Visit project' : 'Open page';
+    }
     if (mLink2 && mLink2Lbl) {
       const link2 = card.dataset.link2 || '';
       const link2Lbl = card.dataset.link2Label || '';

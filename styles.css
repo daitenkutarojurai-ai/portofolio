@@ -50,7 +50,7 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
+  /* overflow-x is set on <html>; setting it here too can break sticky on iOS Safari */
 }
 
 ::selection { background: var(--accent); color: #fff; }
@@ -169,7 +169,7 @@ h1, h2, h3, h4 {
    -------------------------------------------------------------------------- */
 .nav {
   position: sticky; top: 0;
-  z-index: 50;
+  z-index: 100;
   padding: 12px var(--gutter);
   background: transparent;
   transition: padding 0.3s var(--ease);
@@ -343,13 +343,28 @@ h1, h2, h3, h4 {
 .nav-drawer a + a { margin-top: 2px; }
 .nav-drawer a:hover { background: rgba(255, 255, 255, 0.04); }
 .nav-drawer a.active { color: var(--accent-soft); }
-.nav-drawer-ig {
-  margin-top: 8px !important;
+.nav-drawer-socials {
+  display: flex;
   justify-content: center;
-  background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%) !important;
-  color: #fff !important;
-  font-weight: 600;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 8px;
 }
+.nds-icon {
+  display: grid; place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  color: #fff;
+  box-shadow: 0 4px 14px -6px rgba(0, 0, 0, 0.45);
+  transition: transform 0.2s var(--ease), filter 0.2s var(--ease);
+}
+.nds-icon:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.nds-icon svg { width: 18px; height: 18px; }
+.nds-ig { background: linear-gradient(135deg, #f58529 0%, #dd2a7b 50%, #8134af 100%); }
+.nds-gh { background: #1f2328; }
+.nds-hk { background: #1ba0e2; }
+.nds-c3 { background: #ff6900; }
 @keyframes navDrawerIn {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: none; }
@@ -420,6 +435,8 @@ h1, h2, h3, h4 {
   background: var(--bg-2);
   aspect-ratio: 16 / 7;
   max-height: 580px;
+  /* always allow vertical pan; horizontal swipes are detected in JS at touchend */
+  touch-action: pan-y;
 }
 @media (max-width: 720px) { .carousel { aspect-ratio: 4 / 3; } }
 @media (max-width: 480px) {
@@ -1512,6 +1529,7 @@ footer .wrap {
 }
 .modal-ctas {
   display: flex; gap: 10px; flex-wrap: wrap;
+  align-items: stretch;
   padding: 16px clamp(20px, 3vw, 32px);
   border-bottom: 1px solid var(--border);
   background: var(--bg-2);
@@ -1519,10 +1537,28 @@ footer .wrap {
   top: 0;
   z-index: 3;
 }
+.modal-ctas .btn {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.modal-ctas .btn-primary { flex: 1 1 220px; }     /* prominent main button */
+.modal-ctas #modal-link-2,
+.modal-ctas #modal-link-works { flex: 0 1 auto; }
+.modal-ctas #modal-dismiss { flex: 0 0 auto; margin-left: auto; }
 @media (max-width: 720px) {
   .modal-body { grid-template-columns: 1fr; }
-  .modal-ctas { padding: 12px 16px; }
-  .modal-ctas .btn { flex: 1; justify-content: center; }
+  .modal-ctas { padding: 10px 14px; gap: 8px; }
+  .modal-ctas .btn {
+    flex: 1 1 0;                                    /* equal width on phones */
+    min-width: 0;
+    padding: 11px 12px;
+    font-size: 13.5px;
+    justify-content: center;
+  }
+  .modal-ctas .btn-primary { flex: 1 1 100%; }      /* main CTA gets its own row */
+  .modal-ctas #modal-dismiss { margin-left: 0; }
 }
 
 /* --------------------------------------------------------------------------
@@ -2238,14 +2274,20 @@ body::after {
     background: transparent;
     border: none;
     border-radius: 0;
+    /* Let vertical page scroll always pass through. JS only listens for
+       horizontal swipes (touchend), so pan-y is safe. Do NOT set
+       overscroll-behavior here — it breaks vertical pan on iOS. */
     touch-action: pan-y;
-    overscroll-behavior: contain;
   }
-  .carousel-track { height: auto; }
+  .carousel-track {
+    height: auto;
+    touch-action: pan-y;
+  }
   .carousel-slide {
     height: auto;
     display: flex;
     flex-direction: column;
+    touch-action: pan-y;
   }
   .carousel-slide > img,
   .carousel-slide > video {
