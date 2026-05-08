@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; object-src 'none'" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>Glaces en Seine — weather-aware Sunday briefing for a crêpe caravan · diyfunproject</title>
-<meta name="description" content="A weather-aware Sunday-briefing dashboard for a family food caravan (crêpes, gaufres, glaces) on the Seine. Weather forecast in, batter percentage and staffing plan out. Built with Next.js, deployed on Vercel." />
-<meta name="keywords" content="Glaces en Seine, crepe forecast, food truck weather dashboard, Next.js dashboard, Open-Meteo, weather-driven business app, food caravan tools, Sunday briefing, crepe caravan, La Frette-sur-Seine" />
+<title>Crêpe Forecast — weather-aware Sunday briefing for the Glaces en Seine caravan · diyfunproject</title>
+<meta name="description" content="Crêpe Forecast: a weather-aware Sunday-briefing dashboard for the Glaces en Seine family caravan (crêpes, gaufres, glaces). Weather forecast in, batter percentage and staffing plan out. Built with Next.js, deployed on Vercel." />
+<meta name="keywords" content="Crêpe Forecast, Glaces en Seine, food truck weather dashboard, Next.js dashboard, Open-Meteo, weather-driven business app, food caravan tools, Sunday briefing, crepe caravan, La Frette-sur-Seine" />
 <meta name="author" content="diyfunproject" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="theme-color" content="#131625" />
@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="diyfunproject" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:url" content="https://diyfunproject.com/glaces-en-seine.html" />
-<meta property="og:title" content="Glaces en Seine — weather-aware Sunday briefing" />
-<meta property="og:description" content="Weather forecast in, batter percentage and staffing plan out. A Sunday briefing for a crêpe caravan." />
+<meta property="og:title" content="Crêpe Forecast — Sunday briefing for the Glaces en Seine caravan" />
+<meta property="og:description" content="Weather forecast in, batter percentage and staffing plan out. A Sunday briefing for the Glaces en Seine crêpe caravan." />
 <meta property="og:image" content="https://diyfunproject.com/images/bannerup.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Glaces en Seine — weather-aware Sunday briefing" />
+<meta name="twitter:title" content="Crêpe Forecast — Sunday briefing for the Glaces en Seine caravan" />
 <meta name="twitter:description" content="Weather forecast in, batter percentage out." />
 <meta name="twitter:image" content="https://diyfunproject.com/images/bannerup.png" />
 
@@ -50,13 +50,13 @@
       "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://diyfunproject.com/"},
         {"@type": "ListItem", "position": 2, "name": "All works", "item": "https://diyfunproject.com/works.html"},
-        {"@type": "ListItem", "position": 3, "name": "Glaces en Seine", "item": "https://diyfunproject.com/glaces-en-seine.html"}
+        {"@type": "ListItem", "position": 3, "name": "Crêpe Forecast", "item": "https://diyfunproject.com/glaces-en-seine.html"}
       ]
     },
     {
       "@type": "WebApplication",
-      "name": "Glaces en Seine — Crêpe Forecast",
-      "alternateName": "Crêpe Forecast",
+      "name": "Crêpe Forecast",
+      "alternateName": "Glaces en Seine briefing dashboard",
       "description": "A weather-aware Sunday-briefing dashboard for a family food caravan on the Seine. Combines Open-Meteo weather data with a custom recipe-scaler engine to recommend batter percentage, topping mix, and staffing plan for the upcoming Sunday.",
       "url": "https://diyfunproject.com/glaces-en-seine.html",
       "image": "https://diyfunproject.com/images/bannerup.png",
@@ -71,7 +71,7 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question", "name": "What is Glaces en Seine?", "acceptedAnswer": {"@type": "Answer", "text": "A weather-aware Sunday-briefing dashboard for a family food caravan (crêpes, gaufres, glaces) on the Quai de Seine between La Frette-sur-Seine and Cormeilles-en-Parisis. Every metric targets the upcoming Sunday — weather forecast in, batter percentage and staffing plan out."}},
+        {"@type": "Question", "name": "What is Crêpe Forecast?", "acceptedAnswer": {"@type": "Answer", "text": "A weather-aware Sunday-briefing dashboard built for the Glaces en Seine family caravan (crêpes, gaufres, glaces) on the Quai de Seine between La Frette-sur-Seine and Cormeilles-en-Parisis. Every metric targets the upcoming Sunday — weather forecast in, batter percentage and staffing plan out."}},
         {"@type": "Question", "name": "Why a Sunday briefing?", "acceptedAnswer": {"@type": "Answer", "text": "The caravan operates Sundays. Knowing on Wednesday whether Sunday will be sunny or rainy changes how much batter to prep, whether to bring an extra person, and which toppings to over-stock. The dashboard refreshes through the week so the forecast sharpens as Sunday approaches."}},
         {"@type": "Question", "name": "Where does the weather data come from?", "acceptedAnswer": {"@type": "Answer", "text": "Open-Meteo (api.open-meteo.com) — free, no API key required, generous rate limits. The dashboard queries the exact target Sunday using start_date and end_date parameters."}},
         {"@type": "Question", "name": "Is the source code available?", "acceptedAnswer": {"@type": "Answer", "text": "The live dashboard is at crepesforecast.vercel.app. The engine logic — Cardigan Threshold, Thermal Pivot, Bribe-O-Meter, Recipe Scaler — is documented in the project README."}}
@@ -98,8 +98,8 @@
   <div class="wrap">
     <a href="works.html" class="pj-back">← All works</a>
     <div class="eyebrow" style="margin-bottom:12px;">Web app · Next.js · Weather-driven</div>
-    <h1>Glaces en Seine — weather forecast in, batter % out</h1>
-    <p>A Sunday-briefing dashboard for a family food caravan on the Quai de Seine. Every metric targets the upcoming Sunday — load it on Wednesday and it's already telling you what Sunday will look like, what to prep, and how many people to bring.</p>
+    <h1>Crêpe Forecast — weather in, batter % out for the <i>Glaces en Seine</i> caravan</h1>
+    <p>A Sunday-briefing dashboard built for the family caravan <i>Glaces en Seine</i> on the Quai de Seine. Every metric targets the upcoming Sunday — load it on Wednesday and it's already telling you what Sunday will look like, what to prep, and how many people to bring.</p>
     <div class="pj-cta-row">
       <a class="pj-cta primary" href="https://crepesforecast.vercel.app/" target="_blank" rel="noopener">Open the live dashboard <span aria-hidden="true">↗</span></a>
       <a class="pj-cta" href="works.html#software">More software works</a>
@@ -110,7 +110,7 @@
 <main>
   <section class="pj-hero">
     <div class="wrap">
-      <img src="images/bannerup.png" alt="Glaces en Seine — Sunday-briefing dashboard banner" loading="eager" decoding="async">
+      <img src="images/bannerup.png" alt="Crêpe Forecast — Sunday-briefing dashboard banner" loading="eager" decoding="async">
     </div>
   </section>
 
@@ -118,7 +118,7 @@
     <div class="wrap">
       <h2>The problem</h2>
       <p>The caravan operates one day a week. Sunday weather changes everything: how much batter to prep on Friday, whether to bring an extra person, which toppings to over-stock, when the ferry will dump foot traffic on the quai, whether the Sunday market will be crowded enough to spill over.</p>
-      <p>Checking five weather sites and three local-events pages on Wednesday morning was the workflow. Glaces en Seine collapses that into one page that updates several times during the week so the forecast sharpens as Sunday approaches. Rolls forward to the next Sunday at Monday 00:00 local.</p>
+      <p>Checking five weather sites and three local-events pages on Wednesday morning was the workflow. Crêpe Forecast collapses that into one page that updates several times during the week so the forecast sharpens as Sunday approaches. Rolls forward to the next Sunday at Monday 00:00 local.</p>
     </div>
   </section>
 
