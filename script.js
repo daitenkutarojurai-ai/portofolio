@@ -19,38 +19,31 @@
     aurora.className = 'bg-aurora';
     document.body.appendChild(aurora);
   }
-  // ----- Pull-to-refresh — easier thresholds --------------------------
-  // Re-enabled per request. Lowered the bar substantially so a normal pull
-  // fires the reload — previously 160px + 350ms was too hard.
+  // ----- Pull-to-refresh — native iOS feel ----------------------------
+  // Touch-only. Fires on release once the pull crosses the threshold.
+  // Skips engagement when the gesture starts on the nav (so the burger
+  // and links remain tappable while the user is at scrollY === 0).
   (function setupPullToRefresh() {
     const ptr = document.createElement('div');
     ptr.className = 'ptr-indicator';
     ptr.innerHTML = '<span class="ptr-spinner"></span><span class="ptr-text">Pull to refresh</span>';
     document.body.appendChild(ptr);
 
-    // Visual indicator threshold (where the spinner shows "ready")
-    const THRESH = 60;
-    // Hard threshold to actually fire (must exceed this for >= DWELL_MS)
-    const FIRE_THRESH = 80;
-    // How long the user must hold past FIRE_THRESH before refresh fires
-    const DWELL_MS = 150;
-    // Cooldown after any near-fire / reset / page-load grace
-    const COOLDOWN_MS = 1500;
-    const PAGE_LOAD_GRACE_MS = 1800;
+    const FIRE_THRESH = 70;     // visual px past which release fires
+    const MAX_PULL = 160;       // visual cap
+    const RESISTANCE = 0.5;     // pulled px → visual px
+    const PAGE_LOAD_GRACE_MS = 800;
 
-    let touchStartY = 0;
+    let startY = 0;
     let pulling = false;
     let pulled = 0;
-    let dwellTimer = null;
     let cooldownUntil = performance.now() + PAGE_LOAD_GRACE_MS;
-
     const inCooldown = () => performance.now() < cooldownUntil;
-    const armCooldown = (ms) => { cooldownUntil = performance.now() + (ms || COOLDOWN_MS); };
 
     const setPull = (px) => {
-      const clamped = Math.max(0, Math.min(180, px));
+      const clamped = Math.max(0, Math.min(MAX_PULL, px));
       ptr.style.transform = 'translate(-50%, ' + (clamped - 60) + 'px)';
-      ptr.style.opacity = String(Math.min(1, clamped / THRESH));
+      ptr.style.opacity = String(Math.min(1, clamped / FIRE_THRESH));
       ptr.classList.toggle('ready', clamped >= FIRE_THRESH);
     };
     const reset = () => {
@@ -59,81 +52,43 @@
       setTimeout(() => { ptr.style.transition = ''; }, 260);
       pulling = false;
       pulled = 0;
-      clearTimeout(dwellTimer);
-      dwellTimer = null;
     };
     const fire = () => {
-      armCooldown(4000); // long cooldown so post-reload focus loops don't retrigger
+      cooldownUntil = performance.now() + 4000;
       ptr.classList.add('refreshing');
       ptr.querySelector('.ptr-text').textContent = 'Refreshing…';
-      setTimeout(() => location.reload(), 220);
+      location.reload();
     };
 
-    // ---- Touch (mobile) -----
     document.addEventListener('touchstart', (e) => {
       if (inCooldown()) return;
-      if (window.scrollY <= 0 && e.touches.length === 1) {
-        touchStartY = e.touches[0].clientY;
-        pulling = true;
-        pulled = 0;
-      }
+      if (e.touches.length !== 1) return;
+      if (window.scrollY > 0) return;
+      // Never engage when the gesture starts on the navigation —
+      // otherwise a tap on the burger could be swallowed by PTR logic.
+      if (e.target.closest && e.target.closest('#nav')) return;
+      startY = e.touches[0].clientY;
+      pulling = true;
+      pulled = 0;
     }, { passive: true });
+
     document.addEventListener('touchmove', (e) => {
       if (!pulling) return;
       if (window.scrollY > 0) { reset(); return; }
-      pulled = e.touches[0].clientY - touchStartY;
-      const visualPx = pulled * 0.55;
-      if (pulled > 0) setPull(visualPx);
-
-      // Dwell-fire: must hold past FIRE_THRESH for DWELL_MS
-      if (visualPx >= FIRE_THRESH) {
-        if (!dwellTimer) {
-          dwellTimer = setTimeout(() => {
-            if (pulling && pulled * 0.55 >= FIRE_THRESH) fire();
-          }, DWELL_MS);
-        }
-      } else if (dwellTimer) {
-        clearTimeout(dwellTimer);
-        dwellTimer = null;
-      }
+      pulled = e.touches[0].clientY - startY;
+      if (pulled > 0) setPull(pulled * RESISTANCE);
+      else if (pulled < 0) reset();
     }, { passive: true });
+
     document.addEventListener('touchend', () => {
       if (!pulling) return;
-      // No instant-fire on release — the dwell timer is the only path.
-      // Anything short of dwell-fire just resets.
-      reset();
-      armCooldown(); // brief lockout after any pull attempt
+      const visual = pulled * RESISTANCE;
+      pulling = false;
+      if (visual >= FIRE_THRESH) fire();
+      else reset();
     }, { passive: true });
 
-    // ---- Desktop wheel -----
-    // Require a sustained, deliberate up-scroll burst at scrollY === 0.
-    let wheelAccum = 0;
-    let wheelTimer = null;
-    let wheelTicks = 0; // count of wheel events in the current burst
-    window.addEventListener('wheel', (e) => {
-      if (inCooldown()) { wheelAccum = 0; wheelTicks = 0; return; }
-      if (window.scrollY > 1) { wheelAccum = 0; wheelTicks = 0; setPull(0); return; }
-      if (e.deltaY < 0) {
-        wheelAccum += -e.deltaY;
-        wheelTicks++;
-        setPull(Math.min(180, wheelAccum * 0.35));
-        // Fire only after both: enough accumulation AND multiple discrete wheel events.
-        // This blocks single fast trackpad flings from triggering a refresh.
-        if (wheelAccum > 500 && wheelTicks >= 5) {
-          wheelAccum = 0;
-          wheelTicks = 0;
-          fire();
-          return;
-        }
-        clearTimeout(wheelTimer);
-        wheelTimer = setTimeout(() => {
-          wheelAccum = 0;
-          wheelTicks = 0;
-          reset();
-          armCooldown(); // brief lockout after any near-attempt
-        }, 600);
-      }
-    }, { passive: true });
+    document.addEventListener('touchcancel', () => { if (pulling) reset(); }, { passive: true });
   })();
 
   // ----- Nav scroll state + progress bar --------------------
@@ -171,32 +126,50 @@
   const burger = document.getElementById('nav-burger');
   const drawer = document.getElementById('nav-drawer');
   if (burger && drawer) {
+    const isOpen = () => burger.getAttribute('aria-expanded') === 'true';
     const setDrawer = (open) => {
+      if (open === isOpen()) return;
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-      drawer.classList.toggle('open', open);
-      if (open) drawer.removeAttribute('hidden');
-      else drawer.setAttribute('hidden', '');
-      // Don't lock body scroll — locking on iOS Safari while user mid-scrolls
-      // resets scrollY and freezes the page.
+      // Order matters: clear [hidden] before adding .open so the !important
+      // `[hidden]` rule never wins for a frame.
+      if (open) {
+        drawer.removeAttribute('hidden');
+        drawer.classList.add('open');
+      } else {
+        drawer.classList.remove('open');
+        drawer.setAttribute('hidden', '');
+      }
     };
+    // pointerup fires before the synthetic click and bypasses iOS's
+    // "first tap stops momentum scroll" trap that ate the burger tap.
+    // Suppress the trailing click so we don't toggle twice on touch.
+    let suppressNextClick = false;
+    burger.addEventListener('pointerup', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.pointerType !== 'mouse') suppressNextClick = true;
+      setDrawer(!isOpen());
+    });
     burger.addEventListener('click', (e) => {
       e.stopPropagation();
-      setDrawer(burger.getAttribute('aria-expanded') !== 'true');
+      if (suppressNextClick) { suppressNextClick = false; return; }
+      setDrawer(!isOpen());
     });
     drawer.addEventListener('click', (e) => {
       // Close when a link inside the drawer is tapped
-      const link = e.target.closest('a');
-      if (link) setDrawer(false);
+      if (e.target.closest('a')) setDrawer(false);
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') {
+      if (e.key === 'Escape' && isOpen()) {
         setDrawer(false);
         burger.focus();
       }
     });
-    document.addEventListener('click', (e) => {
-      if (burger.getAttribute('aria-expanded') !== 'true') return;
+    // Outside-click to close. Use pointerdown for snappier dismissal,
+    // and ignore taps inside the nav so the drawer's own links still work.
+    document.addEventListener('pointerdown', (e) => {
+      if (!isOpen()) return;
       if (e.target.closest('#nav')) return;
       setDrawer(false);
     });
@@ -656,7 +629,9 @@
       } catch (e) { return false; }
     };
 
+    let navigating = false;
     document.addEventListener('click', (e) => {
+      if (navigating) { e.preventDefault(); return; }
       const a = e.target.closest('a[href]');
       if (!a) return;
       if (a.target === '_blank') return;
@@ -664,6 +639,7 @@
       const href = a.getAttribute('href');
       if (!isInternal(href)) return;
       e.preventDefault();
+      navigating = true;
       curtain.classList.remove('done');
       curtain.classList.add('active');
       // Slide curtain back down from above to cover viewport
