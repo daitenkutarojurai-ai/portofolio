@@ -642,44 +642,13 @@
     };
     requestAnimationFrame(introAnim);
 
-    // Slide-in on internal nav
-    const isInternal = (href) => {
-      if (!href) return false;
-      if (href.startsWith('#')) return false;
-      if (href.startsWith('mailto:') || href.startsWith('tel:')) return false;
-      try {
-        const url = new URL(href, location.href);
-        if (url.origin !== location.origin) return false;
-        if (url.pathname === location.pathname) return false;
-        return /\.html?$/i.test(url.pathname) || url.pathname === '/' || url.pathname.endsWith('/');
-      } catch (e) { return false; }
-    };
+    // NOTE: previously we intercepted every internal-link click to slide the
+    // curtain in before navigating. That was bug-prone — a stuck `navigating`
+    // flag (after bfcache restore) would silently preventDefault every click
+    // on the page. The intro animation alone is plenty of motion; native
+    // browser navigation handles the rest reliably.
 
-    let navigating = false;
-    document.addEventListener('click', (e) => {
-      if (navigating) { e.preventDefault(); return; }
-      const a = e.target.closest('a[href]');
-      if (!a) return;
-      if (a.target === '_blank') return;
-      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      const href = a.getAttribute('href');
-      if (!isInternal(href)) return;
-      e.preventDefault();
-      navigating = true;
-      curtain.classList.remove('done');
-      curtain.classList.add('active');
-      // Slide curtain back down from above to cover viewport
-      curtain.animate(
-        [
-          { transform: 'translateY(-100%)' },
-          { transform: 'translateY(0)' }
-        ],
-        { duration: 520, easing: 'cubic-bezier(0.77, 0, 0.175, 1)', fill: 'forwards' }
-      );
-      setTimeout(() => { window.location.href = href; }, 480);
-    });
-
-    // Gracefully re-run intro anim when user hits back/forward (bfcache)
+    // Reset curtain visual state when restored from bfcache
     window.addEventListener('pageshow', (e) => {
       if (e.persisted) {
         curtain.classList.remove('active');
