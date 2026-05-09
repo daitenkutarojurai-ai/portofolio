@@ -2025,12 +2025,16 @@ body::after {
    Premium motion layer — page transitions, tilt, magnetic, reveal upgrades
    ========================================================================== */
 
-/* Page transition curtain */
+/* Page transition curtain.
+   IMPORTANT: pointer-events MUST default to none. The intro animation moves
+   it off-screen via WAAPI, but if `animation.onfinish` ever fails to fire
+   (known Safari/Chromium edge cases with fill:forwards), the curtain stays
+   visually gone but still hit-testable, eating every click on the page. */
 .page-curtain {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  pointer-events: all;
+  pointer-events: none;
   transform: translateY(0);
   background: linear-gradient(135deg, #0c0c0e 0%, #1a1a1f 50%, #0c0c0e 100%);
   display: flex;

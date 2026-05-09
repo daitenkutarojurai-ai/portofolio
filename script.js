@@ -241,6 +241,32 @@
     carousel.addEventListener('mouseenter', () => clearTimeout(timer));
     carousel.addEventListener('mouseleave', restart);
 
+    // Make the entire slide clickable: a tap anywhere goes to the slide's
+    // primary link (the .btn inside the caption). Falls back to works.html.
+    // We track pointerdown/up positions to distinguish clicks from swipes
+    // — only fire navigation if the pointer barely moved.
+    let pdX = 0, pdY = 0, pdT = 0;
+    carousel.addEventListener('pointerdown', (e) => {
+      pdX = e.clientX; pdY = e.clientY; pdT = performance.now();
+    });
+    carousel.addEventListener('pointerup', (e) => {
+      // Skip if click landed on an existing interactive element — let it own.
+      if (e.target.closest('a, button, .carousel-nav, .carousel-dot')) return;
+      const dx = Math.abs(e.clientX - pdX);
+      const dy = Math.abs(e.clientY - pdY);
+      const dt = performance.now() - pdT;
+      if (dx > 10 || dy > 10 || dt > 600) return; // it was a swipe / hold
+      const slide = e.target.closest('.carousel-slide');
+      if (!slide) return;
+      const primaryLink = slide.querySelector('.carousel-caption a.btn[href]');
+      const href = primaryLink ? primaryLink.getAttribute('href') : 'works.html';
+      const target = primaryLink && primaryLink.getAttribute('target');
+      if (target === '_blank') window.open(href, '_blank', 'noopener');
+      else window.location.href = href;
+    });
+    // Hint that the slide is clickable
+    slides.forEach((s) => { s.style.cursor = 'pointer'; });
+
     // Keyboard — but ignore arrows when typing or when an interactive
     // element has focus (otherwise typing in a future input would step
     // the carousel under the user).
