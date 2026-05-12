@@ -2814,3 +2814,32 @@ body.fx-mouse-active .fx-spotlight { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .fx-matrix-badge { animation: none; }
 }
+
+/* ── Print stylesheet ────────────────────────────────────────────────────── */
+@media print {
+  *, *::before, *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  body { font: 11pt/1.45 Georgia, "Times New Roman", serif; }
+  nav, .nav-social, .nav-toggle, .carousel-nav, .carousel-dots,
+  .carousel-swipe-hint, .video-badge, .page-curtain, .reveal-cursor,
+  video, .btn, .filter-bar, .nds-icon, footer .socials,
+  #scroll-top, .scroll-top, .fx-matrix-badge,
+  .submit-btn, .form-status { display: none !important; }
+  a[href]:not([href^="#"]):not([href^="javascript"])::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555 !important;
+    word-wrap: break-word;
+  }
+  h1, h2, h3 { page-break-after: avoid; }
+  img, .card { page-break-inside: avoid; max-width: 100% !important; height: auto !important; }
+  .wrap { max-width: 100% !important; padding: 0 !important; }
+  .carousel-wrap, .carousel { display: block; height: auto !important; }
+  .carousel-track { display: block !important; transform: none !important; }
+  .carousel-slide { display: none !important; }
+  .carousel-slide:first-child { display: block !important; page-break-after: always; }
+}
