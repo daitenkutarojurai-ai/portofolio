@@ -1,8 +1,8 @@
 /* TEAM */
 
   Maker:        diyfunproject
-  Site:         https://diyfunproject.com/
-  Contact:      https://diyfunproject.com/contact.html
+  Site:         https://www.diyfunproject.com/
+  Contact:      https://www.diyfunproject.com/contact.html
   From:         Luxembourg & rural France
 
 /* HANDLES */

@@ -55,4 +55,4 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
-Sitemap: https://diyfunproject.com/sitemap.xml
+Sitemap: https://www.diyfunproject.com/sitemap.xml

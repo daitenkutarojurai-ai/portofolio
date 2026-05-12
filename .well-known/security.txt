@@ -1,4 +1,4 @@
-Contact: https://diyfunproject.com/contact.html
+Contact: https://www.diyfunproject.com/contact.html
 Expires: 2027-04-25T00:00:00.000Z
 Preferred-Languages: en, fr
-Canonical: https://diyfunproject.com/.well-known/security.txt
+Canonical: https://www.diyfunproject.com/.well-known/security.txt
