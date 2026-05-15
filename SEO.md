@@ -28,27 +28,21 @@ Each `news.html` source card carries 3-4 sentences of **original commentary** (y
 - Alternate channels listed: email, Instagram, LinkedIn, GitHub.
 
 ### Site hygiene
-- `404.html` — branded "page not found" with full nav (GitHub Pages serves it automatically).
-- `humans.txt`, `.well-known/security.txt`, `CNAME`.
+- `404.html` — branded "page not found" with full nav (Vercel serves it automatically).
+- `humans.txt`, `.well-known/security.txt`, `CNAME` (legacy GH-Pages file, kept for reference but no effect on Vercel).
 - Every page carries the same nav (Home / All Works / News / About / Contact) and a footer with the full social-media row (Instagram, Cults3D, Hackster, Instructables, GitHub, LinkedIn, Email).
 
 ## One-time setup (you, not me)
 
-### 1. DNS for diyfunproject.com → GitHub Pages
-At your registrar, add either:
-- **Apex (`diyfunproject.com`)** — A records pointing to GitHub's IPs:
-  ```
-  185.199.108.153
-  185.199.109.153
-  185.199.110.153
-  185.199.111.153
-  ```
-- **www subdomain** — CNAME to `daitenkutarojurai-ai.github.io`
+### 1. DNS for diyfunproject.com → Vercel
+The site is hosted on **Vercel** (not GitHub Pages — the `CNAME` file in this repo is a leftover from the GH Pages era and is harmless). At your registrar:
+- **Apex (`diyfunproject.com`)** — A record `76.76.21.21` (Vercel's anycast IP), and Vercel issues a 307 redirect to `www`.
+- **www subdomain** — CNAME to `cname.vercel-dns.com`.
 
-Then in repo Settings → Pages → Custom domain, paste `diyfunproject.com` and tick **Enforce HTTPS** once it appears (can take ~24h).
+In the Vercel project → **Settings → Domains**, both `diyfunproject.com` and `www.diyfunproject.com` should be listed, with `www` set as the **primary** (canonical) domain. HTTPS is automatic via Let's Encrypt.
 
-### 2. Submit to search consoles
-Each gets one verification code. Paste it into the commented placeholders at the top of `index.html`, uncomment that line, push, then click "Verify" in the console.
+### 2. Submit to search consoles  **← this is what is currently missing and why Google does not index the site**
+Each console issues a verification code. In `index.html` (lines ~39-41) the three verification `<meta>` tags are now **uncommented** with placeholder values — replace the `REPLACE_WITH_YOUR_*_CODE` string with the code each console gives you, push, then click "Verify".
 
 | Console | URL | Meta tag |
 | --- | --- | --- |
@@ -57,7 +51,7 @@ Each gets one verification code. Paste it into the commented placeholders at the
 | Yandex Webmaster      | https://webmaster.yandex.com            | `yandex-verification` |
 | DuckDuckGo            | (auto — uses Bing's index)              | n/a |
 
-After verification, **submit the sitemap** in each console: `https://diyfunproject.com/sitemap.xml`.
+After verification, **submit the sitemap** in each console: `https://www.diyfunproject.com/sitemap.xml` (use the `www.` form — that's what `robots.txt` advertises and what all canonicals point to). Then use the "URL Inspection" tool on `/`, `/works.html`, and `/news.html` and click "Request Indexing" to nudge the first crawl.
 
 ### 3. Google Knowledge Panel (optional, for the Person entity)
 Once Google indexes the site, the `Person` JSON-LD on `index.html` may get picked up for a knowledge panel. To accelerate, you can claim the panel via `g.co/kgs/...` once it appears. Not urgent.
