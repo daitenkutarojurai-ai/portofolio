@@ -37,8 +37,8 @@ body.anime {
   --border-hi: #2b3046;
   --text: #f4efe3;
   --text-strong: #ffffff;
-  --muted: #8c91a5;
-  --dim: #4a4f62;
+  --muted: #a9aec3;
+  --dim: #565b70;
 
   --accent: #ff2e88;
   --accent-soft: #ff6ab0;
@@ -57,6 +57,7 @@ body.anime {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
+  line-height: 1.7;
 }
 
 /* Keep the existing .bg-grain / .bg-embers / .bg-aurora layers in
@@ -64,13 +65,13 @@ body.anime {
    elements, no changes to stacking. */
 body.anime .bg-aurora::before {
   background: radial-gradient(circle, #ff2e88 0%, transparent 70%);
-  opacity: 0.18;
+  opacity: 0.12;
   width: 900px !important;
   height: 900px !important;
 }
 body.anime .bg-aurora::after {
   background: radial-gradient(circle, #00e5ff 0%, transparent 70%);
-  opacity: 0.14;
+  opacity: 0.09;
   width: 760px !important;
   height: 760px !important;
 }
@@ -80,7 +81,7 @@ body.anime .bg-grain {
     linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px) !important;
   background-size: 48px 48px !important;
-  opacity: 0.5 !important;
+  opacity: 0.28 !important;
   animation: anime-grid-drift 22s linear infinite;
 }
 @keyframes anime-grid-drift {
@@ -145,9 +146,9 @@ body.anime .mono,
 body.anime .eyebrow {
   font-family: var(--font-mono);
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 12px;
 }
 body.anime .eyebrow { color: var(--cyan); }
 
@@ -219,9 +220,9 @@ body.anime .nav-brand:hover .nav-brand-logo {
 body.anime .nav-links a {
   font-family: var(--font-mono);
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
 }
 body.anime .nav-links a:hover,
@@ -236,9 +237,9 @@ body.anime .scroll-progress {
 body.anime .btn {
   font-family: var(--font-mono);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 13px;
   border: 1px solid var(--cyan);
   color: var(--cyan);
   background: transparent;
@@ -332,7 +333,7 @@ body.anime .category-link,
 body.anime .section-head-link {
   font-family: var(--font-mono);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--cyan);
   border-color: var(--border-hi);
@@ -349,7 +350,7 @@ body.anime .filter-btn,
 body.anime .chip {
   font-family: var(--font-mono);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   border-radius: 2px;
 }
@@ -417,9 +418,9 @@ body.anime .modal-tagline {
   text-transform: uppercase;
 }
 body.anime .modal-desc p {
-  font-size: 13px;
-  line-height: 1.55;
-  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 10px;
 }
 body.anime .modal-close { color: var(--accent); border-color: var(--accent); }
 body.anime .modal-close:hover { background: var(--accent); color: #06070d; }
