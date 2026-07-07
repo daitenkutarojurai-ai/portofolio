@@ -30,7 +30,7 @@
 ### Hardware (Arduino · Raspberry Pi · IoT)
 
 - **Automatic Coffee Machine** — Espresso machine retrofitted with Arduino Uno, HC-06 Bluetooth, and an Android app with voice control. 41,550 views on Hackster. https://www.hackster.io/thomassxt/automatic-coffee-machine-950544
-- **Photobooth Pro** — Wedding-grade photobooth: Raspberry Pi + Canon DSLR + Selphy printer, runs `pibooth` fullscreen with custom plugins pushing every shot to Telegram and Google Photos. 8,726 views. https://www.instructables.com/Photobooth-Pro-Weeding-Raspberry-Pi/
+- **Photobooth Pro** — Wedding-grade photobooth: Raspberry Pi + Canon DSLR + Selphy printer, runs `pibooth` fullscreen with custom plugins pushing every shot to Telegram and Google Photos. 8,726 views. https://www.instructables.com/Photobooth-Pro/
 - **Cocktail Machine with GUI** — Raspberry Pi 2 + Adafruit touchscreen + 8-channel relay driving peristaltic pumps; custom GUI for drink selection. 4,159 views. https://www.hackster.io/thomassxt/cocktail-machine-with-gui-raspberry-0c968f
 - **Automated Farm** — Compact greenhouse rig (Arduino Uno + 4-ch I²C relay + soil-moisture, photoresistor, fan, grow light, water pump). https://www.hackster.io/thomassxt/automated-farm-fan-lights-water-pump-8b1102
 - **IKEA Smart Plant** — IKEA planter turned indoor ecosystem (grow light, 12V fan, water pump, moisture probe). https://www.hackster.io/thomassxt/ikea-smart-plant-22133b
